@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cashledger.Presentation", "Cashledger.Presentation\Cashledger.Presentation.csproj", "{622B4A83-DF53-4916-A58C-1D99CBB232B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{2A91D972-2A4E-4A86-B321-3238F1D5DACF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{9644B1A5-AEA6-4BFC-A3A9-54E80553F343}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8016E57D-74D3-4481-8737-545E6D628AD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Supporting", "Supporting", "{B051EFB1-96F5-427B-8B44-684303B7C4A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{622B4A83-DF53-4916-A58C-1D99CBB232B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622B4A83-DF53-4916-A58C-1D99CBB232B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622B4A83-DF53-4916-A58C-1D99CBB232B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622B4A83-DF53-4916-A58C-1D99CBB232B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{622B4A83-DF53-4916-A58C-1D99CBB232B7} = {2A91D972-2A4E-4A86-B321-3238F1D5DACF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8CE51DE-6E03-4A5D-A2F6-E3168F305EBA}
+	EndGlobalSection
+EndGlobal
