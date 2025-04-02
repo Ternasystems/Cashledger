@@ -1,0 +1,43 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /cashledger/
+
+# Rewrite Index.php with or without trailing slash
+RewriteRule ^(\w{2}-\w{2})/?$ index.php?lang=$1 [END]
+
+# Rewrite Application URI
+# Pattern {Language=default}/{Application=Presentation}/{Controller=Home}/{Action=Index}
+RewriteRule ^(\w{2}-\w{2})/(\w+)/(\w+)/(\w+)/?$ index.php?lang=$1&app=$2&ctrl=$3&action=$4 [END]
+
+# Pattern {Language=default}/{Application=Presentation}/{Controller=Home}
+RewriteRule ^(\w{2}-\w{2})/(\w+)/(\w+)/?$ index.php?lang=$1&app=$2&ctrl=$3 [END]
+
+# Pattern {Language=default}/{Application=Presentation}
+RewriteRule ^(\w{2}-\w{2})/(\w+)/?$ index.php?lang=$1&app=$2 [END]
+
+# Pattern {install}
+RewriteRule ^install$ install.php [END]
+
+######################################################
+
+# Redirect Application URI to lang URI
+RewriteCond %{THE_REQUEST} /index\.php\?lang=(\w{2}-\w{2})&app=(\w+)&ctrl=(\w+)&action=(\w+) [NC]
+RewriteRule ^index\.php$ %1/%2/%3/%4/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} /index\.php\?lang=(\w{2}-\w{2})&app=(\w+)&ctrl=(\w+) [NC]
+RewriteRule ^index\.php$ %1/%2/%3/? [R=301,L]
+
+RewriteCond %{THE_REQUEST} /index\.php\?lang=(\w{2}-\w{2})&app=(\w+) [NC]
+RewriteRule ^index\.php$ %1/%2/? [R=301,L]
+
+# Redirect install URI
+RewriteCond %{THE_REQUEST} /install\.php [NC]
+RewriteRule ^install\.php$ install [R=301,L]
+
+# Redirect Index.php to lang URI
+RewriteCond %{THE_REQUEST} /index\.php\?lang=(\w{2}-\w{2}) [NC]
+RewriteRule ^index\.php$ %1/? [R=301,L]
+
+# Redirect Index.php to root URI
+RewriteCond %{THE_REQUEST} index\.php [NC]
+RewriteRule ^index\.php$ /cashledger/? [R=301,L]

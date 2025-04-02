@@ -1,0 +1,19 @@
+@import "../css.Global/Global.css";
+@import "../css.Global/Header.css";
+@import "../css.Global/Navbar.css";
+@import "../css.Global/Footer.css";
+
+/* Content */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}

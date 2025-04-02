@@ -1,0 +1,33 @@
+/* Sidebar CSS */
+
+nav {
+    border-bottom: thin solid lightgrey;
+}
+
+nav > div {
+    min-height: 70px;
+}
+
+nav #nav-title {
+    font-size: 1.5rem;
+}
+
+nav #nav-2 {
+    font-size: 1.5rem;
+}
+
+nav #nav-2 > div + div {
+    margin-left: 2rem;
+}
+
+nav #nav-2 > div > span {
+    background-color: white;
+    border: thin solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-sm);
+    padding: 3px 5px;
+}
+
+nav #nav-2 > div > span:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+}

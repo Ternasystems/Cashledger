@@ -1,0 +1,785 @@
+{
+  "default": {
+    "language": "en",
+    "application": "Presentation",
+    "controller": "Home",
+    "action": "Index"
+  },
+  "pattern": "/{language}/{application}/{controller}/{action}",
+  "routes": {
+    "Index": "/{language}/{application}/{controller}/{action}",
+    "Home": "/{language}/{application}/{controller}/Index",
+    "Presentation": "/{language}/{application}/Home/Index",
+    "en": "/{language}/Presentation/Home/Index"
+  },
+  "apps": {
+    "Accounting": {
+      "fr-FR": {
+        "title": "Comptabilité",
+        "logo": "Accounting",
+        "description": "Tenue des comptes, dettes, créances, taxes..."
+      },
+      "en-US": {
+        "title": "Accounting",
+        "logo": "Accounting",
+        "description": "Bookeeping, payables, receivables, taxes..."
+      },
+      "en-GB": {
+        "title": "Accounting",
+        "logo": "Accounting",
+        "description": "Bookeeping, payables, receivables, taxes..."
+      },
+      "es-ES": {
+        "title": "Accounting",
+        "logo": "Accounting",
+        "description": "Bookeeping, payables, receivables, taxes..."
+      },
+      "ar-SA": {
+        "title": "Accounting",
+        "logo": "Accounting",
+        "description": "Bookeeping, payables, receivables, taxes..."
+      },
+      "url": {
+        "app": "Accounting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Billing": {
+      "fr-FR": {
+        "title": "Tarification",
+        "logo": "Billing",
+        "description": "Devis, fixation des prix..."
+      },
+      "en-US": {
+        "title": "Billing",
+        "logo": "Billing",
+        "description": "Quotations, pricing..."
+      },
+      "en-GB": {
+        "title": "Billing",
+        "logo": "Billing",
+        "description": "Quotations, pricing..."
+      },
+      "es-ES": {
+        "title": "Billing",
+        "logo": "Billing",
+        "description": "Quotations, pricing..."
+      },
+      "ar-SA": {
+        "title": "Billing",
+        "logo": "Billing",
+        "description": "Quotations, pricing..."
+      },
+      "url": {
+        "app": "Billing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Booking": {
+      "fr-FR": {
+        "title": "Réservations",
+        "logo": "Booking",
+        "description": "Hôtellerie, voyages, restauration..."
+      },
+      "en-US": {
+        "title": "Booking",
+        "logo": "Booking",
+        "description": "Hotels, travelling, catering..."
+      },
+      "en-GB": {
+        "title": "Booking",
+        "logo": "Booking",
+        "description": "Hotels, travelling, catering..."
+      },
+      "es-ES": {
+        "title": "Booking",
+        "logo": "Booking",
+        "description": "Hotels, travelling, catering..."
+      },
+      "ar-SA": {
+        "title": "Booking",
+        "logo": "Booking",
+        "description": "Hotels, travelling, catering..."
+      },
+      "url": {
+        "app": "Booking",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Control": {
+      "fr-FR": {
+        "title": "Contrôle",
+        "logo": "Control",
+        "description": "Pointage des opérations, validation, rapprochements..."
+      },
+      "en-US": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Operations tracking, validation, reconciliation..."
+      },
+      "en-GB": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Operations tracking, validation, reconciliation..."
+      },
+      "es-ES": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Operations tracking, validation, reconciliation..."
+      },
+      "ar-SA": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Operations tracking, validation, reconciliation..."
+      },
+      "url": {
+        "app": "Control",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Dashboarding": {
+      "fr-FR": {
+        "title": "Tableaux de bord",
+        "logo": "Dashboarding",
+        "description": "Modélisation, scorecards, visualisation..."
+      },
+      "en-US": {
+        "title": "Dashboarding",
+        "logo": "Dashboarding",
+        "description": "Modeling, scorecards, visual design..."
+      },
+      "en-GB": {
+        "title": "Dashboarding",
+        "logo": "Dashboarding",
+        "description": "Modeling, scorecards, visual design..."
+      },
+      "es-ES": {
+        "title": "Dashboarding",
+        "logo": "Dashboarding",
+        "description": "Modeling, scorecards, visual design..."
+      },
+      "ar-SA": {
+        "title": "Dashboarding",
+        "logo": "Dashboarding",
+        "description": "Modeling, scorecards, visual design..."
+      },
+      "url": {
+        "app": "Dashboarding",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Emailing": {
+      "fr-FR": {
+        "title": "Courriel",
+        "logo": "Emailing",
+        "description": "Client de messagerie, messagerie pair-à-pair, transfer de fichiers..."
+      },
+      "en-US": {
+        "title": "Emailing",
+        "logo": "Emailing",
+        "description": "Email management client, P2P messaging, file tranfer..."
+      },
+      "en-GB": {
+        "title": "Emailing",
+        "logo": "Emailing",
+        "description": "Email management client, P2P messaging, file tranfer..."
+      },
+      "es-ES": {
+        "title": "Emailing",
+        "logo": "Emailing",
+        "description": "Email management client, P2P messaging, file tranfer..."
+      },
+      "ar-SA": {
+        "title": "Emailing",
+        "logo": "Emailing",
+        "description": "Email management client, P2P messaging, file tranfer..."
+      },
+      "url": {
+        "app": "Emailing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Forecasting": {
+      "fr-FR": {
+        "title": "Prévisions",
+        "logo": "Forecasting",
+        "description": "Budget, planification, anticipation, analyse..."
+      },
+      "en-US": {
+        "title": "Forecasting",
+        "logo": "Forecasting",
+        "description": "Budget, planning, anticipation, analysis..."
+      },
+      "en-GB": {
+        "title": "Forecasting",
+        "logo": "Forecasting",
+        "description": "Budget, planning, anticipation, analysis..."
+      },
+      "es-ES": {
+        "title": "Forecasting",
+        "logo": "Forecasting",
+        "description": "Budget, planning, anticipation, analysis..."
+      },
+      "ar-SA": {
+        "title": "Forecasting",
+        "logo": "Forecasting",
+        "description": "Budget, planning, anticipation, analysis..."
+      },
+      "url": {
+        "app": "Forecasting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "HRM": {
+      "fr-FR": {
+        "title": "Gestion des ressources humaines",
+        "logo": "HRM",
+        "description": "Gestion du personnel, carrières, contrats..."
+      },
+      "en-US": {
+        "title": "Human Resource Management",
+        "logo": "HRM",
+        "description": "Employees management, carreers, contracts..."
+      },
+      "en-GB": {
+        "title": "Human Resource Management",
+        "logo": "HRM",
+        "description": "Employees management, carreers, contracts..."
+      },
+      "es-ES": {
+        "title": "Human Resource Management",
+        "logo": "HRM",
+        "description": "Employees management, carreers, contracts..."
+      },
+      "ar-SA": {
+        "title": "Human Resource Management",
+        "logo": "HRM",
+        "description": "Employees management, carreers, contracts..."
+      },
+      "url": {
+        "app": "HRM",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Hudel": {
+      "fr-FR": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Assistance artificielle..."
+      },
+      "en-US": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Artificial support..."
+      },
+      "en-GB": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Artificial support..."
+      },
+      "es-ES": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Artificial support..."
+      },
+      "ar-SA": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Artificial support..."
+      },
+      "url": {
+        "app": "Hudel",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "IDS": {
+      "fr-FR": {
+        "title": "Système d'intégration des données",
+        "logo": "IDS",
+        "description": "Analytics, stockage, conversion de format..."
+      },
+      "en-US": {
+        "title": "Integrated Data Systems",
+        "logo": "IDS",
+        "description": "Analytics, storage, format conversion..."
+      },
+      "en-GB": {
+        "title": "Integrated Data Systems",
+        "logo": "IDS",
+        "description": "Analytics, storage, format conversion..."
+      },
+      "es-ES": {
+        "title": "Integrated Data Systems",
+        "logo": "IDS",
+        "description": "Analytics, storage, format conversion..."
+      },
+      "ar-SA": {
+        "title": "Integrated Data Systems",
+        "logo": "IDS",
+        "description": "Analytics, storage, format conversion..."
+      },
+      "url": {
+        "app": "IDS",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Inventory": {
+      "fr-FR": {
+        "title": "Gestion des stocks",
+        "logo": "Inventory",
+        "description": "Magasinage, seuils, inventaires..."
+      },
+      "en-US": {
+        "title": "Inventory",
+        "logo": "Inventory",
+        "description": "Warehousing, thresholds, inventories..."
+      },
+      "en-GB": {
+        "title": "Inventory",
+        "logo": "Inventory",
+        "description": "Warehousing, thresholds, inventories..."
+      },
+      "es-ES": {
+        "title": "Inventory",
+        "logo": "Inventory",
+        "description": "Warehousing, thresholds, inventories..."
+      },
+      "ar-SA": {
+        "title": "Inventory",
+        "logo": "Inventory",
+        "description": "Warehousing, thresholds, inventories..."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Invoicing": {
+      "fr-FR": {
+        "title": "Facturation",
+        "logo": "Invoicing",
+        "description": "Ventes, gestion des clients, délais..."
+      },
+      "en-US": {
+        "title": "Invoicing",
+        "logo": "Invoicing",
+        "description": "Sales, clients management, deadlines..."
+      },
+      "en-GB": {
+        "title": "Invoicing",
+        "logo": "Invoicing",
+        "description": "Sales, clients management, deadlines..."
+      },
+      "es-ES": {
+        "title": "Invoicing",
+        "logo": "Invoicing",
+        "description": "Sales, clients management, deadlines..."
+      },
+      "ar-SA": {
+        "title": "Invoicing",
+        "logo": "Invoicing",
+        "description": "Sales, clients management, deadlines..."
+      },
+      "url": {
+        "app": "Invoicing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Meeting": {
+      "fr-FR": {
+        "title": "Conférences",
+        "logo": "Meeting",
+        "description": "Réunions en ligne, partage de documents, messagerie, visio-conférences..."
+      },
+      "en-US": {
+        "title": "Meeting",
+        "logo": "Meeting",
+        "description": "Online meeting, documents sharing, messaging, visio-conference..."
+      },
+      "en-GB": {
+        "title": "Meeting",
+        "logo": "Meeting",
+        "description": "Online meeting, documents sharing, messaging, visio-conference..."
+      },
+      "es-ES": {
+        "title": "Meeting",
+        "logo": "Meeting",
+        "description": "Online meeting, documents sharing, messaging, visio-conference..."
+      },
+      "ar-SA": {
+        "title": "Meeting",
+        "logo": "Meeting",
+        "description": "Online meeting, documents sharing, messaging, visio-conference..."
+      },
+      "url": {
+        "app": "Meeting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Messaging": {
+      "fr-FR": {
+        "title": "Messagerie",
+        "logo": "Messaging",
+        "description": "Messagerie instantanée, partage de documents, VoIP..."
+      },
+      "en-US": {
+        "title": "Messaging",
+        "logo": "Messaging",
+        "description": "Instant messaging, documents sharing, VoIP..."
+      },
+      "en-GB": {
+        "title": "Messaging",
+        "logo": "Messaging",
+        "description": "Instant messaging, documents sharing, VoIP..."
+      },
+      "es-ES": {
+        "title": "Messaging",
+        "logo": "Messaging",
+        "description": "Instant messaging, documents sharing, VoIP..."
+      },
+      "ar-SA": {
+        "title": "Messaging",
+        "logo": "Messaging",
+        "description": "Instant messaging, documents sharing, VoIP..."
+      },
+      "url": {
+        "app": "Messaging",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Partnership": {
+      "fr-FR": {
+        "title": "Partenariat",
+        "logo": "Partnership",
+        "description": "Contrat pair-à-pair, quote-part, sous-traitance..."
+      },
+      "en-US": {
+        "title": "Partnership",
+        "logo": "Partnership",
+        "description": "P2P contract, shares, subcontracting..."
+      },
+      "en-GB": {
+        "title": "Partnership",
+        "logo": "Partnership",
+        "description": "P2P contract, shares, subcontracting..."
+      },
+      "es-ES": {
+        "title": "Partnership",
+        "logo": "Partnership",
+        "description": "P2P contract, shares, subcontracting..."
+      },
+      "ar-SA": {
+        "title": "Partnership",
+        "logo": "Partnership",
+        "description": "P2P contract, shares, subcontracting..."
+      },
+      "url": {
+        "app": "Partnership",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Payments": {
+      "fr-FR": {
+        "title": "Moyens de paiement",
+        "logo": "Payments",
+        "description": "Banque, espèces, cartes, crédit..."
+      },
+      "en-US": {
+        "title": "Payments",
+        "logo": "Payments",
+        "description": "Bank, cash, cards, debt..."
+      },
+      "en-GB": {
+        "title": "Payments",
+        "logo": "Payments",
+        "description": "Bank, cash, cards, debt..."
+      },
+      "es-ES": {
+        "title": "Payments",
+        "logo": "Payments",
+        "description": "Bank, cash, cards, debt..."
+      },
+      "ar-SA": {
+        "title": "Payments",
+        "logo": "Payments",
+        "description": "Bank, cash, cards, debt..."
+      },
+      "url": {
+        "app": "Payments",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Payroll": {
+      "fr-FR": {
+        "title": "Paie",
+        "logo": "Payroll",
+        "description": "Traitement des salaires, débours, indemnités..."
+      },
+      "en-US": {
+        "title": "Payroll",
+        "logo": "Payroll",
+        "description": "Salaries, outlays, allowances..."
+      },
+      "en-GB": {
+        "title": "Payroll",
+        "logo": "Payroll",
+        "description": "Salaries, outlays, allowances..."
+      },
+      "es-ES": {
+        "title": "Payroll",
+        "logo": "Payroll",
+        "description": "Salaries, outlays, allowances..."
+      },
+      "ar-SA": {
+        "title": "Payroll",
+        "logo": "Payroll",
+        "description": "Salaries, outlays, allowances..."
+      },
+      "url": {
+        "app": "Payroll",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Profiling": {
+      "fr-FR": {
+        "title": "Gestion des utilisateurs",
+        "logo": "Profiling",
+        "description": "Profils, utilisateurs, droits d'accès..."
+      },
+      "en-US": {
+        "title": "Profiling",
+        "logo": "Profiling",
+        "description": "Profiles, credentials, grants..."
+      },
+      "en-GB": {
+        "title": "Profiling",
+        "logo": "Profiling",
+        "description": "Profiles, credentials, grants..."
+      },
+      "es-ES": {
+        "title": "Profiling",
+        "logo": "Profiling",
+        "description": "Profiles, credentials, grants..."
+      },
+      "ar-SA": {
+        "title": "Profiling",
+        "logo": "Profiling",
+        "description": "Profiles, credentials, grants..."
+      },
+      "url": {
+        "app": "Profiling",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Publishing": {
+      "fr-FR": {
+        "title": "Publication",
+        "logo": "Publishing",
+        "description": "Exportation et importation des données..."
+      },
+      "en-US": {
+        "title": "Publishing",
+        "logo": "Publishing",
+        "description": "Data importation and exportation..."
+      },
+      "en-GB": {
+        "title": "Publishing",
+        "logo": "Publishing",
+        "description": "Data importation and exportation..."
+      },
+      "es-ES": {
+        "title": "Publishing",
+        "logo": "Publishing",
+        "description": "Data importation and exportation..."
+      },
+      "ar-SA": {
+        "title": "Publishing",
+        "logo": "Publishing",
+        "description": "Data importation and exportation..."
+      },
+      "url": {
+        "app": "Publishing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Purchase": {
+      "fr-FR": {
+        "title": "Achats",
+        "logo": "Purchase",
+        "description": "Achats, gestion des fournisseurs, délais..."
+      },
+      "en-US": {
+        "title": "Purchase",
+        "logo": "Purchase",
+        "description": "Purchases, suppliers management, deadlines..."
+      },
+      "en-GB": {
+        "title": "Purchase",
+        "logo": "Purchase",
+        "description": "Purchases, suppliers management, deadlines..."
+      },
+      "es-ES": {
+        "title": "Purchase",
+        "logo": "Purchase",
+        "description": "Purchases, suppliers management, deadlines..."
+      },
+      "ar-SA": {
+        "title": "Purchase",
+        "logo": "Purchase",
+        "description": "Purchases, suppliers management, deadlines..."
+      },
+      "url": {
+        "app": "Purchase",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Reporting": {
+      "fr-FR": {
+        "title": "Etats et Rapports",
+        "logo": "Reporting",
+        "description": "Produire des états et rapports périodiques"
+      },
+      "en-US": {
+        "title": "Reports and Statements",
+        "logo": "Reporting",
+        "description": "Produce periodic reports and statements"
+      },
+      "en-GB": {
+        "title": "Reports and Statements",
+        "logo": "Reporting",
+        "description": "Produce periodic reports and statements"
+      },
+      "es-ES": {
+        "title": "Reports and Statements",
+        "logo": "Reporting",
+        "description": "Produce periodic reports and statements"
+      },
+      "ar-SA": {
+        "title": "Reports and Statements",
+        "logo": "Reporting",
+        "description": "Produce periodic reports and statements"
+      },
+      "url": {
+        "app": "Reporting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Tasks": {
+      "fr-FR": {
+        "title": "A-Faire",
+        "logo": "Tasks",
+        "description": "Planificateur de tâches, synchronisation, organisation..."
+      },
+      "en-US": {
+        "title": "Tasks",
+        "logo": "Tasks",
+        "description": "Tasks planning, synchronization, scheduling..."
+      },
+      "en-GB": {
+        "title": "Tasks",
+        "logo": "Tasks",
+        "description": "Tasks planning, synchronization, scheduling..."
+      },
+      "es-ES": {
+        "title": "Tasks",
+        "logo": "Tasks",
+        "description": "Tasks planning, synchronization, scheduling..."
+      },
+      "ar-SA": {
+        "title": "Tasks",
+        "logo": "Tasks",
+        "description": "Tasks planning, synchronization, scheduling..."
+      },
+      "url": {
+        "app": "Tasks",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Teller": {
+      "fr-FR": {
+        "title": "Caisses",
+        "logo": "Teller",
+        "description": "Gestion des caisses, centralisation..."
+      },
+      "en-US": {
+        "title": "Tellers",
+        "logo": "Teller",
+        "description": "Cash management, centralization..."
+      },
+      "en-GB": {
+        "title": "Tellers",
+        "logo": "Teller",
+        "description": "Cash management, centralization..."
+      },
+      "es-ES": {
+        "title": "Tellers",
+        "logo": "Teller",
+        "description": "Cash management, centralization..."
+      },
+      "ar-SA": {
+        "title": "Tellers",
+        "logo": "Teller",
+        "description": "Cash management, centralization..."
+      },
+      "url": {
+        "app": "Teller",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Wholesale": {
+      "fr-FR": {
+        "title": "Boutiques en ligne",
+        "logo": "Wholesale",
+        "description": "Ventes en ligne, rayonnage..."
+      },
+      "en-US": {
+        "title": "Wholesale",
+        "logo": "Wholesale",
+        "description": "online sales, shelving..."
+      },
+      "en-GB": {
+        "title": "Wholesale",
+        "logo": "Wholesale",
+        "description": "online sales, shelving..."
+      },
+      "es-ES": {
+        "title": "Wholesale",
+        "logo": "Wholesale",
+        "description": "online sales, shelving..."
+      },
+      "ar-SA": {
+        "title": "Wholesale",
+        "logo": "Wholesale",
+        "description": "online sales, shelving..."
+      },
+      "url": {
+        "app": "Wholesale",
+        "controller": "Home",
+        "action": "Index"
+      }
+    }
+  }
+}

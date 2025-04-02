@@ -1,0 +1,33 @@
+/* Header CSS */
+
+header {
+    background-color: var(--ts-glow-blue);
+    color: white;
+}
+
+header .ts-menu {
+    cursor: pointer;
+    position: relative;
+}
+
+header .ts-menu:hover, header #app-menu:hover {
+    background-color: var(--ts-dark-blue);
+}
+
+header .ts-list {
+    margin-top: calc(var(--ts-spacing-3) + var(--ts-spacing));
+}
+
+header #hd-1 #app-menu {
+    border: thin solid var(--bs-light);
+    border-radius: var(--bs-border-radius-sm);
+}
+
+header #hd-1 .ts-link {
+    cursor: pointer;
+}
+
+header #hd-2 .ts-list {
+    left: auto;
+    right: 0;
+}

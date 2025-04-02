@@ -1,0 +1,59 @@
+@import "../css.Global/Global.css";
+@import "../css.Global/Header.css";
+@import "../css.Presentation/Sidebar.css";
+@import "../css.Global/Footer.css";
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    align-content: start;
+}
+
+section.ts-app {
+    display: flex;
+    border: thin solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-sm);
+    height: 120px;
+    align-items: start;
+    padding: 1rem 0.5rem;
+    background-color: whitesmoke;
+}
+
+section.ts-app img {
+    width: 50px;
+}
+
+section.ts-app div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    align-items: start;
+}
+
+section.ts-app .ts-app-title {
+    font-family: Arimo;
+}
+
+section.ts-app .ts-app-desc {
+    color: gray;
+}
+
+section.ts-app button {
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.5rem;
+    background-color: var(--ts-dark-blue);
+    color: white;
+}

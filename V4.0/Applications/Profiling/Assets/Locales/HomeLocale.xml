@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Header -->
+        <item app="Profiling" action="Home" name="Title">Gestion des utilisateurs</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Header -->
+        <item app="Profiling" action="Home" name="Title">User management</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Header -->
+        <item app="Profiling" action="Home" name="Title">User management</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Header -->
+        <item app="Profiling" action="Home" name="Title">User management</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Header -->
+        <item app="Profiling" action="Home" name="Title">User management</item>
+    </ar-SA>
+</locale>

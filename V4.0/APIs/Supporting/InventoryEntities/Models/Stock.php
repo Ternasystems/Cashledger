@@ -1,0 +1,53 @@
+<?php
+
+namespace API_InventoryEntities_Model;
+
+use API_DTOEntities_Model\Entity;
+use API_InventoryEntities_Collection\StockAttributes;
+use UnexpectedValueException;
+
+class Stock extends Entity
+{
+    private Unit $unit;
+    private Warehouse $warehouse;
+    private Product $product;
+    private StockAttributes $attributes;
+
+    public function __construct(\API_InventoryRepositories_Model\Stock $_entity, Product $_product, Unit $_unit, Warehouse $_warehouse, StockAttributes $_attributes)
+    {
+        parent::__construct($_entity, null);
+        $this->unit = $_unit;
+        $this->warehouse = $_warehouse;
+        $this->product = $_product;
+        $this->attributes = $_attributes;
+    }
+
+    public function It(): \API_InventoryRepositories_Model\Stock
+    {
+        $entity = parent::It();
+        if (!$entity instanceof \API_InventoryRepositories_Model\Stock)
+            throw new UnexpectedValueException('Object must be an instance of '.\API_InventoryRepositories_Model\Stock::class);
+
+        return $entity;
+    }
+
+    public function Unit(): Unit
+    {
+        return $this->unit;
+    }
+
+    public function Warehouse(): Warehouse
+    {
+        return $this->warehouse;
+    }
+
+    public function Product(): Product
+    {
+        return $this->product;
+    }
+
+    public function StockAttributes(): StockAttributes
+    {
+        return $this->attributes;
+    }
+}

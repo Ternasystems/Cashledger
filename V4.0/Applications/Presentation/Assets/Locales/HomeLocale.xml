@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Home -->
+        <item app="Presentation" action="Home" name="Title">Cashledger</item>
+        <item app="Presentation" action="Home" name="ChooseUser">Choisir un utilisateur</item>
+        <item app="Presentation" action="Home" name="Username">Nom d'utilisateur</item>
+        <item app="Presentation" action="Home" name="UsernameValidation">Veuillez renseigner le nom d'utilisateur</item>
+        <item app="Presentation" action="Home" name="ForgottenPwd">Changer le mot de passe</item>
+        <item app="Presentation" action="Home" name="Pwd">Mot de passe</item>
+        <item app="Presentation" action="Home" name="PwdValidation">Veuillez renseigner le mot de passe</item>
+        <item app="Presentation" action="Home" name="Login">Se connecter</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Home -->
+        <item app="Presentation" action="Home" name="Title">Cashledger</item>
+        <item app="Presentation" action="Home" name="ChooseUser">Choose a user</item>
+        <item app="Presentation" action="Home" name="Username">Username</item>
+        <item app="Presentation" action="Home" name="UsernameValidation">Please fill the username</item>
+        <item app="Presentation" action="Home" name="ForgottenPwd">Reset password</item>
+        <item app="Presentation" action="Home" name="Pwd">Password</item>
+        <item app="Presentation" action="Home" name="PwdValidation">Please fill the password</item>
+        <item app="Presentation" action="Home" name="Login">Log in</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Home -->
+        <item app="Presentation" action="Home" name="Title">Cashledger</item>
+        <item app="Presentation" action="Home" name="ChooseUser">Choose a user</item>
+        <item app="Presentation" action="Home" name="Username">Username</item>
+        <item app="Presentation" action="Home" name="UsernameValidation">Please fill the username</item>
+        <item app="Presentation" action="Home" name="ForgottenPwd">Reset password</item>
+        <item app="Presentation" action="Home" name="Pwd">Password</item>
+        <item app="Presentation" action="Home" name="PwdValidation">Please fill the password</item>
+        <item app="Presentation" action="Home" name="Login">Log in</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Home -->
+        <item app="Presentation" action="Home" name="Title">Cashledger</item>
+        <item app="Presentation" action="Home" name="ChooseUser">Choose a user</item>
+        <item app="Presentation" action="Home" name="Username">Username</item>
+        <item app="Presentation" action="Home" name="UsernameValidation">Please fill the username</item>
+        <item app="Presentation" action="Home" name="ForgottenPwd">Reset password</item>
+        <item app="Presentation" action="Home" name="Pwd">Password</item>
+        <item app="Presentation" action="Home" name="PwdValidation">Please fill the password</item>
+        <item app="Presentation" action="Home" name="Login">Log in</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Home -->
+        <item app="Presentation" action="Home" name="Title">Cashledger</item>
+        <item app="Presentation" action="Home" name="ChooseUser">Choose a user</item>
+        <item app="Presentation" action="Home" name="Username">Username</item>
+        <item app="Presentation" action="Home" name="UsernameValidation">Please fill the username</item>
+        <item app="Presentation" action="Home" name="ForgottenPwd">Reset password</item>
+        <item app="Presentation" action="Home" name="Pwd">Password</item>
+        <item app="Presentation" action="Home" name="PwdValidation">Please fill the password</item>
+        <item app="Presentation" action="Home" name="Login">Log in</item>
+    </ar-SA>
+</locale>

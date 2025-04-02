@@ -1,0 +1,157 @@
+html {
+    font-size: 13px;
+    --box-shadow-color: black;
+    --ts-light-blue: #a6caec;
+    --ts-dark-blue: #163e64;
+    --ts-soft-blue: #dceaf7;
+    --ts-glow-blue: #006fab;
+    --ts-glow-red: #ee3604;
+    --ts-spacing: 0.25rem;
+    --ts-spacing-0: 0;
+    --ts-spacing-1: 0.25rem;
+    --ts-spacing-2: 0.5rem;
+    --ts-spacing-3: 1rem;
+    --ts-spacing-4: 1.5rem;
+    --ts-spacing-5: 3rem;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Segoe UI";
+}
+
+/* Custom CSS */
+[class*="ts-w-"] {
+    width: 100% !important;
+}
+
+.ts-w-5 {
+    width: 5% !important;
+}
+
+.ts-w-10 {
+    width: 10% !important;
+}
+
+.ts-w-20 {
+    width: 20% !important;
+}
+
+.ts-w-30 {
+    width: 30% !important;
+}
+
+.ts-w-35 {
+    width: 35% !important;
+}
+
+@media (min-width:1024px) {
+    .ts-w-lg-30 {
+        width: 30% !important;
+    }
+
+    .ts-w-lg-50 {
+        width: 50% !important;
+    }
+}
+
+.ts-text-shadow {
+    text-shadow: 2px 0 0 black;
+}
+
+.ts-box-shadow {
+    box-shadow: 0 0 3px var(--box-shadow-color);
+}
+
+.ts-disabled {
+    pointer-events: none;
+}
+
+input.ts-disabled, select.ts-disabled {
+    opacity: 0.5;
+    background-color: lightgray;
+}
+
+.ts-grid {
+    display: grid;
+}
+
+.ts-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.ts-table-header, .ts-table-row {
+    display: grid;
+}
+
+.ts-table-header {
+    background-color: var(--bs-secondary-bg);
+    border-bottom: thin solid var(--bs-dark);
+    font-weight: bold;
+}
+
+.ts-table-row {
+    background-color: white;
+    border-bottom: thin solid lightgray;
+}
+
+.ts-table-row:nth-child(2n+1) {
+    background-color: #f8f8f8;
+}
+
+.ts-table-cell {
+    padding: 10px 0;
+}
+
+.ts-form-control {
+    border-color: var(--bs-dark);
+    border-radius: 50px;
+    padding: 5px 20px;
+}
+
+.ts-form-control-light {
+    border-width: 0;
+    border-bottom-width: thin;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.ts-list {
+    position: absolute;
+    left: 0;
+    z-index: 100;
+    list-style: none;
+    border: thin solid lightgray;
+    border-radius: var(--bs-border-radius-sm);
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: gray;
+    width: fit-content;
+    min-width: 150px;
+    white-space: nowrap;
+}
+
+.ts-list li {
+    padding: 0.125rem 0.5rem;
+}
+
+.ts-list li:hover {
+    background-color: lightgray;
+}

@@ -1,0 +1,25 @@
+/* Navbar CSS */
+
+nav {
+   border-bottom: thin solid lightgrey;
+}
+
+nav > div {
+   min-height: 70px;
+}
+
+nav #nav-title {
+   font-size: 1.5rem;
+}
+
+nav #nav-1 > div + div {
+   margin-left: 1rem;
+}
+
+nav .ts-view {
+   cursor: pointer;
+}
+
+nav .ts-view:hover {
+   text-decoration: underline;
+}

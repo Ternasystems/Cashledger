@@ -1,0 +1,80 @@
+@import "../css.Global/Global.css";
+
+/* Form CSS */
+
+form {
+    background-color: var(--bs-light);
+    padding: 0 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+    form {
+        margin: 3rem auto 0 auto;
+    }
+}
+
+form #title {
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+form #manifest {
+    color: var(--bs-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+form picture > img {
+    height: 100px;
+}
+
+form #form-body {
+    padding: 2rem 0 1rem 0;
+}
+
+form #form-body > div + div {
+    margin-top: 2rem;
+}
+
+form #form-body > div:last-of-type {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+form .form-elt > a {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-align: end;
+    padding: 0 0.5rem 0.5rem 0;
+    color: grey;
+}
+
+form .form-elt > a:hover {
+    cursor: pointer;
+}
+
+form input, button, a, select {
+    width: 100%;
+}
+
+.ts-usr {
+    display: inline-block;
+    border: thin solid var(--bs-success);
+    border-radius: 5px;
+    background-color: var(--bs-success-bg-subtle);
+    width: 100%;
+    padding: 0.5rem;
+    color: black;
+    text-decoration: none;
+}
+
+.ts-usr + .ts-usr {
+    margin-top: 1rem;
+}
+
+.ts-usr:hover {
+    background-color: var(--bs-success);
+    color: white;
+    cursor: pointer;
+}

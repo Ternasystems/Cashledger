@@ -1,0 +1,710 @@
+{
+  "apps": {
+    "GeneralOverview": {
+      "fr-FR": {
+        "title": "Aperçu général",
+        "logo": "Inventory",
+        "description": "Affiche les données générales d'inventaire."
+      },
+      "en-US": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "en-GB": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "es-ES": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "ar-SA": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "WareHouseOverview": {
+      "fr-FR": {
+        "title": "Aperçu magasins",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des magasins."
+      },
+      "en-US": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "en-GB": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "es-ES": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "ar-SA": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Warehouses"
+      }
+    },
+    "ProductOverview": {
+      "fr-FR": {
+        "title": "Aperçu produits",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des produits."
+      },
+      "en-US": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "en-GB": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "es-ES": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "ar-SA": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Products"
+      }
+    },
+    "StockOverview": {
+      "fr-FR": {
+        "title": "Aperçu stocks",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des stocks."
+      },
+      "en-US": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "en-GB": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "es-ES": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "ar-SA": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Stocks"
+      }
+    },
+    "StockIn": {
+      "fr-FR": {
+        "title": "Entrées en stocks",
+        "logo": "Inventory",
+        "description": "Enregistre les opérations relatives aux entrées en stocks."
+      },
+      "en-US": {
+        "title": "Stock-In",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inputs."
+      },
+      "en-GB": {
+        "title": "Stock-In",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inputs."
+      },
+      "es-ES": {
+        "title": "Stock-In",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inputs."
+      },
+      "ar-SA": {
+        "title": "Stock-In",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inputs."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "StockIn",
+        "action": "Index"
+      }
+    },
+    "StockOut": {
+      "fr-FR": {
+        "title": "Sorties de stocks",
+        "logo": "Inventory",
+        "description": "Enregistre les opérations relatives aux sorties de stocks."
+      },
+      "en-US": {
+        "title": "Stock-Out",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks outputs."
+      },
+      "en-GB": {
+        "title": "Stock-Out",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks outputs."
+      },
+      "es-ES": {
+        "title": "Stock-Out",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks outputs."
+      },
+      "ar-SA": {
+        "title": "Stock-Out",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks outputs."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "StockOut",
+        "action": "Index"
+      }
+    },
+    "Inventories": {
+      "fr-FR": {
+        "title": "Inventaires",
+        "logo": "Inventory",
+        "description": "Enregistre les opérations relatives aux inventaires."
+      },
+      "en-US": {
+        "title": "Inventories",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inventories."
+      },
+      "en-GB": {
+        "title": "Inventories",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inventories."
+      },
+      "es-ES": {
+        "title": "Inventories",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inventories."
+      },
+      "ar-SA": {
+        "title": "Inventories",
+        "logo": "Inventory",
+        "description": "Record operations related to stocks inventories."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Inventory",
+        "action": "Index"
+      }
+    },
+    "ProductCategories": {
+      "fr-FR": {
+        "title": "Catégories de produits",
+        "logo": "Inventory",
+        "description": "Configure les catégories de produits."
+      },
+      "en-US": {
+        "title": "Product categories",
+        "logo": "Inventory",
+        "description": "Configure products categories."
+      },
+      "en-GB": {
+        "title": "Product categories",
+        "logo": "Inventory",
+        "description": "Configure products categories."
+      },
+      "es-ES": {
+        "title": "Product categories",
+        "logo": "Inventory",
+        "description": "Configure products categories."
+      },
+      "ar-SA": {
+        "title": "Product categories",
+        "logo": "Inventory",
+        "description": "Configure products categories."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Category"
+      }
+    },
+    "Products": {
+      "fr-FR": {
+        "title": "Produits",
+        "logo": "Inventory",
+        "description": "Configure la liste des produits."
+      },
+      "en-US": {
+        "title": "Products",
+        "logo": "Inventory",
+        "description": "Configure the products list."
+      },
+      "en-GB": {
+        "title": "Products",
+        "logo": "Inventory",
+        "description": "Configure the products list."
+      },
+      "es-ES": {
+        "title": "Products",
+        "logo": "Inventory",
+        "description": "Configure the products list."
+      },
+      "ar-SA": {
+        "title": "Products",
+        "logo": "Inventory",
+        "description": "Configure the products list."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Product"
+      }
+    },
+    "Warehouses": {
+      "fr-FR": {
+        "title": "Magasins",
+        "logo": "Inventory",
+        "description": "Configurer des magasins et entrepôts."
+      },
+      "en-US": {
+        "title": "Warehouses",
+        "logo": "Inventory",
+        "description": "Configure warehouses."
+      },
+      "en-GB": {
+        "title": "Warehouses",
+        "logo": "Inventory",
+        "description": "Configure warehouses."
+      },
+      "es-ES": {
+        "title": "Warehouses",
+        "logo": "Inventory",
+        "description": "Configure warehouses."
+      },
+      "ar-SA": {
+        "title": "Warehouses",
+        "logo": "Inventory",
+        "description": "Configure warehouses."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Warehouse"
+      }
+    },
+    "Customers": {
+      "fr-FR": {
+        "title": "Clients",
+        "logo": "Inventory",
+        "description": "Configure la liste des clients."
+      },
+      "en-US": {
+        "title": "Customers",
+        "logo": "Inventory",
+        "description": "Configure the clients list."
+      },
+      "en-GB": {
+        "title": "Customers",
+        "logo": "Inventory",
+        "description": "Configure the clients list."
+      },
+      "es-ES": {
+        "title": "Customers",
+        "logo": "Inventory",
+        "description": "Configure the clients list."
+      },
+      "ar-SA": {
+        "title": "Customers",
+        "logo": "Inventory",
+        "description": "Configure the clients list."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Customer"
+      }
+    },
+    "Suppliers": {
+      "fr-FR": {
+        "title": "Fournisseurs",
+        "logo": "Inventory",
+        "description": "Configure la liste des fournisseurs."
+      },
+      "en-US": {
+        "title": "Suppliers",
+        "logo": "Inventory",
+        "description": "Configure the suppliers list."
+      },
+      "en-GB": {
+        "title": "Suppliers",
+        "logo": "Inventory",
+        "description": "Configure the suppliers list."
+      },
+      "es-ES": {
+        "title": "Suppliers",
+        "logo": "Inventory",
+        "description": "Configure the suppliers list."
+      },
+      "ar-SA": {
+        "title": "Suppliers",
+        "logo": "Inventory",
+        "description": "Configure the suppliers list."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Supplier"
+      }
+    },
+    "Manufacturers": {
+      "fr-FR": {
+        "title": "Fabricants",
+        "logo": "Inventory",
+        "description": "Configure la liste des fabricants."
+      },
+      "en-US": {
+        "title": "manufacturers",
+        "logo": "Inventory",
+        "description": "Configure the manufacturers list."
+      },
+      "en-GB": {
+        "title": "manufacturers",
+        "logo": "Inventory",
+        "description": "Configure the manufacturers list."
+      },
+      "es-ES": {
+        "title": "manufacturers",
+        "logo": "Inventory",
+        "description": "Configure the manufacturers list."
+      },
+      "ar-SA": {
+        "title": "manufacturers",
+        "logo": "Inventory",
+        "description": "Configure the manufacturers list."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Manufacturer"
+      }
+    },
+    "Units": {
+      "fr-FR": {
+        "title": "Unités de mesure",
+        "logo": "Inventory",
+        "description": "Configure les unités de mesure."
+      },
+      "en-US": {
+        "title": "Measurement units",
+        "logo": "Inventory",
+        "description": "Configure the measurement units."
+      },
+      "en-GB": {
+        "title": "Measurement units",
+        "logo": "Inventory",
+        "description": "Configure the measurement units."
+      },
+      "es-ES": {
+        "title": "Measurement units",
+        "logo": "Inventory",
+        "description": "Configure the measurement units."
+      },
+      "ar-SA": {
+        "title": "Measurement units",
+        "logo": "Inventory",
+        "description": "Configure the measurement units."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Unit"
+      }
+    },
+    "Packaging": {
+      "fr-FR": {
+        "title": "Conditionnement",
+        "logo": "Inventory",
+        "description": "Configure les types de conditionnement."
+      },
+      "en-US": {
+        "title": "Packaging",
+        "logo": "Inventory",
+        "description": "Configure the types of packaging."
+      },
+      "en-GB": {
+        "title": "Packaging",
+        "logo": "Inventory",
+        "description": "Configure the types of packaging."
+      },
+      "es-ES": {
+        "title": "Packaging",
+        "logo": "Inventory",
+        "description": "Configure the types of packaging."
+      },
+      "ar-SA": {
+        "title": "Packaging",
+        "logo": "Inventory",
+        "description": "Configure the types of packaging."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Packaging"
+      }
+    }
+  },
+  "components": {
+    "NavGeneral": {
+      "fr-FR": {
+        "title": "Aperçu général",
+        "logo": "Inventory",
+        "description": "Affiche les données générales d'inventaire."
+      },
+      "en-US": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "en-GB": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "es-ES": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "ar-SA": {
+        "title": "General overview",
+        "logo": "Inventory",
+        "description": "Display general inventory data."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "GeneralOverview"
+      }
+    },
+    "NavWareHouse": {
+      "fr-FR": {
+        "title": "Aperçu magasins",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des magasins."
+      },
+      "en-US": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "en-GB": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "es-ES": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "ar-SA": {
+        "title": "Warehouses overview",
+        "logo": "Inventory",
+        "description": "Display summary data on warehouses."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "WarehouseOverview"
+      }
+    },
+    "NavProduct": {
+      "fr-FR": {
+        "title": "Aperçu produits",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des produits."
+      },
+      "en-US": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "en-GB": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "es-ES": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "ar-SA": {
+        "title": "Products overview",
+        "logo": "Inventory",
+        "description": "Display summary data on products."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ProductOverview"
+      }
+    },
+    "NavStock": {
+      "fr-FR": {
+        "title": "Aperçu stocks",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des stocks."
+      },
+      "en-US": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "en-GB": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "es-ES": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "ar-SA": {
+        "title": "Stocks overview",
+        "logo": "Inventory",
+        "description": "Display summary data on stocks."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "StockOverview"
+      }
+    },
+    "NavNewProductCategory": {
+      "fr-FR": {
+        "title": "Nouvelle catégorie",
+        "logo": "Inventory",
+        "description": "Crée une nouvelle catégorie de produits."
+      },
+      "en-US": {
+        "title": "New category",
+        "logo": "Inventory",
+        "description": "Create a new product category."
+      },
+      "en-GB": {
+        "title": "New category",
+        "logo": "Inventory",
+        "description": "Create a new product category."
+      },
+      "es-ES": {
+        "title": "New category",
+        "logo": "Inventory",
+        "description": "Create a new product category."
+      },
+      "ar-SA": {
+        "title": "New category",
+        "logo": "Inventory",
+        "description": "Create a new product category."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewCategory"
+      }
+    },
+    "NavModifyProductCategory": {
+      "fr-FR": {
+        "title": "Modifier une catégorie",
+        "logo": "Inventory",
+        "description": "Modifie une catégorie de produits."
+      },
+      "en-US": {
+        "title": "Modify a category",
+        "logo": "Inventory",
+        "description": "Modify a product category."
+      },
+      "en-GB": {
+        "title": "Modify a category",
+        "logo": "Inventory",
+        "description": "Modify a product category."
+      },
+      "es-ES": {
+        "title": "Modify a category",
+        "logo": "Inventory",
+        "description": "Modify a product category."
+      },
+      "ar-SA": {
+        "title": "Modify a category",
+        "logo": "Inventory",
+        "description": "Modify a product category."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyCategory"
+      }
+    },
+    "NavDeleteProductCategory": {
+      "fr-FR": {
+        "title": "Supprimer une catégorie",
+        "logo": "Inventory",
+        "description": "Supprime une catégorie de produits."
+      },
+      "en-US": {
+        "title": "Delete a category",
+        "logo": "Inventory",
+        "description": "Delete a product category."
+      },
+      "en-GB": {
+        "title": "Delete a category",
+        "logo": "Inventory",
+        "description": "Delete a product category."
+      },
+      "es-ES": {
+        "title": "Delete a category",
+        "logo": "Inventory",
+        "description": "Delete a product category."
+      },
+      "ar-SA": {
+        "title": "Delete a category",
+        "logo": "Inventory",
+        "description": "Delete a product category."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteCategory"
+      }
+    }
+  }
+}

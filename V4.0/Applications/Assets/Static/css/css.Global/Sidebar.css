@@ -1,0 +1,34 @@
+/* Sidebar CSS */
+
+aside {
+    background-color: var(--ts-dark-blue);
+    color: white;
+    padding: 2rem 0;
+}
+
+aside figure {
+    display: flex;
+    align-items: center;
+    padding: 1rem 5px;
+    margin: 0;
+}
+
+aside figure.ts-active {
+    border-left: thick solid var(--bs-light);
+}
+
+aside figure:hover {
+    background-color: var(--bs-danger);
+    border-left: thick solid var(--bs-light);
+    cursor: pointer;
+}
+
+aside img {
+    width: 30px;
+    height: auto;
+    filter: invert(1);
+}
+
+aside img + figcaption {
+    margin-left: 0.5rem;
+}

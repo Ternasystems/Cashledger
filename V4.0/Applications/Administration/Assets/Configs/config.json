@@ -1,0 +1,11 @@
+{
+  "ParameterNames": ["Serial", "StartDate", "ActiveDate", "EndDate", "Users", "CodeLength", "CurrentThread", "AppVersion"],
+  "ParameterChecks": {
+    "CodeLength": "f_CheckCodeLength",
+    "Activation": "f_CheckActivation",
+    "ActivePeriod": "f_CheckPeriod"
+  },
+  "ParameterFunctions": {
+    "AppVersion": "f_Readme"
+  }
+}

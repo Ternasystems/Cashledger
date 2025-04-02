@@ -1,0 +1,23 @@
+<?php
+
+namespace API_DTOEntities_Model;
+
+use API_RelationRepositories_Collection\LanguageRelations;
+use UnexpectedValueException;
+
+class Continent extends Entity
+{
+    public function __construct(\API_DTORepositories_Model\Continent $_entity, ?LanguageRelations $_languageRelations)
+    {
+        parent::__construct($_entity, $_languageRelations);
+    }
+
+    public function It(): \API_DTORepositories_Model\Continent
+    {
+        $entity = parent::It();
+        if (!$entity instanceof \API_DTORepositories_Model\Continent)
+            throw new UnexpectedValueException('Object must be an instance of '.\API_DTORepositories_Model\Continent::class);
+
+        return $entity;
+    }
+}

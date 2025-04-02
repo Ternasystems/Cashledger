@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="Title">Applications</item>
+        <!-- Dashboard -->
+        <item app="Presentation" action="Dashboard" name="Launch">Démarrer</item>
+        <!-- Sidebar -->
+        <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="Title">Applications</item>
+        <!-- Dashboard -->
+        <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <!-- Sidebar -->
+        <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="Title">Applications</item>
+        <!-- Dashboard -->
+        <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <!-- Sidebar -->
+        <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="Title">Applications</item>
+        <!-- Dashboard -->
+        <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <!-- Sidebar -->
+        <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="Title">Applications</item>
+        <!-- Dashboard -->
+        <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <!-- Sidebar -->
+        <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
+    </ar-SA>
+</locale>

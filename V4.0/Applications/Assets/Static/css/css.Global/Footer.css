@@ -1,0 +1,22 @@
+/* Footer CSS */
+
+footer {
+    background-color: var(--bs-dark);
+    color: white;
+}
+
+footer #ft-1 > * + * {
+    margin-left: 1rem;
+}
+
+footer select {
+    width: 150px;
+}
+
+footer #ft-2 span + picture {
+    margin-left: 0.5rem;
+}
+
+footer img {
+    height: 30px;
+}

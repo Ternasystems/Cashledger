@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="LogOut">Déconnexion</item>
+        <item app="Presentation" action="Dashboard" name="MyProfile">Mon profil</item>
+        <item app="Presentation" action="Dashboard" name="Help">Documentation</item>
+        <item app="Presentation" action="Dashboard" name="Support">Assistance</item>
+        <item app="Presentation" action="Dashboard" name="Copyright">Droits d'auteur</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="LogOut">Log out</item>
+        <item app="Presentation" action="Dashboard" name="MyProfile">My profile</item>
+        <item app="Presentation" action="Dashboard" name="Help">Help</item>
+        <item app="Presentation" action="Dashboard" name="Support">Support</item>
+        <item app="Presentation" action="Dashboard" name="Copyright">Copyright</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="LogOut">Log out</item>
+        <item app="Presentation" action="Dashboard" name="MyProfile">My profile</item>
+        <item app="Presentation" action="Dashboard" name="Help">Help</item>
+        <item app="Presentation" action="Dashboard" name="Support">Support</item>
+        <item app="Presentation" action="Dashboard" name="Copyright">Copyright</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="LogOut">Log out</item>
+        <item app="Presentation" action="Dashboard" name="MyProfile">My profile</item>
+        <item app="Presentation" action="Dashboard" name="Help">Help</item>
+        <item app="Presentation" action="Dashboard" name="Support">Support</item>
+        <item app="Presentation" action="Dashboard" name="Copyright">Copyright</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Header -->
+        <item app="Presentation" action="Dashboard" name="LogOut">Log out</item>
+        <item app="Presentation" action="Dashboard" name="MyProfile">My profile</item>
+        <item app="Presentation" action="Dashboard" name="Help">Help</item>
+        <item app="Presentation" action="Dashboard" name="Support">Support</item>
+        <item app="Presentation" action="Dashboard" name="Copyright">Copyright</item>
+    </ar-SA>
+</locale>

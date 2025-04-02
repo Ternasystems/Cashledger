@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Header -->
+        <item app="Inventory" action="Category" name="Title">Gestion des stocks</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Category" name="NavTitle">Catégories de produits</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">Nouvelle catégorie</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modifier une catégorie</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Supprimer une catégorie</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Category" name="MenuOverview">Aperçus</item>
+        <item app="Inventory" action="Category" name="GeneralOverview">Aperçu général</item>
+        <item app="Inventory" action="Category" name="WareHouseOverview">Aperçu magasins</item>
+        <item app="Inventory" action="Category" name="ProductOverview">Aperçu produits</item>
+        <item app="Inventory" action="Category" name="StockOverview">Aperçu stocks</item>
+        <item app="Inventory" action="Category" name="MenuOperation">Opérations</item>
+        <item app="Inventory" action="Category" name="StockIn">Entrées en stocks</item>
+        <item app="Inventory" action="Category" name="StockOut">Sorties de stocks</item>
+        <item app="Inventory" action="Category" name="Inventories">Inventaires</item>
+        <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Catégories de produits</item>
+        <item app="Inventory" action="Category" name="Products">Produits</item>
+        <item app="Inventory" action="Category" name="Warehouses">Magasins</item>
+        <item app="Inventory" action="Category" name="Customers">Clients</item>
+        <item app="Inventory" action="Category" name="Suppliers">Fournisseurs</item>
+        <item app="Inventory" action="Category" name="Manufacturers">Fabricants</item>
+        <item app="Inventory" action="Category" name="Units">Unités de mesure</item>
+        <item app="Inventory" action="Category" name="Packaging">Conditionnement</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Header -->
+        <item app="Inventory" action="Category" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Category" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Category" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Category" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Category" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Category" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Category" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="Products">Products</item>
+        <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Category" name="Customers">Customers</item>
+        <item app="Inventory" action="Category" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Category" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Category" name="Units">Measurement units</item>
+        <item app="Inventory" action="Category" name="Packaging">Packaging</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Header -->
+        <item app="Inventory" action="Category" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Category" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Category" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Category" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Category" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Category" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Category" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="Products">Products</item>
+        <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Category" name="Customers">Customers</item>
+        <item app="Inventory" action="Category" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Category" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Category" name="Units">Measurement units</item>
+        <item app="Inventory" action="Category" name="Packaging">Packaging</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Header -->
+        <item app="Inventory" action="Category" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Category" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Category" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Category" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Category" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Category" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Category" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="Products">Products</item>
+        <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Category" name="Customers">Customers</item>
+        <item app="Inventory" action="Category" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Category" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Category" name="Units">Measurement units</item>
+        <item app="Inventory" action="Category" name="Packaging">Packaging</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Header -->
+        <item app="Inventory" action="Category" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Category" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Category" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Category" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Category" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Category" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Category" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="Products">Products</item>
+        <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Category" name="Customers">Customers</item>
+        <item app="Inventory" action="Category" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Category" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Category" name="Units">Measurement units</item>
+        <item app="Inventory" action="Category" name="Packaging">Packaging</item>
+    </ar-SA>
+</locale>
