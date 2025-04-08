@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Manufacturer" name="ManufacturerName">Nom du fabricant</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerDesc">Description du fabricant</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerSuccessBtn">Soumettre</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerList">Liste des fabricants</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Manufacturer" name="ManufacturerName">Manufacturer name</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerDesc">Manufacturer description</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerList">Manufacturer list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Manufacturer" name="ManufacturerName">Manufacturer name</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerDesc">Manufacturer description</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerList">Manufacturer list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Manufacturer" name="ManufacturerName">Manufacturer name</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerDesc">Manufacturer description</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerList">Manufacturer list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Manufacturer" name="ManufacturerName">Manufacturer name</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerDesc">Manufacturer description</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Manufacturer" name="ManufacturerList">Manufacturer list</item>
+    </ar-SA>
+</locale>

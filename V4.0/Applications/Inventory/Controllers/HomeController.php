@@ -32,11 +32,12 @@ class HomeController extends Controller
         $languages = $this->languageController->Get();
         $apps = $this->config["apps"];
         $components = $this->config["components"];
+        $component = $this->getFlashMessage('component', 'NewCategory');
         $ft = [
             'app' => $this->urlGenerator->application($_SERVER['REQUEST_URI']),
             'ctrl' => $this->urlGenerator->controller($_SERVER['REQUEST_URI']),
             'action' => $this->urlGenerator->action($_SERVER['REQUEST_URI'])
         ];
-        $this->view('Home', ['languages' => $languages, 'apps' => $apps, 'components' => $components, 'ft' => $ft]);
+        $this->view('Home', ['languages' => $languages, 'apps' => $apps, 'components' => $components, 'component' => $component, 'ft' => $ft]);
     }
 }

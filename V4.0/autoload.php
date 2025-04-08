@@ -20,6 +20,12 @@ spl_autoload_register(function ($class){
         'API_DTORepositories_Contract\\' => __DIR__.'/APIs/Persistence/DTORepositories/Contracts/',
         'API_DTORepositories_Model\\' => __DIR__.'/APIs/Persistence/DTORepositories/Models/',
         'API_DTORepositories\\' => __DIR__.'/APIs/Persistence/DTORepositories/Repositories/',
+        //-- Inventory
+        'API_InventoryRepositories_Collection\\' => __DIR__.'/APIs/Persistence/InventoryRepositories/Collections/',
+        'API_InventoryRepositories_Context\\' => __DIR__.'/APIs/Persistence/InventoryRepositories/Contexts/',
+        'API_InventoryRepositories_Contract\\' => __DIR__.'/APIs/Persistence/InventoryRepositories/Contracts/',
+        'API_InventoryRepositories_Model\\' => __DIR__.'/APIs/Persistence/InventoryRepositories/Models/',
+        'API_InventoryRepositories\\' => __DIR__.'/APIs/Persistence/InventoryRepositories/Repositories/',
         //-- Profiling
         'API_ProfilingRepositories_Collection\\' => __DIR__.'/APIs/Persistence/ProfilingRepositories/Collections/',
         'API_ProfilingRepositories_Context\\' => __DIR__.'/APIs/Persistence/ProfilingRepositories/Contexts/',
@@ -43,6 +49,11 @@ spl_autoload_register(function ($class){
         'API_ProfilingEntities_Contract\\' => __DIR__.'/APIs/Supporting/ProfilingEntities/Contracts/',
         'API_ProfilingEntities_Factory\\' => __DIR__.'/APIs/Supporting/ProfilingEntities/Factories/',
         'API_ProfilingEntities_Model\\' => __DIR__.'/APIs/Supporting/ProfilingEntities/Models/',
+        //- Inventory
+        'API_InventoryEntities_Collection\\' => __DIR__.'/APIs/Supporting/InventoryEntities/Collections/',
+        'API_InventoryEntities_Contract\\' => __DIR__.'/APIs/Supporting/InventoryEntities/Contracts/',
+        'API_InventoryEntities_Factory\\' => __DIR__.'/APIs/Supporting/InventoryEntities/Factories/',
+        'API_InventoryEntities_Model\\' => __DIR__.'/APIs/Supporting/InventoryEntities/Models/',
         // Services
         //- Administration
         'API_Administration_Contract\\' => __DIR__.'/APIs/Services/Administration/Contracts/',
@@ -52,6 +63,10 @@ spl_autoload_register(function ($class){
         'API_Profiling_Contract\\' => __DIR__.'/APIs/Services/Profiling/Contracts/',
         'API_Profiling_Controller\\' => __DIR__.'/APIs/Services/Profiling/Controllers/',
         'API_Profiling_Service\\' => __DIR__.'/APIs/Services/Profiling/Services/',
+        //- Inventory
+        'API_Inventory_Contract\\' => __DIR__.'/APIs/Services/Inventory/Contracts/',
+        'API_Inventory_Controller\\' => __DIR__.'/APIs/Services/Inventory/Controllers/',
+        'API_Inventory_Service\\' => __DIR__.'/APIs/Services/Inventory/Services/',
         // Applications
         //- Accounting
         'APP_Accounting_Controller\\' => __DIR__.'/Applications/Accounting/Controllers/',
@@ -77,6 +92,7 @@ spl_autoload_register(function ($class){
         'APP_IDS_Controller\\' => __DIR__.'/Applications/Ids/Controllers/',
         //- Inventory
         'APP_Inventory_Controller\\' => __DIR__.'/Applications/Inventory/Controllers/',
+        'APP_Inventory_Model\\' => __DIR__.'/Applications/Inventory/Models/',
         //- Invoicing
         'APP_Invoicing_Controller\\' => __DIR__.'/Applications/Invoicing/Controllers/',
         //- Meeting

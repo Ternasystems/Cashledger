@@ -13,6 +13,8 @@
         <item app="Presentation" action="Dashboard" name="Title">Applications</item>
         <!-- Dashboard -->
         <item app="Presentation" action="Dashboard" name="Launch">Démarrer</item>
+        <item app="Presentation" action="Dashboard" name="RegisteredSection">Applications enregistrées</item>
+        <item app="Presentation" action="Dashboard" name="UnregisteredSection">Applications non enregistrées</item>
         <!-- Sidebar -->
         <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
     </fr-FR>
@@ -22,6 +24,8 @@
         <item app="Presentation" action="Dashboard" name="Title">Applications</item>
         <!-- Dashboard -->
         <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <item app="Presentation" action="Dashboard" name="RegisteredSection">Registered apps</item>
+        <item app="Presentation" action="Dashboard" name="UnregisteredSection">Unregistered apps</item>
         <!-- Sidebar -->
         <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
     </en-US>
@@ -31,6 +35,8 @@
         <item app="Presentation" action="Dashboard" name="Title">Applications</item>
         <!-- Dashboard -->
         <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <item app="Presentation" action="Dashboard" name="RegisteredSection">Registered apps</item>
+        <item app="Presentation" action="Dashboard" name="UnregisteredSection">Unregistered apps</item>
         <!-- Sidebar -->
         <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
     </en-GB>
@@ -40,6 +46,8 @@
         <item app="Presentation" action="Dashboard" name="Title">Applications</item>
         <!-- Dashboard -->
         <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <item app="Presentation" action="Dashboard" name="RegisteredSection">Registered apps</item>
+        <item app="Presentation" action="Dashboard" name="UnregisteredSection">Unregistered apps</item>
         <!-- Sidebar -->
         <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
     </es-ES>
@@ -49,6 +57,8 @@
         <item app="Presentation" action="Dashboard" name="Title">Applications</item>
         <!-- Dashboard -->
         <item app="Presentation" action="Dashboard" name="Launch">Launch</item>
+        <item app="Presentation" action="Dashboard" name="RegisteredSection">Registered apps</item>
+        <item app="Presentation" action="Dashboard" name="UnregisteredSection">Unregistered apps</item>
         <!-- Sidebar -->
         <item app="Presentation" action="Dashboard" name="NavTitle">Applications</item>
     </ar-SA>

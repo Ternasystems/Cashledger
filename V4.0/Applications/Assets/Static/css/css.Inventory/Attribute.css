@@ -1,0 +1,91 @@
+@import "../css.Global/Global.css";
+@import "../css.Global/Header.css";
+@import "../css.Global/Navbar.css";
+@import "../css.Global/Footer.css";
+
+/* Content */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+form {
+    background-color: var(--bs-light);
+    padding: 0 1rem;
+}
+
+form #form-body {
+    padding: 2rem 0 1rem 0;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form #form-body > div + div {
+    margin-top: 2rem;
+}
+
+form .form-elt {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+form .form-elt:last-of-type > * {
+    grid-column-end: span 2;
+    justify-self: right;
+}
+
+/* Content */
+#attribute-list {
+    padding: 0 1rem;
+}
+
+.attribute-elt {
+    padding: 0.5rem 1rem;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+.ts-elt {
+    cursor: pointer;
+}
+
+.ts-elt:hover {
+    background-color: var(--ts-light-blue);
+}
+
+#attribute-delete-list {
+    grid-column-end: span 2;
+    padding: 0 1rem;
+}
+
+#attribute-delete-list .ts-elt {
+    cursor: auto;
+}
+
+#attribute-delete-list .ts-elt > span:last-child {
+    cursor: pointer;
+}
+
+#attribute-delete-list .ts-elt > span:last-child:hover {
+    color: var(--ts-glow-red);
+}

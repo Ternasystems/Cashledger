@@ -6,17 +6,17 @@ $(function (){
     // Declare the strict mode
     "use strict";
 
-    let lang = $('html').attr('lang');
+    let lang = $('html').attr('lang'), body = $('body');
 
     $.language();
 
     // -Language switch
-    $('select#lang').on('change', function (){
+    $(body).on('change', 'select#lang', function (){
         let lg = $(this).find('option:selected').attr('value');
         window.location.href = '../../../' + lg + '/' + $(this).attr('data-app') + '/' + $(this).attr('data-controller') + '/' + $(this).attr('data-action');
     });
 
-    $('#connection').on('activate', function (){
+    $(body).on('activate', '#connection', function (){
         let bool = true;
 
         if (!$('#username').checkUsername()){

@@ -28,7 +28,8 @@
         <item app="Inventory" action="Home" name="StockOut">Sorties de stocks</item>
         <item app="Inventory" action="Home" name="Inventories">Inventaires</item>
         <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Catégories de produits</item>
+        <item app="Inventory" action="Home" name="ProductCategories">Types de produits</item>
+        <item app="Inventory" action="Home" name="ProductAttributes">Attributs de produits</item>
         <item app="Inventory" action="Home" name="Products">Produits</item>
         <item app="Inventory" action="Home" name="Warehouses">Magasins</item>
         <item app="Inventory" action="Home" name="Customers">Clients</item>
@@ -58,7 +59,8 @@
         <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Home" name="Inventories">Inventories</item>
         <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Home" name="Products">Products</item>
         <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Home" name="Customers">Customers</item>
@@ -88,7 +90,8 @@
         <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Home" name="Inventories">Inventories</item>
         <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Home" name="Products">Products</item>
         <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Home" name="Customers">Customers</item>
@@ -118,7 +121,8 @@
         <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Home" name="Inventories">Inventories</item>
         <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Home" name="Products">Products</item>
         <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Home" name="Customers">Customers</item>
@@ -148,7 +152,8 @@
         <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Home" name="Inventories">Inventories</item>
         <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Home" name="Products">Products</item>
         <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Home" name="Customers">Customers</item>

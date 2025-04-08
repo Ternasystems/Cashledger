@@ -3,7 +3,6 @@
 namespace API_InventoryEntities_Model;
 
 use API_DTOEntities_Model\Entity;
-use API_InventoryRepositories_Model\InventoryType;
 use API_RelationRepositories_Collection\InventoryRelations;
 use UnexpectedValueException;
 

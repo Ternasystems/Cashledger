@@ -581,7 +581,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L);', _tablename, _id, _code, _name, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'TTL');
+	CALL public."p_Query"(_sql, _tablename, 'PKG');
 END;
 $BODY$;
 
@@ -760,7 +760,7 @@ TABLESPACE pg_default;
 CREATE OR REPLACE PROCEDURE public."p_InsertProductAttribute"(
 	IN _name character varying(50),
 	IN _attributetype character varying(50),
-	IN _attributeconstraint text,
+	IN _attributeconstraint text DEFAULT NULL::text,
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -769,7 +769,7 @@ BEGIN
 	-- Set the Code
 	EXECUTE FORMAT('SELECT COALESCE(MAX("Code"), 0) + 1 FROM public.%I', _tablename) INTO _code;
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _code, _name, _attributetype, _attributeconstraint, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, NULL, %L);', _tablename, _id, _code, _name, _attributetype, _attributeconstraint, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'PRA');
 END;
@@ -780,13 +780,15 @@ $BODY$;
 CREATE OR REPLACE PROCEDURE public."p_UpdateProductAttribute"(
 	IN _id character varying(50),
 	IN _name character varying(50),
+	IN _type character varying(50),
+	IN _constraint text DEFAULT NULL::text,
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_ProductAttributes';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "Name" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _name, _description, _id);
+	_sql := FORMAT('UPDATE public.%I SET "Name" = %L, "AttributeType" = %L, "AttributeConstraint" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _name, _type, _constraint, _description, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;
@@ -841,10 +843,48 @@ CREATE TABLE IF NOT EXISTS public."cl_AttributeRelations"
 	"Value" text COLLATE pg_catalog."default" NOT NULL,
 	"IsActive" timestamp without time zone,
 	"Description" text COLLATE pg_catalog."default",
-	CONSTRAINT "UQ_AttributeRelation" UNIQUE ("AttributeID", "ProductID")
+	CONSTRAINT "UQ_AttributeRelation" UNIQUE ("AttributeID", "ProductID", "Value")
 )
 
 TABLESPACE pg_default;
+
+-- FUNCTION: public.t_CheckAttribute()
+
+CREATE OR REPLACE FUNCTION public."t_CheckAttribute"()
+	RETURNS trigger
+	LANGUAGE 'plpgsql'
+	COST 100
+	VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE _type character varying(50); _constraint text; _query text; _valid boolean;
+BEGIN
+	SELECT "AttributeType", "AttributeConstraint" INTO _type, _constraint FROM public."cl_ProductAttributes" WHERE "ID" = NEW."AttributeID";
+	--
+	IF _type = 'number' THEN
+		PERFORM NEW."Value"::NUMERIC;
+	ELSIF _type = 'boolean' THEN
+		PERFORM NEW."Value"::BOOLEAN;
+	ELSIF _type = 'timestamp' THEN
+		PERFORM NEW."Value"::TIMESTAMP;
+	ELSIF _type = 'text' THEN
+		PERFORM NEW."Value"::TEXT;
+	ELSE
+		RAISE EXCEPTION 'Unsupported attribute type: %', _type;
+	END IF;
+	--
+	IF _constraint IS NOT NULL AND _constraint != '' THEN
+		_query := FORMAT('SELECT (%s)', REPLACE(_constraint, 'VALUE', NEW."Value"));
+		RAISE NOTICE '%', _query;
+		EXECUTE _query INTO _valid;
+		--
+		IF NOT _valid THEN
+			RAISE EXCEPTION 'Attribute constraint failed: Value[%] does not meet constraint [%]', NEW."Value", _constraint;
+		END IF;
+	END IF;
+	--
+	RETURN NEW;
+END;
+$BODY$;
 
 -- PROCEDURE: public.p_InsertAttributeRelation(character varying, character varying, text)
 
@@ -860,7 +900,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _attributeid, _productid, _value, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'TTR');
+	CALL public."p_Query"(_sql, _tablename, 'ATR');
 END;
 $BODY$;
 
@@ -901,6 +941,7 @@ CREATE TABLE IF NOT EXISTS public."cl_Stocks"
 	"ProductID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Products" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"UnitID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Units" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"WarehouseID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Warehouses" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"PackagingID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Packagings" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"StockDate" timestamp without time zone DEFAULT NOW(),
 	"BatchNumber" character varying(50) COLLATE pg_catalog."default" NOT NULL,
 	"LastChecked" timestamp without time zone DEFAULT NOW(),
@@ -909,7 +950,7 @@ CREATE TABLE IF NOT EXISTS public."cl_Stocks"
 	"UnitPrice" numeric(8,2) NOT NULL CHECK ("UnitPrice" >= 0),
 	"IsActive" timestamp without time zone,
     "Description" text COLLATE pg_catalog."default",
-	CONSTRAINT "UQ_Stock" UNIQUE ("ProductID", "WarehouseID", "BatchNumber")
+	CONSTRAINT "UQ_Stock" UNIQUE ("ProductID", "WarehouseID", "PackagingID", "BatchNumber")
 )
 
 TABLESPACE pg_default;
@@ -920,6 +961,7 @@ CREATE OR REPLACE PROCEDURE public."p_InsertStock"(
 	IN _productid character varying(50),
 	IN _unitid character varying(50),
 	IN _warehouseid character varying(50),
+	IN _packagingid character varying(50),
 	IN _batchnumber character varying(50),
 	IN _quantity numeric(8,2),
 	IN _unitcost numeric(8,2),
@@ -930,10 +972,10 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), %L, %L,  %L, %L, NULL, %L);', _tablename, _id, _code, _productid, _unitid, _warehouseid, _batchnumber, _quantity, _unitcost, _unitprice,
-	_description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), %L, %L,  %L, %L, %L, %L, NULL, %L);', _tablename, _id, _code, _productid, _unitid, _warehouseid, _packagingid, _batchnumber, _quantity,
+	_unitcost, _unitprice, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'PRA');
+	CALL public."p_Query"(_sql, _tablename, 'STK');
 END;
 $BODY$;
 
@@ -942,6 +984,7 @@ $BODY$;
 CREATE OR REPLACE PROCEDURE public."p_UpdateStock"(
 	IN _id character varying(50),
 	IN _warehouseid character varying(50),
+	IN _packagingid character varying(50),
 	IN _batchnumber character varying(50),
 	IN _unitcost numeric(8,2),
 	IN _unitprice numeric(8,2),
@@ -951,8 +994,8 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "WarehouseID" = %L, "BatchNumber" = %L, "UnitCost" = %L, "UnitPrice" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _warehouseid, _batchnumber, _unitcost,
-	_unitprice, _description, _id);
+	_sql := FORMAT('UPDATE public.%I SET "WarehouseID" = %L, "PackagingID" = %L, "BatchNumber" = %L, "UnitCost" = %L, "UnitPrice" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _warehouseid,
+	_packagingid, _batchnumber, _unitcost, _unitprice, _description, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;
@@ -1007,7 +1050,7 @@ CREATE TABLE IF NOT EXISTS public."cl_StockRelations"
 	"Value" text COLLATE pg_catalog."default" NOT NULL,
 	"IsActive" timestamp without time zone,
 	"Description" text COLLATE pg_catalog."default",
-	CONSTRAINT "UQ_StockRelation" UNIQUE ("AttributeID", "StockID")
+	CONSTRAINT "UQ_StockRelation" UNIQUE ("AttributeID", "StockID", "Value")
 )
 
 TABLESPACE pg_default;
@@ -1026,7 +1069,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _attributeid, _stockid, _value, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'TTR');
+	CALL public."p_Query"(_sql, _tablename, 'SKR');
 END;
 $BODY$;
 
@@ -1109,7 +1152,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _stockid, _unitid, _partnerid, _inventorytype, _quantity, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'PRA');
+	CALL public."p_Query"(_sql, _tablename, 'IVT');
 END;
 $BODY$;
 
@@ -1196,7 +1239,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L);', _tablename, _id, _inventid, _credentialid, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'TTR');
+	CALL public."p_Query"(_sql, _tablename, 'IVR');
 END;
 $BODY$;
 
@@ -1245,12 +1288,17 @@ BEGIN
 	-- App registry
 
 	CALL public."p_InsertApp"('Inventory');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Inventory';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Inventory');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Inventory');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gestion des stocks');
 
 	-- App category
 	
 	IF NOT EXISTS(SELECT 1 FROM public."cl_AppCategories" WHERE "Name" = 'Sales') THEN
 		CALL public."p_InsertAppCategory"('Sales');
-		SELECT "ID" INTO _appid from public."cl_AppCategories" WHERE "Name" = 'Sales';
+		SELECT "ID" INTO _id from public."cl_AppCategories" WHERE "Name" = 'Sales';
 		CALL public."p_InsertLanguageRelation"(_us, _id, 'Sales');
 		CALL public."p_InsertLanguageRelation"(_gb, _id, 'Sales');
 		CALL public."p_InsertLanguageRelation"(_fr, _id, 'Ventes');
@@ -1258,7 +1306,7 @@ BEGIN
 	--
 	IF NOT EXISTS(SELECT 1 FROM public."cl_AppCategories" WHERE "Name" = 'Purchases') THEN
 		CALL public."p_InsertAppCategory"('Purchases');
-		SELECT "ID" INTO _appid from public."cl_AppCategories" WHERE "Name" = 'Purchases';
+		SELECT "ID" INTO _id from public."cl_AppCategories" WHERE "Name" = 'Purchases';
 		CALL public."p_InsertLanguageRelation"(_us, _id, 'Purchases');
 		CALL public."p_InsertLanguageRelation"(_gb, _id, 'Purchases');
 		CALL public."p_InsertLanguageRelation"(_fr, _id, 'Achats');
@@ -1347,6 +1395,10 @@ BEGIN
 	CALL public."p_InsertSupplier"(_id);
 	SELECT "ID" INTO _id FROM public."cl_Profiles" WHERE "LastName" = 'Anonymous F';
 	CALL public."p_InsertSupplier"(_id);
+
+	-- Insert Warehouse
+
+	CALL public."p_InsertWarehouse"('Anonymous warehouse', 'Anonymous location');
 
 	-- Insert Manufacturer
 
@@ -1539,8 +1591,138 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Tera');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Tera');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Tera');
+
+	-- Insert Product categories
+
+	CALL public."p_InsertProductCategory"('General pharmaceuticals');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'General pharmaceuticals';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'General pharmaceuticals');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'General pharmaceuticals');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Médicaments généraux');
+	--
+	CALL public."p_InsertProductCategory"('Fertility Pharmaceuticals');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Fertility Pharmaceuticals';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Fertility Pharmaceuticals');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Fertility Pharmaceuticals');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Médicaments fertilité');
+	--
+	CALL public."p_InsertProductCategory"('Medical consumables');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Medical consumables';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Medical consumables');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Medical consumables');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Consommables médicaux');
+	--
+	CALL public."p_InsertProductCategory"('Fertility consumables');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Fertility consumables';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Fertility consumables');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Fertility consumables');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Consommables fertilité');
+	--
+	CALL public."p_InsertProductCategory"('Cleaning products');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Cleaning products';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Cleaning products');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Cleaning products');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Produits ménagers');
+	--
+	CALL public."p_InsertProductCategory"('Laboratory reagents');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Laboratory reagents';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Laboratory reagents');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Laboratory reagents');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Réactifs de laboratoire');
+	--
+	CALL public."p_InsertProductCategory"('Medical gases');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Medical gases';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Medical gases');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Medical gases');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gaz médicaux');
+	--
+	CALL public."p_InsertProductCategory"('Culture media');
+	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Culture media';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Culture media');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Culture media');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Milieux de culture');
+
+	-- ProductAttributes
+
+	CALL public."p_InsertProductAttribute"('Commercial denomination', 'text');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Commercial denomination';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Commercial denomination');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Commercial denomination');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dénomination commerciale');
+	--
+	CALL public."p_InsertProductAttribute"('International denomination', 'text');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'International denomination';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'International denomination (INN)');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'International denomination (INN)');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dénomination internationale (DCI)');
+	--
+	CALL public."p_InsertProductAttribute"('ManufacturerID', 'text', 'VALUE IN (SELECT "ID" FROM public."cl_Manufacturers")');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'ManufacturerID';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'ManufacturerID');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'ManufacturerID');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'ManufacturerID');
+	--
+	CALL public."p_InsertProductAttribute"('Dosage', 'number');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Dosage';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Dosage');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Dosage');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dosage');
+	--
+	CALL public."p_InsertProductAttribute"('Drug route', 'number');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Drug route';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Drug route');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Drug route');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Voie d''Administration');
+	--
+	CALL public."p_InsertProductAttribute"('Galenics', 'text');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Galenics';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Galenics');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Galenics');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Galénique');
+	--
+	CALL public."p_InsertProductAttribute"('Expiration date', 'timestamp');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Expiration date';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Expiration date');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Expiration date');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Date de péremption');
+
+	-- Insert Packagings
+
+	CALL public."p_InsertPackaging"('Package of 12');
+	SELECT "ID" INTO _id FROM public."cl_Packagings" WHERE "Name" = 'Package of 12';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Package of 12');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Package of 12');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Paquet de 12');
+	--
+	CALL public."p_InsertPackaging"('Box of 8 ampoules');
+	SELECT "ID" INTO _id FROM public."cl_Packagings" WHERE "Name" = 'Box of 8 ampoules';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Box of 8 ampoules');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Box of 8 ampoules');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Boîte de 8 ampoules');
+	--
+	CALL public."p_InsertPackaging"('Bottle of 10ml');
+	SELECT "ID" INTO _id FROM public."cl_Packagings" WHERE "Name" = 'Bottle of 10ml';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bottle of 10ml');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bottle of 10ml');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Flacon de 10ml');
 	
 END $BODY$;
+
+-- Trigger: Check_ProductAttribute
+
+CREATE OR REPLACE TRIGGER "Check_ProductAttribute"
+	BEFORE INSERT OR UPDATE
+	ON public."cl_AttributeRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_CheckAttribute"();
+
+-- Trigger: Check_StockAttribute
+
+CREATE OR REPLACE TRIGGER "Check_StockAttribute"
+	BEFORE INSERT OR UPDATE
+	ON public."cl_StockRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_CheckAttribute"();
 
 -- Trigger: Log_Audit
 DO

@@ -1,6 +1,6 @@
 <?php
 
-namespace API_DTOEntities_Model;
+namespace API_InventoryEntities_Collection;
 
 use API_DTOEntities_Collection\EntityCollectable;
 use API_InventoryEntities_Model\Warehouse;

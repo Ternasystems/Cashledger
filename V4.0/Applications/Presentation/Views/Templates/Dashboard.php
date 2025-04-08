@@ -18,7 +18,11 @@ $apptitle = $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Prese
 
 $SidebarLocales = ['NavTitle' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Presentation', 'Dashboard', 'NavTitle')];
 
-$DashboardLocales = ['Launch' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Presentation', 'Dashboard', 'Launch')];
+$DashboardLocales = [
+    'Launch' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Presentation', 'Dashboard', 'Launch'),
+    'RegisteredSection' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Presentation', 'Dashboard', 'RegisteredSection'),
+    'UnregisteredSection' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Presentation', 'Dashboard', 'UnregisteredSection')
+];
 
 // Start buffering
 ob_start();

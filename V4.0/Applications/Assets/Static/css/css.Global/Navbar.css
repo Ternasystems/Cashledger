@@ -23,3 +23,7 @@ nav .ts-view {
 nav .ts-view:hover {
    text-decoration: underline;
 }
+
+nav .ts-active {
+   font-weight: bold;
+}

@@ -7,7 +7,7 @@ use TS_Locale\Classes\Locales;
 
 // Set statics
 $ViewData['css'] = $ViewData['cssPath'].'css.Inventory/Category.css';
-$ViewData['js'] = $ViewData['jsPath'].'js.Inventory/Inventory.js';
+$ViewData['js'] = $ViewData['jsPath'].'js.Inventory/InventoryCategory.js';
 
 $xmlLocale = new XMLManager(dirname(__DIR__, 2).'\Assets\Locales\CategoryLocale.xml');
 
@@ -29,6 +29,7 @@ $Localizer = [
     'Inventories' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'Inventories'),
     'MenuConfig' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'MenuConfig'),
     'ProductCategories' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'ProductCategories'),
+    'ProductAttributes' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'ProductAttributes'),
     'Products' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'Products'),
     'Warehouses' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'Warehouses'),
     'Customers' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'Customers'),
@@ -41,7 +42,7 @@ $Localizer = [
 $MenuItems = [
     'MenuOverview' => ['GeneralOverview', 'WareHouseOverview', 'ProductOverview', 'StockOverview'],
     'MenuOperation' => ['StockIn', 'StockOut', 'Inventories'],
-    'MenuConfig' => ['ProductCategories', 'Products', 'Warehouses', 'Customers', 'Suppliers', 'Manufacturers', 'Units', 'Packaging'],
+    'MenuConfig' => ['ProductCategories', 'ProductAttributes', 'Products', 'Warehouses', 'Customers', 'Suppliers', 'Manufacturers', 'Units', 'Packaging'],
 ];
 
 $NavLocales = [

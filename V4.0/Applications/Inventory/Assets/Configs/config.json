@@ -226,34 +226,66 @@
     },
     "ProductCategories": {
       "fr-FR": {
-        "title": "Catégories de produits",
+        "title": "types de produits",
         "logo": "Inventory",
-        "description": "Configure les catégories de produits."
+        "description": "Configure les types de produits."
       },
       "en-US": {
-        "title": "Product categories",
+        "title": "Product types",
         "logo": "Inventory",
-        "description": "Configure products categories."
+        "description": "Configure products types."
       },
       "en-GB": {
-        "title": "Product categories",
+        "title": "Product types",
         "logo": "Inventory",
-        "description": "Configure products categories."
+        "description": "Configure products types."
       },
       "es-ES": {
-        "title": "Product categories",
+        "title": "Product types",
         "logo": "Inventory",
-        "description": "Configure products categories."
+        "description": "Configure products types."
       },
       "ar-SA": {
-        "title": "Product categories",
+        "title": "Product types",
         "logo": "Inventory",
-        "description": "Configure products categories."
+        "description": "Configure products types."
       },
       "url": {
         "app": "Inventory",
         "controller": "Config",
         "action": "Category"
+      }
+    },
+    "ProductAttributes": {
+      "fr-FR": {
+        "title": "Attributs de produits",
+        "logo": "Inventory",
+        "description": "Configure les attributs de produits."
+      },
+      "en-US": {
+        "title": "Product attributes",
+        "logo": "Inventory",
+        "description": "Configure products attributes."
+      },
+      "en-GB": {
+        "title": "Product attributes",
+        "logo": "Inventory",
+        "description": "Configure products attributes."
+      },
+      "es-ES": {
+        "title": "Product attributes",
+        "logo": "Inventory",
+        "description": "Configure products attributes."
+      },
+      "ar-SA": {
+        "title": "Product attributes",
+        "logo": "Inventory",
+        "description": "Configure products attributes."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Config",
+        "action": "Attribute"
       }
     },
     "Products": {
@@ -612,29 +644,29 @@
     },
     "NavNewProductCategory": {
       "fr-FR": {
-        "title": "Nouvelle catégorie",
+        "title": "Nouveau type",
         "logo": "Inventory",
-        "description": "Crée une nouvelle catégorie de produits."
+        "description": "Crée une nouveau type de produits."
       },
       "en-US": {
-        "title": "New category",
+        "title": "New type",
         "logo": "Inventory",
-        "description": "Create a new product category."
+        "description": "Create a new product type."
       },
       "en-GB": {
-        "title": "New category",
+        "title": "New type",
         "logo": "Inventory",
-        "description": "Create a new product category."
+        "description": "Create a new product type."
       },
       "es-ES": {
-        "title": "New category",
+        "title": "New type",
         "logo": "Inventory",
-        "description": "Create a new product category."
+        "description": "Create a new product type."
       },
       "ar-SA": {
-        "title": "New category",
+        "title": "New type",
         "logo": "Inventory",
-        "description": "Create a new product category."
+        "description": "Create a new product type."
       },
       "url": {
         "app": "Inventory",
@@ -644,29 +676,29 @@
     },
     "NavModifyProductCategory": {
       "fr-FR": {
-        "title": "Modifier une catégorie",
+        "title": "Modifier un type",
         "logo": "Inventory",
-        "description": "Modifie une catégorie de produits."
+        "description": "Modifie un type de produits."
       },
       "en-US": {
-        "title": "Modify a category",
+        "title": "Modify a type",
         "logo": "Inventory",
-        "description": "Modify a product category."
+        "description": "Modify a product type."
       },
       "en-GB": {
-        "title": "Modify a category",
+        "title": "Modify a type",
         "logo": "Inventory",
-        "description": "Modify a product category."
+        "description": "Modify a product type."
       },
       "es-ES": {
-        "title": "Modify a category",
+        "title": "Modify a type",
         "logo": "Inventory",
-        "description": "Modify a product category."
+        "description": "Modify a product type."
       },
       "ar-SA": {
-        "title": "Modify a category",
+        "title": "Modify a type",
         "logo": "Inventory",
-        "description": "Modify a product category."
+        "description": "Modify a product type."
       },
       "url": {
         "app": "Inventory",
@@ -676,34 +708,610 @@
     },
     "NavDeleteProductCategory": {
       "fr-FR": {
-        "title": "Supprimer une catégorie",
+        "title": "Supprimer un type",
         "logo": "Inventory",
-        "description": "Supprime une catégorie de produits."
+        "description": "Supprime un type de produits."
       },
       "en-US": {
-        "title": "Delete a category",
+        "title": "Delete a type",
         "logo": "Inventory",
-        "description": "Delete a product category."
+        "description": "Delete a product type."
       },
       "en-GB": {
-        "title": "Delete a category",
+        "title": "Delete a type",
         "logo": "Inventory",
-        "description": "Delete a product category."
+        "description": "Delete a product type."
       },
       "es-ES": {
-        "title": "Delete a category",
+        "title": "Delete a type",
         "logo": "Inventory",
-        "description": "Delete a product category."
+        "description": "Delete a product type."
       },
       "ar-SA": {
-        "title": "Delete a category",
+        "title": "Delete a type",
         "logo": "Inventory",
-        "description": "Delete a product category."
+        "description": "Delete a product type."
       },
       "url": {
         "app": "Inventory",
         "parent": "main-content",
         "component": "DeleteCategory"
+      }
+    },
+    "NavNewProductAttribute": {
+      "fr-FR": {
+        "title": "Nouvel attribut",
+        "logo": "Inventory",
+        "description": "Crée une nouvel attribut de produits."
+      },
+      "en-US": {
+        "title": "New attribute",
+        "logo": "Inventory",
+        "description": "Create a new product attribute."
+      },
+      "en-GB": {
+        "title": "New attribute",
+        "logo": "Inventory",
+        "description": "Create a new product attribute."
+      },
+      "es-ES": {
+        "title": "New attribute",
+        "logo": "Inventory",
+        "description": "Create a new product attribute."
+      },
+      "ar-SA": {
+        "title": "New attribute",
+        "logo": "Inventory",
+        "description": "Create a new product attribute."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewAttribute"
+      }
+    },
+    "NavModifyProductAttribute": {
+      "fr-FR": {
+        "title": "Modifier un attribut",
+        "logo": "Inventory",
+        "description": "Modifie un attribut de produits."
+      },
+      "en-US": {
+        "title": "Modify an attribute",
+        "logo": "Inventory",
+        "description": "Modify a product attribute."
+      },
+      "en-GB": {
+        "title": "Modify an attribute",
+        "logo": "Inventory",
+        "description": "Modify a product attribute."
+      },
+      "es-ES": {
+        "title": "Modify an attribute",
+        "logo": "Inventory",
+        "description": "Modify a product attribute."
+      },
+      "ar-SA": {
+        "title": "Modify an attribute",
+        "logo": "Inventory",
+        "description": "Modify a product attribute."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyAttribute"
+      }
+    },
+    "NavDeleteProductAttribute": {
+      "fr-FR": {
+        "title": "Supprimer un attribut",
+        "logo": "Inventory",
+        "description": "Supprime un attribut de produits."
+      },
+      "en-US": {
+        "title": "Delete an attribute",
+        "logo": "Inventory",
+        "description": "Delete a product attribute."
+      },
+      "en-GB": {
+        "title": "Delete an attribute",
+        "logo": "Inventory",
+        "description": "Delete a product attribute."
+      },
+      "es-ES": {
+        "title": "Delete an attribute",
+        "logo": "Inventory",
+        "description": "Delete a product attribute."
+      },
+      "ar-SA": {
+        "title": "Delete an attribute",
+        "logo": "Inventory",
+        "description": "Delete a product attribute."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteAttribute"
+      }
+    },
+    "NavNewProduct": {
+      "fr-FR": {
+        "title": "Nouveau produit",
+        "logo": "Inventory",
+        "description": "Crée un nouveau produit."
+      },
+      "en-US": {
+        "title": "New product",
+        "logo": "Inventory",
+        "description": "Create a new product."
+      },
+      "en-GB": {
+        "title": "New product",
+        "logo": "Inventory",
+        "description": "Create a new product."
+      },
+      "es-ES": {
+        "title": "New product",
+        "logo": "Inventory",
+        "description": "Create a new product."
+      },
+      "ar-SA": {
+        "title": "New product",
+        "logo": "Inventory",
+        "description": "Create a new product."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewProduct"
+      }
+    },
+    "NavModifyProduct": {
+      "fr-FR": {
+        "title": "Modifier un produit",
+        "logo": "Inventory",
+        "description": "Modifie un produit."
+      },
+      "en-US": {
+        "title": "Modify a product",
+        "logo": "Inventory",
+        "description": "Modify a product."
+      },
+      "en-GB": {
+        "title": "Modify a product",
+        "logo": "Inventory",
+        "description": "Modify a product."
+      },
+      "es-ES": {
+        "title": "Modify a product",
+        "logo": "Inventory",
+        "description": "Modify a product."
+      },
+      "ar-SA": {
+        "title": "Modify a product",
+        "logo": "Inventory",
+        "description": "Modify a product."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyProduct"
+      }
+    },
+    "NavDeleteProduct": {
+      "fr-FR": {
+        "title": "Supprimer un produit",
+        "logo": "Inventory",
+        "description": "Supprime un produit."
+      },
+      "en-US": {
+        "title": "Delete a product",
+        "logo": "Inventory",
+        "description": "Delete a product."
+      },
+      "en-GB": {
+        "title": "Delete a product",
+        "logo": "Inventory",
+        "description": "Delete a product."
+      },
+      "es-ES": {
+        "title": "Delete a product",
+        "logo": "Inventory",
+        "description": "Delete a product."
+      },
+      "ar-SA": {
+        "title": "Delete a product",
+        "logo": "Inventory",
+        "description": "Delete a product."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteProduct"
+      }
+    },
+    "NavNewWarehouse": {
+      "fr-FR": {
+        "title": "Nouveau magasin",
+        "logo": "Inventory",
+        "description": "Crée un nouveau magasin."
+      },
+      "en-US": {
+        "title": "New warehouse",
+        "logo": "Inventory",
+        "description": "Create a new warehouse."
+      },
+      "en-GB": {
+        "title": "New warehouse",
+        "logo": "Inventory",
+        "description": "Create a new warehouse."
+      },
+      "es-ES": {
+        "title": "New warehouse",
+        "logo": "Inventory",
+        "description": "Create a new warehouse."
+      },
+      "ar-SA": {
+        "title": "New warehouse",
+        "logo": "Inventory",
+        "description": "Create a new warehouse."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewWarehouse"
+      }
+    },
+    "NavModifyWarehouse": {
+      "fr-FR": {
+        "title": "Modifier un magasin",
+        "logo": "Inventory",
+        "description": "Modifie un magasin."
+      },
+      "en-US": {
+        "title": "Modify a warehouse",
+        "logo": "Inventory",
+        "description": "Modify a warehouse."
+      },
+      "en-GB": {
+        "title": "Modify a warehouse",
+        "logo": "Inventory",
+        "description": "Modify a warehouse."
+      },
+      "es-ES": {
+        "title": "Modify a warehouse",
+        "logo": "Inventory",
+        "description": "Modify a warehouse."
+      },
+      "ar-SA": {
+        "title": "Modify a warehouse",
+        "logo": "Inventory",
+        "description": "Modify a warehouse."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyWarehouse"
+      }
+    },
+    "NavDeleteWarehouse": {
+      "fr-FR": {
+        "title": "Supprimer un magasin",
+        "logo": "Inventory",
+        "description": "Supprime un magasin."
+      },
+      "en-US": {
+        "title": "Delete a warehouse",
+        "logo": "Inventory",
+        "description": "Delete a warehouse."
+      },
+      "en-GB": {
+        "title": "Delete a warehouse",
+        "logo": "Inventory",
+        "description": "Delete a warehouse."
+      },
+      "es-ES": {
+        "title": "Delete a warehouse",
+        "logo": "Inventory",
+        "description": "Delete a warehouse."
+      },
+      "ar-SA": {
+        "title": "Delete a warehouse",
+        "logo": "Inventory",
+        "description": "Delete a warehouse."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteWarehouse"
+      }
+    },
+    "NavNewManufacturer": {
+      "fr-FR": {
+        "title": "Nouveau fabricant",
+        "logo": "Inventory",
+        "description": "Crée un nouveau fabricant."
+      },
+      "en-US": {
+        "title": "New manufacturer",
+        "logo": "Inventory",
+        "description": "Create a new manufacturer."
+      },
+      "en-GB": {
+        "title": "New manufacturer",
+        "logo": "Inventory",
+        "description": "Create a new manufacturer."
+      },
+      "es-ES": {
+        "title": "New manufacturer",
+        "logo": "Inventory",
+        "description": "Create a new manufacturer."
+      },
+      "ar-SA": {
+        "title": "New manufacturer",
+        "logo": "Inventory",
+        "description": "Create a new manufacturer."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewManufacturer"
+      }
+    },
+    "NavModifyManufacturer": {
+      "fr-FR": {
+        "title": "Modifier un fabricant",
+        "logo": "Inventory",
+        "description": "Modifie un fabricant."
+      },
+      "en-US": {
+        "title": "Modify a manufacturer",
+        "logo": "Inventory",
+        "description": "Modify a manufacturer."
+      },
+      "en-GB": {
+        "title": "Modify a manufacturer",
+        "logo": "Inventory",
+        "description": "Modify a manufacturer."
+      },
+      "es-ES": {
+        "title": "Modify a manufacturer",
+        "logo": "Inventory",
+        "description": "Modify a manufacturer."
+      },
+      "ar-SA": {
+        "title": "Modify a manufacturer",
+        "logo": "Inventory",
+        "description": "Modify a manufacturer."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyManufacturer"
+      }
+    },
+    "NavDeleteManufacturer": {
+      "fr-FR": {
+        "title": "Supprimer un fabricant",
+        "logo": "Inventory",
+        "description": "Supprime un fabricant."
+      },
+      "en-US": {
+        "title": "Delete a manufacturer",
+        "logo": "Inventory",
+        "description": "Delete a manufacturer."
+      },
+      "en-GB": {
+        "title": "Delete a manufacturer",
+        "logo": "Inventory",
+        "description": "Delete a manufacturer."
+      },
+      "es-ES": {
+        "title": "Delete a manufacturer",
+        "logo": "Inventory",
+        "description": "Delete a manufacturer."
+      },
+      "ar-SA": {
+        "title": "Delete a manufacturer",
+        "logo": "Inventory",
+        "description": "Delete a manufacturer."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteManufacturer"
+      }
+    },
+    "NavNewUnit": {
+      "fr-FR": {
+        "title": "Nouvelle unité",
+        "logo": "Inventory",
+        "description": "Crée un nouvelle unité."
+      },
+      "en-US": {
+        "title": "New unit",
+        "logo": "Inventory",
+        "description": "Create a new unit."
+      },
+      "en-GB": {
+        "title": "New unit",
+        "logo": "Inventory",
+        "description": "Create a new unit."
+      },
+      "es-ES": {
+        "title": "New unit",
+        "logo": "Inventory",
+        "description": "Create a new unit."
+      },
+      "ar-SA": {
+        "title": "New unit",
+        "logo": "Inventory",
+        "description": "Create a new unit."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewUnit"
+      }
+    },
+    "NavModifyUnit": {
+      "fr-FR": {
+        "title": "Modifier une unité",
+        "logo": "Inventory",
+        "description": "Modifie une unité."
+      },
+      "en-US": {
+        "title": "Modify a unit",
+        "logo": "Inventory",
+        "description": "Modify a unit."
+      },
+      "en-GB": {
+        "title": "Modify a unit",
+        "logo": "Inventory",
+        "description": "Modify a unit."
+      },
+      "es-ES": {
+        "title": "Modify a unit",
+        "logo": "Inventory",
+        "description": "Modify a unit."
+      },
+      "ar-SA": {
+        "title": "Modify a unit",
+        "logo": "Inventory",
+        "description": "Modify a unit."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyUnit"
+      }
+    },
+    "NavDeleteUnit": {
+      "fr-FR": {
+        "title": "Supprimer une unité",
+        "logo": "Inventory",
+        "description": "Supprime une unité."
+      },
+      "en-US": {
+        "title": "Delete a unit",
+        "logo": "Inventory",
+        "description": "Delete a unit."
+      },
+      "en-GB": {
+        "title": "Delete a unit",
+        "logo": "Inventory",
+        "description": "Delete a unit."
+      },
+      "es-ES": {
+        "title": "Delete a unit",
+        "logo": "Inventory",
+        "description": "Delete a unit."
+      },
+      "ar-SA": {
+        "title": "Delete a unit",
+        "logo": "Inventory",
+        "description": "Delete a unit."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteUnit"
+      }
+    },
+    "NavNewPackaging": {
+      "fr-FR": {
+        "title": "Nouveau conditionnement",
+        "logo": "Inventory",
+        "description": "Crée un nouveau conditionnement."
+      },
+      "en-US": {
+        "title": "New packaging",
+        "logo": "Inventory",
+        "description": "Create a new packaging."
+      },
+      "en-GB": {
+        "title": "New packaging",
+        "logo": "Inventory",
+        "description": "Create a new packaging."
+      },
+      "es-ES": {
+        "title": "New packaging",
+        "logo": "Inventory",
+        "description": "Create a new packaging."
+      },
+      "ar-SA": {
+        "title": "New packaging",
+        "logo": "Inventory",
+        "description": "Create a new packaging."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewPackaging"
+      }
+    },
+    "NavModifyPackaging": {
+      "fr-FR": {
+        "title": "Modifier un conditionnement",
+        "logo": "Inventory",
+        "description": "Modifie un conditionnement."
+      },
+      "en-US": {
+        "title": "Modify a packaging",
+        "logo": "Inventory",
+        "description": "Modify a packaging."
+      },
+      "en-GB": {
+        "title": "Modify a packaging",
+        "logo": "Inventory",
+        "description": "Modify a packaging."
+      },
+      "es-ES": {
+        "title": "Modify a packaging",
+        "logo": "Inventory",
+        "description": "Modify a packaging."
+      },
+      "ar-SA": {
+        "title": "Modify a packaging",
+        "logo": "Inventory",
+        "description": "Modify a packaging."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyPackaging"
+      }
+    },
+    "NavDeletePackaging": {
+      "fr-FR": {
+        "title": "Supprimer un conditionnement",
+        "logo": "Inventory",
+        "description": "Supprime un conditionnement."
+      },
+      "en-US": {
+        "title": "Delete a packaging",
+        "logo": "Inventory",
+        "description": "Delete a packaging."
+      },
+      "en-GB": {
+        "title": "Delete a packaging",
+        "logo": "Inventory",
+        "description": "Delete a packaging."
+      },
+      "es-ES": {
+        "title": "Delete a packaging",
+        "logo": "Inventory",
+        "description": "Delete a packaging."
+      },
+      "ar-SA": {
+        "title": "Delete a packaging",
+        "logo": "Inventory",
+        "description": "Delete a packaging."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeletePackaging"
       }
     }
   }

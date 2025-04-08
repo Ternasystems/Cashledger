@@ -100,14 +100,42 @@ $(function () {
             return `(${code.match(/\d+/g)})${phoneNumber.replace(/(\d{3})(?=(\d{3}))/g, '$1-')}`;
         }
 
-        // Call the load resources action
-        $.loadResources = function (_app, _ctrl = 'Home', _action = 'Index', _parent) {
-            console.log('../../' + _app + '/' + _ctrl + '/' + _action);
+        // Call the load resources
+        $.loadResources = function (_app, _ctrl = 'Home', _action = 'Index', _param = {}){
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '../../' + _app + '/' + _ctrl + '/' + _action,
+                    method: 'POST',
+                    data: _param,
+                    dataType: 'json',
+                    cache: false,
+                    accepts: {
+                        json: 'application/json'
+                    }
+                }).
+                done(response => {
+                    resolve(response);
+                }).
+                fail((jqXHR, textStatus, errorThrown) => {
+                    console.log('Full error details:', {
+                        status: jqXHR.status,
+                        responseHeaders: jqXHR.getAllResponseHeaders(),
+                        responseText: jqXHR.responseText,
+                        contentType: jqXHR.getResponseHeader('Content-Type')
+                    });
+                    reject(new Error(`Failed to load resources: ${errorThrown || textStatus}`));
+                });
+            });
+        }
+
+        // Call the load components action
+        $.loadComponents = function (_app, _ctrl = 'Home', _action = 'Index', _parent) {
             $.ajax({
                 url: '../../' + _app + '/' + _ctrl + '/' + _action,
                 method: 'POST',
                 success: function (result) {
                     $('#' + _parent).html(result); // Replace the parent container content with the response
+                    $('nav [data-component="' + _action + '"]').addClass('ts-active');
                 },
                 error: function () {
                     console.error('Failed to load the view component.');
@@ -145,17 +173,17 @@ $(function () {
 
     // Global event handlers
     // -Hyperlinks
-    $('.ts-link, aside > figure').on('click', function () {
+    $(body).on('click', '.ts-link, aside > figure', function () {
         let url = '../../' + $(this).attr('data-app') + '/' + $(this).attr('data-controller') + '/' + $(this).attr('data-action');
         localStorage.setItem('activeMenu', $(this).attr('data-app'));
         window.location.href = url;
     });
 
-    $('form .btn-success').on('click', function (e){
+    $(body).on('click', 'form .btn-success', function (e){
         e.preventDefault();
-        let form = $(this).parents('form'), url = '../../' + $(form).attr('action');
+        let form = $(this).parents('form'), url = $(form).attr('action');
         $(form).attr('action', url);
-        $(form).triggerHandler('activate');
+        $(form).trigger ('activate');
     });
 
     $('.ts-menu').on('click', function (){

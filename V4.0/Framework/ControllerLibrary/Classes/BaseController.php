@@ -76,6 +76,18 @@ abstract class BaseController extends AbstractCls
         require $viewPath;
     }
 
+    protected function setFlashMessage(string $key, mixed $value): void
+    {
+        $_SESSION['_flash'][$key] = $value;
+    }
+
+    protected function getFlashMessage(string $key, mixed $default = null): mixed
+    {
+        $value = $_SESSION['_flash'][$key] ?? $default;
+        unset($_SESSION['_flash'][$key]);
+        return $value;
+    }
+
     /**
      * @throws Exception
      */

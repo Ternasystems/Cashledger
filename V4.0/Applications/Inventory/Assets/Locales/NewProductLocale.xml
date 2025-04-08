@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Product" name="ProductName">Nom du produit</item>
+        <item app="Inventory" action="Product" name="ProductDesc">Description du produit</item>
+        <item app="Inventory" action="Product" name="ProductSuccessBtn">Soumettre</item>
+        <item app="Inventory" action="Product" name="ProductList">Liste des produits</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
+        <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
+        <item app="Inventory" action="Product" name="ProductList">Product list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
+        <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
+        <item app="Inventory" action="Product" name="ProductList">Product list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
+        <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
+        <item app="Inventory" action="Product" name="ProductList">Product list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
+        <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
+        <item app="Inventory" action="Product" name="ProductList">Product list</item>
+    </ar-SA>
+</locale>

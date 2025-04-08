@@ -12,10 +12,10 @@
         <!-- Header -->
         <item app="Inventory" action="Category" name="Title">Gestion des stocks</item>
         <!-- Navbar -->
-        <item app="Inventory" action="Category" name="NavTitle">Catégories de produits</item>
-        <item app="Inventory" action="Category" name="NavNewProductCategory">Nouvelle catégorie</item>
-        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modifier une catégorie</item>
-        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Supprimer une catégorie</item>
+        <item app="Inventory" action="Category" name="NavTitle">Types de produits</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">Nouveau type</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modifier un type</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Supprimer un type</item>
         <!-- Context menu -->
         <item app="Inventory" action="Category" name="MenuOverview">Aperçus</item>
         <item app="Inventory" action="Category" name="GeneralOverview">Aperçu général</item>
@@ -27,7 +27,7 @@
         <item app="Inventory" action="Category" name="StockOut">Sorties de stocks</item>
         <item app="Inventory" action="Category" name="Inventories">Inventaires</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Category" name="ProductCategories">Catégories de produits</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Types de produits</item>
         <item app="Inventory" action="Category" name="Products">Produits</item>
         <item app="Inventory" action="Category" name="Warehouses">Magasins</item>
         <item app="Inventory" action="Category" name="Customers">Clients</item>
@@ -41,10 +41,10 @@
         <!-- Header -->
         <item app="Inventory" action="Category" name="Title">Inventory</item>
         <!-- Navbar -->
-        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
-        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
-        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
-        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <item app="Inventory" action="Category" name="NavTitle">Product types</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New type</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a type</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a type</item>
         <!-- Context menu -->
         <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
         <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
@@ -56,7 +56,7 @@
         <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>
@@ -70,10 +70,10 @@
         <!-- Header -->
         <item app="Inventory" action="Category" name="Title">Inventory</item>
         <!-- Navbar -->
-        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
-        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
-        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
-        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <item app="Inventory" action="Category" name="NavTitle">Product types</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New type</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a type</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a type</item>
         <!-- Context menu -->
         <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
         <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
@@ -85,7 +85,7 @@
         <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>
@@ -99,10 +99,10 @@
         <!-- Header -->
         <item app="Inventory" action="Category" name="Title">Inventory</item>
         <!-- Navbar -->
-        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
-        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
-        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
-        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <item app="Inventory" action="Category" name="NavTitle">Product types</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New type</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a type</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a type</item>
         <!-- Context menu -->
         <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
         <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
@@ -114,7 +114,7 @@
         <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>
@@ -128,10 +128,10 @@
         <!-- Header -->
         <item app="Inventory" action="Category" name="Title">Inventory</item>
         <!-- Navbar -->
-        <item app="Inventory" action="Category" name="NavTitle">Product categories</item>
-        <item app="Inventory" action="Category" name="NavNewProductCategory">New category</item>
-        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a category</item>
-        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a category</item>
+        <item app="Inventory" action="Category" name="NavTitle">Product types</item>
+        <item app="Inventory" action="Category" name="NavNewProductCategory">New type</item>
+        <item app="Inventory" action="Category" name="NavModifyProductCategory">Modify a type</item>
+        <item app="Inventory" action="Category" name="NavDeleteProductCategory">Delete a type</item>
         <!-- Context menu -->
         <item app="Inventory" action="Category" name="MenuOverview">Overviews</item>
         <item app="Inventory" action="Category" name="GeneralOverview">General overview</item>
@@ -143,7 +143,7 @@
         <item app="Inventory" action="Category" name="StockOut">Stock-Out</item>
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Category" name="ProductCategories">Product categories</item>
+        <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>

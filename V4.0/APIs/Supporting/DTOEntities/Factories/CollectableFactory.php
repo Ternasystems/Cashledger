@@ -14,18 +14,17 @@ use TS_Utility\Classes\AbstractCollectable;
 class CollectableFactory implements ICollectableFactory
 {
     private array $modelMap = [
+        'AppCategory' => ['API_DTOEntities_Model\AppCategory', 'API_DTOEntities_Collection\AppCategories'],
         'Audit' => ['API_DTOEntities_Model\Audit', 'API_DTOEntities_Collection\Audits'],
-        'City' => ['API_DTOEntities_Model\City', 'API_DTOEntities_Collection\Cities'],
         'Continent' => ['API_DTOEntities_Model\Continent', 'API_DTOEntities_Collection\Continents'],
-        'Country' => ['API_DTOEntities_Model\Country', 'API_DTOEntities_Collection\Countries'],
         'ContactType' => ['API_ProfilingEntities_Model\ContactType', 'API_ProfilingEntities_Collection\ContactTypes'],
         'Language' => ['API_DTOEntities_Model\Language', 'API_DTOEntities_Collection\Languages'],
-        'Manufacturer' => ['API_Inventories_Model\Manufacturer', 'API_Inventories_Collection\Manufacturers'],
-        'Packaging' => ['API_Inventories_Model\Packaging', 'API_Inventories_Collection\Packagings'],
+        'Manufacturer' => ['API_InventoryEntities_Model\Manufacturer', 'API_InventoryEntities_Collection\Manufacturers'],
+        'Packaging' => ['API_InventoryEntities_Model\Packaging', 'API_InventoryEntities_Collection\Packagings'],
         'Permission' => ['API_ProfilingEntities_Model\Permission', 'API_ProfilingEntities_Collection\Permissions'],
-        'ProductCategory' => ['API_Inventories_Model\ProductCategory', 'API_Inventories_Collection\ProductCategories'],
-        'Unit' => ['API_Inventories_Model\Unit', 'API_Inventories_Collection\Units'],
-        'Warehouse' => ['API_Inventories_Model\Warehouse', 'API_Inventories_Collection\Warehouses']
+        'ProductCategory' => ['API_InventoryEntities_Model\ProductCategory', 'API_InventoryEntities_Collection\ProductCategories'],
+        'Unit' => ['API_InventoryEntities_Model\Unit', 'API_InventoryEntities_Collection\Units'],
+        'Warehouse' => ['API_InventoryEntities_Model\Warehouse', 'API_InventoryEntities_Collection\Warehouses']
     ];
     protected IRepository $repository;
     protected ?LanguageRelationRepository $relationRepository;
@@ -57,7 +56,7 @@ class CollectableFactory implements ICollectableFactory
         $entityClass = new ReflectionClass($this->modelMap[$className][0]);
         $entityArray = [];
         foreach ($collection as $item)
-            $entityArray[] = $entityClass->newInstance($item, $this->relationRepository->GetAll());
+            $entityArray[] = $entityClass->newInstance($item, $this->relationRepository?->GetAll());
 
         $collectionClass = new ReflectionClass($this->modelMap[$className][1]);
         $this->collectable = $collectionClass->newInstance($entityArray);

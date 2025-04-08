@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Warehouse" name="WarehouseName">Nom du magasin</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseLocation">Emplacement du magasin</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseDesc">Description du magasin</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseSuccessBtn">Soumettre</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseList">Liste des magasins</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Warehouse" name="WarehouseName">Warehouse name</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseLocation">Warehouse location</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseDesc">Warehouse description</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseSuccessBtn">Submit</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseList">Warehouse list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Warehouse" name="WarehouseName">Warehouse name</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseLocation">Warehouse location</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseDesc">Warehouse description</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseSuccessBtn">Submit</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseList">Warehouse list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Warehouse" name="WarehouseName">Warehouse name</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseLocation">Warehouse location</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseDesc">Warehouse description</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseSuccessBtn">Submit</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseList">Warehouse list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Warehouse" name="WarehouseName">type name</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseLocation">Warehouse location</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseDesc">type description</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseSuccessBtn">Submit</item>
+        <item app="Inventory" action="Warehouse" name="WarehouseList">type list</item>
+    </ar-SA>
+</locale>

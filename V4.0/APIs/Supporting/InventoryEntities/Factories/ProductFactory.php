@@ -4,9 +4,9 @@ namespace API_InventoryEntities_Factory;
 
 use API_DTOEntities_Factory\CollectableFactory;
 use API_InventoryEntities_Collection\ProductAttributes;
+use API_InventoryEntities_Collection\ProductCategories;
 use API_InventoryEntities_Collection\Products;
 use API_InventoryEntities_Model\Product;
-use API_InventoryEntities_Model\ProductCategory;
 use API_InventoryRepositories\ProductCategoryRepository;
 use API_InventoryRepositories\ProductRepository;
 use API_RelationRepositories\LanguageRelationRepository;
@@ -15,14 +15,15 @@ use ReflectionException;
 
 class ProductFactory extends CollectableFactory
 {
-    protected ProductCategory $categories;
+    protected ProductCategories $categories;
     protected ProductAttributes $attributes;
 
     /**
      * @throws ReflectionException
      * @throws Exception
      */
-    public function __construct(ProductRepository $repository, ProductAttributeFactory $_attributeFactory, ProductCategoryRepository $_categories, LanguageRelationRepository $relations)
+    public function __construct(ProductRepository $repository, ProductAttributeFactory $_attributeFactory, ProductCategoryRepository $_categories,
+                                LanguageRelationRepository $relations)
     {
         parent::__construct($repository, null);
         $_attributeFactory->Create();

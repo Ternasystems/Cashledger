@@ -22,6 +22,24 @@ main {
     align-content: start;
 }
 
+.section-line {
+    grid-column-end: span 4;
+    height: 1px;
+    width: 100%;
+    border-top: thin solid var(--bs-border-color);
+    position: relative;
+    color: gray;
+}
+
+.section-line span {
+    position: relative;
+    top: -0.9rem;
+    display: inline-block;
+    background-color: white;
+    margin-left: 1rem;
+    padding: 0 0.5rem;
+}
+
 section.ts-app {
     display: flex;
     border: thin solid var(--bs-border-color);
@@ -56,4 +74,8 @@ section.ts-app button {
     margin-top: 0.5rem;
     background-color: var(--ts-dark-blue);
     color: white;
+}
+
+section.ts-app.ts-disabled {
+    opacity: 0.5;
 }

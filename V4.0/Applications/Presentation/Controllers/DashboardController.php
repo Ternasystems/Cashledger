@@ -2,6 +2,7 @@
 
 namespace APP_Presentation_Controller;
 
+use API_Administration_Controller\AppController;
 use APP_Administration_Controller\Controller;
 use ReflectionException;
 use TS_Utility\Classes\UrlGenerator;
@@ -10,8 +11,9 @@ class DashboardController extends Controller
 {
     private UrlGenerator $urlGenerator;
     private array $config;
+    private AppController $appController;
 
-    public function __construct()
+    public function __construct(AppController $_appController)
     {
         $this->urlGenerator = new UrlGenerator(dirname(__DIR__, 2).'\Assets\Data\json\config.json');
         parent::__construct($this->urlGenerator);
@@ -19,6 +21,7 @@ class DashboardController extends Controller
         // Set the Exception property
         $this->SetException();
         $this->config = json_decode(file_get_contents(dirname(__DIR__, 2).'\Assets\Data\json\config.json'), true);
+        $this->appController = $_appController;
     }
 
     /* Actions */
@@ -36,6 +39,6 @@ class DashboardController extends Controller
             'ctrl' => $this->urlGenerator->controller($_SERVER['REQUEST_URI']),
             'action' => $this->urlGenerator->action($_SERVER['REQUEST_URI'])
         ];
-        $this->view('Dashboard', ['languages' => $languages, 'apps' => $apps, 'ft' => $ft]);
+        $this->view('Dashboard', ['languages' => $languages, 'apps' => $apps, 'registeredApps' => $this->appController->Get(), 'ft' => $ft]);
     }
 }

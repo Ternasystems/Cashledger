@@ -35,4 +35,13 @@ call public."p_InsertUnit"('Liter', 'l');
 call public."p_InsertUnit"('Unit', 'u');
 call public."p_InsertUnit"('Package', 'pck');
 
--- 
+-- Insert Attributes
+
+call public."p_InsertProductAttribute"('Commercial denomination', 'text');
+call public."p_InsertProductAttribute"('Dosage', 'number', 'VALUE <= 500');
+
+-- Insert Products
+
+call public."p_InsertProduct"('Efferalgan', '8154220001', '4634220012', 1, 10);
+call public."p_InsertAttributeRelation"('8124220001', '8134220001', 'EFFERALGAN 500');
+call public."p_InsertAttributeRelation"('8124220002', '8134220001', '1000');

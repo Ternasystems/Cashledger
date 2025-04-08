@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Unit" name="UnitName">Nom de l'unité</item>
+        <item app="Inventory" action="Unit" name="UnitLabel">Libellé de l'unité</item>
+        <item app="Inventory" action="Unit" name="UnitDesc">Description de l'unité</item>
+        <item app="Inventory" action="Unit" name="UnitSuccessBtn">Soumettre</item>
+        <item app="Inventory" action="Unit" name="UnitList">Liste des unités</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
+        <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
+        <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
+        <item app="Inventory" action="Unit" name="UnitList">Unit list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
+        <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
+        <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
+        <item app="Inventory" action="Unit" name="UnitList">Unit list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
+        <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
+        <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
+        <item app="Inventory" action="Unit" name="UnitList">Unit list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
+        <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
+        <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
+        <item app="Inventory" action="Unit" name="UnitList">Unit list</item>
+    </ar-SA>
+</locale>

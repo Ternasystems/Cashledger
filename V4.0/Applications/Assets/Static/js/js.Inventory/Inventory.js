@@ -6,11 +6,9 @@ $(function (){
     // Declare the strict mode
     "use strict";
 
-    let lang = $('html').attr('lang');
+    let lang = $('html').attr('lang'), body = $('body');
 
     $.language();
-
-    $.loadResources('Inventory', 'Config', 'NewCategory', 'main-content');
 
     // -Language switch
     $('select#lang').on('change', function (){
@@ -19,7 +17,7 @@ $(function (){
     });
 
     // -Nav links
-    $('.ts-view').on('click', function (e) {
+    $(body).on('click', '.ts-view', function (e) {
         e.preventDefault(); // Prevent default anchor behavior
         const app = $(this).attr('data-app');
         const component = $(this).attr('data-component');
@@ -31,6 +29,8 @@ $(function (){
             method: 'POST',
             success: function (result) {
                 $('#' + parent).html(result); // Replace the parent container content with the response
+                $('nav [data-component]').removeClass('ts-active');
+                $('nav [data-component="' + component + '"]').addClass('ts-active');
             },
             error: function () {
                 console.error('Failed to load the view component.');

@@ -22,8 +22,8 @@ use TS_Database\Classes\DBContext;
 class DTOContext extends DBContext
 {
     protected PDO $pdo;
-    private string $app = 'cl_apps';
-    private string $appCategory = 'cl_AppCategories';
+    private string $app = 'cl_Apps';
+    private string $appcategory = 'cl_AppCategories';
     private string $audit = 'cl_Audits';
     private string $city = 'cl_Cities';
     private string $continent = 'cl_continents';
@@ -42,14 +42,14 @@ class DTOContext extends DBContext
     {
         $this->entityMap = [
             'app' => App::class,
-            'appCategory' => AppCategory::class,
+            'appcategory' => AppCategory::class,
             'audit' => Audit::class,
             'city' => City::class,
             'continent' => Continent::class,
             'country' => Country::class,
             'language' => Language::class,
             'appcollection' => Apps::class,
-            'appCategorycollection' => AppCategories::class,
+            'appcategorycollection' => AppCategories::class,
             'auditcollection' => Audits::class,
             'citycollection' => Cities::class,
             'continentcollection' => Continents::class,

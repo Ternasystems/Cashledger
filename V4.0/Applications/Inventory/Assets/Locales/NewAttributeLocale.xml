@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Attribute" name="AttributeName">Nom de l'attribut</item>
+        <item app="Inventory" action="Attribute" name="AttributeType">Type d'attribut</item>
+        <item app="Inventory" action="Attribute" name="AttributeConstraint">Règle de l'attribut</item>
+        <item app="Inventory" action="Attribute" name="AttributeDesc">Description de l'attribut</item>
+        <item app="Inventory" action="Attribute" name="AttributeSuccessBtn">Soumettre</item>
+        <item app="Inventory" action="Attribute" name="AttributeList">Liste des attributs</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Attribute" name="AttributeName">Attribute name</item>
+        <item app="Inventory" action="Attribute" name="AttributeType">Attribute type</item>
+        <item app="Inventory" action="Attribute" name="AttributeConstraint">Attribute constraint</item>
+        <item app="Inventory" action="Attribute" name="AttributeDesc">Attribute description</item>
+        <item app="Inventory" action="Attribute" name="AttributeSuccessBtn">Submit</item>
+        <item app="Inventory" action="Attribute" name="AttributeList">Attribute list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Attribute" name="AttributeName">Attribute name</item>
+        <item app="Inventory" action="Attribute" name="AttributeType">Attribute type</item>
+        <item app="Inventory" action="Attribute" name="AttributeConstraint">Attribute constraint</item>
+        <item app="Inventory" action="Attribute" name="AttributeDesc">Attribute description</item>
+        <item app="Inventory" action="Attribute" name="AttributeSuccessBtn">Submit</item>
+        <item app="Inventory" action="Attribute" name="AttributeList">Attribute list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Attribute" name="AttributeName">Attribute name</item>
+        <item app="Inventory" action="Attribute" name="AttributeType">Attribute type</item>
+        <item app="Inventory" action="Attribute" name="AttributeConstraint">Attribute constraint</item>
+        <item app="Inventory" action="Attribute" name="AttributeDesc">Attribute description</item>
+        <item app="Inventory" action="Attribute" name="AttributeSuccessBtn">Submit</item>
+        <item app="Inventory" action="Attribute" name="AttributeList">Attribute list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Attribute" name="AttributeName">Attribute name</item>
+        <item app="Inventory" action="Attribute" name="AttributeType">Attribute type</item>
+        <item app="Inventory" action="Attribute" name="AttributeConstraint">Attribute constraint</item>
+        <item app="Inventory" action="Attribute" name="AttributeDesc">Attribute description</item>
+        <item app="Inventory" action="Attribute" name="AttributeSuccessBtn">Submit</item>
+        <item app="Inventory" action="Attribute" name="AttributeList">Attribute list</item>
+    </ar-SA>
+</locale>

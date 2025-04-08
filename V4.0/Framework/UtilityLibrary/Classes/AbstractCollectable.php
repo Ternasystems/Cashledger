@@ -229,27 +229,27 @@ abstract class AbstractCollectable extends AbstractCls implements ArrayAccess, S
     public function __toString(): string
     {
         $str = '('.$this->objectType.')';
-        $str += '<br>';
-        $str += 'Array('.$this->count().') { ';
-        $str += '<br>';
+        $str .= '<br>';
+        $str .= 'Array('.$this->count().') { ';
+        $str .= '<br>';
 
         foreach ($this->toArray() as $key => $value) {
-            $str += '['.$key.' => '.$value->__toString().']';
-            $str += '<br>';
+            $str .= '['.$key.' => '.$value->__toString().']';
+            $str .= '<br>';
         }
 
-        $str += ' }';
-        $str += '<br>';
+        $str .= ' }';
+        $str .= '<br>';
 
-        $str += 'Array('.$this->count().') { ';
-        $str += '<br>';
+        $str .= 'Array('.$this->count().') { ';
+        $str .= '<br>';
 
         foreach ($this->toArray(ArrayEnum::INDEXED) as $key => $value) {
-            $str += '['.$key.' => '.$value.']';
-            $str += '<br>';
+            $str .= '['.$key.' => '.$value.']';
+            $str .= '<br>';
         }
 
-        $str += ' }';
+        $str .= ' }';
 
         return $str;
     }
@@ -316,7 +316,8 @@ abstract class AbstractCollectable extends AbstractCls implements ArrayAccess, S
     {
         $arr = $this->keyArray;
         usort($arr, fn($a, $b) => $orderBy == OrderEnum::ASC ? $predicate($a) <=> $predicate($b) : $predicate($b) <=> $predicate($a));
-        return $arr;
+        $derivedClass = get_called_class();
+        return new $derivedClass($arr);
     }
 
     public function GroupBy(callable $predicate): array

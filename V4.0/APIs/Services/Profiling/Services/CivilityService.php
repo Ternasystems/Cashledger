@@ -31,7 +31,8 @@ class CivilityService implements ICivilityService
     /**
      * @throws Exception
      */
-    public function __construct(CivilityFactory $civilityFactory, GenderFactory $genderFactory, OccupationFactory $occupationFactory, StatusFactory $statusFactory, TitleFactory $titleFactory)
+    public function __construct(CivilityFactory $civilityFactory, GenderFactory $genderFactory, OccupationFactory $occupationFactory, StatusFactory $statusFactory,
+                                TitleFactory $titleFactory)
     {
         $civilityFactory->Create();
         $this->civilities = $civilityFactory->Collectable();

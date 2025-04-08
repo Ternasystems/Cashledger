@@ -2226,6 +2226,13 @@ BEGIN
 	SELECT "ID" INTO _fr FROM public."cl_Languages" WHERE "Label" = 'FR';
 	SELECT "ID" INTO _es FROM public."cl_Languages" WHERE "Label" = 'ES';
 	SELECT "ID" INTO _ar FROM public."cl_Languages" WHERE "Label" = 'AR';
+
+	-- App
+
+	SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Profiling';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Profiling');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Profiling');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gestion des utilisateurs');
 	
 	-- App category
 	

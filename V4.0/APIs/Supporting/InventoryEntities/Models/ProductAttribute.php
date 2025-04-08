@@ -9,12 +9,12 @@ use UnexpectedValueException;
 
 class ProductAttribute extends Entity
 {
-    private AttributeRelations $relations;
+    private ?AttributeRelations $relations;
 
-    public function __construct(\API_InventoryRepositories_Model\ProductAttribute $_entity, AttributeRelations $_relations, ?LanguageRelations $_languageRelations)
+    public function __construct(\API_InventoryRepositories_Model\ProductAttribute $_entity, ?AttributeRelations $_relations, ?LanguageRelations $_languageRelations)
     {
         parent::__construct($_entity, $_languageRelations);
-        $this->relations = $_relations->Where(fn($n) => $n->AttributeId == $_entity->Id);
+        $this->relations = $_relations?->Where(fn($n) => $n->AttributeId == $_entity->Id);
     }
 
     public function It(): \API_InventoryRepositories_Model\ProductAttribute
@@ -26,7 +26,7 @@ class ProductAttribute extends Entity
         return $entity;
     }
 
-    public function AttributeRelations(): AttributeRelations
+    public function AttributeRelations(): ?AttributeRelations
     {
         return $this->relations;
     }

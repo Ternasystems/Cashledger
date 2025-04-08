@@ -19,8 +19,8 @@ CREATE DATABASE "Cashledger"
  * Code (3 digits)
  
  Administration app
- * APP cl_Apps
  * ACT cl_AppCategories
+ * APP cl_Apps
  * APR cl_AppRelations
  * AUD cl_Audits
  * CIT cl_Cities
@@ -58,6 +58,9 @@ CREATE DATABASE "Cashledger"
 
  Profiling app
  * CIV cl_Civilities
+ * CTC cl_Contacts
+ * CTR cl_ContactRelations
+ * CTT cl_ContactTypes
  * CVR cl_CivilityRelations
  * CRD cl_Credentials
  * GND cl_Genders
@@ -81,20 +84,23 @@ CREATE DATABASE "Cashledger"
  Teller app
 
  Summary
- * APP cl_Apps
  * ACT cl_AppCategories
+ * APP cl_Apps
  * APR cl_AppRelations
  * ATR cl_AttributeRelations
  * AUD cl_Audits
+ 
  * CIT cl_Cities
  * CIV cl_Civilities
  * CRD cl_Credentials
+ * CTC cl_Contacts
+ * CTN cl_Continents
  
+ * CTR cl_ContactRelations
+ * CTT cl_ContactTypes
  * CTY cl_Countries
  * CUS cl_Customers
  * CVR cl_CivilityRelations
- * DRT cl_DrugRoutes
- * GLN cl_Galenics
  
  * GND cl_Genders
  * GNR cl_GenderRelations

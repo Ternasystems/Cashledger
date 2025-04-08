@@ -70,7 +70,7 @@ class UrlGenerator extends AbstractCls
     }
 
     // Generate the URL dynamically based on the provided params
-    public function generate(array $params = []) {
+    public function generate(array $params = []): string {
         // Use the default language if not provided
         $params['language'] = $params['language'] ?? $this->config['default']['language']; // default language
         $params['application'] = $params['application'] ?? $this->config['default']['application']; // default application
