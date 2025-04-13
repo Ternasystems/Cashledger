@@ -17,6 +17,8 @@ $locales = new Locales();
 $Localizer = [
     'CategoryName' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'CategoryName'),
     'CategoryDesc' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'CategoryDesc'),
+    'CategoryLocaleFr' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'CategoryLocaleFr'),
+    'CategoryLocaleUs' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'CategoryLocaleUs'),
     'CategorySuccessBtn' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'CategorySuccessBtn'),
     'CategoryList' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Category', 'CategoryList')
     ];
@@ -37,6 +39,15 @@ $Localizer = [
             <div class="form-elt">
                 <label for="categorydesc" class="me-2 text-end"><?= $Localizer['CategoryDesc']; ?></label>
                 <input id="categorydesc" type="text" name="categorydesc" class="ts-form-control-light me-2"/>
+            </div>
+            <!-- Category locales -->
+            <div class="form-elt">
+                <label for="categorylocalefr" class="me-2 text-end"><?= $Localizer['CategoryLocaleFr']; ?></label>
+                <input id="categorylocalefr" type="text" name="categorylocale[FR]" class="ts-form-control-light me-2"/>
+            </div>
+            <div class="form-elt">
+                <label for="categorylocaleus" class="me-2 text-end"><?= $Localizer['CategoryLocaleUs']; ?></label>
+                <input id="categorylocaleus" type="text" name="categorylocale[US]" class="ts-form-control-light me-2"/>
             </div>
             <!-- Category name -->
             <div class="form-elt">

@@ -12,6 +12,8 @@
         <!-- Components -->
         <item app="Inventory" action="Unit" name="UnitName">Nom de l'unité</item>
         <item app="Inventory" action="Unit" name="UnitLabel">Libellé de l'unité</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleFr">Traduction (FR)</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleUs">Traduction (EN)</item>
         <item app="Inventory" action="Unit" name="UnitDesc">Description de l'unité</item>
         <item app="Inventory" action="Unit" name="UnitSuccessBtn">Soumettre</item>
         <item app="Inventory" action="Unit" name="UnitList">Liste des unités</item>
@@ -21,6 +23,8 @@
         <!-- Components -->
         <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
         <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
         <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
         <item app="Inventory" action="Unit" name="UnitList">Unit list</item>
@@ -30,6 +34,8 @@
         <!-- Components -->
         <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
         <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
         <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
         <item app="Inventory" action="Unit" name="UnitList">Unit list</item>
@@ -39,6 +45,8 @@
         <!-- Components -->
         <item app="Inventory" action="Unit" name="UnitName">Unit name</item>
         <item app="Inventory" action="Unit" name="UnitLabel">Unit label</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Unit" name="UnitLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Unit" name="UnitDesc">Unit description</item>
         <item app="Inventory" action="Unit" name="UnitSuccessBtn">Submit</item>
         <item app="Inventory" action="Unit" name="UnitList">Unit list</item>

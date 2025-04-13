@@ -8,10 +8,11 @@ spl_autoload_register(function ($class){
         'TS_Configuration\\' => __DIR__.'/Framework/ConfigurationLibrary/',
         'TS_Controller\\' => __DIR__.'/Framework/ControllerLibrary/',
         'TS_Database\\' => __DIR__.'/Framework/DatabaseLibrary/',
+        'TS_DependencyInjection\\' => __DIR__.'/Framework/DependencyLibrary/',
+        'TS_Domain\\' => __DIR__.'/Framework/DomainLibrary/',
         'TS_Exception\\' => __DIR__.'/Framework/ExceptionLibrary/',
         'TS_Locale\\' => __DIR__.'/Framework/LocaleLibrary/',
         'TS_Utility\\' => __DIR__.'/Framework/UtilityLibrary/',
-        'TS_DependencyInjection\\' => __DIR__.'/Framework/DependencyLibrary/',
         // APIs
         //- Persistence
         //-- DTOs

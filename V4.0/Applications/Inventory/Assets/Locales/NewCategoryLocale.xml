@@ -12,6 +12,8 @@
         <!-- Components -->
         <item app="Inventory" action="Category" name="CategoryName">Nom du type</item>
         <item app="Inventory" action="Category" name="CategoryDesc">Description du type</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleFr">Traduction (FR)</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleUs">Traduction (EN)</item>
         <item app="Inventory" action="Category" name="CategorySuccessBtn">Soumettre</item>
         <item app="Inventory" action="Category" name="CategoryList">Liste des types</item>
     </fr-FR>
@@ -20,6 +22,8 @@
         <!-- Components -->
         <item app="Inventory" action="Category" name="CategoryName">Type name</item>
         <item app="Inventory" action="Category" name="CategoryDesc">Type description</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Category" name="CategorySuccessBtn">Submit</item>
         <item app="Inventory" action="Category" name="CategoryList">Type list</item>
     </en-US>
@@ -28,6 +32,8 @@
         <!-- Components -->
         <item app="Inventory" action="Category" name="CategoryName">Type name</item>
         <item app="Inventory" action="Category" name="CategoryDesc">Type description</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Category" name="CategorySuccessBtn">Submit</item>
         <item app="Inventory" action="Category" name="CategoryList">Type list</item>
     </en-GB>
@@ -36,6 +42,8 @@
         <!-- Components -->
         <item app="Inventory" action="Category" name="CategoryName">Type name</item>
         <item app="Inventory" action="Category" name="CategoryDesc">Type description</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Category" name="CategorySuccessBtn">Submit</item>
         <item app="Inventory" action="Category" name="CategoryList">Type list</item>
     </es-ES>
@@ -44,6 +52,8 @@
         <!-- Components -->
         <item app="Inventory" action="Category" name="CategoryName">Type name</item>
         <item app="Inventory" action="Category" name="CategoryDesc">Type description</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Category" name="CategoryLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Category" name="CategorySuccessBtn">Submit</item>
         <item app="Inventory" action="Category" name="CategoryList">Type list</item>
     </ar-SA>

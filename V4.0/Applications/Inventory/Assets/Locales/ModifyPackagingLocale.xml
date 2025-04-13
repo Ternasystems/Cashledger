@@ -11,6 +11,8 @@
     <fr-FR>
         <!-- Components -->
         <item app="Inventory" action="Packaging" name="PackagingName">Nom du conditionnement</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleFr">Traduction (FR)</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleUs">Traduction (EN)</item>
         <item app="Inventory" action="Packaging" name="PackagingDesc">Description du conditionnement</item>
         <item app="Inventory" action="Packaging" name="PackagingSuccessBtn">Soumettre</item>
         <item app="Inventory" action="Packaging" name="PackagingList">Liste des conditionnements</item>
@@ -19,6 +21,8 @@
     <en-US>
         <!-- Components -->
         <item app="Inventory" action="Packaging" name="PackagingName">Packaging name</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Packaging" name="PackagingDesc">Packaging description</item>
         <item app="Inventory" action="Packaging" name="PackagingSuccessBtn">Submit</item>
         <item app="Inventory" action="Packaging" name="PackagingList">Packaging list</item>
@@ -27,6 +31,8 @@
     <en-GB>
         <!-- Components -->
         <item app="Inventory" action="Packaging" name="PackagingName">Packaging name</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Packaging" name="PackagingDesc">Packaging description</item>
         <item app="Inventory" action="Packaging" name="PackagingSuccessBtn">Submit</item>
         <item app="Inventory" action="Packaging" name="PackagingList">Packaging list</item>
@@ -35,6 +41,8 @@
     <es-ES>
         <!-- Components -->
         <item app="Inventory" action="Packaging" name="PackagingName">Packaging name</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Packaging" name="PackagingDesc">Packaging description</item>
         <item app="Inventory" action="Packaging" name="PackagingSuccessBtn">Submit</item>
         <item app="Inventory" action="Packaging" name="PackagingList">Packaging list</item>
@@ -43,6 +51,8 @@
     <ar-SA>
         <!-- Components -->
         <item app="Inventory" action="Packaging" name="PackagingName">Packaging name</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Packaging" name="PackagingLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Packaging" name="PackagingDesc">Packaging description</item>
         <item app="Inventory" action="Packaging" name="PackagingSuccessBtn">Submit</item>
         <item app="Inventory" action="Packaging" name="PackagingList">Packaging list</item>

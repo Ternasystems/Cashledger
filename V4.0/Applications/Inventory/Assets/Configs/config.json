@@ -1314,5 +1314,84 @@
         "component": "DeletePackaging"
       }
     }
+  },
+  "constraints": {
+    "none": {
+      "fr-FR": "Aucune contrainte",
+      "en-US": "No constraint",
+      "en-GB": "No constraint",
+      "es-ES": "No constraint",
+      "ar-SA": "No constraint"
+    },
+    "from": {
+      "fr-FR": "Clé étrangère",
+      "en-US": "Foreign key",
+      "en-GB": "Foreign key",
+      "es-ES": "Foreign key",
+      "ar-SA": "Foreign key"
+    },
+    "range": {
+      "fr-FR": "Plage de valeurs",
+      "en-US": "Range of values",
+      "en-GB": "Range of values",
+      "es-ES": "Range of values",
+      "ar-SA": "Range of values"
+    },
+    "list": {
+      "fr-FR": "Liste de valeurs",
+      "en-US": "List of values",
+      "en-GB": "List of values",
+      "es-ES": "List of values",
+      "ar-SA": "List of values"
+    },
+    "<": {
+      "fr-FR": "Plus petit que",
+      "en-US": "Less than",
+      "en-GB": "Less than",
+      "es-ES": "Less than",
+      "ar-SA": "Less than"
+    },
+    "=": {
+      "fr-FR": "Egal à",
+      "en-US": "Equals to",
+      "en-GB": "Equals to",
+      "es-ES": "Equals to",
+      "ar-SA": "Equals to"
+    },
+    ">": {
+      "fr-FR": "Plus grand que",
+      "en-US": "Greater than",
+      "en-GB": "Greater than",
+      "es-ES": "Greater than",
+      "ar-SA": "Greater than"
+    },
+    "!": {
+      "fr-FR": "Excepté/Opposé",
+      "en-US": "Except/Opposite",
+      "en-GB": "Except/Opposite",
+      "es-ES": "Except/Opposite",
+      "ar-SA": "Except/Opposite"
+    },
+    "<=": {
+      "fr-FR": "Plus petit ou égal à",
+      "en-US": "Less or equals to",
+      "en-GB": "Less or equals to",
+      "es-ES": "Less or equals to",
+      "ar-SA": "Less or equals to"
+    },
+    ">=": {
+      "fr-FR": "Plus grand ou égal à",
+      "en-US": "Greater or equals to",
+      "en-GB": "Greater or equals to",
+      "es-ES": "Greater or equals to",
+      "ar-SA": "Greater or equals to"
+    },
+    "!=": {
+      "fr-FR": "Différent de",
+      "en-US": "Different from",
+      "en-GB": "Different from",
+      "es-ES": "Different from",
+      "ar-SA": "Different from"
+    }
   }
 }

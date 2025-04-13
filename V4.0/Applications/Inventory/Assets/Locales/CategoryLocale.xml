@@ -28,6 +28,7 @@
         <item app="Inventory" action="Category" name="Inventories">Inventaires</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
         <item app="Inventory" action="Category" name="ProductCategories">Types de produits</item>
+        <item app="Inventory" action="Category" name="ProductAttributes">Attributs de produits</item>
         <item app="Inventory" action="Category" name="Products">Produits</item>
         <item app="Inventory" action="Category" name="Warehouses">Magasins</item>
         <item app="Inventory" action="Category" name="Customers">Clients</item>
@@ -57,6 +58,7 @@
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
         <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Category" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>
@@ -86,6 +88,7 @@
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
         <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Category" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>
@@ -115,6 +118,7 @@
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
         <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Category" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>
@@ -144,6 +148,7 @@
         <item app="Inventory" action="Category" name="Inventories">Inventories</item>
         <item app="Inventory" action="Category" name="MenuConfig">Configuration</item>
         <item app="Inventory" action="Category" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Category" name="ProductAttributes">Product attributes</item>
         <item app="Inventory" action="Category" name="Products">Products</item>
         <item app="Inventory" action="Category" name="Warehouses">Warehouses</item>
         <item app="Inventory" action="Category" name="Customers">Customers</item>

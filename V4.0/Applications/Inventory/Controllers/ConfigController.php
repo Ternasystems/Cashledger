@@ -12,10 +12,12 @@ use APP_Inventory_Model\ManufacturerModel;
 use APP_Inventory_Model\PackagingModel;
 use APP_Inventory_Model\ProductAttributeModel;
 use APP_Inventory_Model\ProductCategoryModel;
+use APP_Inventory_Model\ProductModel;
 use APP_Inventory_Model\UnitModel;
 use APP_Inventory_Model\WarehouseModel;
 use Exception;
 use ReflectionException;
+use TS_Domain\Classes\Linq;
 use TS_Utility\Classes\UrlGenerator;
 
 class ConfigController extends Controller
@@ -48,10 +50,20 @@ class ConfigController extends Controller
     /* Methods */
 
     // Load Categories
+    /**
+     * @throws Exception
+     */
     public function LoadCategory(string $_categoryId): void
     {
         $category = $this->productController->GetCategoryById($_categoryId);
+        $relations = $category->LanguageRelations();
+        $languages = $this->languageController->Get();
         $arr = ['Id' => $category->It()->Id, 'Name' => $category->It()->Name, 'Description' => $category->It()->Description];
+        foreach ($relations as $relation) {
+            $langId = $relation->LangId;
+            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
+            $arr[$label] = $relation->Label;
+        }
         echo json_encode($arr);
         exit;
     }
@@ -134,11 +146,25 @@ class ConfigController extends Controller
     }
 
     // Load Attributes
+
+    /**
+     * @throws Exception
+     */
     public function LoadAttribute(string $_attributeId): void
     {
         $attribute = $this->productController->GetAttributeById($_attributeId);
-        $arr = ['Id' => $attribute->It()->Id, 'Name' => $attribute->It()->Name, 'AttributeType' => $attribute->It()->AttributeType,
-            'AttributeConstraint' => $attribute->It()->AttributeConstraint, 'Description' => $attribute->It()->Description];
+        $linq = new Linq();
+        $constraintType = $linq->constraintType($attribute->It()->AttributeConstraint);
+        $constraint = $constraintType != 'none' ? $linq->linq($constraintType, $attribute->It()->AttributeConstraint) : $attribute->It()->AttributeConstraint;
+        $relations = $attribute->LanguageRelations();
+        $languages = $this->languageController->Get();
+        $arr = ['Id' => $attribute->It()->Id, 'Name' => $attribute->It()->Name, 'AttributeType' => $attribute->It()->AttributeType, 'ConstraintType' => $constraintType,
+            'AttributeConstraint' => $constraint, 'Description' => $attribute->It()->Description];
+        foreach ($relations as $relation) {
+            $langId = $relation->LangId;
+            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
+            $arr[$label] = $relation->Label;
+        }
         echo json_encode($arr);
         exit;
     }
@@ -169,9 +195,10 @@ class ConfigController extends Controller
     public function NewAttribute(): void
     {
         $attributes = $this->productController->GetAttributes();
+        $constraints = $this->config["constraints"];
         $components = $this->config["components"];
         $languages = $this->languageController->Get();
-        $this->viewComponent('NewAttribute', ['languages' => $languages, 'attributes' => $attributes, 'components' => $components]);
+        $this->viewComponent('NewAttribute', ['languages' => $languages, 'attributes' => $attributes, 'constraints' => $constraints, 'components' => $components]);
     }
 
     /**
@@ -180,9 +207,10 @@ class ConfigController extends Controller
     public function ModifyAttribute(): void
     {
         $attributes = $this->productController->GetAttributes();
+        $constraints = $this->config["constraints"];
         $components = $this->config["components"];
         $languages = $this->languageController->Get();
-        $this->viewComponent('ModifyAttribute', ['languages' => $languages, 'attributes' => $attributes, 'components' => $components]);
+        $this->viewComponent('ModifyAttribute', ['languages' => $languages, 'attributes' => $attributes, 'constraints' => $constraints, 'components' => $components]);
     }
 
     /**
@@ -223,12 +251,16 @@ class ConfigController extends Controller
     // Load Products
     public function LoadProduct(string $_productId): void
     {
-        $product = $this->productController->GetCategoryById($_productId);
-        $arr = ['Id' => $product->It()->Id, 'Name' => $product->It()->Name, 'Description' => $product->It()->Description];
+        $product = $this->productController->GetById($_productId);
+        $arr = ['Id' => $product->It()->Id, 'Name' => $product->It()->Name, 'CategoryId' => $product->It()->CategoryId, 'UnitId' => $product->It()->UnitId,
+            $product->It()->MinStock, $product->It()->MaxStock, 'Description' => $product->It()->Description];
         echo json_encode($arr);
         exit;
     }
 
+    /* Actions */
+
+    // Product page
     /**
      * @throws ReflectionException
      */
@@ -252,8 +284,13 @@ class ConfigController extends Controller
     public function NewProduct(): void
     {
         $products = $this->productController->Get();
+        $categories = $this->productController->GetCategories();
+        $attributes = $this->productController->GetAttributes();
+        $units = $this->unitController->Get();
         $components = $this->config["components"];
-        $this->viewComponent('NewProduct', ['products' => $products, 'components' => $components]);
+        $languages = $this->languageController->Get();
+        $this->viewComponent('NewProduct', ['languages' => $languages, 'products' => $products, 'categories' => $categories, 'units' => $units,
+            'attributes' => $attributes, 'components' => $components]);
     }
 
     /**
@@ -261,8 +298,10 @@ class ConfigController extends Controller
      */
     public function ModifyProduct(): void
     {
+        $products = $this->productController->Get();
         $components = $this->config["components"];
-        $this->viewComponent('ModifyProduct', ['components' => $components]);
+        $languages = $this->languageController->Get();
+        $this->viewComponent('ModifyProduct', ['languages' => $languages, 'products' => $products, 'components' => $components]);
     }
 
     /**
@@ -270,8 +309,35 @@ class ConfigController extends Controller
      */
     public function DeleteProduct(): void
     {
+        $products = $this->productController->Get();
         $components = $this->config["components"];
-        $this->viewComponent('DeleteProduct', ['components' => $components]);
+        $languages = $this->languageController->Get();
+        $this->viewComponent('DeleteProduct', ['languages' => $languages, 'products' => $products, 'components' => $components]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function AddProduct(ProductModel $model): void
+    {
+        var_dump($_POST);
+        /*$this->productController->Set($model);
+        $this->redirectToAction('Product');*/
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function UpdateProduct(ProductModel $model): void
+    {
+        $this->productController->Put($model);
+        $this->setFlashMessage('component', 'ModifyProduct');
+        $this->redirectToAction('Product');
+    }
+
+    public function RemoveProduct(string $productId): void
+    {
+        $this->productController->Delete($productId);
     }
 
     // Load Warehouses
@@ -435,10 +501,21 @@ class ConfigController extends Controller
     }
 
     // Load Units
+
+    /**
+     * @throws Exception
+     */
     public function LoadUnit(string $_unitId): void
     {
         $unit = $this->unitController->GetById($_unitId);
+        $relations = $unit->LanguageRelations();
+        $languages = $this->languageController->Get();
         $arr = ['Id' => $unit->It()->Id, 'Name' => $unit->It()->Name, 'Label' => $unit->It()->Label, 'Description' => $unit->It()->Description];
+        foreach ($relations as $relation) {
+            $langId = $relation->LangId;
+            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
+            $arr[$label] = $relation->Label;
+        }
         echo json_encode($arr);
         exit;
     }
@@ -518,10 +595,21 @@ class ConfigController extends Controller
     }
 
     // Load Packagings
+
+    /**
+     * @throws Exception
+     */
     public function LoadPackaging(string $_packagingId): void
     {
         $packaging = $this->packagingController->GetById($_packagingId);
+        $relations = $packaging->LanguageRelations();
+        $languages = $this->languageController->Get();
         $arr = ['Id' => $packaging->It()->Id, 'Name' => $packaging->It()->Name, 'Description' => $packaging->It()->Description];
+        foreach ($relations as $relation) {
+            $langId = $relation->LangId;
+            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
+            $arr[$label] = $relation->Label;
+        }
         echo json_encode($arr);
         exit;
     }

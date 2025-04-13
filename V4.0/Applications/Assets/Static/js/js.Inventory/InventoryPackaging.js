@@ -21,7 +21,8 @@ $(function (){
     $(body).on('activate', '#new-packaging, #modify-packaging', function (){
         let bool = true;
 
-        if (typeof $('#packagingname').val() !== 'string' || typeof $('#packagingdesc').val() !== 'string')
+        if (typeof $('#packagingname').val() !== 'string' || typeof $('#packaginglocalefr').val() !== 'string' || typeof $('#packaginglocaleus').val() !== 'string' ||
+            typeof $('#packagingdesc').val() !== 'string')
             bool = false;
 
         if (bool)
@@ -51,7 +52,8 @@ $(function (){
             .then(data => {
                 $(form).find('input[name="packagingname"]').val(data['Name']);
                 $(form).find('input[name="packagingid"]').val(id);
-                $(form).find('input[name="packaginglabel"]').val(data['Label']);
+                $(form).find('input[name="packaginglocale[FR]"]').val(data['FR']);
+                $(form).find('input[name="packaginglocale[US]"]').val(data['US']);
                 $(form).find('input[name="packagingdesc"]').val(data['Description']);
             })
             .catch(error => {

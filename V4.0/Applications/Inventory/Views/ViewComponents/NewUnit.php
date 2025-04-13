@@ -17,6 +17,8 @@ $locales = new Locales();
 $Localizer = [
     'UnitName' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitName'),
     'UnitLabel' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitLabel'),
+    'UnitLocaleFr' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitLocaleFr'),
+    'UnitLocaleUs' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitLocaleUs'),
     'UnitDesc' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitDesc'),
     'UnitSuccessBtn' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitSuccessBtn'),
     'UnitList' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Unit', 'UnitList')
@@ -38,6 +40,15 @@ $Localizer = [
             <div class="form-elt">
                 <label for="unitlabel" class="me-2 text-end"><?= $Localizer['UnitLabel']; ?></label>
                 <input id="unitlabel" type="text" name="unitlabel" class="ts-form-control-light me-2"/>
+            </div>
+            <!-- Unit locales -->
+            <div class="form-elt">
+                <label for="unitlocalefr" class="me-2 text-end"><?= $Localizer['UnitLocaleFr']; ?></label>
+                <input id="unitlocalefr" type="text" name="unitlocale[FR]" class="ts-form-control-light me-2"/>
+            </div>
+            <div class="form-elt">
+                <label for="unitlocaleus" class="me-2 text-end"><?= $Localizer['UnitLocaleUs']; ?></label>
+                <input id="unitlocaleus" type="text" name="unitlocale[US]" class="ts-form-control-light me-2"/>
             </div>
             <!-- Unit description -->
             <div class="form-elt">

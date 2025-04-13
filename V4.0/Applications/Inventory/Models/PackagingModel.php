@@ -7,4 +7,5 @@ class PackagingModel
     public ?string $packagingid;
     public string $packagingname;
     public ?string $packagingdesc;
+    public array $packaginglocale;
 }

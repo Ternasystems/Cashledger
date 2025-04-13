@@ -11,40 +11,95 @@
     <fr-FR>
         <!-- Components -->
         <item app="Inventory" action="Product" name="ProductName">Nom du produit</item>
+        <item app="Inventory" action="Product" name="CategoryId">Type de produit</item>
+        <item app="Inventory" action="Product" name="UnitId">Unité de mesure</item>
+        <item app="Inventory" action="Product" name="MinStock">Seuil minimum</item>
+        <item app="Inventory" action="Product" name="MaxStock">Seuil maximum</item>
+        <item app="Inventory" action="Product" name="ProductAttributes">Attributs du produit</item>
+        <item app="Inventory" action="Product" name="ProductLocaleFr">Traduction (FR)</item>
+        <item app="Inventory" action="Product" name="ProductLocaleUs">Traduction (EN)</item>
         <item app="Inventory" action="Product" name="ProductDesc">Description du produit</item>
         <item app="Inventory" action="Product" name="ProductSuccessBtn">Soumettre</item>
         <item app="Inventory" action="Product" name="ProductList">Liste des produits</item>
+        <item app="Inventory" action="Product" name="CategorySelect">Choisir un type</item>
+        <item app="Inventory" action="Product" name="UnitSelect">Choisir une unité</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeSelect">Choisir un/plusieurs attributs</item>
     </fr-FR>
     <!-- English (US) locale -->
     <en-US>
         <!-- Components -->
         <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="CategoryId">Product type</item>
+        <item app="Inventory" action="Product" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="Product" name="MinStock">Minimum stock</item>
+        <item app="Inventory" action="Product" name="MaxStock">Maximum stock</item>
+        <item app="Inventory" action="Product" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Product" name="ProductLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Product" name="ProductLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
         <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
+        <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
+        <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </en-US>
     <!-- English (GB) locale -->
     <en-GB>
         <!-- Components -->
         <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="CategoryId">Product type</item>
+        <item app="Inventory" action="Product" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="Product" name="MinStock">Minimum stock</item>
+        <item app="Inventory" action="Product" name="MaxStock">Maximum stock</item>
+        <item app="Inventory" action="Product" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Product" name="ProductLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Product" name="ProductLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
         <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
+        <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
+        <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </en-GB>
     <!-- Español locale -->
     <es-ES>
         <!-- Components -->
         <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="CategoryId">Product type</item>
+        <item app="Inventory" action="Product" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="Product" name="MinStock">Minimum stock</item>
+        <item app="Inventory" action="Product" name="MaxStock">Maximum stock</item>
+        <item app="Inventory" action="Product" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Product" name="ProductLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Product" name="ProductLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
         <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
+        <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
+        <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </es-ES>
     <!-- Arabe locale -->
     <ar-SA>
         <!-- Components -->
         <item app="Inventory" action="Product" name="ProductName">Product name</item>
+        <item app="Inventory" action="Product" name="CategoryId">Product type</item>
+        <item app="Inventory" action="Product" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="Product" name="MinStock">Minimum stock</item>
+        <item app="Inventory" action="Product" name="MaxStock">Maximum stock</item>
+        <item app="Inventory" action="Product" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Product" name="ProductLocaleFr">Translation (FR)</item>
+        <item app="Inventory" action="Product" name="ProductLocaleUs">Translation (EN)</item>
         <item app="Inventory" action="Product" name="ProductDesc">Product description</item>
         <item app="Inventory" action="Product" name="ProductSuccessBtn">Submit</item>
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
+        <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
+        <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </ar-SA>
 </locale>

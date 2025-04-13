@@ -8,4 +8,5 @@ class AttributeRelation extends DTOBase
 {
     public string $AttributeId;
     public string $ProductId;
+    public string $Value;
 }

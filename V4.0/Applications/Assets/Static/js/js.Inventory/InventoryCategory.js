@@ -21,7 +21,8 @@ $(function (){
     $(body).on('activate', '#new-category, #modify-category', function (){
         let bool = true;
 
-        if (typeof $('#categoryname').val() !== 'string' || typeof $('#categorydesc').val() !== 'string')
+        if (typeof $('#categoryname').val() !== 'string' || typeof $('#categorylocalefr').val() !== 'string' || typeof $('#categorylocaleus').val() !== 'string' ||
+            typeof $('#categorydesc').val() !== 'string')
             bool = false;
 
         if (bool)
@@ -50,7 +51,9 @@ $(function (){
         $.loadResources('Inventory', 'Config', 'LoadCategory', {_categoryId: id})
             .then(data => {
                 $(form).find('input[name="categoryname"]').val(data['Name']);
-                $(form).find('input[name="categoryid"]').val(id)
+                $(form).find('input[name="categoryid"]').val(id);
+                $(form).find('input[name="categorylocale[FR]"]').val(data['FR']);
+                $(form).find('input[name="categorylocale[US]"]').val(data['US']);
                 $(form).find('input[name="categorydesc"]').val(data['Description']);
             })
             .catch(error => {

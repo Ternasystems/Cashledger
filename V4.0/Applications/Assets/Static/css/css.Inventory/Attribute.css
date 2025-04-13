@@ -55,6 +55,21 @@ form .form-elt:last-of-type > * {
     justify-self: right;
 }
 
+form .constraint-type {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+form .constraint-type div {
+    padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+form .constraint-type div:hover {
+    background-color: var(--ts-soft-blue);
+    cursor: pointer;
+}
+
 /* Content */
 #attribute-list {
     padding: 0 1rem;

@@ -25,7 +25,7 @@ class ProductFactory extends CollectableFactory
     public function __construct(ProductRepository $repository, ProductAttributeFactory $_attributeFactory, ProductCategoryRepository $_categories,
                                 LanguageRelationRepository $relations)
     {
-        parent::__construct($repository, null);
+        parent::__construct($repository, $relations);
         $_attributeFactory->Create();
         $this->attributes = $_attributeFactory->Collectable();
         $factory = new CollectableFactory($_categories, $relations);
@@ -42,8 +42,8 @@ class ProductFactory extends CollectableFactory
         $colArray = [];
         foreach ($collection as $item) {
             $category = $this->categories->FirstOrDefault(fn($n) => $n->It()->Id == $item->CategoryId);
-            $_attributes = $this->attributes->Where(fn($n) => $n->AttributeRelations()->Where(fn($t) => $t->ProductId == $item->Id));
-            $colArray[] = new Product($item, $category, $_attributes);
+            $_attributes = $this->attributes->Where(fn($n) => $n->AttributeRelations()?->Where(fn($t) => $t->ProductId == $item->Id));
+            $colArray[] = new Product($item, $category, $_attributes, $this->relationRepository->GetAll());
         }
 
         $this->collectable = new Products($colArray);

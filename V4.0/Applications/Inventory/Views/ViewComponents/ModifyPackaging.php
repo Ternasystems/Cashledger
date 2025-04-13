@@ -16,6 +16,8 @@ $locales = new Locales();
 
 $Localizer = [
     'PackagingName' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Packaging', 'PackagingName'),
+    'PackagingLocaleFr' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Packaging', 'PackagingLocaleFr'),
+    'PackagingLocaleUs' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Packaging', 'PackagingLocaleUs'),
     'PackagingDesc' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Packaging', 'PackagingDesc'),
     'PackagingSuccessBtn' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Packaging', 'PackagingSuccessBtn'),
     'PackagingList' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Packaging', 'PackagingList')
@@ -33,6 +35,15 @@ $Localizer = [
                 <label for="packagingname" class="me-2 text-end"><?= $Localizer['PackagingName']; ?></label>
                 <input id="packagingname" type="text" name="packagingname" class="ts-form-control-light me-2"/>
                 <input id="packagingid" type="hidden" name="packagingid" value="">
+            </div>
+            <!-- Packaging locales -->
+            <div class="form-elt">
+                <label for="packaginglocalefr" class="me-2 text-end"><?= $Localizer['PackagingLocaleFr']; ?></label>
+                <input id="packaginglocalefr" type="text" name="packaginglocale[FR]" class="ts-form-control-light me-2"/>
+            </div>
+            <div class="form-elt">
+                <label for="packaginglocaleus" class="me-2 text-end"><?= $Localizer['PackagingLocaleUs']; ?></label>
+                <input id="packaginglocaleus" type="text" name="packaginglocale[US]" class="ts-form-control-light me-2"/>
             </div>
             <!-- Packaging description -->
             <div class="form-elt">

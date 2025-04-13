@@ -2,6 +2,7 @@
 
 namespace API_Inventory_Service;
 
+use API_Administration_Contract\ILanguageService;
 use API_DTOEntities_Factory\CollectableFactory;
 use API_Inventory_Contract\IProductService;
 use API_InventoryEntities_Collection\ProductAttributes;
@@ -13,9 +14,13 @@ use API_InventoryEntities_Model\Product;
 use API_InventoryEntities_Model\ProductAttribute;
 use API_InventoryEntities_Model\ProductCategory;
 use API_InventoryRepositories\ProductCategoryRepository;
+use API_RelationRepositories\AttributeRelationRepository;
 use API_RelationRepositories\LanguageRelationRepository;
+use API_RelationRepositories_Model\AttributeRelation;
+use API_RelationRepositories_Model\LanguageRelation;
 use Exception;
 use ReflectionException;
+use TS_Domain\Classes\Linq;
 
 class ProductService implements IProductService
 {
@@ -24,21 +29,25 @@ class ProductService implements IProductService
     protected ProductFactory $productFactory;
     protected ProductAttributeFactory $attributeFactory;
     protected LanguageRelationRepository $relationRepository;
+    protected AttributeRelationRepository $attributeRepository;
+    protected ILanguageService $languageService;
 
     /**
      * @throws ReflectionException
      */
     public function __construct(ProductCategoryRepository $_categoryRepository, ProductFactory $_productFactory, ProductAttributeFactory $_attributeFactory,
-                                LanguageRelationRepository $_relationRepository)
+                                AttributeRelationRepository $_attributeRepository, LanguageRelationRepository $_relationRepository, ILanguageService $_languageService)
     {
         $factory = new CollectableFactory($_categoryRepository, $_relationRepository);
         $factory->Create();
         $this->productCategories = $factory->Collectable();
         $this->categoryRepository = $_categoryRepository;
         $this->relationRepository = $_relationRepository;
+        $this->attributeRepository = $_attributeRepository;
         //
         $this->productFactory = $_productFactory;
         $this->attributeFactory = $_attributeFactory;
+        $this->languageService = $_languageService;
     }
 
     public function GetCategories(callable $predicate = null): ProductCategory|ProductCategories|null
@@ -63,15 +72,14 @@ class ProductService implements IProductService
         $factory = new CollectableFactory($this->categoryRepository, $this->relationRepository);
         $factory->Create();
         $this->productCategories = $factory->Collectable();
-    }
-
-    /**
-     * @throws ReflectionException
-     */
-    public function PutCategory(object $model): void
-    {
-        $this->categoryRepository->Update(\API_InventoryRepositories_Model\ProductCategory::class, array($model->categoryid, $model->categoryname,
-            $model->categorydesc));
+        $id = $this->productCategories->FirstOrDefault(fn($n) => $n->It()->Name == $model->categoryname)->It()->Id;
+        //
+        $languages = $this->languageService->GetLanguages();
+        foreach ($languages as $language){
+            $lang = $language->It()->Label;
+            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->categorylocale[$lang]));
+        }
+        //
         $factory = new CollectableFactory($this->categoryRepository, $this->relationRepository);
         $factory->Create();
         $this->productCategories = $factory->Collectable();
@@ -79,9 +87,39 @@ class ProductService implements IProductService
 
     /**
      * @throws ReflectionException
+     * @throws Exception
+     */
+    public function PutCategory(object $model): void
+    {
+        $this->categoryRepository->Update(\API_InventoryRepositories_Model\ProductCategory::class, array($model->categoryid, $model->categoryname,
+            $model->categorydesc));
+        //
+        $languages = $this->languageService->GetLanguages();
+        $relations = $this->productCategories->FirstOrDefault(fn($n) => $n->It()->Id == $model->categoryid)->LanguageRelations();
+        foreach ($relations as $relation){
+            $id = $relation->LangId;
+            $lang = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $id)->It()->Label;
+            if (key_exists($lang, $model->categorylocale))
+                $this->relationRepository->Update(LanguageRelation::class, array($relation->Id, $model->categorylocale[$lang]));
+            else
+                $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
+        }
+        //
+        $factory = new CollectableFactory($this->categoryRepository, $this->relationRepository);
+        $factory->Create();
+        $this->productCategories = $factory->Collectable();
+    }
+
+    /**
+     * @throws ReflectionException
+     * @throws Exception
      */
     public function DeleteCategory(string $id): void
     {
+        $relations = $this->productCategories->FirstOrDefault(fn($n) => $n->It()->Id == $id)->LanguageRelations();
+        foreach ($relations as $relation)
+            $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
+        //
         $this->categoryRepository->Remove(\API_InventoryRepositories_Model\ProductCategory::class, array($id));
         $factory = new CollectableFactory($this->categoryRepository, $this->relationRepository);
         $factory->Create();
@@ -108,29 +146,60 @@ class ProductService implements IProductService
 
     /**
      * @throws ReflectionException
+     * @throws Exception
      */
     public function SetAttribute(object $model): void
     {
+        $linq = new Linq();
+        $constraint = $linq->constraint($model->constrainttype, $model->attributeconstraint);
         $repository = $this->attributeFactory->Repository();
-        $repository->Add(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributename, $model->attributetype, $model->attributeconstraint,
+        $repository->Add(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributename, $model->attributetype, $constraint,
             $model->attributedesc));
+        $this->attributeFactory->Create();
+        $id = $this->attributeFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Name == $model->attributename)->It()->Id;
+        //
+        $languages = $this->languageService->GetLanguages();
+        foreach ($languages as $language){
+            $lang = $language->It()->Label;
+            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->attributelocale[$lang]));
+        }
     }
 
     /**
      * @throws ReflectionException
+     * @throws Exception
      */
     public function PutAttribute(object $model): void
     {
+        $linq = new Linq();
+        $constraint = $linq->constraint($model->constrainttype, $model->attributeconstraint);
         $repository = $this->attributeFactory->Repository();
-        $repository->Update(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributeid, $model->attributename, $model->attributetype,
-            $model->attributeconstraint, $model->attributedesc));
+        $repository->Update(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributeid, $model->attributename, $model->attributetype, $constraint,
+            $model->attributedesc));
+        //
+        $languages = $this->languageService->GetLanguages();
+        $this->attributeFactory->Create();
+        $relations = $this->attributeFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $model->attributeid)->LanguageRelations();
+        foreach ($relations as $relation){
+            $id = $relation->LangId;
+            $lang = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $id)->It()->Label;
+            if (key_exists($lang, $model->attributelocale))
+                $this->relationRepository->Update(LanguageRelation::class, array($relation->Id, $model->attributelocale[$lang]));
+            else
+                $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
+        }
     }
 
     /**
      * @throws ReflectionException
+     * @throws Exception
      */
     public function DeleteAttribute(string $id): void
     {
+        $relations = $this->attributeFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $id)->LanguageRelations();
+        foreach ($relations as $relation)
+            $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
+        //
         $repository = $this->attributeFactory->Repository();
         $repository->Remove(\API_InventoryRepositories_Model\ProductAttribute::class, array($id));
     }
@@ -162,15 +231,38 @@ class ProductService implements IProductService
         $repository = $this->productFactory->Repository();
         $repository->Add(\API_InventoryRepositories_Model\Product::class, array($model->productname, $model->categoryid, $model->unitid, $model->minstock,
             $model->maxstock, $model->product->desc));
+        $this->productFactory->Create();
+        $id = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Name == $model->productname)->It()->Id;
+        //
+        $languages = $this->languageService->GetLanguages();
+        foreach ($languages as $language){
+            $lang = $language->It()->Label;
+            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->productlocale[$lang]));
+        }
+        //
+        if (count($model->attributes) == 0)
+            return;
+
+        foreach ($model->attributes as $key => $attribute)
+            $this->attributeRepository->Add(AttributeRelation::class, array($key, $id, $attribute));
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function PutProduct(object $model): void
     {
-        // TODO: Implement PutProduct() method.
+        $repository = $this->productFactory->Repository();
+        $repository->Update(\API_InventoryRepositories_Model\Product::class, array($model->productid, $model->productname, $model->unitid, $model->minstock,
+            $model->maxstock, $model->product->desc));
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function DeleteProduct(string $id): void
     {
-        // TODO: Implement DeleteProduct() method.
+        $repository = $this->productFactory->Repository();
+        $repository->Remove(\API_InventoryRepositories_Model\Product::class, array($id));
     }
 }

@@ -12,6 +12,16 @@ $(function (){
 
     $.loadComponents('Inventory', 'Config', $('#main-content').attr('data-component'), 'main-content');
 
+    const observer = new MutationObserver((mutationList, observer) => {
+        const $radio = $('input#none');
+        if ($radio.length){
+            $radio.prop('checked', true);
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(document.body, {childList: true, subtree: true});
+
     // -Language switch
     $(body).on('change', 'select#lang', function (){
         let lg = $(this).find('option:selected').attr('value');
@@ -21,12 +31,16 @@ $(function (){
     $(body).on('activate', '#new-attribute, #modify-attribute', function (){
         let bool = true;
 
-        if (typeof $('#attributename').val() !== 'string' || $('#attributetype').val() !== 'string' || $('#attributeconstraint').val() !== 'string' ||
-            typeof $('#attributedesc').val() !== 'string')
+        if (typeof $('#attributename').val() !== 'string' || typeof $('#attributetype').val() !== 'string' || typeof $('#attributelocalefr').val() !== 'string' ||
+            typeof $('#attributelocaleus').val() !== 'string' || typeof $('#attributeconstraint').val() !== 'string' || typeof $('#attributedesc').val() !== 'string')
             bool = false;
 
         if (bool)
             $(this).submit();
+    });
+
+    $(body).on('change', '.constraint-type input[type="radio"]', function (){
+        $('#attributeconstraint').val($(this).val() == 'none' ? '' : $(this).val());
     });
 
     $(body).on('click', '#attribute-delete-list .bi-trash', function (){
@@ -53,6 +67,9 @@ $(function (){
                 $(form).find('input[name="attributename"]').val(data['Name']);
                 $(form).find('input[name="attributeid"]').val(id);
                 $(form).find('input[name="attributetype"]').val(data['AttributeType']);
+                $(form).find('input[name="attributelocale[FR]"]').val(data['FR']);
+                $(form).find('input[name="attributelocale[US]"]').val(data['US']);
+                $(form).find('input[name="constrainttype"][value="' + data['ConstraintType'] + '"]').prop('checked', true);
                 $(form).find('input[name="attributeconstraint"]').val(data['AttributeConstraint']);
                 $(form).find('input[name="attributedesc"]').val(data['Description']);
             })

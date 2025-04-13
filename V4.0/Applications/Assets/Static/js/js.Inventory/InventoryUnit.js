@@ -21,7 +21,8 @@ $(function (){
     $(body).on('activate', '#new-unit, #modify-unit', function (){
         let bool = true;
 
-        if (typeof $('#unitname').val() !== 'string' || typeof $('#unitlabel').val() !== 'string' || typeof $('#unitdesc').val() !== 'string')
+        if (typeof $('#unitname').val() !== 'string' || typeof $('#unitlabel').val() !== 'string' || typeof $('#unitlocalefr').val() !== 'string' ||
+            typeof $('#unitlocaleus').val() !== 'string' || typeof $('#unitdesc').val() !== 'string')
             bool = false;
 
         if (bool)
@@ -52,6 +53,8 @@ $(function (){
                 $(form).find('input[name="unitname"]').val(data['Name']);
                 $(form).find('input[name="unitid"]').val(id);
                 $(form).find('input[name="unitlabel"]').val(data['Label']);
+                $(form).find('input[name="unitlocale[FR]"]').val(data['FR']);
+                $(form).find('input[name="unitlocale[US]"]').val(data['US']);
                 $(form).find('input[name="unitdesc"]').val(data['Description']);
             })
             .catch(error => {

@@ -7,4 +7,5 @@ class ProductCategoryModel
     public ?string $categoryid;
     public string $categoryname;
     public ?string $categorydesc;
+    public array $categorylocale;
 }

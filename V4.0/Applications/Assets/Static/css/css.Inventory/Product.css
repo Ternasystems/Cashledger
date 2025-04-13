@@ -50,6 +50,10 @@ form .form-elt {
     grid-template-columns: 1fr 1fr;
 }
 
+form .form-elt #attributeck {
+    justify-self: start;
+}
+
 form .form-elt:last-of-type > * {
     grid-column-end: span 2;
     justify-self: right;

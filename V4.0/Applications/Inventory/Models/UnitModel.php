@@ -8,4 +8,5 @@ class UnitModel
     public string $unitname;
     public string $unitlabel;
     public ?string $unitdesc;
+    public array $unitlocale;
 }

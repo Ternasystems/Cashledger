@@ -4,6 +4,7 @@ namespace API_InventoryEntities_Model;
 
 use API_DTOEntities_Model\Entity;
 use API_InventoryEntities_Collection\ProductAttributes;
+use API_RelationRepositories_Collection\LanguageRelations;
 use UnexpectedValueException;
 
 class Product extends Entity
@@ -11,9 +12,10 @@ class Product extends Entity
     private ProductCategory $category;
     private ?ProductAttributes $attributes;
 
-    public function __construct(\API_InventoryRepositories_Model\Product $_entity, ProductCategory $_category, ?ProductAttributes $_attributes)
+    public function __construct(\API_InventoryRepositories_Model\Product $_entity, ProductCategory $_category, ?ProductAttributes $_attributes,
+                                ?LanguageRelations $_languageRelations)
     {
-        parent::__construct($_entity, null);
+        parent::__construct($_entity, $_languageRelations);
         $this->category = $_category;
         $this->attributes = $_attributes;
     }
