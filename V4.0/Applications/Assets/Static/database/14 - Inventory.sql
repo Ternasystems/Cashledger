@@ -1411,7 +1411,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Package');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Paquet');
 	--
-	/*CALL public."p_InsertUnit"('Meter', 'm');
+	CALL public."p_InsertUnit"('Meter', 'm');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Meter';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Meter');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Meter');
@@ -1589,7 +1589,7 @@ BEGIN
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Tera';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Tera');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Tera');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Tera');*/
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Tera');
 
 	-- Insert Product categories
 
@@ -1599,7 +1599,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'General pharmaceuticals');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Médicaments généraux');
 	--
-	/*CALL public."p_InsertProductCategory"('Fertility Pharmaceuticals');
+	CALL public."p_InsertProductCategory"('Fertility Pharmaceuticals');
 	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Fertility Pharmaceuticals';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Fertility Pharmaceuticals');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Fertility Pharmaceuticals');
@@ -1633,7 +1633,7 @@ BEGIN
 	SELECT "ID" INTO _id FROM public."cl_ProductCategories" WHERE "Name" = 'Culture media';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Culture media');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Culture media');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Milieux de culture');*/
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Milieux de culture');
 
 	-- ProductAttributes
 
@@ -1643,17 +1643,17 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Commercial denomination');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dénomination commerciale');
 	--
-	/*CALL public."p_InsertProductAttribute"('International denomination', 'text');
+	CALL public."p_InsertProductAttribute"('International denomination', 'text');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'International denomination';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'International denomination (INN)');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'International denomination (INN)');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dénomination internationale (DCI)');
 	--
-	CALL public."p_InsertProductAttribute"('ManufacturerID', 'text', 'VALUE IN (SELECT "ID" FROM public."cl_Manufacturers")');
-	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'ManufacturerID';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'ManufacturerID');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'ManufacturerID');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'ManufacturerID');
+	CALL public."p_InsertProductAttribute"('Manufacturer', 'text', 'VALUE IN (SELECT "ID" FROM public."cl_Manufacturers")');
+	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Manufacturer';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Manufacturer');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Manufacturer');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Fabricant');
 	--
 	CALL public."p_InsertProductAttribute"('Dosage', 'number');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Dosage';
@@ -1661,7 +1661,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Dosage');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dosage');
 	--
-	CALL public."p_InsertProductAttribute"('Drug route', 'number');
+	CALL public."p_InsertProductAttribute"('Drug route', 'text');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Drug route';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Drug route');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Drug route');
@@ -1673,7 +1673,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Galenics');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Galénique');
 	--
-	CALL public."p_InsertProductAttribute"('Expiration date', 'timestamp');
+	/*CALL public."p_InsertProductAttribute"('Expiration date', 'timestamp');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Expiration date';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Expiration date');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Expiration date');
@@ -1687,7 +1687,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Package of 12');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Paquet de 12');
 	--
-	/*CALL public."p_InsertPackaging"('Box of 8 ampoules');
+	CALL public."p_InsertPackaging"('Box of 8 ampoules');
 	SELECT "ID" INTO _id FROM public."cl_Packagings" WHERE "Name" = 'Box of 8 ampoules';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Box of 8 ampoules');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Box of 8 ampoules');
@@ -1697,7 +1697,7 @@ BEGIN
 	SELECT "ID" INTO _id FROM public."cl_Packagings" WHERE "Name" = 'Bottle of 10ml';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bottle of 10ml');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bottle of 10ml');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Flacon de 10ml');*/
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Flacon de 10ml');
 
 	-- Insert Products
 

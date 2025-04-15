@@ -230,14 +230,15 @@ class ProductService implements IProductService
     {
         $repository = $this->productFactory->Repository();
         $repository->Add(\API_InventoryRepositories_Model\Product::class, array($model->productname, $model->categoryid, $model->unitid, $model->minstock,
-            $model->maxstock, $model->product->desc));
+            $model->maxstock, $model->productdesc));
         $this->productFactory->Create();
         $id = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Name == $model->productname)->It()->Id;
         //
         $languages = $this->languageService->GetLanguages();
         foreach ($languages as $language){
             $lang = $language->It()->Label;
-            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->productlocale[$lang]));
+            if (key_exists($lang, $model->productlocale))
+                $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->productlocale[$lang]));
         }
         //
         if (count($model->attributes) == 0)
@@ -249,19 +250,43 @@ class ProductService implements IProductService
 
     /**
      * @throws ReflectionException
+     * @throws Exception
      */
     public function PutProduct(object $model): void
     {
         $repository = $this->productFactory->Repository();
         $repository->Update(\API_InventoryRepositories_Model\Product::class, array($model->productid, $model->productname, $model->unitid, $model->minstock,
             $model->maxstock, $model->product->desc));
+        //
+        $languages = $this->languageService->GetLanguages();
+        $this->productFactory->Create();
+        $relations = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $model->productid)->LanguageRelations();
+        foreach ($relations as $relation){
+            $id = $relation->LangId;
+            $lang = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $id)->It()->Label;
+            if (key_exists($lang, $model->productlocale))
+                $this->relationRepository->Update(LanguageRelation::class, array($relation->Id, $model->productlocale[$lang]));
+            else
+                $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
+        }
+        //
+        $this->attributeRepository->Remove(AttributeRelation::class, array($model->productid));
+        foreach ($model->attributes as $key => $attribute)
+            $this->attributeRepository->Add(AttributeRelation::class, array($key, $id, $attribute));
     }
 
     /**
      * @throws ReflectionException
+     * @throws Exception
      */
     public function DeleteProduct(string $id): void
     {
+        $relations = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $id)->LanguageRelations();
+        foreach ($relations as $relation)
+            $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
+        //
+        $this->attributeRepository->Remove(AttributeRelation::class, array($id));
+        //
         $repository = $this->productFactory->Repository();
         $repository->Remove(\API_InventoryRepositories_Model\Product::class, array($id));
     }

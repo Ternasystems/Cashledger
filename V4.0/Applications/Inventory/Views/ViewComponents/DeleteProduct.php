@@ -2,6 +2,8 @@
 // View data
 $components = $ViewData["components"];
 $lang = $ViewData['CurrentLanguage'];
+$products = $ViewData['products'];
+$languages = $ViewData['languages'];
 
 // Locales
 use TS_Configuration\Classes\XMLManager;
@@ -25,13 +27,21 @@ $Localizer = [
             <span><?= $Localizer['ProductList']; ?></span>
         </div>
         <?php
-        for ($i = 0; $i < 5; $i++){
-            ?>
-            <div class="product-elt ts-elt d-flex justify-content-between">
-                <span><?= 'Product '.($i+1); ?></span>
-                <span class="bi bi-trash"></span>
-            </div>
-            <?php
+        if (isset($products)) {
+            $langId = $languages->FirstOrDefault(fn($n) => str_contains($lang, $n->It()->Label))->It()->Id;
+            $relations = null;
+            foreach ($products as $product) {
+                $relations[$product->It()->Id] = $product->LanguageRelations()->FirstOrDefault(fn($n) => $n->LangId == $langId)->Label;
+            }
+            asort($relations);
+            foreach ($relations as $key => $relation) {
+                ?>
+                <div class="product-elt ts-elt d-flex justify-content-between" data-id="<?= $key; ?>">
+                    <span><?= $relation; ?></span>
+                    <span class="bi bi-trash"></span>
+                </div>
+                <?php
+            }
         }
         ?>
     </div>

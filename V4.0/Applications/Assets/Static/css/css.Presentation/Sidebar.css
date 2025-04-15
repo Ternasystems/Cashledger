@@ -31,3 +31,8 @@ nav #nav-2 > div > span:hover {
     cursor: pointer;
     background-color: whitesmoke;
 }
+
+nav .ts-active {
+    border: thin solid var(--ts-light-blue) !important;
+    color: var(--ts-glow-blue);
+}

@@ -50,7 +50,7 @@ form .form-elt {
     grid-template-columns: 1fr 1fr;
 }
 
-form .form-elt #attributeck {
+form .form-elt #attributcheck {
     justify-self: start;
 }
 

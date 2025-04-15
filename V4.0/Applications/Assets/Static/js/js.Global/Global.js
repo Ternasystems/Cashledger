@@ -128,6 +128,29 @@ $(function () {
             });
         }
 
+        // Call the load items action
+        $.loadItems = function (_app, _ctrl = 'Home', _action = 'Index', _parent, _param = {}) {
+            $.ajax({
+                url: '../../' + _app + '/' + _ctrl + '/' + _action,
+                method: 'POST',
+                data: {
+                    value: _param['value'],
+                    label: _param['label']
+                },
+                success: function (result) {
+                    const $result = $(result)
+                        .find('label').text(_param['label']).attr('for', _param['value']).end()
+                        .find('input').attr({
+                            id: _param['value'], name: 'attributes[' + _param['value'] + ']'
+                        }).end();
+                    $(_parent).parent().after($result);
+                },
+                error: function () {
+                    console.error('Failed to load the view component.');
+                }
+            });
+        }
+
         // Call the load components action
         $.loadComponents = function (_app, _ctrl = 'Home', _action = 'Index', _parent) {
             $.ajax({
@@ -152,6 +175,14 @@ $(function () {
                 }
             });
         }
+
+        $.userConfig = function (_username){
+            return new Promise((resolve, reject) => {
+                $.getJSON('../../../Applications/Presentation/Assets/Configs/userConfig.json')
+                    .done(data => resolve(data[_username]))
+                    .fail(err => reject(err));
+            });
+        };
 
         $.getAuth = function (_sessionId, _str = '') {
             let inputJson = [];

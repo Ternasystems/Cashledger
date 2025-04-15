@@ -1,0 +1,20 @@
+{
+  "Jéoline": {
+    "Applications": {
+      "Sidebar": {
+        "display": "grid",
+        "sort": "up",
+        "group": "none"
+      }
+    }
+  },
+  "Administrator": {
+    "Applications": {
+      "Sidebar": {
+        "display": "grid",
+        "sort": "up",
+        "group": "cat"
+      }
+    }
+  }
+}

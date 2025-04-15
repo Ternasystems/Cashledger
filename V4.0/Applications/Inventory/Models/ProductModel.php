@@ -12,5 +12,5 @@ class ProductModel
     public float $maxstock;
     public array $attributes;
     public ?string $productdesc;
-    public array $productlocales;
+    public array $productlocale;
 }

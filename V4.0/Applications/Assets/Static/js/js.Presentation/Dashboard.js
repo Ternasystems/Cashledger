@@ -10,6 +10,13 @@ $(function (){
 
     $.language();
 
+    $.userConfig($('nav').attr('data-usr')).then(config => {
+        const sidebarConfig = config['Applications']['Sidebar'];
+        Object.entries(sidebarConfig).forEach(([key, value]) => {
+            $(`nav #nav-${key} > span#${key}-${value}`).addClass('ts-active');
+        });
+    });
+
     // -Language switch
     $(body).on('change', 'select#lang', function (){
         let lg = $(this).find('option:selected').attr('value');

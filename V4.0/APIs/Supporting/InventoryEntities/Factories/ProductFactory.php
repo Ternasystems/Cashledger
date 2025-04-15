@@ -42,7 +42,17 @@ class ProductFactory extends CollectableFactory
         $colArray = [];
         foreach ($collection as $item) {
             $category = $this->categories->FirstOrDefault(fn($n) => $n->It()->Id == $item->CategoryId);
-            $_attributes = $this->attributes->Where(fn($n) => $n->AttributeRelations()?->Where(fn($t) => $t->ProductId == $item->Id));
+            $attributeArray = [];
+            if ($this->attributes->count()){
+                foreach ($this->attributes as $attribute) {
+                    if (is_null($attribute->AttributeRelations())) continue;
+                    foreach ($attribute->AttributeRelations() as $attributeRelation) {
+                        if ($attributeRelation->ProductId == $item->Id)
+                            $attributeArray[] = $attribute;
+                    }
+                }
+            }
+            $_attributes = new ProductAttributes($attributeArray);
             $colArray[] = new Product($item, $category, $_attributes, $this->relationRepository->GetAll());
         }
 

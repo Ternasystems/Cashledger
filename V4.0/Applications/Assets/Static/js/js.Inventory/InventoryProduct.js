@@ -12,21 +12,6 @@ $(function (){
 
     $.loadComponents('Inventory', 'Config', $('#main-content').attr('data-component'), 'main-content');
 
-    // Call the load components action
-    $.loadItems = function (_app, _ctrl = 'Home', _action = 'Index', _parent) {
-        $.ajax({
-            url: '../../' + _app + '/' + _ctrl + '/' + _action,
-            method: 'POST',
-            success: function (result) {
-                $('#' + _parent).html(result); // Replace the parent container content with the response
-                $('nav [data-component="' + _action + '"]').addClass('ts-active');
-            },
-            error: function () {
-                console.error('Failed to load the view component.');
-            }
-        });
-    }
-
     // -Language switch
     $(body).on('change', 'select#lang', function (){
         let lg = $(this).find('option:selected').attr('value');
@@ -37,8 +22,8 @@ $(function (){
         let bool = true;
 
         if (typeof $('#productname').val() !== 'string' || typeof $('#categoryid').val() !== 'string' || typeof $('#unitid').val() !== 'string' ||
-            typeof $('#minstock').val() !== 'number' || typeof $('#maxstock').val() !== 'number'|| typeof $('#productlocalefr').val() !== 'string' ||
-            typeof $('#productlocaleus').val() !== 'string' || typeof $('#productdesc').val() !== 'string')
+            ($('#minstock').val().trim() == '' || isNaN($('#minstock').val())) || ($('#maxstock').val().trim() == '' || isNaN($('#maxstock').val()))||
+            typeof $('#productlocalefr').val() !== 'string' || typeof $('#productlocaleus').val() !== 'string' || typeof $('#productdesc').val() !== 'string')
             bool = false;
 
         if (bool)
@@ -46,15 +31,20 @@ $(function (){
     });
 
     $(body).on('change', '#minstock, #maxstock', function (){
-        let min = $('#minstock').val(), max = $('#maxstock').val();
+        let min = Number($('#minstock').val()), max = Number($('#maxstock').val());
         if (min > max){
             max = min;
             $('#maxstock').val(max);
         }
     });
 
-    $(body).on('change', '#attributeck', function(){
-        $('#attributes').toggleClass('ts-disabled');
+    $(body).on('change', '#attributcheck', function(){
+        if ($(this).prop('checked'))
+            $('#attributes').addClass('ts-disabled');
+        else
+            $('#attributes').removeClass('ts-disabled');
+        //
+        $('[data-class="formelement"]').parent().remove();
     });
 
     $(body).on('click', '#product-delete-list .bi-trash', function (){
@@ -74,22 +64,140 @@ $(function (){
         });
     });
 
-    $('#main-content').on('click', '#product-list .ts-elt', function (){
-        let id = $(this).attr('data-id'), form = $(this).parent().prev();
-        $.loadResources('Inventory', 'Config', 'LoadProduct', {_productId: id})
-            .then(data => {
-                $(form).find('input[name="productname"]').val(data['Name']);
-                $(form).find('input[name="productid"]').val(id);
-                $(form).find('input[name="categoryid"]').val(data['CategoryId']);
-                $(form).find('input[name="unitid"]').val(data['UnitId']);
-                $(form).find('input[name="minstock"]').val(data['MinStock']);
-                $(form).find('input[name="maxstock"]').val(data['MaxStock']);
-                $(form).find('input[name="productdesc"]').val(data['Description']);
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
+    /*$(body).on('change', 'select#attributes', function (){
+        const currentSelection = Array.from(this.selectedOptions).map(opt => opt.value);
+        const selectionLocale = Array.from(this.selectedOptions).map(opt => opt.text);
+        //
+        const added = currentSelection.filter(val => !previousSelection.includes(val));
+        const removed = previousSelection.filter(val => !currentSelection.includes(val));
+        //
+        removed.forEach(val => {
+            $('input[data-class="formelement"][id="' + val + '"]').parent().remove();
+        });
+        //
+        if (added.length > 0){
+            added.forEach((val, index) => {
+                const label = selectionLocale[currentSelection.indexOf(val)];
+                $.loadItems('Inventory', 'Config', 'AddItem', 'select#attributes', {'label':label, 'value':val});
             });
+        }
+
+        previousSelection = currentSelection;
+    });*/
+
+    let isProcessingChange = false, previousSelection = [];
+
+    $(document).on('change', 'select[name="attributes"]', function () {
+        if (isProcessingChange) return;
+        isProcessingChange = true;
+
+        const $select = $(this);
+        const currentSelection = Array.from(this.selectedOptions).map(opt => opt.value);
+        const selectionLocale = Array.from(this.selectedOptions).map(opt => opt.text);
+
+        const added = currentSelection.filter(val => !previousSelection.includes(val));
+        const removed = previousSelection.filter(val => !currentSelection.includes(val));
+
+        // Cleanup
+        removed.forEach(val => {
+            $(`input[data-class="formelement"][id="${val}"]`).parent().remove();
+        });
+
+        const additions = added.map(val => {
+            const label = selectionLocale[currentSelection.indexOf(val)];
+            return $.loadItems('Inventory', 'Config', 'AddItem', 'select[name="attributes"]', {
+                label,
+                value: val
+            });
+        });
+
+        Promise.all(additions).then(() => {
+            isProcessingChange = false;
+            $select.trigger('attributes:changeComplete');
+        });
+
+        previousSelection = currentSelection;
     });
+
+    $('#main-content').on('click', '#product-list .ts-elt', function () {
+        const id = $(this).attr('data-id');
+        const form = $(this).parent().prev();
+
+        $.loadResources('Inventory', 'Config', 'LoadProduct', { _productId: id })
+            .then(data => {
+                // Update basic fields
+                $(form).find('input[name="productname"]').val(data.Name);
+                $(form).find('input[name="productid"]').val(id);
+                $(form).find(`select[name="categoryid"] option[value="${data.CategoryId}"]`).prop('selected', true);
+                $(form).find(`select[name="unitid"] option[value="${data.UnitId}"]`).prop('selected', true);
+                $(form).find('input[name="minstock"]').val(data.MinStock);
+                $(form).find('input[name="maxstock"]').val(data.MaxStock);
+                $(form).find('input[name="productlocale[FR]"]').val(data.Locales?.FR || '');
+                $(form).find('input[name="productlocale[US]"]').val(data.Locales?.US || '');
+                $(form).find('input[name="productdesc"]').val(data.Description || '');
+
+                // Reset attributes
+                $(form).find('select[name="attributes"]').val('0'); // Reset to default
+                $(form).find('input[data-class="formelement"]').parent().remove();
+
+                // Toggle attribute checkbox
+                const hasAttributes = data.hasOwnProperty('Attributes');
+                $(form).find('input#attributcheck').prop('checked', !hasAttributes).trigger('change');
+
+                // Handle attributes if they exist
+                if (hasAttributes) {
+                    $(form).find('select[name="attributes"] option[value="0"]').prop('selected', false);
+                    (async () => {
+                        await selectAttributesAsync(form, data.Attributes);
+                        await setAttributeInputValues(form, data.Attributes);
+                    })();
+                }
+            })
+            .catch(console.error);
+    });
+
+// Helper: Sequentially select attributes and wait for AJAX + DOM updates
+    async function selectAttributesAsync(form, attributes) {
+        const $select = $(form).find('select[name="attributes"]');
+        const attributeKeys = Object.keys(attributes);
+
+        previousSelection = []; // 🛠️ Reset selection tracking
+
+        $select.val(attributeKeys).trigger('change');
+
+        await new Promise(resolve => {
+            $select.one('attributes:changeComplete', resolve);
+        });
+    }
+
+
+// Helper: Set values for dynamically loaded inputs
+    async function setAttributeInputValues(form, attributes) {
+        for (const attr of Object.keys(attributes)) {
+            await waitForInput(form, attr); // Wait until input is in the DOM
+
+            const input = $(form).find(`input[data-class="formelement"][id="${attr}"]`);
+            if (input.length) input.val(attributes[attr]);
+        }
+    }
+
+// Helper: Wait for the input to exist in the DOM (max 500ms)
+    function waitForInput(form, attr) {
+        return new Promise(resolve => {
+            const selector = `input[data-class="formelement"][id="${attr}"]`;
+
+            const checkExist = () => {
+                const input = $(form).find(selector);
+                if (input.length) {
+                    resolve();
+                } else {
+                    setTimeout(checkExist, 10); // Retry after 10ms
+                }
+            };
+
+            checkExist();
+        });
+    }
 
     // -Nav links
     $('.ts-view').on('click', function (e) {

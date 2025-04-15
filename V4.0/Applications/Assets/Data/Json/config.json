@@ -237,7 +237,7 @@
         "action": "Index"
       }
     },
-    "HRM": {
+    "Hrm": {
       "fr-FR": {
         "title": "Gestion des ressources humaines",
         "logo": "HRM",
@@ -301,7 +301,7 @@
         "action": "Index"
       }
     },
-    "IDS": {
+    "Ids": {
       "fr-FR": {
         "title": "Système d'intégration des données",
         "logo": "IDS",

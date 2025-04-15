@@ -103,13 +103,13 @@ $Localizer = [
             </div>
             <!-- Attribute ID -->
             <div class="form-elt">
-                <label for="attributeck" class="me-2 text-end"><?= $Localizer['AttributeCheck']; ?></label>
-                <input id="attributeck" type="checkbox" name="attributeck" class="ts-form-control-light me-2">
+                <label for="attributcheck" class="me-2 text-end"><?= $Localizer['AttributeCheck']; ?></label>
+                <input id="attributcheck" type="checkbox" name="attributcheck" class="ts-form-control-light me-2">
             </div>
             <div class="form-elt">
                 <label for="attributes" class="me-2 text-end"><?= $Localizer['ProductAttributes']; ?></label>
                 <select id="attributes" name="attributes" multiple size="5" class="ts-form-control-light me-2">
-                    <option value="0" selected><?= $Localizer['AttributeSelect'] ?></option>
+                    <option value="0" disabled selected><?= $Localizer['AttributeSelect'] ?></option>
                     <?php
                     if (isset($attributes)){
                         $relations = null;

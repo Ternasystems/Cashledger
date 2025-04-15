@@ -17,6 +17,8 @@ CREATE DATABASE "Cashledger"
 
 /*
  * Code (3 digits)
+
+ Accounting app
  
  Administration app
  * ACT cl_AppCategories
@@ -30,9 +32,14 @@ CREATE DATABASE "Cashledger"
  * LGR cl_LanguageRelations
 
  Billing app
+ Booking app
  Control app
  Dashboarding app
+ Emailing app
  Forecasting app
+ Hrm app
+ Hudel app
+ Ids app
  
  Inventory app
  * ATR cl_AttributeRelations
@@ -53,8 +60,11 @@ CREATE DATABASE "Cashledger"
  * WRH cl_Warehouses
  
  Invoicing app
+ Meeting app
+ Messaging app
  Partnership app
- Payment app
+ Payments app
+ Payroll app
 
  Profiling app
  * CIV cl_Civilities
@@ -81,7 +91,9 @@ CREATE DATABASE "Cashledger"
  Publishing app
  Purchase app
  Reporting app
+ Tasks app
  Teller app
+ Wholesale app
 
  Summary
  * ACT cl_AppCategories

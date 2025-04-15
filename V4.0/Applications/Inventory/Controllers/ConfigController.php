@@ -249,11 +249,28 @@ class ConfigController extends Controller
     }
 
     // Load Products
+
+    /**
+     * @throws Exception
+     */
     public function LoadProduct(string $_productId): void
     {
         $product = $this->productController->GetById($_productId);
+        $attributes = $product->ProductAttributes();
+        $relations = $product->LanguageRelations();
+        $languages = $this->languageController->Get();
         $arr = ['Id' => $product->It()->Id, 'Name' => $product->It()->Name, 'CategoryId' => $product->It()->CategoryId, 'UnitId' => $product->It()->UnitId,
-            $product->It()->MinStock, $product->It()->MaxStock, 'Description' => $product->It()->Description];
+            'MinStock' => $product->It()->MinStock, 'MaxStock' => $product->It()->MaxStock, 'Description' => $product->It()->Description];
+        foreach ($relations as $relation) {
+            $langId = $relation->LangId;
+            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
+            $arr['Locales'][$label] = $relation->Label;
+        }
+        //
+        foreach ($attributes as $attribute) {
+            $attrRelation = $attribute->AttributeRelations()->FirstOrDefault(fn($n) => $n->ProductId == $_productId);
+            $arr['Attributes'][$attrRelation->AttributeId] = $attrRelation->Value;
+        }
         echo json_encode($arr);
         exit;
     }
@@ -299,9 +316,13 @@ class ConfigController extends Controller
     public function ModifyProduct(): void
     {
         $products = $this->productController->Get();
+        $categories = $this->productController->GetCategories();
+        $attributes = $this->productController->GetAttributes();
+        $units = $this->unitController->Get();
         $components = $this->config["components"];
         $languages = $this->languageController->Get();
-        $this->viewComponent('ModifyProduct', ['languages' => $languages, 'products' => $products, 'components' => $components]);
+        $this->viewComponent('ModifyProduct', ['languages' => $languages, 'products' => $products, 'categories' => $categories, 'units' => $units,
+            'attributes' => $attributes, 'components' => $components]);
     }
 
     /**
@@ -316,13 +337,20 @@ class ConfigController extends Controller
     }
 
     /**
+     * @throws ReflectionException
+     */
+    public function AddItem(): void
+    {
+        $this->viewComponent('FormElement');
+    }
+
+    /**
      * @throws Exception
      */
     public function AddProduct(ProductModel $model): void
     {
-        var_dump($_POST);
-        /*$this->productController->Set($model);
-        $this->redirectToAction('Product');*/
+        $this->productController->Set($model);
+        $this->redirectToAction('Product');
     }
 
     /**
