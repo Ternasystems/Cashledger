@@ -116,12 +116,20 @@ $Localizer = [
                         $relations = null;
                         foreach ($attributes as $attribute){
                             if ($attribute->LanguageRelations()->FirstOrDefault(fn($n) => $n->LangId == $langId) == null) continue;
-                            $relations[$attribute->It()->Id] = $attribute->LanguageRelations()->FirstOrDefault(fn($n) => $n->LangId == $langId)->Label;
+                            $relations[$attribute->It()->Id] = [
+                                'AttributeType' => $attribute->It()->AttributeType,
+                                'AttributeTable' => $attribute->It()->AttributeTable,
+                                'Label' => $attribute->LanguageRelations()->FirstOrDefault(fn($n) => $n->LangId == $langId)->Label
+                            ];
                         }
-                        asort($relations);
+                        uasort($relations, function ($a, $b){
+                            return strcmp($a['Label'], $b['Label']);
+                        });
                         foreach ($relations as $key => $relation){
                             ?>
-                            <option value="<?= $key ?>"><?= $relation; ?></option>
+                            <option value="<?= $key ?>" data-type="<?= $relation['AttributeType'] ?>" data-table="<?= $relation['AttributeTable'] ?>">
+                                <?= $relation['Label']; ?>
+                            </option>
                             <?php
                         }
                     }

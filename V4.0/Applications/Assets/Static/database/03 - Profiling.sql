@@ -256,10 +256,18 @@ CREATE OR REPLACE TRIGGER "Update_TitleRelation"
 -- Trigger: Insert_TitleRelation
 
 CREATE OR REPLACE TRIGGER "Insert_TitleRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_TitleRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_TitleRelation
+
+CREATE OR REPLACE TRIGGER "Remove_TitleRelation"
+    BEFORE DELETE
+    ON public."cl_TitleRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 	
 -- Table: public.cl_Statuses
 
@@ -403,10 +411,18 @@ CREATE OR REPLACE TRIGGER "Update_StatusRelation"
 -- Trigger: Insert_StatusRelation
 
 CREATE OR REPLACE TRIGGER "Insert_StatusRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_StatusRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_StatusRelation
+
+CREATE OR REPLACE TRIGGER "Remove_StatusRelation"
+    BEFORE DELETE
+    ON public."cl_StatusRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Genders
 
@@ -552,10 +568,18 @@ CREATE OR REPLACE TRIGGER "Update_GenderRelation"
 -- Trigger: Insert_GenderRelation
 
 CREATE OR REPLACE TRIGGER "Insert_GenderRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_GenderRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_GenderRelation
+
+CREATE OR REPLACE TRIGGER "Remove_GenderRelation"
+    BEFORE DELETE
+    ON public."cl_GenderRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Civilities
 
@@ -701,10 +725,18 @@ CREATE OR REPLACE TRIGGER "Update_CivilityRelation"
 -- Trigger: Insert_CivilityRelation
 
 CREATE OR REPLACE TRIGGER "Insert_CivilityRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_CivilityRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_CivilityRelation
+
+CREATE OR REPLACE TRIGGER "Remove_CivilityRelation"
+    BEFORE DELETE
+    ON public."cl_CivilityRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Occupations
 
@@ -848,10 +880,18 @@ CREATE OR REPLACE TRIGGER "Update_OccupationRelation"
 -- Trigger: Insert_OccupationRelation
 
 CREATE OR REPLACE TRIGGER "Insert_OccupationRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_OccupationRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_OccupationRelation
+
+CREATE OR REPLACE TRIGGER "Remove_OccupationRelation"
+    BEFORE DELETE
+    ON public."cl_OccupationRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_ContactTypes
 
@@ -1117,10 +1157,18 @@ CREATE OR REPLACE TRIGGER "Update_ContactRelation"
 -- Trigger: Insert_ContactRelation
 
 CREATE OR REPLACE TRIGGER "Insert_ContactRelation"
-    BEFORE INSERT OR DELETE 
+    BEFORE INSERT
     ON public."cl_ContactRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_ContactRelation
+
+CREATE OR REPLACE TRIGGER "Remove_ContactRelation"
+    BEFORE DELETE 
+    ON public."cl_ContactRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Credentials
 
@@ -1942,10 +1990,18 @@ CREATE OR REPLACE TRIGGER "Update_RoleRelation"
 -- Trigger: Insert_RoleRelation
 
 CREATE OR REPLACE TRIGGER "Insert_RoleRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_RoleRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_RoleRelation
+
+CREATE OR REPLACE TRIGGER "Remove_RoleRelation"
+    BEFORE DELETE
+    ON public."cl_RoleRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Trackings
 

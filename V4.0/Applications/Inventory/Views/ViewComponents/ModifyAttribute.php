@@ -2,6 +2,7 @@
 // View data
 $components = $ViewData["components"];
 $constraints = $ViewData['constraints'];
+$attrTypes = $ViewData['attrTypes'];
 $lang = $ViewData['CurrentLanguage'];
 $attributes = $ViewData['attributes'];
 $languages = $ViewData['languages'];
@@ -18,6 +19,7 @@ $locales = new Locales();
 $Localizer = [
     'AttributeName' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Attribute', 'AttributeName'),
     'AttributeType' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Attribute', 'AttributeType'),
+    'TypeSelect' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Attribute', 'TypeSelect'),
     'AttributeLocaleFr' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Attribute', 'AttributeLocaleFr'),
     'AttributeLocaleUs' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Attribute', 'AttributeLocaleUs'),
     'ConstraintType' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Attribute', 'ConstraintType'),
@@ -43,7 +45,16 @@ $Localizer = [
             <!-- Attribute type -->
             <div class="form-elt">
                 <label for="attributetype" class="me-2 text-end"><?= $Localizer['AttributeType']; ?></label>
-                <input id="attributetype" type="text" name="attributetype" class="ts-form-control-light me-2"/>
+                <select id="attributetype" name="attributetype" class="ts-form-control-light me-2">
+                    <option value="0" disabled selected><?= $Localizer['TypeSelect'] ?></option>
+                    <?php
+                    foreach ($attrTypes as $key => $attrType) {
+                        ?>
+                        <option value="<?= $key ?>"><?= $attrType[$lang] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </div>
             <!-- Attribute locales -->
             <div class="form-elt">
@@ -74,6 +85,7 @@ $Localizer = [
             <div class="form-elt">
                 <label for="attributeconstraint" class="me-2 text-end"><?= $Localizer['AttributeConstraint']; ?></label>
                 <input id="attributeconstraint" type="text" name="attributeconstraint" class="ts-form-control-light me-2"/>
+                <input id="attributetable" type="hidden" name="attributetable" value="">
             </div>
             <!-- Attribute description -->
             <div class="form-elt">

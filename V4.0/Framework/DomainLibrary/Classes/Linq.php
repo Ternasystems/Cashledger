@@ -49,7 +49,7 @@ class Linq extends AbstractCls
             case 'from':
             {
                 // Check Constraint expression
-                if (preg_match('/^FROM\s+([a-zA-Z_]\w*)\.([a-zA-Z_]\w*)$/mi', $constraint) != 1)
+                if (preg_match('/^FROM\s+([a-zA-Z_]\w*)\.([a-zA-Z_]\w*)$/i', $constraint) != 1)
                     return null;
 
                 $arr = explode('.', $constraint);
@@ -59,16 +59,33 @@ class Linq extends AbstractCls
             break;
             case 'range':
             {
-                if (preg_match('/^RANGE\[\s*(-?\d+(\.\d+)?)\s*,\s*(-?\d+(\.\d+)?)\s*]$/mi', $constraint) != 1)
+                // Define the value pattern as a constant for reusability
+                define('VALUE_PATTERN', '(?:-?\d+(?:\.\d+)?|\d{4}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?|\d{2}:\d{2}:\d{2})');
+
+                // Main pattern with named capture groups
+                $pattern = '/^RANGE\[\s*(?<min>'.VALUE_PATTERN.')\s*,\s*(?<max>'.VALUE_PATTERN.')\s*\]$/i';
+
+                if (preg_match($pattern, $constraint, $matches) !== 1)
                     return null;
 
-                sscanf($constraint, 'RANGE[%d,%d]', $min, $max);
+                // Extract values using named captures
+                $min = $matches['min'];
+                $max = $matches['max'];
+
+                // Validate min <= max
+                if ($min > $max)
+                    return null;
+
+                $min = preg_match('/^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2}:\d{2})?$|^\d{2}:\d{2}:\d{2}$/', $min) ? "'$min'" : $min;
+                $max = preg_match('/^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2}:\d{2})?$|^\d{2}:\d{2}:\d{2}$/', $max) ? "'$max'" : $max;
+
+                // Format the output string
                 $str = sprintf('VALUE BETWEEN %s AND %s', $min, $max);
             }
             break;
             case 'list':
             {
-                if (preg_match('/^LIST\(\s*([-\w.]+)(\s*,\s*[-\w.]+)*\s*\)$/mi', $constraint) != 1)
+                if (preg_match('/^LIST\(\s*(\'.*?\')\s*(?:,\s*\'.*?\'\s*)*\)$/i', $constraint) != 1)
                     return null;
 
                 $str = preg_replace('/\blist\b/i', 'VALUE IN ', $constraint);
@@ -82,9 +99,16 @@ class Linq extends AbstractCls
             case '>=':
             case '!=':
             {
-                if (preg_match('/^(<=|>=|!=|=|<|>|!)\s*([\w.]+)/mi', $constraint) != 1)
+                // Define the value pattern as a constant
+                define('VALUE_PATTERN', '(?:\d+\.?\d*|\'[^\']*\'|\"[^\"]*\"|\d{4}-\d{2}-\d{2}(?:\s+\d{2}:\d{2}:\d{2})?|\d{2}:\d{2}:\d{2})');
+
+                // Main pattern with named capture groups
+                $pattern = '/^(?<operator><=|>=|!=|=|<|>)\s*(?<value>'.VALUE_PATTERN.')$/i';
+
+                if (preg_match($pattern, $constraint) !== 1)
                     return null;
 
+// Format the output string using named captures
                 $str = sprintf('VALUE %s', $constraint);
             }
             break;
@@ -108,6 +132,24 @@ class Linq extends AbstractCls
         return null;
     }
 
+    public function constraintTable(?string $constraint): ?string
+    {
+        if (is_null($constraint))
+            return null;
+
+        if (preg_match('/from/i', $constraint) != 1)
+            return null;
+
+        if (preg_match('/value/i', $constraint) != 1){
+            $arr = explode('.', $constraint);
+            return 'cl_'.preg_replace('/^FROM\s+/i', '', $arr[0]);
+        }
+        else{
+            preg_match('/VALUE\s+IN\s+\(SELECT\s+"(?<column>\w+)"\s+FROM\s+(?<schema>\w+)\."(?<table>\w+)"\)/mi', $constraint, $matches);
+            return $matches['table'];
+        }
+    }
+
     public function linq(string $constraintType, string $constraint): ?string
     {
         $constraint = trim($constraint);
@@ -128,10 +170,15 @@ class Linq extends AbstractCls
                 break;
             case 'range':
                 {
-                    if (preg_match('/^VALUE\s+BETWEEN\s+(?<min>[\d.-]+)\s+AND\s+(?<max>[\d.-]+)/mi', $constraint, $matches) != 1)
+                    if (preg_match('/^VALUE\s+BETWEEN\s+(?<min>\'?[\d:\-\s\.]+\'?)\s+AND\s+(?<max>\'?[\d:\-\s\.]+\'?)/i', $constraint, $matches) !== 1)
                         return null;
 
-                    $str = sprintf('RANGE[%s,%s]', $matches['min'], $matches['max']);
+                    // Trim surrounding quotes if present
+                    $min = trim($matches['min'], " \t\n\r\0\x0B'\"");
+                    $max = trim($matches['max'], " \t\n\r\0\x0B'\"");
+
+                    $str = sprintf('RANGE[%s,%s]', $min, $max);
+
                 }
                 break;
             case 'list':

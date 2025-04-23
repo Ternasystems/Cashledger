@@ -30,4 +30,19 @@ class ProfileController extends BaseController
     {
         return $this->service->GetProfiles(fn($n) => $n->It()->LastName == $lastName);
     }
+
+    public function Set(object $profile): void
+    {
+        $this->service->SetProfile($profile);
+    }
+
+    public function Put(object $profile): void
+    {
+        $this->service->PutProfile($profile);
+    }
+
+    public function Delete(string $id): void
+    {
+        $this->service->DeleteProfile($id);
+    }
 }

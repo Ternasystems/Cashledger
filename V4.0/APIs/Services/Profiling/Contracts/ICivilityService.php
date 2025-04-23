@@ -20,4 +20,5 @@ interface ICivilityService
     public function GetOccupations(callable $predicate = null): Occupation|Occupations|null;
     public function GetTitles(callable $predicate = null): Title|Titles|null;
     public function GetStatuses(callable $predicate = null): Status|Statuses|null;
+    public function GetRelationRepositories(): array;
 }

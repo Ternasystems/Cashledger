@@ -87,7 +87,7 @@ CREATE OR REPLACE TRIGGER "Delete_Customer"
 -- Trigger: Insert_Customer
 
 CREATE OR REPLACE TRIGGER "Insert_Customer"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Customers"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -95,7 +95,7 @@ CREATE OR REPLACE TRIGGER "Insert_Customer"
 -- Trigger: Update_Customer
 
 CREATE OR REPLACE TRIGGER "Update_Customer"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Customers"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -187,7 +187,7 @@ CREATE OR REPLACE TRIGGER "Delete_Supplier"
 -- Trigger: Insert_Supplier
 
 CREATE OR REPLACE TRIGGER "Insert_Supplier"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Suppliers"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -195,7 +195,7 @@ CREATE OR REPLACE TRIGGER "Insert_Supplier"
 -- Trigger: Update_Supplier
 
 CREATE OR REPLACE TRIGGER "Update_Supplier"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Suppliers"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -274,7 +274,7 @@ CREATE OR REPLACE TRIGGER "Delete_ProductCategory"
 -- Trigger: Insert_ProductCategory
 
 CREATE OR REPLACE TRIGGER "Insert_ProductCategory"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_ProductCategories"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -282,7 +282,7 @@ CREATE OR REPLACE TRIGGER "Insert_ProductCategory"
 -- Trigger: Update_ProductCategory
 
 CREATE OR REPLACE TRIGGER "Update_ProductCategory"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_ProductCategories"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -364,7 +364,7 @@ CREATE OR REPLACE TRIGGER "Delete_Warehouse"
 -- Trigger: Insert_Warehouse
 
 CREATE OR REPLACE TRIGGER "Insert_Warehouse"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Warehouses"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -372,7 +372,7 @@ CREATE OR REPLACE TRIGGER "Insert_Warehouse"
 -- Trigger: Update_Warehouse
 
 CREATE OR REPLACE TRIGGER "Update_Warehouse"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Warehouses"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -451,7 +451,7 @@ CREATE OR REPLACE TRIGGER "Delete_Manufacturer"
 -- Trigger: Insert_Manufacturer
 
 CREATE OR REPLACE TRIGGER "Insert_Manufacturer"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Manufacturers"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -459,7 +459,7 @@ CREATE OR REPLACE TRIGGER "Insert_Manufacturer"
 -- Trigger: Update_Manufacturer
 
 CREATE OR REPLACE TRIGGER "Update_Manufacturer"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Manufacturers"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -541,7 +541,7 @@ CREATE OR REPLACE TRIGGER "Delete_Unit"
 -- Trigger: Insert_Unit
 
 CREATE OR REPLACE TRIGGER "Insert_Unit"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Units"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -549,7 +549,7 @@ CREATE OR REPLACE TRIGGER "Insert_Unit"
 -- Trigger: Update_Unit
 
 CREATE OR REPLACE TRIGGER "Update_Unit"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Units"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -628,7 +628,7 @@ CREATE OR REPLACE TRIGGER "Delete_Packaging"
 -- Trigger: Insert_Packaging
 
 CREATE OR REPLACE TRIGGER "Insert_Packaging"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Packagings"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -636,7 +636,7 @@ CREATE OR REPLACE TRIGGER "Insert_Packaging"
 -- Trigger: Update_Packaging
 
 CREATE OR REPLACE TRIGGER "Update_Packaging"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Packagings"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -727,7 +727,7 @@ CREATE OR REPLACE TRIGGER "Delete_Product"
 -- Trigger: Insert_Product
 
 CREATE OR REPLACE TRIGGER "Insert_Product"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Products"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -735,7 +735,7 @@ CREATE OR REPLACE TRIGGER "Insert_Product"
 -- Trigger: Update_Product
 
 CREATE OR REPLACE TRIGGER "Update_Product"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Products"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -747,8 +747,9 @@ CREATE TABLE IF NOT EXISTS public."cl_ProductAttributes"
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
 	"Name" character varying(50) COLLATE pg_catalog."default" NOT NULL,
-	"AttributeType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("AttributeType" IN ('text', 'number', 'boolean', 'timestamp')),
+	"AttributeType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("AttributeType" IN ('text', 'number', 'boolean', 'timestamp', 'table')),
 	"AttributeConstraint" text COLLATE pg_catalog."default",
+	"AttributeTable" character varying(50) COLLATE pg_catalog."default",
 	"IsActive" timestamp without time zone,
     "Description" text COLLATE pg_catalog."default"
 )
@@ -761,6 +762,7 @@ CREATE OR REPLACE PROCEDURE public."p_InsertProductAttribute"(
 	IN _name character varying(50),
 	IN _attributetype character varying(50),
 	IN _attributeconstraint text DEFAULT NULL::text,
+	IN _attributetable character varying(50) DEFAULT NULL::character varying,
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -769,7 +771,7 @@ BEGIN
 	-- Set the Code
 	EXECUTE FORMAT('SELECT COALESCE(MAX("Code"), 0) + 1 FROM public.%I', _tablename) INTO _code;
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, NULL, %L);', _tablename, _id, _code, _name, _attributetype, _attributeconstraint, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, %L, NULL, %L);', _tablename, _id, _code, _name, _attributetype, _attributeconstraint, _attributetable, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'PRA');
 END;
@@ -782,13 +784,15 @@ CREATE OR REPLACE PROCEDURE public."p_UpdateProductAttribute"(
 	IN _name character varying(50),
 	IN _type character varying(50),
 	IN _constraint text DEFAULT NULL::text,
+	IN _table character varying(50) DEFAULT NULL::character varying,
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_ProductAttributes';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "Name" = %L, "AttributeType" = %L, "AttributeConstraint" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _name, _type, _constraint, _description, _id);
+	_sql := FORMAT('UPDATE public.%I SET "Name" = %L, "AttributeType" = %L, "AttributeConstraint" = %L, "AttributeTable" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _name, _type, _constraint,
+	_table, _description, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;
@@ -820,7 +824,7 @@ CREATE OR REPLACE TRIGGER "Delete_ProductAttribute"
 -- Trigger: Insert_ProductAttribute
 
 CREATE OR REPLACE TRIGGER "Insert_ProductAttribute"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT
     ON public."cl_ProductAttributes"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -828,7 +832,7 @@ CREATE OR REPLACE TRIGGER "Insert_ProductAttribute"
 -- Trigger: Update_ProductAttribute
 
 CREATE OR REPLACE TRIGGER "Update_ProductAttribute"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_ProductAttributes"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -866,7 +870,7 @@ BEGIN
 		PERFORM NEW."Value"::BOOLEAN;
 	ELSIF _type = 'timestamp' THEN
 		PERFORM NEW."Value"::TIMESTAMP;
-	ELSIF _type = 'text' THEN
+	ELSIF _type = 'text' OR _type = 'table' THEN
 		PERFORM NEW."Value"::TEXT;
 	ELSE
 		RAISE EXCEPTION 'Unsupported attribute type: %', _type;
@@ -912,7 +916,9 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_AttributeRelations';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
 END;
 $BODY$;
 
@@ -927,10 +933,18 @@ CREATE OR REPLACE TRIGGER "Update_AttributeRelation"
 -- Trigger: Insert_AttributeRelation
 
 CREATE OR REPLACE TRIGGER "Insert_AttributeRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_AttributeRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_AttributeRelation
+
+CREATE OR REPLACE TRIGGER "Remove_AttributeRelation"
+	BEFORE DELETE
+	ON public."cl_AttributeRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Stocks
 
@@ -1026,7 +1040,7 @@ CREATE OR REPLACE TRIGGER "Delete_Stock"
 -- Trigger: Insert_Stock
 
 CREATE OR REPLACE TRIGGER "Insert_Stock"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT
     ON public."cl_Stocks"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -1034,7 +1048,7 @@ CREATE OR REPLACE TRIGGER "Insert_Stock"
 -- Trigger: Update_Stock
 
 CREATE OR REPLACE TRIGGER "Update_Stock"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Stocks"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -1096,10 +1110,336 @@ CREATE OR REPLACE TRIGGER "Update_StockRelation"
 -- Trigger: Insert_StockRelation
 
 CREATE OR REPLACE TRIGGER "Insert_StockRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_StockRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_StockRelation
+
+CREATE OR REPLACE TRIGGER "Remove_StockRelation"
+    BEFORE DELETE
+    ON public."cl_StockRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Table: public.cl_DeliveryNotes
+
+CREATE TABLE IF NOT EXISTS public."cl_DeliveryNotes"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"DeliveryNumber" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+	"Reference" character varying(50) COLLATE pg_catalog."default",
+	"DeliveryDate" timestamp without time zone DEFAULT NOW(),
+	"EditDate" timestamp without time zone DEFAULT NOW(),
+	"IsActive" timestamp without time zone,
+    "Description" text COLLATE pg_catalog."default",
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertDeliveryNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertDeliveryNote"(
+	IN _deliverynumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _deliverydate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DeliveryNotes'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _deliverynumber, _reference, _deliverydate, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'DLN');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateDeliveryNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateDeliveryNote"(
+	IN _id character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _deliverydate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DeliveryNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "DeliveryNumber" = %L, "Reference" = %L, "DeliveryDate" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _deliverynumber, _reference, _deliverydate,
+	_description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteDeliveryNote(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteDeliveryNote"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DeliveryNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "IsActive" = NOW() WHERE "ID" = %L;', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- Trigger: Delete_DeliveryNote
+
+CREATE OR REPLACE TRIGGER "Delete_DeliveryNote"
+    BEFORE DELETE
+    ON public."cl_DeliveryNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_DeliveryNote
+
+CREATE OR REPLACE TRIGGER "Insert_DeliveryNote"
+    BEFORE INSERT
+    ON public."cl_DeliveryNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Update_DeliveryNote
+
+CREATE OR REPLACE TRIGGER "Update_DeliveryNote"
+    BEFORE UPDATE 
+    ON public."cl_DeliveryNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Table: public.cl_DeliveryRelations
+
+CREATE TABLE IF NOT EXISTS public."cl_DeliveryRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"DeliveryID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_DeliveryNotes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default",
+	CONSTRAINT "UQ_DeliveryRelation" UNIQUE ("DeliveryID", "StockID")
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertDeliveryRelation(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertDeliveryRelation"(
+	IN _stockid character varying(50),
+	IN _deliveryid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DeliveryRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _stockid, _deliveryid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'SKR');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteDeliveryRelation(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteDeliveryRelation"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DeliveryRelations';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+END;
+$BODY$;
+
+-- Trigger: Update_DeliveryRelation
+
+CREATE OR REPLACE TRIGGER "Update_DeliveryRelation"
+	BEFORE UPDATE
+	ON public."cl_DeliveryRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_DeliveryRelation
+
+CREATE OR REPLACE TRIGGER "Insert_DeliveryRelation"
+    BEFORE INSERT
+    ON public."cl_DeliveryRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_DeliveryRelation
+
+CREATE OR REPLACE TRIGGER "Remove_DeliveryRelation"
+    BEFORE DELETE
+    ON public."cl_DeliveryRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Table: public.cl_DispatchNotes
+
+CREATE TABLE IF NOT EXISTS public."cl_DispatchNotes"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"DispatchNumber" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+	"Reference" character varying(50) COLLATE pg_catalog."default",
+	"DispatchDate" timestamp without time zone DEFAULT NOW(),
+	"EditDate" timestamp without time zone DEFAULT NOW(),
+	"IsActive" timestamp without time zone,
+    "Description" text COLLATE pg_catalog."default",
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertDispatchNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertDispatchNote"(
+	IN _dispatchnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _dispatchdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DispatchNotes'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _dispatchnumber, _reference, _dispatchdate, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'DLN');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateDispatchNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateDispatchNote"(
+	IN _id character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _dispatchdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DispatchNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "DispatchNumber" = %L, "Reference" = %L, "DispatchDate" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _dispatchnumber, _reference, _dispatchdate,
+	_description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteDispatchNote(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteDispatchNote"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DispatchNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "IsActive" = NOW() WHERE "ID" = %L;', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- Trigger: Delete_DispatchNote
+
+CREATE OR REPLACE TRIGGER "Delete_DispatchNote"
+    BEFORE DELETE
+    ON public."cl_DispatchNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_DispatchNote
+
+CREATE OR REPLACE TRIGGER "Insert_DispatchNote"
+    BEFORE INSERT
+    ON public."cl_DispatchNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Update_DispatchNote
+
+CREATE OR REPLACE TRIGGER "Update_DispatchNote"
+    BEFORE UPDATE 
+    ON public."cl_DispatchNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Table: public.cl_DispatchRelations
+
+CREATE TABLE IF NOT EXISTS public."cl_DispatchRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"DispatchID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_DispatchNotes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default",
+	CONSTRAINT "UQ_DispatchRelation" UNIQUE ("DispatchID", "StockID")
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertDispatchRelation(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertDispatchRelation"(
+	IN _stockid character varying(50),
+	IN _dispatchid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DispatchRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _stockid, _dispatchid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'SKR');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteDispatchRelation(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteDispatchRelation"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_DispatchRelations';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+END;
+$BODY$;
+
+-- Trigger: Update_DispatchRelation
+
+CREATE OR REPLACE TRIGGER "Update_DispatchRelation"
+	BEFORE UPDATE
+	ON public."cl_DispatchRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_DispatchRelation
+
+CREATE OR REPLACE TRIGGER "Insert_DispatchRelation"
+    BEFORE INSERT
+    ON public."cl_DispatchRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_DispatchRelation
+
+CREATE OR REPLACE TRIGGER "Remove_DispatchRelation"
+    BEFORE DELETE
+    ON public."cl_DispatchRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- FUNCTION: public."f_CheckInventory"(character varying);
 
@@ -1198,7 +1538,7 @@ CREATE OR REPLACE TRIGGER "Delete_Inventory"
 -- Trigger: Insert_Inventory
 
 CREATE OR REPLACE TRIGGER "Insert_Inventory"
-    BEFORE INSERT OR UPDATE 
+    BEFORE INSERT 
     ON public."cl_Inventories"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
@@ -1206,7 +1546,7 @@ CREATE OR REPLACE TRIGGER "Insert_Inventory"
 -- Trigger: Update_Inventory
 
 CREATE OR REPLACE TRIGGER "Update_Inventory"
-    BEFORE INSERT OR UPDATE 
+    BEFORE UPDATE 
     ON public."cl_Inventories"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
@@ -1266,10 +1606,18 @@ CREATE OR REPLACE TRIGGER "Update_InventoryRelation"
 -- Trigger: Insert_InventoryRelation
 
 CREATE OR REPLACE TRIGGER "Insert_InventoryRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_InventoryRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_InventoryRelation
+
+CREATE OR REPLACE TRIGGER "Insert_RemoveoryRelation"
+    BEFORE DELETE
+    ON public."cl_InventoryRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Initial data
 
@@ -1649,7 +1997,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'International denomination (INN)');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dénomination internationale (DCI)');
 	--
-	CALL public."p_InsertProductAttribute"('Manufacturer', 'text', 'VALUE IN (SELECT "ID" FROM public."cl_Manufacturers")');
+	CALL public."p_InsertProductAttribute"('Manufacturer', 'table', 'VALUE IN (SELECT "ID" FROM public."cl_Manufacturers")', 'cl_Manufacturers');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Manufacturer';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Manufacturer');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Manufacturer');

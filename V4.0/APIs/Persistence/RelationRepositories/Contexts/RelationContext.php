@@ -7,6 +7,8 @@ use API_RelationRepositories_Collection\AppRelations;
 use API_RelationRepositories_Collection\AttributeRelations;
 use API_RelationRepositories_Collection\CivilityRelations;
 use API_RelationRepositories_Collection\ContactRelations;
+use API_RelationRepositories_Collection\DeliveryRelations;
+use API_RelationRepositories_Collection\DispatchRelations;
 use API_RelationRepositories_Collection\GenderRelations;
 use API_RelationRepositories_Collection\InventoryRelations;
 use API_RelationRepositories_Collection\OccupationRelations;
@@ -18,6 +20,8 @@ use API_RelationRepositories_Model\AppRelation;
 use API_RelationRepositories_Model\AttributeRelation;
 use API_RelationRepositories_Model\CivilityRelation;
 use API_RelationRepositories_Model\ContactRelation;
+use API_RelationRepositories_Model\DeliveryRelation;
+use API_RelationRepositories_Model\DispatchRelation;
 use API_RelationRepositories_Model\GenderRelation;
 use API_RelationRepositories_Model\InventoryRelation;
 use API_RelationRepositories_Model\OccupationRelation;
@@ -45,6 +49,8 @@ class RelationContext extends DBContext
     private string $statusrelation = 'cl_StatusRelations';
     private string $stockrelation = 'cl_StockRelations';
     private string $titlerelation = 'cl_TitleRelations';
+    private string $deliveryrelation = 'cl_DeliveryRelations';
+    private string $dispatchrelation = 'cl_DispatchRelations';
 
     public function __construct(array $_connectionString){
         $this->pdo = DBContext::GetConnection($_connectionString);
@@ -69,6 +75,8 @@ class RelationContext extends DBContext
             'statusrelation' => StatusRelation::class,
             'stockrelation' => StockRelation::class,
             'titlerelation' => TitleRelation::class,
+            'deliveryrelation' => DeliveryRelation::class,
+            'dispatchrelation' => DispatchRelation::class,
             'apprelationcollection' => AppRelations::class,
             'attributerelationcollection' => AttributeRelations::class,
             'civilityrelationcollection' => CivilityRelations::class,
@@ -80,7 +88,9 @@ class RelationContext extends DBContext
             'rolerelationcollection' => RoleRelations::class,
             'statusrelationcollection' => StatusRelations::class,
             'stockrelationcollection' => StockRelations::class,
-            'titlerelationcollection' => TitleRelations::class
+            'titlerelationcollection' => TitleRelations::class,
+            'deliveryrelationcollection' => DeliveryRelations::class,
+            'dispatchrelationcollection' => DispatchRelations::class
         ];
     }
 
@@ -104,7 +114,9 @@ class RelationContext extends DBContext
             'AttributeID' => 'AttributeId',
             'StockID' => 'StockId',
             'ProductID' => 'ProductId',
-            'InventID' => 'InventoryId'
+            'InventID' => 'InventoryId',
+            'DeliveryID' => 'DeliveryId',
+            'DispatchID' => 'DispatchId'
         ];
     }
 }

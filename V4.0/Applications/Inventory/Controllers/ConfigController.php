@@ -2,12 +2,15 @@
 
 namespace APP_Inventory_Controller;
 
+use API_Inventory_Controller\CustomerController;
 use API_Inventory_Controller\ManufacturerController;
 use API_Inventory_Controller\PackagingController;
 use API_Inventory_Controller\ProductController;
+use API_Inventory_Controller\SupplierController;
 use API_Inventory_Controller\UnitController;
 use API_Inventory_Controller\WarehouseController;
 use APP_Administration_Controller\Controller;
+use APP_Inventory_Model\ConstraintTypeModel;
 use APP_Inventory_Model\ManufacturerModel;
 use APP_Inventory_Model\PackagingModel;
 use APP_Inventory_Model\ProductAttributeModel;
@@ -29,9 +32,11 @@ class ConfigController extends Controller
     private ManufacturerController $manufacturerController;
     private UnitController $unitController;
     private PackagingController $packagingController;
+    private CustomerController $customerController;
+    private SupplierController $supplierController;
 
     public function __construct(ProductController $_productController, WarehouseController $_warehouseController, ManufacturerController $_manufacturerController,
-    UnitController $_unitController, PackagingController $_packagingController)
+    UnitController $_unitController, PackagingController $_packagingController, CustomerController $_customerController, SupplierController $_supplierController)
     {
         $this->urlGenerator = new UrlGenerator(dirname(__DIR__, 2).'\Assets\Data\json\config.json');
         parent::__construct($this->urlGenerator);
@@ -45,6 +50,8 @@ class ConfigController extends Controller
         $this->manufacturerController = $_manufacturerController;
         $this->unitController = $_unitController;
         $this->packagingController = $_packagingController;
+        $this->customerController = $_customerController;
+        $this->supplierController = $_supplierController;
     }
 
     /* Methods */
@@ -159,7 +166,7 @@ class ConfigController extends Controller
         $relations = $attribute->LanguageRelations();
         $languages = $this->languageController->Get();
         $arr = ['Id' => $attribute->It()->Id, 'Name' => $attribute->It()->Name, 'AttributeType' => $attribute->It()->AttributeType, 'ConstraintType' => $constraintType,
-            'AttributeConstraint' => $constraint, 'Description' => $attribute->It()->Description];
+            'AttributeConstraint' => $constraint, 'AttributeTable' => $attribute->It()->AttributeTable, 'Description' => $attribute->It()->Description];
         foreach ($relations as $relation) {
             $langId = $relation->LangId;
             $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
@@ -195,10 +202,12 @@ class ConfigController extends Controller
     public function NewAttribute(): void
     {
         $attributes = $this->productController->GetAttributes();
+        $attrTypes = $this->config["attrTypes"];
         $constraints = $this->config["constraints"];
         $components = $this->config["components"];
         $languages = $this->languageController->Get();
-        $this->viewComponent('NewAttribute', ['languages' => $languages, 'attributes' => $attributes, 'constraints' => $constraints, 'components' => $components]);
+        $this->viewComponent('NewAttribute', ['languages' => $languages, 'attrTypes' => $attrTypes, 'attributes' => $attributes, 'constraints' => $constraints,
+            'components' => $components]);
     }
 
     /**
@@ -207,10 +216,12 @@ class ConfigController extends Controller
     public function ModifyAttribute(): void
     {
         $attributes = $this->productController->GetAttributes();
+        $attrTypes = $this->config["attrTypes"];
         $constraints = $this->config["constraints"];
         $components = $this->config["components"];
         $languages = $this->languageController->Get();
-        $this->viewComponent('ModifyAttribute', ['languages' => $languages, 'attributes' => $attributes, 'constraints' => $constraints, 'components' => $components]);
+        $this->viewComponent('ModifyAttribute', ['languages' => $languages, 'attrTypes' => $attrTypes, 'attributes' => $attributes, 'constraints' => $constraints,
+            'components' => $components]);
     }
 
     /**
@@ -339,9 +350,21 @@ class ConfigController extends Controller
     /**
      * @throws ReflectionException
      */
-    public function AddItem(): void
+    public function AddItem(ConstraintTypeModel $model): void
     {
-        $this->viewComponent('FormElement');
+        $collection = null;
+        $languages = $this->languageController->Get();
+        $attrTable = $model->attrTable;
+        $attrType = $model->attrType;
+        if (!empty($attrTable)) {
+            if ((($entity = $this->config["constraintTables"][preg_replace('/^cl_/', '', $attrTable)]) !== null)){
+                $controller = $entity["controller"];
+                $getter = $entity["getter"]["all"];
+                $collection = $this->{$controller}->{$getter}();
+            }
+        }
+        //
+        $this->viewComponent('FormElement', ['attrType' => $attrType, 'attrTable' => $attrTable, 'collection' => $collection, 'languages' => $languages]);
     }
 
     /**
@@ -629,6 +652,104 @@ class ConfigController extends Controller
      */
     public function LoadPackaging(string $_packagingId): void
     {
+        $packaging = $this->packagingController->GetById($_packagingId);
+        $relations = $packaging->LanguageRelations();
+        $languages = $this->languageController->Get();
+        $arr = ['Id' => $packaging->It()->Id, 'Name' => $packaging->It()->Name, 'Description' => $packaging->It()->Description];
+        foreach ($relations as $relation) {
+            $langId = $relation->LangId;
+            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
+            $arr[$label] = $relation->Label;
+        }
+        echo json_encode($arr);
+        exit;
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function Packaging(): void
+    {
+        $languages = $this->languageController->Get();
+        $apps = $this->config["apps"];
+        $components = $this->config["components"];
+        $component = $this->getFlashMessage('component', 'NewPackaging');
+        $ft = [
+            'app' => $this->urlGenerator->application($_SERVER['REQUEST_URI']),
+            'ctrl' => $this->urlGenerator->controller($_SERVER['REQUEST_URI']),
+            'action' => $this->urlGenerator->action($_SERVER['REQUEST_URI'])
+        ];
+        $this->view('Packaging', ['languages' => $languages, 'apps' => $apps, 'components' => $components, 'component' => $component, 'ft' => $ft]);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function NewPackaging(): void
+    {
+        $packagings = $this->packagingController->Get();
+        $components = $this->config["components"];
+        $languages = $this->languageController->Get();
+        $this->viewComponent('NewPackaging', ['packagings' => $packagings, 'languages' => $languages, 'components' => $components]);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function ModifyPackaging(): void
+    {
+        $packagings = $this->packagingController->Get();
+        $components = $this->config["components"];
+        $languages = $this->languageController->Get();
+        $this->viewComponent('ModifyPackaging', ['packagings' => $packagings, 'languages' => $languages, 'components' => $components]);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function DeletePackaging(): void
+    {
+        $packagings = $this->packagingController->Get();
+        $components = $this->config["components"];
+        $languages = $this->languageController->Get();
+        $this->viewComponent('DeletePackaging', ['packagings' => $packagings, 'languages' => $languages, 'components' => $components]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function AddPackaging(PackagingModel $model): void
+    {
+        $this->packagingController->Set($model);
+        $this->redirectToAction('Packaging');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function UpdatePackaging(PackagingModel $model): void
+    {
+        $this->packagingController->Put($model);
+        $this->setFlashMessage('component', 'ModifyPackaging');
+        $this->redirectToAction('Packaging');
+    }
+
+    public function RemovePackaging(string $packagingId): void
+    {
+        $this->packagingController->Delete($packagingId);
+    }
+
+    // Load Customers
+
+    /**
+     * @throws Exception
+     */
+    public function LoadCustomer(string $_customerId): void
+    {
+        $customer = $this->customerController->GetById($_customerId);
+
+
+
         $packaging = $this->packagingController->GetById($_packagingId);
         $relations = $packaging->LanguageRelations();
         $languages = $this->languageController->Get();

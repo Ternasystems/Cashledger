@@ -42,4 +42,9 @@ class ContactController extends BaseController
     {
         return $this->service->GetContactTypes(fn($n) => $n->It()->Id == $id);
     }
+
+    public function Set(object $model): void
+    {
+        $this->service->SetContact($model);
+    }
 }

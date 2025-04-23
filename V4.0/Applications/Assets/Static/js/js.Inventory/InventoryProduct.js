@@ -64,27 +64,6 @@ $(function (){
         });
     });
 
-    /*$(body).on('change', 'select#attributes', function (){
-        const currentSelection = Array.from(this.selectedOptions).map(opt => opt.value);
-        const selectionLocale = Array.from(this.selectedOptions).map(opt => opt.text);
-        //
-        const added = currentSelection.filter(val => !previousSelection.includes(val));
-        const removed = previousSelection.filter(val => !currentSelection.includes(val));
-        //
-        removed.forEach(val => {
-            $('input[data-class="formelement"][id="' + val + '"]').parent().remove();
-        });
-        //
-        if (added.length > 0){
-            added.forEach((val, index) => {
-                const label = selectionLocale[currentSelection.indexOf(val)];
-                $.loadItems('Inventory', 'Config', 'AddItem', 'select#attributes', {'label':label, 'value':val});
-            });
-        }
-
-        previousSelection = currentSelection;
-    });*/
-
     let isProcessingChange = false, previousSelection = [];
 
     $(document).on('change', 'select[name="attributes"]', function () {
@@ -94,21 +73,22 @@ $(function (){
         const $select = $(this);
         const currentSelection = Array.from(this.selectedOptions).map(opt => opt.value);
         const selectionLocale = Array.from(this.selectedOptions).map(opt => opt.text);
+        const selectionType = Array.from(this.selectedOptions).map(opt => opt.getAttribute('data-type'));
+        const selectionTable = Array.from(this.selectedOptions).map(opt => opt.getAttribute('data-table'));
 
         const added = currentSelection.filter(val => !previousSelection.includes(val));
         const removed = previousSelection.filter(val => !currentSelection.includes(val));
 
         // Cleanup
         removed.forEach(val => {
-            $(`input[data-class="formelement"][id="${val}"]`).parent().remove();
+            $(`[data-class="formelement"][id="${val}"]`).parent().remove();
         });
 
         const additions = added.map(val => {
             const label = selectionLocale[currentSelection.indexOf(val)];
-            return $.loadItems('Inventory', 'Config', 'AddItem', 'select[name="attributes"]', {
-                label,
-                value: val
-            });
+            const attrType = selectionType[currentSelection.indexOf(val)];
+            const attrTable = selectionTable[currentSelection.indexOf(val)];
+            return $.loadItems('Inventory', 'Config', 'AddItem', 'select[name="attributes"]', {attrType, attrTable, label, value: val});
         });
 
         Promise.all(additions).then(() => {
@@ -125,6 +105,7 @@ $(function (){
 
         $.loadResources('Inventory', 'Config', 'LoadProduct', { _productId: id })
             .then(data => {
+                console.log(data);
                 // Update basic fields
                 $(form).find('input[name="productname"]').val(data.Name);
                 $(form).find('input[name="productid"]').val(id);
@@ -138,7 +119,7 @@ $(function (){
 
                 // Reset attributes
                 $(form).find('select[name="attributes"]').val('0'); // Reset to default
-                $(form).find('input[data-class="formelement"]').parent().remove();
+                $(form).find('[data-class="formelement"]').parent().remove();
 
                 // Toggle attribute checkbox
                 const hasAttributes = data.hasOwnProperty('Attributes');
@@ -170,13 +151,12 @@ $(function (){
         });
     }
 
-
 // Helper: Set values for dynamically loaded inputs
     async function setAttributeInputValues(form, attributes) {
         for (const attr of Object.keys(attributes)) {
             await waitForInput(form, attr); // Wait until input is in the DOM
 
-            const input = $(form).find(`input[data-class="formelement"][id="${attr}"]`);
+            const input = $(form).find(`[data-class="formelement"][id="${attr}"]`);
             if (input.length) input.val(attributes[attr]);
         }
     }
@@ -184,7 +164,7 @@ $(function (){
 // Helper: Wait for the input to exist in the DOM (max 500ms)
     function waitForInput(form, attr) {
         return new Promise(resolve => {
-            const selector = `input[data-class="formelement"][id="${attr}"]`;
+            const selector = `[data-class="formelement"][id="${attr}"]`;
 
             const checkExist = () => {
                 const input = $(form).find(selector);

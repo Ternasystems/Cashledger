@@ -11,4 +11,7 @@ interface IContactService
 {
     public function GetContacts(callable $predicate = null): Contact|Contacts|null;
     public function GetContactTypes(callable $predicate = null): ContactType|ContactTypes|null;
+    public function SetContact(object $model): void;
+    public function PutContact(object $model): void;
+    public function DeleteContact(string $id): void;
 }

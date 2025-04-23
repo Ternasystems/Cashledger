@@ -44,7 +44,10 @@ CREATE DATABASE "Cashledger"
  Inventory app
  * ATR cl_AttributeRelations
  * CUS cl_Customers
- * DRT cl_DrugRoutes
+ * DLN cl_DeliveryNotes
+ * DLR cl_DeliveryRelations
+ * DPN cl_DispatchNotes
+ * DPR cl_DispatchRelations
  * GLN cl_Galenics
  * IVT cl_Inventories
  * IVR cl_InventoryRelations
@@ -113,38 +116,43 @@ CREATE DATABASE "Cashledger"
  * CTY cl_Countries
  * CUS cl_Customers
  * CVR cl_CivilityRelations
- 
+
+ * DLN cl_DeliveryNotes
+ * DLR cl_DeliveryRelations
+ * DPN cl_DispatchNotes
+ * DPR cl_DispatchRelations
  * GND cl_Genders
+ 
  * GNR cl_GenderRelations
  * IVT cl_Inventories
  * IVR cl_InventoryRelations
  * LGR cl_LanguageRelations
- 
  * LNG cl_Languages
+ 
  * MFR cl_Manufacturers
  * OCP cl_Occupations
  * OCR cl_OccupationRelations
  * PKG cl_Packagings
- 
  * PRA cl_ProductAttributes
+ 
  * PRD cl_ProductCategories
  * PRL cl_Profiles
  * PRM cl_Permissions
  * PRR cl_Role_*
- 
  * PRT cl_Products
+ 
  * ROL cl_Roles
  * ROR cl_RoleRelations
  * SKR cl_StockRelations
  * STK cl_Stocks
- 
  * STR cl_StatusRelations
+ 
  * STS cl_Status
  * SUP cl_Suppliers
  * TRK cl_Trackings
  * TTL cl_Titles
- 
  * TTR cl_TitleRelations
+ 
  * UNT cl_Units
  * WRH cl_Warehouses
  */

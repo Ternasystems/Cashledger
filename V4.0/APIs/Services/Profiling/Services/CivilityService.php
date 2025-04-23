@@ -18,6 +18,11 @@ use API_ProfilingEntities_Model\Gender;
 use API_ProfilingEntities_Model\Occupation;
 use API_ProfilingEntities_Model\Status;
 use API_ProfilingEntities_Model\Title;
+use API_RelationRepositories\CivilityRelationRepository;
+use API_RelationRepositories\GenderRelationRepository;
+use API_RelationRepositories\OccupationRelationRepository;
+use API_RelationRepositories\StatusRelationRepository;
+use API_RelationRepositories\TitleRelationRepository;
 use Exception;
 
 class CivilityService implements ICivilityService
@@ -27,12 +32,19 @@ class CivilityService implements ICivilityService
     protected Occupations $occupations;
     protected Statuses $statuses;
     protected Titles $titles;
+    protected CivilityRelationRepository $civilityRelationRepository;
+    protected GenderRelationRepository $genderRelationRepository;
+    protected OccupationRelationRepository $occupationRelationRepository;
+    protected StatusRelationRepository $statusRelationRepository;
+    protected TitleRelationRepository $titleRelationRepository;
 
     /**
      * @throws Exception
      */
     public function __construct(CivilityFactory $civilityFactory, GenderFactory $genderFactory, OccupationFactory $occupationFactory, StatusFactory $statusFactory,
-                                TitleFactory $titleFactory)
+                                TitleFactory $titleFactory, CivilityRelationRepository $_civilityRelationRepository, GenderRelationRepository $_genderRelationRepository,
+                                OccupationRelationRepository $_occupationRelationRepository, StatusRelationRepository $_statusRelationRepository,
+                                TitleRelationRepository $_titleRelationRepository)
     {
         $civilityFactory->Create();
         $this->civilities = $civilityFactory->Collectable();
@@ -44,6 +56,11 @@ class CivilityService implements ICivilityService
         $this->statuses = $statusFactory->Collectable();
         $titleFactory->Create();
         $this->titles = $titleFactory->Collectable();
+        $this->civilityRelationRepository = $_civilityRelationRepository;
+        $this->genderRelationRepository = $_genderRelationRepository;
+        $this->occupationRelationRepository = $_occupationRelationRepository;
+        $this->statusRelationRepository = $_statusRelationRepository;
+        $this->titleRelationRepository = $_titleRelationRepository;
     }
 
     public function GetCivilities(callable $predicate = null): Civility|Civilities|null
@@ -109,5 +126,16 @@ class CivilityService implements ICivilityService
             return null;
 
         return $collection->Count() > 1 ? $collection : $collection->first();
+    }
+
+    public function GetRelationRepositories(): array
+    {
+        return array(
+            'Civilities' => $this->civilityRelationRepository,
+            'Genders' => $this->genderRelationRepository,
+            'Occupations' => $this->occupationRelationRepository,
+            'Statuses' => $this->statusRelationRepository,
+            'Titles' => $this->titleRelationRepository
+        );
     }
 }

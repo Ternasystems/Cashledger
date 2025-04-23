@@ -152,8 +152,9 @@ class ProductService implements IProductService
     {
         $linq = new Linq();
         $constraint = $linq->constraint($model->constrainttype, $model->attributeconstraint);
+        $table = $linq->constraintTable($constraint);
         $repository = $this->attributeFactory->Repository();
-        $repository->Add(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributename, $model->attributetype, $constraint,
+        $repository->Add(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributename, $model->attributetype, $constraint, $table,
             $model->attributedesc));
         $this->attributeFactory->Create();
         $id = $this->attributeFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Name == $model->attributename)->It()->Id;
@@ -173,9 +174,10 @@ class ProductService implements IProductService
     {
         $linq = new Linq();
         $constraint = $linq->constraint($model->constrainttype, $model->attributeconstraint);
+        $table = $linq->constraintTable($constraint);
         $repository = $this->attributeFactory->Repository();
         $repository->Update(\API_InventoryRepositories_Model\ProductAttribute::class, array($model->attributeid, $model->attributename, $model->attributetype, $constraint,
-            $model->attributedesc));
+            $table ,$model->attributedesc));
         //
         $languages = $this->languageService->GetLanguages();
         $this->attributeFactory->Create();
@@ -256,10 +258,10 @@ class ProductService implements IProductService
     {
         $repository = $this->productFactory->Repository();
         $repository->Update(\API_InventoryRepositories_Model\Product::class, array($model->productid, $model->productname, $model->unitid, $model->minstock,
-            $model->maxstock, $model->product->desc));
+            $model->maxstock, $model->productdesc));
         //
-        $languages = $this->languageService->GetLanguages();
         $this->productFactory->Create();
+        $languages = $this->languageService->GetLanguages();
         $relations = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $model->productid)->LanguageRelations();
         foreach ($relations as $relation){
             $id = $relation->LangId;
@@ -270,9 +272,11 @@ class ProductService implements IProductService
                 $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
         }
         //
-        $this->attributeRepository->Remove(AttributeRelation::class, array($model->productid));
+        foreach ($this->attributeRepository->GetBy(fn($n) => $n->ProductId == $model->productid) as $attributeRelation)
+            $this->attributeRepository->Remove(AttributeRelation::class, array($attributeRelation->Id));
+        //
         foreach ($model->attributes as $key => $attribute)
-            $this->attributeRepository->Add(AttributeRelation::class, array($key, $id, $attribute));
+            $this->attributeRepository->Add(AttributeRelation::class, array($key, $model->productid, $attribute));
     }
 
     /**
@@ -281,11 +285,17 @@ class ProductService implements IProductService
      */
     public function DeleteProduct(string $id): void
     {
+        $this->productFactory->Create();
         $relations = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $id)->LanguageRelations();
         foreach ($relations as $relation)
             $this->relationRepository->Remove(LanguageRelation::class, array($relation->Id));
         //
-        $this->attributeRepository->Remove(AttributeRelation::class, array($id));
+        $attributes = $this->productFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->Id == $id)->ProductAttributes();
+        foreach ($attributes as $attribute){
+            $attributeRelations = $attribute->AttributeRelations()->Where(fn($n) => $n->ProductId == $id);
+            foreach ($attributeRelations as $attributeRelation)
+                $this->attributeRepository->Remove(AttributeRelation::class, array($attributeRelation->Id));
+        }
         //
         $repository = $this->productFactory->Repository();
         $repository->Remove(\API_InventoryRepositories_Model\Product::class, array($id));

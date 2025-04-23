@@ -9,6 +9,7 @@ class ProductAttributeModel
     public string $attributetype;
     public string $constrainttype;
     public ?string $attributeconstraint;
+    public ?string $attributetable;
     public ?string $attributedesc;
     public array $attributelocale;
 }

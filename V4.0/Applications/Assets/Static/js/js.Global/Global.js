@@ -134,13 +134,13 @@ $(function () {
                 url: '../../' + _app + '/' + _ctrl + '/' + _action,
                 method: 'POST',
                 data: {
-                    value: _param['value'],
-                    label: _param['label']
+                    attrType: _param['attrType'],
+                    attrTable: _param['attrTable']
                 },
                 success: function (result) {
                     const $result = $(result)
                         .find('label').text(_param['label']).attr('for', _param['value']).end()
-                        .find('input').attr({
+                        .find('[data-class="formelement"]').attr({
                             id: _param['value'], name: 'attributes[' + _param['value'] + ']'
                         }).end();
                     $(_parent).parent().after($result);

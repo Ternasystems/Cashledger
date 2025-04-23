@@ -1315,6 +1315,43 @@
       }
     }
   },
+  "attrTypes": {
+    "text": {
+      "fr-FR": "texte",
+      "en-US": "text",
+      "en-GB": "text",
+      "es-ES": "text",
+      "ar-SA": "text"
+    },
+    "number": {
+      "fr-FR": "nombre",
+      "en-US": "number",
+      "en-GB": "number",
+      "es-ES": "number",
+      "ar-SA": "number"
+    },
+    "boolean": {
+      "fr-FR": "booléen",
+      "en-US": "boolean",
+      "en-GB": "boolean",
+      "es-ES": "boolean",
+      "ar-SA": "boolean"
+    },
+    "table": {
+      "fr-FR": "table",
+      "en-US": "table",
+      "en-GB": "table",
+      "es-ES": "table",
+      "ar-SA": "table"
+    },
+    "timestamp": {
+      "fr-FR": "temps",
+      "en-US": "timestamp",
+      "en-GB": "timestamp",
+      "es-ES": "timestamp",
+      "ar-SA": "timestamp"
+    }
+  },
   "constraints": {
     "none": {
       "fr-FR": "Aucune contrainte",
@@ -1392,6 +1429,48 @@
       "en-GB": "Different from",
       "es-ES": "Different from",
       "ar-SA": "Different from"
+    }
+  },
+  "constraintTables": {
+    "Manufacturers": {
+      "controller": "manufacturerController",
+      "getter": {
+        "all":"Get",
+        "one": "GetById"
+      },
+      "setter": "Set"
+    },
+    "Warehouses": {
+      "controller": "warehouseController",
+      "getter": {
+        "all": "Get",
+        "one": "GetById"
+      },
+      "setter": "Set"
+    },
+    "Products": {
+      "controller": "productController",
+      "getter": {
+        "all": "Get",
+        "one": "GetById"
+      },
+      "setter": "Set"
+    },
+    "ProductAttributes": {
+      "controller": "productController",
+      "getter": {
+        "all": "GetAttributes",
+        "one": "GetAttributeById"
+      },
+      "setter": "SetAttribute"
+    },
+    "ProductCategories": {
+      "controller": "productController",
+      "getter": {
+        "all": "GetCategories",
+        "one": "GetCategoryById"
+      },
+      "setter": "SetCategory"
     }
   }
 }

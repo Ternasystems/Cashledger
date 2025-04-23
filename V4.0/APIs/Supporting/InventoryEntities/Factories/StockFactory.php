@@ -3,7 +3,7 @@
 namespace API_InventoryEntities_Factory;
 
 use API_DTOEntities_Factory\CollectableFactory;
-use API_DTOEntities_Model\Warehouses;
+use API_InventoryEntities_Collection\Warehouses;
 use API_InventoryEntities_Collection\Products;
 use API_InventoryEntities_Collection\StockAttributes;
 use API_InventoryEntities_Collection\Stocks;
@@ -12,6 +12,7 @@ use API_InventoryEntities_Model\Stock;
 use API_InventoryRepositories\StockRepository;
 use API_InventoryRepositories\UnitRepository;
 use API_InventoryRepositories\WarehouseRepository;
+use API_RelationRepositories\StockRelationRepository;
 use API_RelationRepositories_Collection\LanguageRelations;
 use Exception;
 
@@ -21,12 +22,13 @@ class StockFactory extends CollectableFactory
     protected Warehouses $warehouses;
     protected Products $products;
     protected StockAttributes $attributes;
+    protected StockRelationRepository $stockRelations;
 
     /**
      * @throws Exception
      */
-    public function __construct(StockRepository $repository, ProductFactory $_productFactory, StockAttributeFactory $_attributeFactory, UnitRepository $_units, WarehouseRepository $_warehouses,
-                                ?LanguageRelations $relations)
+    public function __construct(StockRepository $repository, ProductFactory $_productFactory, StockAttributeFactory $_attributeFactory, UnitRepository $_units,
+                                WarehouseRepository $_warehouses, StockRelationRepository $_stockRelations, ?LanguageRelations $relations)
     {
         parent::__construct($repository, null);
         $_productFactory->Create();
@@ -39,6 +41,7 @@ class StockFactory extends CollectableFactory
         $factory = new CollectableFactory($_warehouses, $relations);
         $factory->Create();
         $this->warehouses = $factory->Collectable();
+        $this->stockRelations = $_stockRelations;
     }
 
     /**
@@ -53,7 +56,7 @@ class StockFactory extends CollectableFactory
             $unit = $this->units->FirstOrDefault(fn($n) => $n->It()->Id == $item->UnitId);
             $warehouse = $this->warehouses->FirstOrDefault(fn($n) => $n->It()->Id == $item->WarehouseId);
             $_attributes = $this->attributes->Where(fn($n) => $n->StockRelations()->Where(fn($t) => $t->StockId == $item->Id));
-            $colArray[] = new Stock($item, $product, $unit, $warehouse, $_attributes);
+            $colArray[] = new Stock($item, $product, $unit, $warehouse, $_attributes, $this->stockRelations->GetAll());
         }
 
         $this->collectable = new Stocks($colArray);

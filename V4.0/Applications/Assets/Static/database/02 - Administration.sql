@@ -328,6 +328,22 @@ BEGIN
 END;
 $BODY$;
 
+-- FUNCTION: public.t_RemoveTrigger()
+
+CREATE OR REPLACE FUNCTION public."t_RemoveTrigger"()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+BEGIN
+	IF public."f_CurrentThread"() = TRUE AND public."f_IsProc"() = TRUE THEN
+		RETURN OLD;
+	END IF;
+	RAISE EXCEPTION 'Operation not allowed';
+END;
+$BODY$;
+
 -- FUNCTION: public.t_InsertTrigger()
 
 CREATE OR REPLACE FUNCTION public."t_InsertTrigger"()
@@ -1126,10 +1142,18 @@ CREATE OR REPLACE TRIGGER "Update_AppRelation"
 -- Trigger: Insert_AppRelation
 
 CREATE OR REPLACE TRIGGER "Insert_AppRelation"
-    BEFORE INSERT OR DELETE
+    BEFORE INSERT
     ON public."cl_AppRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_AppRelation
+
+CREATE OR REPLACE TRIGGER "Remove_AppRelation"
+	BEFORE DELETE
+	ON public."cl_AppRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_RemoveTrigger"();
 
 -- Table: public.cl_Continents
 
@@ -1410,6 +1434,37 @@ CREATE OR REPLACE TRIGGER "Update_City"
 	FOR EACH ROW
 	EXECUTE FUNCTION public."t_UpdateTrigger"();
 
+-- FUNCTION: public."f_CheckReference"(character varying);
+
+CREATE OR REPLACE FUNCTION public."f_CheckReference"(_referenceid character varying(50))
+RETURNS boolean
+LANGUAGE plpgsql
+COST 100
+VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    tbl record;
+    found boolean := false;
+BEGIN
+    FOR tbl IN 
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name LIKE 'cl\\_%' ESCAPE '\\'
+    LOOP
+        EXECUTE format('SELECT EXISTS(SELECT 1 FROM %I WHERE "ID" = $1)', tbl.table_name) 
+        INTO found 
+        USING _referenceid;
+        
+        IF found THEN
+            RETURN true;
+        END IF;
+    END LOOP;
+    
+    RETURN false;
+END;
+$BODY$;
+
 -- Table: public.LanguageRelations
 
 CREATE TABLE IF NOT EXISTS public."cl_LanguageRelations"
@@ -1420,7 +1475,8 @@ CREATE TABLE IF NOT EXISTS public."cl_LanguageRelations"
 	"Label" text COLLATE pg_catalog."default" NOT NULL,
 	"IsActive" timestamp without time zone,
 	"Description" text COLLATE pg_catalog."default",
-	CONSTRAINT "UQ_LanguageRelation" UNIQUE ("ReferenceID", "LangID")
+	CONSTRAINT "UQ_LanguageRelation" UNIQUE ("ReferenceID", "LangID"),
+	CONSTRAINT "CT_LanguageRelation" CHECK (public."f_CheckReference"("ReferenceID"))
 )
 
 TABLESPACE pg_default;

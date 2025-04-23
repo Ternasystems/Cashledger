@@ -18,6 +18,8 @@ class CollectableFactory implements ICollectableFactory
         'Audit' => ['API_DTOEntities_Model\Audit', 'API_DTOEntities_Collection\Audits'],
         'Continent' => ['API_DTOEntities_Model\Continent', 'API_DTOEntities_Collection\Continents'],
         'ContactType' => ['API_ProfilingEntities_Model\ContactType', 'API_ProfilingEntities_Collection\ContactTypes'],
+        'DeliveryNote' => ['API_InventoryEntities_Model\DeliveryNote', 'API_InventoryEntities_Collection\DeliveryNotes'],
+        'DispatchNote' => ['API_InventoryEntities_Model\DispatchNote', 'API_InventoryEntities_Collection\DispatchNotes'],
         'Language' => ['API_DTOEntities_Model\Language', 'API_DTOEntities_Collection\Languages'],
         'Manufacturer' => ['API_InventoryEntities_Model\Manufacturer', 'API_InventoryEntities_Collection\Manufacturers'],
         'Packaging' => ['API_InventoryEntities_Model\Packaging', 'API_InventoryEntities_Collection\Packagings'],

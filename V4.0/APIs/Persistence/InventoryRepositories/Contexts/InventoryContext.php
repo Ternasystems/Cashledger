@@ -4,6 +4,8 @@ namespace API_InventoryRepositories_Context;
 
 use API_DTORepositories_Context\TContext;
 use API_InventoryRepositories_Collection\Customers;
+use API_InventoryRepositories_Collection\DeliveryNotes;
+use API_InventoryRepositories_Collection\DispatchNotes;
 use API_InventoryRepositories_Collection\Inventories;
 use API_InventoryRepositories_Collection\Manufacturers;
 use API_InventoryRepositories_Collection\Packagings;
@@ -15,6 +17,8 @@ use API_InventoryRepositories_Collection\Suppliers;
 use API_InventoryRepositories_Collection\Units;
 use API_InventoryRepositories_Collection\Warehouses;
 use API_InventoryRepositories_Model\Customer;
+use API_InventoryRepositories_Model\DeliveryNote;
+use API_InventoryRepositories_Model\DispatchNote;
 use API_InventoryRepositories_Model\Inventory;
 use API_InventoryRepositories_Model\Manufacturer;
 use API_InventoryRepositories_Model\Packaging;
@@ -42,6 +46,8 @@ class InventoryContext extends DBContext
     private string $supplier = 'cl_Suppliers';
     private string $unit = 'cl_Units';
     private string $warehouse = 'cl_Warehouses';
+    private string $deliverynote = 'cl_DeliveryNotes';
+    private string $dispatchnote = 'cl_DispatchNotes';
 
     public function __construct(array $_connectionString){
         $this->pdo = DBContext::GetConnection($_connectionString);
@@ -65,6 +71,8 @@ class InventoryContext extends DBContext
             'supplier' => Supplier::class,
             'unit' => Unit::class,
             'warehouse' => Warehouse::class,
+            'deliverynote' => DeliveryNote::class,
+            'dispatchnote' => DispatchNote::class,
             'customercollection' => Customers::class,
             'inventorycollection' => Inventories::class,
             'manufacturercollection' => Manufacturers::class,
@@ -75,7 +83,9 @@ class InventoryContext extends DBContext
             'stockcollection' => Stocks::class,
             'suppliercollection' => Suppliers::class,
             'unitcollection' => Units::class,
-            'warehousecollection' => Warehouses::class
+            'warehousecollection' => Warehouses::class,
+            'deliverynotecollection' => DeliveryNotes::class,
+            'dispatchnotecollection' => DispatchNotes::class
         ];
     }
 
@@ -85,7 +95,10 @@ class InventoryContext extends DBContext
             'ID' => 'Id',
             'ProfileID' => 'ProfileId',
             'CategoryID' => 'CategoryId',
-            'UnitID' => 'UnitId'
+            'UnitID' => 'UnitId',
+            'StockID' => 'StockId',
+            'DeliveryID' => 'DeliveryId',
+            'DispatchID' => 'DispatchId'
         ];
     }
 }
