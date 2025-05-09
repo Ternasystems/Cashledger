@@ -10,15 +10,22 @@ class Inventory extends Entity
 {
     private Unit $unit;
     private Stock $stock;
-    private Customer|Supplier $partner;
+    private ?DeliveryNote $deliveryNote;
+    private ?DispatchNote $dispatchNote;
+    private ?Supplier $supplier;
+    private ?Customer $customer;
     private InventoryRelations $relations;
 
-    public function __construct(\API_InventoryRepositories_Model\Inventory $_entity, Unit $_unit, Stock $_stock, Customer|Supplier $_partner, InventoryRelations $_relations)
+    public function __construct(\API_InventoryRepositories_Model\Inventory $_entity, Unit $_unit, Stock $_stock, ?DeliveryNote $_deliveryNote, ?DispatchNote $_dispatchNote,
+                                ?Supplier $_supplier, ?Customer $_customer, InventoryRelations $_relations)
     {
         parent::__construct($_entity, null);
         $this->unit = $_unit;
         $this->stock = $_stock;
-        $this->partner = $_partner;
+        $this->deliveryNote = $_deliveryNote;
+        $this->dispatchNote = $_dispatchNote;
+        $this->supplier = $_supplier;
+        $this->customer = $_customer;
         $this->relations = $_relations->Where(fn($n) => $n->InventoryId == $_entity->Id);
     }
 
@@ -41,9 +48,14 @@ class Inventory extends Entity
         return $this->stock;
     }
 
-    public function Partner(): Customer|Supplier
+    public function Note(): DeliveryNote|DispatchNote
     {
-        return $this->partner;
+        return $this->deliveryNote ?? $this->dispatchNote;
+    }
+
+    public function Partner(): Supplier|Customer
+    {
+        return $this->supplier ?? $this->customer;
     }
 
     public function InventoryRelations(): InventoryRelations

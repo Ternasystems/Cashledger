@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Customer" name="FirstName">Prénoms</item>
+        <item app="Inventory" action="Customer" name="LastName">Noms</item>
+        <item app="Inventory" action="Customer" name="MaidenName">Noms de jeune-fille</item>
+        <item app="Inventory" action="Customer" name="Maiden">epse</item>
+        <item app="Inventory" action="Customer" name="Birthdate">Date de naissance</item>
+        <item app="Inventory" action="Customer" name="Civility">Civilité</item>
+        <item app="Inventory" action="Customer" name="Gender">Genre</item>
+        <item app="Inventory" action="Customer" name="Occupation">Occupation</item>
+        <item app="Inventory" action="Customer" name="Status">Statut marital</item>
+        <item app="Inventory" action="Customer" name="Title">Titre</item>
+        <item app="Inventory" action="Customer" name="Country">Pays</item>
+        <item app="Inventory" action="Customer" name="City">Ville</item>
+        <item app="Inventory" action="Customer" name="CivilitySelect">Choisir une civilité</item>
+        <item app="Inventory" action="Customer" name="GenderSelect">Choisir un genre</item>
+        <item app="Inventory" action="Customer" name="OccupationSelect">Choisir une occupation</item>
+        <item app="Inventory" action="Customer" name="StatusSelect">Choisir un statut marital</item>
+        <item app="Inventory" action="Customer" name="TitleSelect">Choisir un titre</item>
+        <item app="Inventory" action="Customer" name="CountrySelect">Choisir un pays</item>
+        <item app="Inventory" action="Customer" name="CitySelect">Choisir une ville</item>
+        <item app="Inventory" action="Customer" name="Phone1">Téléphone 1</item>
+        <item app="Inventory" action="Customer" name="Phone2">Téléphone 2</item>
+        <item app="Inventory" action="Customer" name="Location">Adresse</item>
+        <item app="Inventory" action="Customer" name="Email">Adresse E-mail</item>
+        <item app="Inventory" action="Customer" name="CustomerDesc">Description</item>
+        <item app="Inventory" action="Customer" name="CustomerSuccessBtn">Soumettre</item>
+        <item app="Inventory" action="Customer" name="CustomerList">Liste des clients</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Customer" name="FirstName">FirstName</item>
+        <item app="Inventory" action="Customer" name="LastName">LastName</item>
+        <item app="Inventory" action="Customer" name="MaidenName">MaidenName</item>
+        <item app="Inventory" action="Customer" name="Maiden">sp.</item>
+        <item app="Inventory" action="Customer" name="Birthdate">Birthdate</item>
+        <item app="Inventory" action="Customer" name="Civility">Civility</item>
+        <item app="Inventory" action="Customer" name="Gender">Gender</item>
+        <item app="Inventory" action="Customer" name="Occupation">Occupation</item>
+        <item app="Inventory" action="Customer" name="Status">Marital status</item>
+        <item app="Inventory" action="Customer" name="Title">Title</item>
+        <item app="Inventory" action="Customer" name="Country">Country</item>
+        <item app="Inventory" action="Customer" name="City">City</item>
+        <item app="Inventory" action="Customer" name="CivilitySelect">Select a civility</item>
+        <item app="Inventory" action="Customer" name="GenderSelect">Select a gender</item>
+        <item app="Inventory" action="Customer" name="OccupationSelect">Select an occupation</item>
+        <item app="Inventory" action="Customer" name="StatusSelect">Select a marital status</item>
+        <item app="Inventory" action="Customer" name="TitleSelect">Select a title</item>
+        <item app="Inventory" action="Customer" name="CountrySelect">Select a country</item>
+        <item app="Inventory" action="Customer" name="CitySelect">Select a city</item>
+        <item app="Inventory" action="Customer" name="Phone1">Phone 1</item>
+        <item app="Inventory" action="Customer" name="Phone2">Phone 2</item>
+        <item app="Inventory" action="Customer" name="Location">Address</item>
+        <item app="Inventory" action="Customer" name="Email">E-mail address</item>
+        <item app="Inventory" action="Customer" name="CustomerDesc">Description</item>
+        <item app="Inventory" action="Customer" name="CustomerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Customer" name="CustomerList">Customers list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Customer" name="FirstName">FirstName</item>
+        <item app="Inventory" action="Customer" name="LastName">LastName</item>
+        <item app="Inventory" action="Customer" name="MaidenName">MaidenName</item>
+        <item app="Inventory" action="Customer" name="Maiden">sp.</item>
+        <item app="Inventory" action="Customer" name="Birthdate">Birthdate</item>
+        <item app="Inventory" action="Customer" name="Civility">Civility</item>
+        <item app="Inventory" action="Customer" name="Gender">Gender</item>
+        <item app="Inventory" action="Customer" name="Occupation">Occupation</item>
+        <item app="Inventory" action="Customer" name="Status">Marital status</item>
+        <item app="Inventory" action="Customer" name="Title">Title</item>
+        <item app="Inventory" action="Customer" name="Country">Country</item>
+        <item app="Inventory" action="Customer" name="City">City</item>
+        <item app="Inventory" action="Customer" name="CivilitySelect">Select a civility</item>
+        <item app="Inventory" action="Customer" name="GenderSelect">Select a gender</item>
+        <item app="Inventory" action="Customer" name="OccupationSelect">Select an occupation</item>
+        <item app="Inventory" action="Customer" name="StatusSelect">Select a marital status</item>
+        <item app="Inventory" action="Customer" name="TitleSelect">Select a title</item>
+        <item app="Inventory" action="Customer" name="CountrySelect">Select a country</item>
+        <item app="Inventory" action="Customer" name="CitySelect">Select a city</item>
+        <item app="Inventory" action="Customer" name="Phone1">Phone 1</item>
+        <item app="Inventory" action="Customer" name="Phone2">Phone 2</item>
+        <item app="Inventory" action="Customer" name="Location">Address</item>
+        <item app="Inventory" action="Customer" name="Email">E-mail address</item>
+        <item app="Inventory" action="Customer" name="CustomerDesc">Description</item>
+        <item app="Inventory" action="Customer" name="CustomerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Customer" name="CustomerList">Customers list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Customer" name="FirstName">FirstName</item>
+        <item app="Inventory" action="Customer" name="LastName">LastName</item>
+        <item app="Inventory" action="Customer" name="MaidenName">MaidenName</item>
+        <item app="Inventory" action="Customer" name="Maiden">sp.</item>
+        <item app="Inventory" action="Customer" name="Birthdate">Birthdate</item>
+        <item app="Inventory" action="Customer" name="Civility">Civility</item>
+        <item app="Inventory" action="Customer" name="Gender">Gender</item>
+        <item app="Inventory" action="Customer" name="Occupation">Occupation</item>
+        <item app="Inventory" action="Customer" name="Status">Marital status</item>
+        <item app="Inventory" action="Customer" name="Title">Title</item>
+        <item app="Inventory" action="Customer" name="Country">Country</item>
+        <item app="Inventory" action="Customer" name="City">City</item>
+        <item app="Inventory" action="Customer" name="CivilitySelect">Select a civility</item>
+        <item app="Inventory" action="Customer" name="GenderSelect">Select a gender</item>
+        <item app="Inventory" action="Customer" name="OccupationSelect">Select an occupation</item>
+        <item app="Inventory" action="Customer" name="StatusSelect">Select a marital status</item>
+        <item app="Inventory" action="Customer" name="TitleSelect">Select a title</item>
+        <item app="Inventory" action="Customer" name="CountrySelect">Select a country</item>
+        <item app="Inventory" action="Customer" name="CitySelect">Select a city</item>
+        <item app="Inventory" action="Customer" name="Phone1">Phone 1</item>
+        <item app="Inventory" action="Customer" name="Phone2">Phone 2</item>
+        <item app="Inventory" action="Customer" name="Location">Address</item>
+        <item app="Inventory" action="Customer" name="Email">E-mail address</item>
+        <item app="Inventory" action="Customer" name="CustomerDesc">Description</item>
+        <item app="Inventory" action="Customer" name="CustomerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Customer" name="CustomerList">Customers list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Customer" name="FirstName">FirstName</item>
+        <item app="Inventory" action="Customer" name="LastName">LastName</item>
+        <item app="Inventory" action="Customer" name="MaidenName">MaidenName</item>
+        <item app="Inventory" action="Customer" name="Maiden">sp.</item>
+        <item app="Inventory" action="Customer" name="Birthdate">Birthdate</item>
+        <item app="Inventory" action="Customer" name="Civility">Civility</item>
+        <item app="Inventory" action="Customer" name="Gender">Gender</item>
+        <item app="Inventory" action="Customer" name="Occupation">Occupation</item>
+        <item app="Inventory" action="Customer" name="Status">Marital status</item>
+        <item app="Inventory" action="Customer" name="Title">Title</item>
+        <item app="Inventory" action="Customer" name="Country">Country</item>
+        <item app="Inventory" action="Customer" name="City">City</item>
+        <item app="Inventory" action="Customer" name="CivilitySelect">Select a civility</item>
+        <item app="Inventory" action="Customer" name="GenderSelect">Select a gender</item>
+        <item app="Inventory" action="Customer" name="OccupationSelect">Select an occupation</item>
+        <item app="Inventory" action="Customer" name="StatusSelect">Select a marital status</item>
+        <item app="Inventory" action="Customer" name="TitleSelect">Select a title</item>
+        <item app="Inventory" action="Customer" name="CountrySelect">Select a country</item>
+        <item app="Inventory" action="Customer" name="CitySelect">Select a city</item>
+        <item app="Inventory" action="Customer" name="Phone1">Phone 1</item>
+        <item app="Inventory" action="Customer" name="Phone2">Phone 2</item>
+        <item app="Inventory" action="Customer" name="Location">Address</item>
+        <item app="Inventory" action="Customer" name="Email">E-mail address</item>
+        <item app="Inventory" action="Customer" name="CustomerDesc">Description</item>
+        <item app="Inventory" action="Customer" name="CustomerSuccessBtn">Submit</item>
+        <item app="Inventory" action="Customer" name="CustomerList">Customers list</item>
+    </ar-SA>
+</locale>

@@ -2,6 +2,8 @@
 
 namespace API_ProfilingEntities_Model;
 
+use API_DTOEntities_Model\City;
+use API_DTOEntities_Model\Country;
 use API_DTOEntities_Model\Entity;
 use API_ProfilingEntities_Collection\Contacts;
 use UnexpectedValueException;
@@ -15,9 +17,11 @@ class Profile extends Entity
     private Title $title;
     private Status $status;
     private Contacts $contacts;
+    private Country $country;
+    private City $city;
 
     public function __construct(\API_ProfilingRepositories_Model\Profile $_entity, Contacts $_contacts, Civility $_civility, Gender $_gender, Occupation $_occupation, Title $_title,
-                                Status $_status)
+                                Status $_status, Country $_country, City $_city)
     {
         parent::__construct($_entity, null);
         $this->fullName = [
@@ -30,6 +34,8 @@ class Profile extends Entity
         $this->occupation = $_occupation;
         $this->title = $_title;
         $this->status = $_status;
+        $this->country = $_country;
+        $this->city = $_city;
         $this->contacts = $_contacts->Where(fn($n) => $n->It()->ProfileId == $_entity->Id);
     }
 
@@ -70,6 +76,16 @@ class Profile extends Entity
     public function Status(): Status
     {
         return $this->status;
+    }
+
+    public function Country(): Country
+    {
+        return $this->country;
+    }
+
+    public function City(): City
+    {
+        return $this->city;
     }
 
     public function Contacts(): Contacts

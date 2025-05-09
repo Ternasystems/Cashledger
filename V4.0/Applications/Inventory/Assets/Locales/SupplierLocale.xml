@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Header -->
+        <item app="Inventory" action="Supplier" name="Title">Gestion des stocks</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Supplier" name="NavTitle">Fournisseurs</item>
+        <item app="Inventory" action="Supplier" name="NavNewSupplier">Nouveau fournisseur</item>
+        <item app="Inventory" action="Supplier" name="NavModifySupplier">Modifier un fournisseur</item>
+        <item app="Inventory" action="Supplier" name="NavDeleteSupplier">Supprimer un fournisseur</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Supplier" name="MenuOverview">Aperçus</item>
+        <item app="Inventory" action="Supplier" name="GeneralOverview">Aperçu général</item>
+        <item app="Inventory" action="Supplier" name="WareHouseOverview">Aperçu magasins</item>
+        <item app="Inventory" action="Supplier" name="ProductOverview">Aperçu produits</item>
+        <item app="Inventory" action="Supplier" name="StockOverview">Aperçu stocks</item>
+        <item app="Inventory" action="Supplier" name="MenuOperation">Opérations</item>
+        <item app="Inventory" action="Supplier" name="StockIn">Entrées en stocks</item>
+        <item app="Inventory" action="Supplier" name="StockOut">Sorties de stocks</item>
+        <item app="Inventory" action="Supplier" name="Inventories">Inventaires</item>
+        <item app="Inventory" action="Supplier" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Supplier" name="ProductCategories">Types de produits</item>
+        <item app="Inventory" action="Supplier" name="ProductAttributes">Attributs de produits</item>
+        <item app="Inventory" action="Supplier" name="Products">Produits</item>
+        <item app="Inventory" action="Supplier" name="Warehouses">Magasins</item>
+        <item app="Inventory" action="Supplier" name="Customers">Clients</item>
+        <item app="Inventory" action="Supplier" name="Suppliers">Fournisseurs</item>
+        <item app="Inventory" action="Supplier" name="Manufacturers">Fabricants</item>
+        <item app="Inventory" action="Supplier" name="Units">Unités de mesure</item>
+        <item app="Inventory" action="Supplier" name="Packaging">Conditionnement</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Header -->
+        <item app="Inventory" action="Supplier" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Supplier" name="NavTitle">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="NavNewSupplier">New supplier</item>
+        <item app="Inventory" action="Supplier" name="NavModifySupplier">Modify a supplier</item>
+        <item app="Inventory" action="Supplier" name="NavDeleteSupplier">Delete a supplier</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Supplier" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Supplier" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Supplier" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Supplier" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Supplier" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Supplier" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Supplier" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Supplier" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Supplier" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Supplier" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Supplier" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Supplier" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Supplier" name="Products">Products</item>
+        <item app="Inventory" action="Supplier" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Supplier" name="Customers">Customers</item>
+        <item app="Inventory" action="Supplier" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Supplier" name="Units">Measurement units</item>
+        <item app="Inventory" action="Supplier" name="Packaging">Packaging</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Header -->
+        <item app="Inventory" action="Supplier" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Supplier" name="NavTitle">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="NavNewSupplier">New supplier</item>
+        <item app="Inventory" action="Supplier" name="NavModifySupplier">Modify a supplier</item>
+        <item app="Inventory" action="Supplier" name="NavDeleteSupplier">Delete a supplier</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Supplier" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Supplier" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Supplier" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Supplier" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Supplier" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Supplier" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Supplier" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Supplier" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Supplier" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Supplier" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Supplier" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Supplier" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Supplier" name="Products">Products</item>
+        <item app="Inventory" action="Supplier" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Supplier" name="Customers">Customers</item>
+        <item app="Inventory" action="Supplier" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Supplier" name="Units">Measurement units</item>
+        <item app="Inventory" action="Supplier" name="Packaging">Packaging</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Header -->
+        <item app="Inventory" action="Supplier" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Supplier" name="NavTitle">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="NavNewSupplier">New supplier</item>
+        <item app="Inventory" action="Supplier" name="NavModifySupplier">Modify a supplier</item>
+        <item app="Inventory" action="Supplier" name="NavDeleteSupplier">Delete a supplier</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Supplier" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Supplier" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Supplier" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Supplier" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Supplier" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Supplier" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Supplier" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Supplier" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Supplier" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Supplier" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Supplier" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Supplier" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Supplier" name="Products">Products</item>
+        <item app="Inventory" action="Supplier" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Supplier" name="Customers">Customers</item>
+        <item app="Inventory" action="Supplier" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Supplier" name="Units">Measurement units</item>
+        <item app="Inventory" action="Supplier" name="Packaging">Packaging</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Header -->
+        <item app="Inventory" action="Supplier" name="Title">Inventory</item>
+        <!-- Navbar -->
+        <item app="Inventory" action="Supplier" name="NavTitle">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="NavNewSupplier">New supplier</item>
+        <item app="Inventory" action="Supplier" name="NavModifySupplier">Modify a supplier</item>
+        <item app="Inventory" action="Supplier" name="NavDeleteSupplier">Delete a supplier</item>
+        <!-- Context menu -->
+        <item app="Inventory" action="Supplier" name="MenuOverview">Overviews</item>
+        <item app="Inventory" action="Supplier" name="GeneralOverview">General overview</item>
+        <item app="Inventory" action="Supplier" name="WareHouseOverview">Warehouses overview</item>
+        <item app="Inventory" action="Supplier" name="ProductOverview">Products overview</item>
+        <item app="Inventory" action="Supplier" name="StockOverview">Stocks overview</item>
+        <item app="Inventory" action="Supplier" name="MenuOperation">Operations</item>
+        <item app="Inventory" action="Supplier" name="StockIn">Stock-In</item>
+        <item app="Inventory" action="Supplier" name="StockOut">Stock-Out</item>
+        <item app="Inventory" action="Supplier" name="Inventories">Inventories</item>
+        <item app="Inventory" action="Supplier" name="MenuConfig">Configuration</item>
+        <item app="Inventory" action="Supplier" name="ProductCategories">Product types</item>
+        <item app="Inventory" action="Supplier" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="Supplier" name="Products">Products</item>
+        <item app="Inventory" action="Supplier" name="Warehouses">Warehouses</item>
+        <item app="Inventory" action="Supplier" name="Customers">Customers</item>
+        <item app="Inventory" action="Supplier" name="Suppliers">Suppliers</item>
+        <item app="Inventory" action="Supplier" name="Manufacturers">Manufacturers</item>
+        <item app="Inventory" action="Supplier" name="Units">Measurement units</item>
+        <item app="Inventory" action="Supplier" name="Packaging">Packaging</item>
+    </ar-SA>
+</locale>

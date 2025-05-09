@@ -75,16 +75,20 @@ class ContactService implements IContactService
     public function SetContact(object $model): void
     {
         $repository = $this->contactFactory->Repository();
-        $repository->Add(\API_ProfilingRepositories_Model\Contact::class, array($model->contacttypeid, $model->profileid, $model->contactname, $model->contactdesc));
-        $this->contactFactory->Create();
-        $id = $this->contactFactory->Collectable()->FirstOrDefault(fn($n) => $n->ProfileId == $model->profileid && $n->Name = $model->contactname)->It()->Id;
+        $repository->Add(\API_ProfilingRepositories_Model\Contact::class, array($model->contacttypeid, $model->profileid, $model->contactname,
+            $model->contactdesc ?? null));
+        $id = $repository->GetBy(fn($n) => $n->ProfileId == $model->profileid && $n->Name == $model->contactname)->FirstOrDefault()->Id;
         //
         $languages = $this->languageService->GetLanguages();
+        //
         foreach ($languages as $language) {
             $lang = $language->It()->Label;
-            $this->contactRelationRepository->Add(ContactRelation::class, array($lang, $id, $model->contacts[$lang]['value'], $model->contacts['photo'],
-                $model->contacts[$lang]['desc']));
+            $langId = $language->It()->Id;
+            if (!key_exists($lang, $model->contacts)) continue;
+            $this->contactRelationRepository->Add(ContactRelation::class, array($langId, $id, $model->contacts[$lang], $model->contactphoto, $model->contactdesc ?? null));
         }
+        //
+        $this->contactFactory->Create();
     }
 
     public function PutContact(object $model): void

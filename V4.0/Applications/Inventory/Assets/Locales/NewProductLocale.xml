@@ -42,7 +42,7 @@
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
         <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
         <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
-        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">No attribute</item>
         <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </en-US>
     <!-- English (GB) locale -->
@@ -61,7 +61,7 @@
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
         <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
         <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
-        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">No attribute</item>
         <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </en-GB>
     <!-- Español locale -->
@@ -80,7 +80,7 @@
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
         <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
         <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
-        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">No attribute</item>
         <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </es-ES>
     <!-- Arabe locale -->
@@ -99,7 +99,7 @@
         <item app="Inventory" action="Product" name="ProductList">Product list</item>
         <item app="Inventory" action="Product" name="CategorySelect">Select a type</item>
         <item app="Inventory" action="Product" name="UnitSelect">Select a unit</item>
-        <item app="Inventory" action="Product" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="Product" name="AttributeCheck">No attribute</item>
         <item app="Inventory" action="Product" name="AttributeSelect">Select one/more attributes</item>
     </ar-SA>
 </locale>

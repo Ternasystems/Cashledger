@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="StockDispatch" name="DispatchNumber">Numéro du bon</item>
+        <item app="Inventory" action="StockDispatch" name="Reference">Référence du bon</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDate">Date de sortie</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerId">Clients</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerSelect">Choisir un client</item>
+        <item app="Inventory" action="StockDispatch" name="ProductId">Produits</item>
+        <item app="Inventory" action="StockDispatch" name="ProductSelect">Choisir un produit</item>
+        <item app="Inventory" action="StockDispatch" name="NoStock">Aucun stock disponible</item>
+        <item app="Inventory" action="StockDispatch" name="StockQuantity">Quantité</item>
+        <item app="Inventory" action="StockDispatch" name="StockAvailable">Stock</item>
+        <item app="Inventory" action="StockDispatch" name="StockId">ID</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Magasin</item>
+        <item app="Inventory" action="StockDispatch" name="PackagingId">Conditionnement</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDesc">Description</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchAddBtn">Ajouter</item>
+        <!-- -->
+        <item app="Inventory" action="StockDispatch" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderTotal">Quantité totale</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderPackaging">Conditionnement</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderSupplier">Fournisseur</item>
+        <item app="Inventory" action="StockDispatch" name="BatchNumber">Numéro de lot</item>
+        <item app="Inventory" action="StockDispatch" name="UnitId">Unités de mesure</item>
+        <item app="Inventory" action="StockDispatch" name="Maiden">epse</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Magasin</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchSuccessBtn">Soumettre</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="StockDispatch" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockDispatch" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerId">Customers</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerSelect">Select a customer</item>
+        <item app="Inventory" action="StockDispatch" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDispatch" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDispatch" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockDispatch" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDispatch" name="StockAvailable">Stock</item>
+        <item app="Inventory" action="StockDispatch" name="StockId">ID</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDesc">Description</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDispatch" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDispatch" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDispatch" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDispatch" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchSuccessBtn">Submit</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="StockDispatch" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockDispatch" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerId">Customers</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerSelect">Select a customer</item>
+        <item app="Inventory" action="StockDispatch" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDispatch" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDispatch" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockDispatch" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDispatch" name="StockAvailable">Stock</item>
+        <item app="Inventory" action="StockDispatch" name="StockId">ID</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDesc">Description</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDispatch" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDispatch" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDispatch" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDispatch" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchSuccessBtn">Submit</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="StockDispatch" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockDispatch" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerId">Customers</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerSelect">Select a customer</item>
+        <item app="Inventory" action="StockDispatch" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDispatch" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDispatch" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockDispatch" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDispatch" name="StockAvailable">Stock</item>
+        <item app="Inventory" action="StockDispatch" name="StockId">ID</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDesc">Description</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDispatch" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDispatch" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDispatch" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDispatch" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchSuccessBtn">Submit</item>
+    </es-ES>
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="StockDispatch" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockDispatch" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerId">Customers</item>
+        <item app="Inventory" action="StockDispatch" name="CustomerSelect">Select a customer</item>
+        <item app="Inventory" action="StockDispatch" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDispatch" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDispatch" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockDispatch" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDispatch" name="StockAvailable">Stock</item>
+        <item app="Inventory" action="StockDispatch" name="StockId">ID</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchDesc">Description</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDispatch" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDispatch" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDispatch" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDispatch" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDispatch" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockDispatch" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDispatch" name="DispatchSuccessBtn">Submit</item>
+    </ar-SA>
+</locale>

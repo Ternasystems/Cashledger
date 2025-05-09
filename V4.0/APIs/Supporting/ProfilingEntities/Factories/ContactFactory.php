@@ -21,7 +21,8 @@ class ContactFactory extends CollectableFactory
     /**
      * @throws ReflectionException
      */
-    public function __construct(ContactRepository $repository, ContactTypeRepository $_contactTypes, ContactRelationRepository $_contactRelations, LanguageRelationRepository $_relations)
+    public function __construct(ContactRepository $repository, ContactTypeRepository $_contactTypes, ContactRelationRepository $_contactRelations,
+                                LanguageRelationRepository $_relations)
     {
         parent::__construct($repository, null);
         $this->contactRelations = $_contactRelations;

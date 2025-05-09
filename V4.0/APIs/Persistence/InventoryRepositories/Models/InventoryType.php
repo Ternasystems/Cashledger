@@ -2,12 +2,12 @@
 
 namespace API_InventoryRepositories_Model;
 
-enum InventoryType
+enum InventoryType: string
 {
-    case IN;
-    case OUT;
-    case RETURN;
-    case WASTE;
-    case INVENT;
-    case TRANSFER;
+    case IN = 'IN';
+    case OUT = 'OUT';
+    case RETURN = 'RETURN';
+    case WASTE = 'WASTE';
+    case INVENT = 'INVENT';
+    case TRANSFER = 'TRANSFER';
 }

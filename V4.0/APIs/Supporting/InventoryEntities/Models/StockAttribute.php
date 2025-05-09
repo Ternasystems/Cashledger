@@ -26,7 +26,7 @@ class StockAttribute extends Entity
         return $entity;
     }
 
-    public function StockRelations(): StockRelations
+    public function StockRelations(): ?StockRelations
     {
         return $this->relations;
     }

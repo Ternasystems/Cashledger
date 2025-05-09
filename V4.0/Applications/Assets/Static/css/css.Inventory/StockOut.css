@@ -1,0 +1,152 @@
+@import "../css.Global/Global.css";
+@import "../css.Global/Header.css";
+@import "../css.Global/Navbar.css";
+@import "../css.Global/Footer.css";
+
+/* Content */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+form {
+    padding: 0 1rem;
+}
+
+form #form-body {
+    padding: 2rem 0 1rem 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form #form-body > div + div {
+    margin-top: 2rem;
+}
+
+form .form-elt {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+form .form-elt:last-of-type > * {
+    grid-column-end: span 2;
+    justify-self: right;
+}
+
+form#new-stockdispatch {
+    background-color: var(--bs-light);
+}
+
+form .form-hd, .form-header, .form-row {
+    display: grid;
+}
+
+form .form-hd {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 15px;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    padding-bottom: 2rem;
+}
+
+form .form-header, .form-row {
+    grid-template-columns: 1fr repeat(7, 3fr) 1fr;
+}
+
+form .form-row {
+    align-items: center;
+}
+
+form .form-header, .form-row {
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    padding: 1rem 0;
+}
+
+form .form-hd label, .form-header {
+    font-weight: bold;
+}
+
+form .form-area {
+    margin-top: 0 !important;
+}
+
+form .form-row:nth-child(2n+1) {
+    background-color: white;
+}
+
+form .form-area #totalcost {
+    grid-column-end: span 10;
+    padding-top: 1rem;
+}
+
+form .form-row .bi-trash-fill:hover {
+    cursor: pointer;
+    color: darkred;
+}
+
+.stock-item {
+    padding: 5px 10px;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+.stock-item:hover {
+    cursor: pointer;
+}
+
+.stock-item.ts-active {
+    background-color: var(--ts-soft-blue);
+}
+
+.stock-item [data-class="title"] {
+    font-weight: bold;
+}
+
+.stock-item + .stock-item {
+    margin-top: 0.5rem !important;
+}
+
+#no-stock {
+    text-align: center;
+    color: darkred;
+    font-weight: bold;
+    background-color: transparent !important;
+}
+
+#dispatch-list {
+    grid-column-end: span 2;
+    padding: 0 1rem;
+}
+
+#dispatch-list .title {
+    grid-column-end: span 5;
+}
+
+#dispatch-list .form-header {
+    background-color: var(--bs-light);
+}
+
+#dispatch-list .form-header, #dispatch-list .form-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    padding: 1rem 0;
+}

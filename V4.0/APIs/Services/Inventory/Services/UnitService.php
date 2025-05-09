@@ -60,7 +60,8 @@ class UnitService implements IUnitService
         $languages = $this->languageService->GetLanguages();
         foreach ($languages as $language){
             $lang = $language->It()->Label;
-            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->unitlocale[$lang]));
+            if (key_exists($lang, $model->unitlocale))
+                $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->unitlocale[$lang]));
         }
         //
         $factory = new CollectableFactory($this->unitRepository, $this->relationRepository);

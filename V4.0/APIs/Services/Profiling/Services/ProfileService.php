@@ -13,6 +13,11 @@ use API_ProfilingRepositories_Model\Gender;
 use API_ProfilingRepositories_Model\Occupation;
 use API_ProfilingRepositories_Model\Status;
 use API_ProfilingRepositories_Model\Title;
+use API_RelationRepositories_Model\CivilityRelation;
+use API_RelationRepositories_Model\GenderRelation;
+use API_RelationRepositories_Model\OccupationRelation;
+use API_RelationRepositories_Model\StatusRelation;
+use API_RelationRepositories_Model\TitleRelation;
 use Exception;
 use ReflectionException;
 
@@ -57,17 +62,22 @@ class ProfileService implements IProfileService
     public function SetProfile(object $model): void
     {
         $repository = $this->profileFactory->Repository();
-        $repository->Add(\API_ProfilingRepositories_Model\Profile::class, array($model->lastname, $model->birthdate, $model->firstname, $model->maidenname, $model->photo,
-            $model->desc));
-        $this->profileFactory->Create();
-        $id = $this->profileFactory->Collectable()->FirstOrDefault(fn($n) => $n->It()->LastName == $model->lastname && $n->Birthdate == $model->birthdate)->It()->Id;
+        $repository->Add(\API_ProfilingRepositories_Model\Profile::class, array($model->lastname, $model->birthdate->format('Y-m-d H:i:s'), $model->countryid,
+            $model->cityid, $model->firstname ?? null, $model->maidenname ?? null, $model->photo ?? null, $model->desc ?? null));
+        $id = $repository->GetBy(fn($n) => $n->LastName == $model->lastname && $n->BirthDate == $model->birthdate)->FirstOrDefault()->Id;
         //
         $civilities = $this->civilityService->GetRelationRepositories();
-        $civilities['Civilities']->Add(Civility::class, array($model->civilities['CivilityId'], $id));
-        $civilities['Genders']->Add(Gender::class, array($model->civilities['GenderId'], $id));
-        $civilities['Occupations']->Add(Occupation::class, array($model->civilities['OccupationId'], $id));
-        $civilities['Statuses']->Add(Status::class, array($model->civilities['StatusId'], $id));
-        $civilities['Titles']->Add(Title::class, array($model->civilities['TitleId'], $id));
+        $civilities['Civilities']->Add(CivilityRelation::class, array($model->civilities['CivilityId'], $id));
+        $civilities['Genders']->Add(GenderRelation::class, array($model->civilities['GenderId'], $id));
+        $civilities['Occupations']->Add(OccupationRelation::class, array($model->civilities['OccupationId'], $id));
+        $civilities['Statuses']->Add(StatusRelation::class, array($model->civilities['StatusId'], $id));
+        $civilities['Titles']->Add(TitleRelation::class, array($model->civilities['TitleId'], $id));
+        $this->profileFactory->Create();
+        //
+        foreach ($model->contacts as $contact){
+            $contact->profileid = $id;
+            $this->contactService->SetContact($contact);
+        }
     }
 
     /**
@@ -77,8 +87,8 @@ class ProfileService implements IProfileService
     public function PutProfile(object $model): void
     {
         $repository = $this->profileFactory->Repository();
-        $repository->Update(\API_ProfilingRepositories_Model\Profile::class, array($model->profileid, $model->lastname, $model->birthdate, $model->maidenname,
-            $model->firstname, $model->photo, $model->desc));
+        $repository->Update(\API_ProfilingRepositories_Model\Profile::class, array($model->profileid, $model->lastname, $model->birthdate, $model->countryid,
+            $model->cityid, $model->maidenname, $model->firstname, $model->photo, $model->desc));
         $this->profileFactory->Create();
         $civilities = $this->civilityService->GetRelationRepositories();
         //

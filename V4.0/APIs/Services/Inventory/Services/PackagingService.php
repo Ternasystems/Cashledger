@@ -60,7 +60,8 @@ class PackagingService implements IPackagingService
         $languages = $this->languageService->GetLanguages();
         foreach ($languages as $language){
             $lang = $language->It()->Label;
-            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->packaginglocale[$lang]));
+            if (key_exists($lang, $model->packaginglocale))
+                $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->packaginglocale[$lang]));
         }
         //
         $factory = new CollectableFactory($this->packagingRepository, $this->relationRepository);

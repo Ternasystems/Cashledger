@@ -107,17 +107,30 @@ class DBContext extends AbstractCls
      */
     protected function TypeCasting(ReflectionProperty $property, mixed $value): mixed
     {
+        if (is_null($value))
+            return null;
+
         $propertyType = $property->getType();
         $typeName = $propertyType?->getName();
 
-        return is_null($value) ? null : match ($typeName){
-            'string' => (string)$value,
-            'int' => (int)$value,
-            'bool' => (bool)$value,
-            'float', 'double' => (float)$value,
-            'DateTime' => is_string($value) ? new DateTime($value) : null,
-            default => $value
-        };
+        $builtInTypes = ['string', 'int', 'bool', 'float', 'double', 'DateTime'];
+        if (in_array($typeName, $builtInTypes)) {
+            return match ($typeName) {
+                'string' => (string)$value,
+                'int' => (int)$value,
+                'bool' => (bool)$value,
+                'float', 'double' => (float)$value,
+                'DateTime' => is_string($value) ? new DateTime($value) : null,
+            };
+        }
+
+        if (enum_exists($typeName)){
+            if (is_string($value) || is_int($value))
+                return $typeName::tryFrom($value);
+            return null;
+        }
+
+        return $value;
     }
 
     protected function GetSelectQuery(): DBSelect

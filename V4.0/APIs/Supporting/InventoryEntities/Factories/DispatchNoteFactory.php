@@ -13,7 +13,7 @@ use ReflectionException;
 
 class DispatchNoteFactory extends CollectableFactory
 {
-    protected Stocks $stocks;
+    protected StockFactory $stockFactory;
     protected DispatchRelationRepository $dispatchRelations;
 
     /**
@@ -22,8 +22,7 @@ class DispatchNoteFactory extends CollectableFactory
     public function __construct(DispatchNoteRepository $repository, StockFactory $_stockFactory, DispatchRelationRepository $_dispatchRelations)
     {
         parent::__construct($repository, null);
-        $_stockFactory->Create();
-        $this->stocks = $_stockFactory->Collectable();
+        $this->stockFactory = $_stockFactory;
         $this->dispatchRelations = $_dispatchRelations;
     }
 
@@ -34,12 +33,18 @@ class DispatchNoteFactory extends CollectableFactory
     public function Create(): void
     {
         $collection = $this->repository->GetAll();
+        if (is_null($collection))
+            return;
+
         $colArray = [];
+        $this->stockFactory->Create();
+        $stocks = $this->stockFactory->Collectable();
+        //
         foreach ($collection as $item) {
             $dispatchRelations = $this->dispatchRelations->GetAll()->Where(fn($n) => $n->DispatchId == $item->Id);
             $stockArray = [];
             foreach ($dispatchRelations as $dispatchRelation)
-                $stockArray[] = $this->stocks->FirstOrDefault(fn($n) => $n->Id == $dispatchRelation->StockId);
+                $stockArray[] = $stocks->FirstOrDefault(fn($n) => $n->It()->Id == $dispatchRelation->StockId);
             //
             $_stocks = new Stocks($stockArray);
             $colArray[] = new DispatchNote($item, $_stocks);
@@ -50,7 +55,7 @@ class DispatchNoteFactory extends CollectableFactory
 
     public function Collectable(): ?DispatchNotes
     {
-        return $this->collectable;
+        return $this->collectable ?? null;
     }
 
     public function Repository(): DispatchNoteRepository

@@ -77,7 +77,8 @@ class ProductService implements IProductService
         $languages = $this->languageService->GetLanguages();
         foreach ($languages as $language){
             $lang = $language->It()->Label;
-            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->categorylocale[$lang]));
+            if (key_exists($lang, $model->categorylocale))
+                $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->categorylocale[$lang]));
         }
         //
         $factory = new CollectableFactory($this->categoryRepository, $this->relationRepository);
@@ -162,7 +163,8 @@ class ProductService implements IProductService
         $languages = $this->languageService->GetLanguages();
         foreach ($languages as $language){
             $lang = $language->It()->Label;
-            $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->attributelocale[$lang]));
+            if (key_exists($lang, $model->attributelocale))
+                $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->attributelocale[$lang]));
         }
     }
 
@@ -243,7 +245,7 @@ class ProductService implements IProductService
                 $this->relationRepository->Add(LanguageRelation::class, array($language->It()->Id, $id, $model->productlocale[$lang]));
         }
         //
-        if (count($model->attributes) == 0)
+        if (!isset($model->attributes) || count($model->attributes) == 0)
             return;
 
         foreach ($model->attributes as $key => $attribute)

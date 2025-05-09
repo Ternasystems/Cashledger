@@ -6,6 +6,7 @@ use API_DTOEntities_Collection\Cities;
 use API_DTOEntities_Collection\Countries;
 use API_DTOEntities_Model\City;
 use API_DTORepositories\CityRepository;
+use API_RelationRepositories\LanguageRelationRepository;
 use Exception;
 
 class CityFactory extends CollectableFactory
@@ -15,9 +16,9 @@ class CityFactory extends CollectableFactory
     /**
      * @throws Exception
      */
-    public function __construct(CityRepository $repository, CountryFactory $_countryFactory)
+    public function __construct(CityRepository $repository, CountryFactory $_countryFactory, ?LanguageRelationRepository $_relationRepository)
     {
-        parent::__construct($repository, null);
+        parent::__construct($repository, $_relationRepository);
         $_countryFactory->Create();
         $this->countries = $_countryFactory->Collectable();
     }
@@ -31,7 +32,7 @@ class CityFactory extends CollectableFactory
         $colArray = [];
         foreach ($collection as $item) {
             $country = $this->countries->FirstOrDefault(fn($n) => $n->It()->Id == $item->CountryId);
-            $colArray[] = new City($item, $country);
+            $colArray[] = new City($item, $country, $this->relationRepository->GetAll());
         }
 
         $this->collectable = new Cities($colArray);

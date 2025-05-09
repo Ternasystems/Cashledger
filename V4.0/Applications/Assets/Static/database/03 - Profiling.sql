@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS public."cl_Profiles"
     "LastName" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "MaidenName" character varying(50) COLLATE pg_catalog."default",
 	"BirthDate" timestamp without time zone NOT NULL,
+	"CountryID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Countries" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"CityID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Cities" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"StartDate" timestamp without time zone DEFAULT NOW(),
 	"EndDate" timestamp without time zone,
 	"Photo" text COLLATE pg_catalog."default",
@@ -24,6 +26,8 @@ TABLESPACE pg_default;
 CREATE OR REPLACE PROCEDURE public."p_InsertProfile"(
 	IN _lastname character varying(50),
 	IN _birthdate timestamp without time zone,
+	IN _countryid character varying(50),
+	IN _cityid character varying(50),
 	IN _firstname character varying DEFAULT NULL::character varying(50),
 	IN _maidenname character varying DEFAULT NULL::character varying(50),
 	IN _photo text DEFAULT NULL::text,
@@ -33,7 +37,8 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Profiles'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, NOW(), NULL, %L, NULL, %L);', _tablename, _id, _firstname, _lastname, _maidenname, _birthdate, _photo, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, %L, %L, NOW(), NULL, %L, NULL, %L);', _tablename, _id, _firstname, _lastname, _maidenname, _birthdate, _countryid, _cityid, _photo,
+	_description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'PRL');
 END;
@@ -45,6 +50,8 @@ CREATE OR REPLACE PROCEDURE public."p_UpdateProfile"(
 	IN _id character varying(50),
 	IN _lastname character varying(50),
 	IN _birthdate timestamp without time zone,
+	IN _countryid character varying(50),
+	IN _cityid character varying(50),
 	IN _maidenname character varying DEFAULT NULL::character varying(50),
 	IN _firstname character varying DEFAULT NULL::character varying(50),
 	IN _photo text DEFAULT NULL::text,
@@ -54,8 +61,8 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Profiles';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "FirstName" = %L, "LastName" = %L, "MaidenName" = %L, "BirthDate" = %L, "Photo" = %L, "Description" = %L WHERE "ID" = %L AND "EndDate" IS NULL;',
-		_tablename, _firstname, _lastname, _maidenname, _birthdate, _photo, _description, _id);
+	_sql := FORMAT('UPDATE public.%I SET "FirstName" = %L, "LastName" = %L, "MaidenName" = %L, "BirthDate" = %L, "CountryID" = %L, "CityID" = %L, "Photo" = %L, "Description" = %L WHERE "ID" = %L AND
+	"EndDate" IS NULL;', _tablename, _firstname, _lastname, _maidenname, _birthdate, _countryid, _cityid, _photo, _description, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;
@@ -1102,7 +1109,7 @@ CREATE TABLE IF NOT EXISTS public."cl_ContactRelations"
     "Photo" text COLLATE pg_catalog."default" NOT NULL,
     "IsActive" timestamp without time zone,
     "Description" character varying(50) COLLATE pg_catalog."default",
-    CONSTRAINT "UQ_ContactRelation" UNIQUE ("ContactID", "Contact")
+    CONSTRAINT "UQ_ContactRelation" UNIQUE ("LangID", "ContactID", "Contact")
 )
 
 TABLESPACE pg_default;
@@ -2100,9 +2107,11 @@ CALL public."p_InsertApp"('Profiling');
 
 -- Insert Profiles
 
-CALL public."p_InsertProfile"('Jéoline', LOCALTIMESTAMP);
-CALL public."p_InsertProfile"('Unknown', LOCALTIMESTAMP);
-CALL public."p_InsertProfile"('Administrator', LOCALTIMESTAMP);
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CMR';
+SELECT "ID" INTO _profileid FROM public."cl_Cities" WHERE "Name" = 'DLA';
+CALL public."p_InsertProfile"('Jéoline', LOCALTIMESTAMP, _id, _profileid);
+CALL public."p_InsertProfile"('Unknown', LOCALTIMESTAMP, _id, _profileid);
+CALL public."p_InsertProfile"('Administrator', LOCALTIMESTAMP, _id, _profileid);
 --
 SELECT "ID" INTO _id FROM public."cl_Profiles" WHERE "LastName" = 'Unknown';
 CALL public."p_DeleteProfile"(_id);
@@ -2295,9 +2304,9 @@ BEGIN
 	IF NOT EXISTS(SELECT 1 FROM public."cl_AppCategories" WHERE "Name" = 'User management') THEN
 		CALL public."p_InsertAppCategory"('User management');
 		SELECT "ID" INTO _appid from public."cl_AppCategories" WHERE "Name" = 'User management';
-		CALL public."p_InsertLanguageRelation"(_us, _id, 'User management');
-		CALL public."p_InsertLanguageRelation"(_gb, _id, 'User management');
-		CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gestion des utilisateurs');
+		CALL public."p_InsertLanguageRelation"(_us, _appid, 'User management');
+		CALL public."p_InsertLanguageRelation"(_gb, _appid, 'User management');
+		CALL public."p_InsertLanguageRelation"(_fr, _appid, 'Gestion des utilisateurs');
 	END IF;
 	--
 	SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Profiling';

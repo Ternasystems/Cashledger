@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="StockOut" name="DispatchDate">Date du bon</item>
+        <item app="Inventory" action="StockOut" name="DispatchNumber">Numéro du bon</item>
+        <item app="Inventory" action="StockOut" name="Reference">Référence du bon</item>
+        <item app="Inventory" action="StockOut" name="EditDate">Date de sortie</item>
+        <item app="Inventory" action="StockOut" name="HeaderTotal">Coût total</item>
+        <item app="Inventory" action="StockOut" name="DispatchList">Liste des bons de sorties</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="StockOut" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockOut" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockOut" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockOut" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockOut" name="DispatchList">Dispatch notes list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="StockOut" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockOut" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockOut" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockOut" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockOut" name="DispatchList">Dispatch notes list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="StockOut" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockOut" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockOut" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockOut" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockOut" name="DispatchList">Dispatch notes list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="StockOut" name="DispatchDate">Dispatch date</item>
+        <item app="Inventory" action="StockOut" name="DispatchNumber">Dispatch number</item>
+        <item app="Inventory" action="StockOut" name="Reference">Dispatch reference</item>
+        <item app="Inventory" action="StockOut" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockOut" name="DispatchList">Dispatch notes list</item>
+    </ar-SA>
+</locale>

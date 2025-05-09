@@ -10,4 +10,5 @@ class DeliveryNote extends DTOBase
     public string $DeliveryNumber;
     public ?string $Reference;
     public DateTime $DeliveryDate;
+    public DateTime $EditDate;
 }

@@ -80,6 +80,7 @@ class HomeController extends Controller
         $utils->SetSession([
             'SessionId' => $credential->It()->SessionId,
             'UserName' => $credential->It()->UserName,
+            'CredentialId' => $credential->It()->Id,
             'ProfileId' => $credential->Profile()->It()->Id,
             'LastName' => $credential->Profile()->It()->LastName,
             'Session' => session_id()

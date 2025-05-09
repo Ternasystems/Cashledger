@@ -55,9 +55,10 @@ class CustomerService implements ICustomerService
         $id = null;
         if (empty($model->profileid)){
             $this->profileService->SetProfile($model);
-            $id = $this->profileService->GetProfiles(fn($n) => $n->It()->LastName == $model->lastname && $n->Birthdate == $model->birthdate)->FirstOrDefault()->It()->Id;
-        }
-        $id = $model->profileid;
+            $id = $this->profileService->GetProfiles(fn($n) => $n->It()->LastName == $model->lastname && $n->It()->BirthDate == $model->birthdate)->It()->Id;
+        }else
+            $id = $model->profileid;
+
         $repository->Add(\API_InventoryRepositories_Model\Customer::class, array($id));
     }
 

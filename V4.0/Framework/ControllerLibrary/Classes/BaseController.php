@@ -149,7 +149,7 @@ abstract class BaseController extends AbstractCls
 
         foreach ($data as $key => $value) {
             if (property_exists($model, $key))
-                $model->{$key} = $this->TypeCasting($class->getProperty($key), $value);
+                $model->{$key} = $this->TypeCasting($class->getProperty($key), empty($value) ? null : $value);
         }
 
         return $model;
@@ -166,7 +166,7 @@ abstract class BaseController extends AbstractCls
         return is_null($value) ? null : match ($typeName){
             'string' => (string)$value,
             'int' => (int)$value,
-            'bool' => (bool)$value,
+            'bool' => filter_var($value, FILTER_VALIDATE_BOOL),
             'float', 'double' => (float)$value,
             'DateTime' => is_string($value) ? new DateTime($value) : null,
             default => $value

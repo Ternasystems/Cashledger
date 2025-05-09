@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="StockDelivery" name="DeliveryNumber">Numéro du bon</item>
+        <item app="Inventory" action="StockDelivery" name="Reference">Référence du bon</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDate">Date d'entrée</item>
+        <item app="Inventory" action="StockDelivery" name="ProductId">Produits</item>
+        <item app="Inventory" action="StockDelivery" name="ProductSelect">Choisir un produit</item>
+        <item app="Inventory" action="StockDelivery" name="ProductAttributes">Attributs du produit</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeCheck">Aucun attribut</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeSelect">Choisir un/plusieurs attributs</item>
+        <item app="Inventory" action="StockDelivery" name="UnitId">Unités de mesure</item>
+        <item app="Inventory" action="StockDelivery" name="UnitSelect">Choisir une unité</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseId">Magasin</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseSelect">Choisir un magasin</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingId">Conditionnements</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingSelect">Choisir un conditionnement</item>
+        <item app="Inventory" action="StockDelivery" name="BatchNumber">Numéro de lot</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantité</item>
+        <item app="Inventory" action="StockDelivery" name="UnitCost">Coût unitaire d'achat</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierId">Fournisseurs</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierSelect">Choisir un fournisseur</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDesc">Description</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryAddBtn">Ajouter</item>
+        <!-- -->
+        <item app="Inventory" action="StockDelivery" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderTotal">Coût total</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderPackaging">Conditionnement</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderSupplier">Fournisseur</item>
+        <item app="Inventory" action="StockDelivery" name="DeliverySuccessBtn">Soumettre</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="StockDelivery" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockDelivery" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockDelivery" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDelivery" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDelivery" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeCheck">No attribute</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeSelect">Select one/more attributes</item>
+        <item app="Inventory" action="StockDelivery" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDelivery" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
+        <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDesc">Description</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDelivery" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliverySuccessBtn">Submit</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="StockDelivery" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockDelivery" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockDelivery" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDelivery" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDelivery" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeCheck">No attribute</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeSelect">Select one/more attributes</item>
+        <item app="Inventory" action="StockDelivery" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDelivery" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
+        <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDesc">Description</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDelivery" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliverySuccessBtn">Submit</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="StockDelivery" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockDelivery" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockDelivery" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDelivery" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDelivery" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeCheck">No attribute</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeSelect">Select one/more attributes</item>
+        <item app="Inventory" action="StockDelivery" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDelivery" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
+        <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDesc">Description</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDelivery" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliverySuccessBtn">Submit</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="StockDelivery" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockDelivery" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockDelivery" name="ProductId">Products</item>
+        <item app="Inventory" action="StockDelivery" name="ProductSelect">Select a product</item>
+        <item app="Inventory" action="StockDelivery" name="ProductAttributes">Product attributes</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeCheck">No attribute</item>
+        <item app="Inventory" action="StockDelivery" name="AttributeSelect">Select one/more attributes</item>
+        <item app="Inventory" action="StockDelivery" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockDelivery" name="UnitSelect">Select a unit</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
+        <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
+        <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
+        <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryDesc">Description</item>
+        <item app="Inventory" action="StockDelivery" name="DeliveryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockDelivery" name="HeaderNumber">N.</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderPackaging">Packaging</item>
+        <item app="Inventory" action="StockDelivery" name="HeaderSupplier">Supplier</item>
+        <item app="Inventory" action="StockDelivery" name="DeliverySuccessBtn">Submit</item>
+    </ar-SA>
+</locale>

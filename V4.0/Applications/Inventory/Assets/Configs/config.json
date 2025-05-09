@@ -642,6 +642,198 @@
         "component": "StockOverview"
       }
     },
+    "NavDeliveryList": {
+      "fr-FR": {
+        "title": "Liste des bons d'entrées",
+        "logo": "Inventory",
+        "description": "Liste tous les bons d'entrées en stock."
+      },
+      "en-US": {
+        "title": "Delivery notes list",
+        "logo": "Inventory",
+        "description": "List all stock deliveries."
+      },
+      "en-GB": {
+        "title": "Delivery notes list",
+        "logo": "Inventory",
+        "description": "List all stock deliveries."
+      },
+      "es-ES": {
+        "title": "Delivery notes list",
+        "logo": "Inventory",
+        "description": "List all stock deliveries."
+      },
+      "ar-SA": {
+        "title": "Delivery notes list",
+        "logo": "Inventory",
+        "description": "List all stock deliveries."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeliveryList"
+      }
+    },
+    "NavStockDelivery": {
+      "fr-FR": {
+        "title": "Bons d'entrées en stock",
+        "logo": "Inventory",
+        "description": "Enregistre les nouvelles entrées en stock."
+      },
+      "en-US": {
+        "title": "Delivery notes",
+        "logo": "Inventory",
+        "description": "Records new stock entries."
+      },
+      "en-GB": {
+        "title": "Delivery notes",
+        "logo": "Inventory",
+        "description": "Records new stock entries."
+      },
+      "es-ES": {
+        "title": "Delivery notes",
+        "logo": "Inventory",
+        "description": "Records new stock entries."
+      },
+      "ar-SA": {
+        "title": "Delivery notes",
+        "logo": "Inventory",
+        "description": "Records new stock entries."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewStockDelivery"
+      }
+    },
+    "NavStockReturn": {
+      "fr-FR": {
+        "title": "Retour en stock",
+        "logo": "Inventory",
+        "description": "Enregistre les retours en stock."
+      },
+      "en-US": {
+        "title": "Stock return",
+        "logo": "Inventory",
+        "description": "Records stock returns."
+      },
+      "en-GB": {
+        "title": "Stock return",
+        "logo": "Inventory",
+        "description": "Records stock returns."
+      },
+      "es-ES": {
+        "title": "Stock return",
+        "logo": "Inventory",
+        "description": "Records stock returns."
+      },
+      "ar-SA": {
+        "title": "Stock return",
+        "logo": "Inventory",
+        "description": "Records stock returns."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewStockReturn"
+      }
+    },
+    "NavDispatchList": {
+      "fr-FR": {
+        "title": "Liste des bons de sorties",
+        "logo": "Inventory",
+        "description": "Liste tous les bons de sorties du stock."
+      },
+      "en-US": {
+        "title": "Dispatch notes list",
+        "logo": "Inventory",
+        "description": "List all stock dispatches."
+      },
+      "en-GB": {
+        "title": "Dispatch notes list",
+        "logo": "Inventory",
+        "description": "List all stock dispatches."
+      },
+      "es-ES": {
+        "title": "Dispatch notes list",
+        "logo": "Inventory",
+        "description": "List all stock dispatches."
+      },
+      "ar-SA": {
+        "title": "Dispatch notes list",
+        "logo": "Inventory",
+        "description": "List all stock dispatches."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DispatchList"
+      }
+    },
+    "NavStockDispatch": {
+      "fr-FR": {
+        "title": "Bons de sorties de stock",
+        "logo": "Inventory",
+        "description": "Enregistre les nouvelles sorties de stock."
+      },
+      "en-US": {
+        "title": "Dispatch notes",
+        "logo": "Inventory",
+        "description": "Records new stock removals."
+      },
+      "en-GB": {
+        "title": "Dispatch notes",
+        "logo": "Inventory",
+        "description": "Records new stock removals."
+      },
+      "es-ES": {
+        "title": "Dispatch notes",
+        "logo": "Inventory",
+        "description": "Records new stock removals."
+      },
+      "ar-SA": {
+        "title": "Dispatch notes",
+        "logo": "Inventory",
+        "description": "Records new stock removals."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewStockDispatch"
+      }
+    },
+    "NavStockDisposal": {
+      "fr-FR": {
+        "title": "Mise au rebut",
+        "logo": "Inventory",
+        "description": "Enregistre les mises au rebut."
+      },
+      "en-US": {
+        "title": "Stock disposal",
+        "logo": "Inventory",
+        "description": "Records stock disposals."
+      },
+      "en-GB": {
+        "title": "Stock disposal",
+        "logo": "Inventory",
+        "description": "Records stock disposals."
+      },
+      "es-ES": {
+        "title": "Stock disposal",
+        "logo": "Inventory",
+        "description": "Records stock disposals."
+      },
+      "ar-SA": {
+        "title": "Stock disposal",
+        "logo": "Inventory",
+        "description": "Records stock disposals."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewStockDisposal"
+      }
+    },
     "NavNewProductCategory": {
       "fr-FR": {
         "title": "Nouveau type",
@@ -928,6 +1120,198 @@
         "app": "Inventory",
         "parent": "main-content",
         "component": "DeleteProduct"
+      }
+    },
+    "NavNewCustomer": {
+      "fr-FR": {
+        "title": "Nouveau client",
+        "logo": "Inventory",
+        "description": "Crée un nouveau client."
+      },
+      "en-US": {
+        "title": "New customer",
+        "logo": "Inventory",
+        "description": "Create a new customer."
+      },
+      "en-GB": {
+        "title": "New customer",
+        "logo": "Inventory",
+        "description": "Create a new customer."
+      },
+      "es-ES": {
+        "title": "New customer",
+        "logo": "Inventory",
+        "description": "Create a new customer."
+      },
+      "ar-SA": {
+        "title": "New customer",
+        "logo": "Inventory",
+        "description": "Create a new customer."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewCustomer"
+      }
+    },
+    "NavModifyCustomer": {
+      "fr-FR": {
+        "title": "Modifier un client",
+        "logo": "Inventory",
+        "description": "Modifie un client."
+      },
+      "en-US": {
+        "title": "Modify a customer",
+        "logo": "Inventory",
+        "description": "Modify a customer."
+      },
+      "en-GB": {
+        "title": "Modify a customer",
+        "logo": "Inventory",
+        "description": "Modify a customer."
+      },
+      "es-ES": {
+        "title": "Modify a customer",
+        "logo": "Inventory",
+        "description": "Modify a customer."
+      },
+      "ar-SA": {
+        "title": "Modify a customer",
+        "logo": "Inventory",
+        "description": "Modify a customer."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifyCustomer"
+      }
+    },
+    "NavDeleteCustomer": {
+      "fr-FR": {
+        "title": "Supprimer un client",
+        "logo": "Inventory",
+        "description": "Supprime un client."
+      },
+      "en-US": {
+        "title": "Delete a customer",
+        "logo": "Inventory",
+        "description": "Delete a customer."
+      },
+      "en-GB": {
+        "title": "Delete a customer",
+        "logo": "Inventory",
+        "description": "Delete a customer."
+      },
+      "es-ES": {
+        "title": "Delete a customer",
+        "logo": "Inventory",
+        "description": "Delete a customer."
+      },
+      "ar-SA": {
+        "title": "Delete a customer",
+        "logo": "Inventory",
+        "description": "Delete a customer."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteCustomer"
+      }
+    },
+    "NavNewSupplier": {
+      "fr-FR": {
+        "title": "Nouveau fournisseur",
+        "logo": "Inventory",
+        "description": "Crée un nouveau fournisseur."
+      },
+      "en-US": {
+        "title": "New supplier",
+        "logo": "Inventory",
+        "description": "Create a new supplier."
+      },
+      "en-GB": {
+        "title": "New supplier",
+        "logo": "Inventory",
+        "description": "Create a new supplier."
+      },
+      "es-ES": {
+        "title": "New supplier",
+        "logo": "Inventory",
+        "description": "Create a new supplier."
+      },
+      "ar-SA": {
+        "title": "New supplier",
+        "logo": "Inventory",
+        "description": "Create a new supplier."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewSupplier"
+      }
+    },
+    "NavModifySupplier": {
+      "fr-FR": {
+        "title": "Modifier un fournisseur",
+        "logo": "Inventory",
+        "description": "Modifie un fournisseur."
+      },
+      "en-US": {
+        "title": "Modify a supplier",
+        "logo": "Inventory",
+        "description": "Modify a supplier."
+      },
+      "en-GB": {
+        "title": "Modify a supplier",
+        "logo": "Inventory",
+        "description": "Modify a supplier."
+      },
+      "es-ES": {
+        "title": "Modify a supplier",
+        "logo": "Inventory",
+        "description": "Modify a supplier."
+      },
+      "ar-SA": {
+        "title": "Modify a supplier",
+        "logo": "Inventory",
+        "description": "Modify a supplier."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "ModifySupplier"
+      }
+    },
+    "NavDeleteSupplier": {
+      "fr-FR": {
+        "title": "Supprimer un fournisseur",
+        "logo": "Inventory",
+        "description": "Supprime un fournisseur."
+      },
+      "en-US": {
+        "title": "Delete a supplier",
+        "logo": "Inventory",
+        "description": "Delete a supplier."
+      },
+      "en-GB": {
+        "title": "Delete a supplier",
+        "logo": "Inventory",
+        "description": "Delete a supplier."
+      },
+      "es-ES": {
+        "title": "Delete a supplier",
+        "logo": "Inventory",
+        "description": "Delete a supplier."
+      },
+      "ar-SA": {
+        "title": "Delete a supplier",
+        "logo": "Inventory",
+        "description": "Delete a supplier."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "DeleteSupplier"
       }
     },
     "NavNewWarehouse": {

@@ -55,4 +55,14 @@ class StockRepository extends Repository
         $collection = parent::OrderBy($stocks, $properties, $orderBy);
         return $collection instanceof Stocks ? $collection : null;
     }
+
+    public function UpdateQuantity(string $id, string $quantity): void
+    {
+        $sql = 'CALL "p_UpdateQuantity"(:id, :quantity)';
+        $args = [
+            ':id' => $id,
+            ':quantity' => $quantity
+        ];
+        $this->context->ExecuteQuery($sql, $args);
+    }
 }

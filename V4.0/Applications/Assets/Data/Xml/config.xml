@@ -35,6 +35,9 @@
         <image name="Logo_mobile" src="/cashledger/Applications/Assets/Static/images/logos/logo.png"/>
         <image name="Jeoline" src="/cashledger/Applications/Assets/Static/images/logos/corporates_logo.png"/>
         <image name="Jeoline_white" src="/cashledger/Applications/Assets/Static/images/logos/corporates_logo_white.png"/>
+        <image name="Social_Phone" src="/cashledger/Applications/Assets/Static/images/socials/Phone_round.png"/>
+        <image name="Social_Email" src="/cashledger/Applications/Assets/Static/images/socials/Email_round.png"/>
+        <image name="Social_Location" src="/cashledger/Applications/Assets/Static/images/socials/Location_round.png"/>
         <image name="User_black" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/User_round_black.png"/>
         <image name="Logout" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/Logout.png"/>
         <image name="Settings" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/Settings.png"/>

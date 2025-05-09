@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="DeliveryDate">Date du bon</item>
+        <item app="Inventory" action="StockIn" name="DeliveryNumber">Numéro du bon</item>
+        <item app="Inventory" action="StockIn" name="Reference">Référence du bon</item>
+        <item app="Inventory" action="StockIn" name="EditDate">Date d'entrée</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Coût total</item>
+        <item app="Inventory" action="StockIn" name="DeliveryList">Liste des bons d'entrées</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockIn" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockIn" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockIn" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockIn" name="DeliveryList">Delivery notes list</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockIn" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockIn" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockIn" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockIn" name="DeliveryList">Delivery notes list</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockIn" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockIn" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockIn" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockIn" name="DeliveryList">Delivery notes list</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="DeliveryDate">Delivery date</item>
+        <item app="Inventory" action="StockIn" name="DeliveryNumber">Delivery number</item>
+        <item app="Inventory" action="StockIn" name="Reference">Delivery reference</item>
+        <item app="Inventory" action="StockIn" name="EditDate">Edit date</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+        <item app="Inventory" action="StockIn" name="DeliveryList">Delivery notes list</item>
+    </ar-SA>
+</locale>

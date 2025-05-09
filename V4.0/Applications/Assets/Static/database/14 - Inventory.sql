@@ -870,15 +870,15 @@ BEGIN
 		PERFORM NEW."Value"::BOOLEAN;
 	ELSIF _type = 'timestamp' THEN
 		PERFORM NEW."Value"::TIMESTAMP;
-	ELSIF _type = 'text' OR _type = 'table' THEN
+	ELSIF _type IN ('text', 'table') THEN
 		PERFORM NEW."Value"::TEXT;
 	ELSE
 		RAISE EXCEPTION 'Unsupported attribute type: %', _type;
 	END IF;
 	--
 	IF _constraint IS NOT NULL AND _constraint != '' THEN
-		_query := FORMAT('SELECT (%s)', REPLACE(_constraint, 'VALUE', NEW."Value"));
-		EXECUTE _query INTO _valid;
+		_query := FORMAT('SELECT (%s)', REPLACE(_constraint, 'VALUE', '$1'));
+		EXECUTE _query INTO _valid USING NEW."Value";
 		--
 		IF NOT _valid THEN
 			RAISE EXCEPTION 'Attribute constraint failed: Value[%] does not meet constraint [%]', NEW."Value", _constraint;
@@ -960,7 +960,6 @@ CREATE TABLE IF NOT EXISTS public."cl_Stocks"
 	"LastChecked" timestamp without time zone DEFAULT NOW(),
 	"Quantity" numeric(8,2) NOT NULL CHECK ("Quantity" >= 0),
 	"UnitCost" numeric(8,2) NOT NULL CHECK ("UnitCost" >= 0),
-	"UnitPrice" numeric(8,2) NOT NULL CHECK ("UnitPrice" >= 0),
 	"IsActive" timestamp without time zone,
     "Description" text COLLATE pg_catalog."default",
 	CONSTRAINT "UQ_Stock" UNIQUE ("ProductID", "WarehouseID", "PackagingID", "BatchNumber")
@@ -978,15 +977,14 @@ CREATE OR REPLACE PROCEDURE public."p_InsertStock"(
 	IN _batchnumber character varying(50),
 	IN _quantity numeric(8,2),
 	IN _unitcost numeric(8,2),
-	IN _unitprice numeric(8,2),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), %L, %L,  %L, %L, %L, %L, NULL, %L);', _tablename, _id, _code, _productid, _unitid, _warehouseid, _packagingid, _batchnumber, _quantity,
-	_unitcost, _unitprice, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, NOW(), %L, NOW(), %L, %L, NULL, %L);', _tablename, _id, _productid, _unitid, _warehouseid, _packagingid, _batchnumber, _quantity,
+	_unitcost, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'STK');
 END;
@@ -999,16 +997,32 @@ CREATE OR REPLACE PROCEDURE public."p_UpdateStock"(
 	IN _warehouseid character varying(50),
 	IN _packagingid character varying(50),
 	IN _batchnumber character varying(50),
+	IN _quantity numeric(8,2),
 	IN _unitcost numeric(8,2),
-	IN _unitprice numeric(8,2),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "WarehouseID" = %L, "PackagingID" = %L, "BatchNumber" = %L, "UnitCost" = %L, "UnitPrice" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _warehouseid,
-	_packagingid, _batchnumber, _unitcost, _unitprice, _description, _id);
+	_sql := FORMAT('UPDATE public.%I SET "WarehouseID" = %L, "PackagingID" = %L, "BatchNumber" = %L, "Quantity" = %L, "UnitCost" = %L, "LastChecked" = NOW(), "Description" = %L WHERE "ID" = %L;',
+	_tablename, _warehouseid, _packagingid, _batchnumber, _quantity, _unitcost, _description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateQuantity(character varying, numeric)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateQuantity"(
+	IN _id character varying(50),
+	IN _quantity numeric(8,2))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "Quantity" = %L WHERE "ID" = %L;', _tablename, _quantity, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;
@@ -1128,12 +1142,12 @@ CREATE OR REPLACE TRIGGER "Remove_StockRelation"
 CREATE TABLE IF NOT EXISTS public."cl_DeliveryNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
-	"DeliveryNumber" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+	"DeliveryNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
 	"Reference" character varying(50) COLLATE pg_catalog."default",
 	"DeliveryDate" timestamp without time zone DEFAULT NOW(),
 	"EditDate" timestamp without time zone DEFAULT NOW(),
 	"IsActive" timestamp without time zone,
-    "Description" text COLLATE pg_catalog."default",
+    "Description" text COLLATE pg_catalog."default"
 )
 
 TABLESPACE pg_default;
@@ -1239,7 +1253,7 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_DeliveryRelations'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _stockid, _deliveryid, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("DeliveryID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _deliveryid, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'SKR');
 END;
@@ -1292,7 +1306,7 @@ CREATE TABLE IF NOT EXISTS public."cl_DispatchNotes"
 	"DispatchDate" timestamp without time zone DEFAULT NOW(),
 	"EditDate" timestamp without time zone DEFAULT NOW(),
 	"IsActive" timestamp without time zone,
-    "Description" text COLLATE pg_catalog."default",
+    "Description" text COLLATE pg_catalog."default"
 )
 
 TABLESPACE pg_default;
@@ -1398,7 +1412,7 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_DispatchRelations'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NULL, %L);', _tablename, _id, _stockid, _dispatchid, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("DispatchID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _dispatchid, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'SKR');
 END;
@@ -1443,17 +1457,21 @@ CREATE OR REPLACE TRIGGER "Remove_DispatchRelation"
 
 -- FUNCTION: public."f_CheckInventory"(character varying);
 
-CREATE OR REPLACE FUNCTION public."f_CheckInventory"(_partnerid character varying(50))
+CREATE OR REPLACE FUNCTION public."f_CheckInventory"(_noteid character varying(50), _partnerid character varying(50))
 	RETURNS boolean
 	LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
 AS $BODY$
 BEGIN
-    IF EXISTS (SELECT 1 FROM public."cl_Suppliers" WHERE "ID" = "PartnerID") OR EXISTS (SELECT 1 FROM public."cl_Customers" WHERE "ID" = "partnerID") THEN
-		RETURN TRUE;
+    IF NOT EXISTS (SELECT 1 FROM public."cl_Suppliers" WHERE "ID" = _partnerid) AND NOT EXISTS (SELECT 1 FROM public."cl_Customers" WHERE "ID" = _partnerid) THEN
+		RETURN FALSE;
 	END IF;
-	RETURN FALSE;
+	--
+	IF NOT EXISTS (SELECT 1 FROM public."cl_DeliveryNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_DispatchNotes" WHERE "ID" = _noteid) THEN
+		RETURN FALSE;
+	END IF;
+	RETURN TRUE;
 END;
 $BODY$;
 
@@ -1462,15 +1480,17 @@ $BODY$;
 CREATE TABLE IF NOT EXISTS public."cl_Inventories"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"NoteID" character varying(50) COLLATE pg_catalog."default" NOT NULL,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"UnitID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Units" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"PartnerID" character varying(50) COLLATE pg_catalog."default" NOT NULL,
 	"InventoryType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("InventoryType" IN ('IN', 'OUT', 'RETURN', 'WASTE', 'INVENT', 'TRANSFER')),
 	"Quantity" numeric(8,2) NOT NULL CHECK ("Quantity" >= 0),
 	"InventDate" timestamp without time zone DEFAULT NOW(),
+	"UnitCost" numeric(8,2) NOT NULL CHECK ("UnitCost" >= 0),
 	"IsActive" timestamp without time zone,
 	"Description" text COLLATE pg_catalog."default",
-	CONSTRAINT "CT_Inventory" CHECK (public."f_CheckInventory"("PartnerID"))
+	CONSTRAINT "CT_Inventory" CHECK (public."f_CheckInventory"("NoteID", "PartnerID"))
 )
 
 TABLESPACE pg_default;
@@ -1478,18 +1498,20 @@ TABLESPACE pg_default;
 -- PROCEDURE: public.p_InsertInventory(character varying, character varying, text)
 
 CREATE OR REPLACE PROCEDURE public."p_InsertInventory"(
+	IN _noteid character varying(50),
 	IN _stockid character varying(50),
 	IN _unitid character varying(50),
 	IN _partnerid character varying(50),
 	IN _inventorytype character varying(50),
 	IN _quantity numeric(8,2),
+	IN _unitcost numeric(8,2),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Inventories'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _stockid, _unitid, _partnerid, _inventorytype, _quantity, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, %L, %L, %L, NOW(), %L, NULL, %L);', _tablename, _id, _noteid, _stockid, _unitid, _partnerid, _inventorytype, _quantity, _unitcost, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'IVT');
 END;
@@ -1667,9 +1689,11 @@ BEGIN
 
 	-- Profiles
 
-	CALL public."p_InsertProfile"('Anonymous F', LOCALTIMESTAMP);
-	CALL public."p_InsertProfile"('Anonymous M', LOCALTIMESTAMP);
-	CALL public."p_InsertProfile"('Anonymous', LOCALTIMESTAMP);
+	SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CMR';
+	SELECT "ID" INTO _appid FROM public."cl_Cities" WHERE "Name" = 'DLA';
+	CALL public."p_InsertProfile"('Anonymous F', LOCALTIMESTAMP, _id, _appid);
+	CALL public."p_InsertProfile"('Anonymous M', LOCALTIMESTAMP, _id, _appid);
+	CALL public."p_InsertProfile"('Anonymous', LOCALTIMESTAMP, _id, _appid);
 
 	-- Insert TitleRelations
 
@@ -1850,7 +1874,7 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Farenheit');
 	--
 	CALL public."p_InsertUnit"('Celsius', '°C');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Degree Celsius';
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Celsius';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Degree Celsius');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Degree Celsius');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Degré Celsius');
@@ -1874,19 +1898,19 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dollar US');
 	--
 	CALL public."p_InsertUnit"('EURO', '€');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Euro';
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'EURO';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Euro');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Euro');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Euro');
 	--
 	CALL public."p_InsertUnit"('XAF', 'CFAF');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'CFAF';
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'XAF';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'CFAF');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'CFAF');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'FCFA');
 	--
 	CALL public."p_InsertUnit"('XOF', 'CFAF');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'CFAF';
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'XOF';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'CFAF');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'CFAF');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'FCFA');
@@ -2009,11 +2033,11 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Dosage');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Dosage');
 	--
-	CALL public."p_InsertProductAttribute"('Drug route', 'text');
+	/*CALL public."p_InsertProductAttribute"('Drug route', 'text');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Drug route';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Drug route');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Drug route');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Voie d''Administration');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Voie d''Administration');*/
 	--
 	CALL public."p_InsertProductAttribute"('Galenics', 'text');
 	SELECT "ID" INTO _id FROM public."cl_ProductAttributes" WHERE "Name" = 'Galenics';

@@ -24,26 +24,25 @@ class CivilityController extends BaseController
     /**
      * @throws Exception
      */
-    public function Get(): ?EntityCollectable
+    public function Get(): ?array
     {
-        $arr = [
-            Civility::class => $this->service->GetCivilities(),
-            Gender::class => $this->service->GetGenders(),
-            Occupation::class => $this->service->GetOccupations(),
-            Title::class => $this->service->GetTitles(),
-            Status::class => $this->service->GetStatuses()
+        return [
+            'Civilities' => $this->service->GetCivilities(),
+            'Genders' => $this->service->GetGenders(),
+            'Occupations' => $this->service->GetOccupations(),
+            'Titles' => $this->service->GetTitles(),
+            'Statuses' => $this->service->GetStatuses()
         ];
-        return new EntityCollectable($arr);
     }
 
     public function GetAll(string $type): ?EntityCollectable
     {
         return match ($type){
-            Civility::class => $this->service->GetCivilities(),
-            Gender::class => $this->service->GetGenders(),
-            Occupation::class => $this->service->GetOccupations(),
-            Title::class => $this->service->GetTitles(),
-            Status::class => $this->service->GetStatuses()
+            'Civilities' => $this->service->GetCivilities(),
+            'Genders' => $this->service->GetGenders(),
+            'Occupations' => $this->service->GetOccupations(),
+            'Titles' => $this->service->GetTitles(),
+            'Statuses' => $this->service->GetStatuses()
         };
     }
 }

@@ -35,8 +35,11 @@ class Linq extends AbstractCls
 
     /* Public methods */
 
-    public function constraint(string $constraintType, string $constraint): ?string
+    public function constraint(string $constraintType, ?string $constraint): ?string
     {
+        if (is_null($constraint))
+            return null;
+
         $constraint = trim($constraint);
 
         if (!in_array($constraintType, $this->classes))
@@ -119,7 +122,7 @@ class Linq extends AbstractCls
         return $str;
     }
 
-    public function constraintType(?string $constraint): ?string
+    public function constraintType(?string $constraint): string
     {
         if (is_null($constraint))
             return 'none';
@@ -129,7 +132,7 @@ class Linq extends AbstractCls
             if (preg_match('/'.$str.'/mi', $constraint) == 1)
                 return $class;
         }
-        return null;
+        return 'none';
     }
 
     public function constraintTable(?string $constraint): ?string
@@ -186,7 +189,7 @@ class Linq extends AbstractCls
                     if (preg_match('/^VALUE\s+IN\s+\((?<items>.+)\)$/mi', $constraint, $matches) != 1)
                         return null;
 
-                    $str = sprintf('LIST(%s)', implode(',', $matches['items']));
+                    $str = sprintf('LIST(%s)', $matches['items']);
                 }
                 break;
             case '<':

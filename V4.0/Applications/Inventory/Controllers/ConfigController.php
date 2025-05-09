@@ -2,6 +2,7 @@
 
 namespace APP_Inventory_Controller;
 
+use API_Administration_Controller\CountryController;
 use API_Inventory_Controller\CustomerController;
 use API_Inventory_Controller\ManufacturerController;
 use API_Inventory_Controller\PackagingController;
@@ -9,13 +10,18 @@ use API_Inventory_Controller\ProductController;
 use API_Inventory_Controller\SupplierController;
 use API_Inventory_Controller\UnitController;
 use API_Inventory_Controller\WarehouseController;
+use API_Profiling_Controller\CivilityController;
+use API_Profiling_Controller\ContactController;
 use APP_Administration_Controller\Controller;
 use APP_Inventory_Model\ConstraintTypeModel;
+use APP_Inventory_Model\ContactModel;
+use APP_Inventory_Model\CustomerModel;
 use APP_Inventory_Model\ManufacturerModel;
 use APP_Inventory_Model\PackagingModel;
 use APP_Inventory_Model\ProductAttributeModel;
 use APP_Inventory_Model\ProductCategoryModel;
 use APP_Inventory_Model\ProductModel;
+use APP_Inventory_Model\SupplierModel;
 use APP_Inventory_Model\UnitModel;
 use APP_Inventory_Model\WarehouseModel;
 use Exception;
@@ -32,11 +38,15 @@ class ConfigController extends Controller
     private ManufacturerController $manufacturerController;
     private UnitController $unitController;
     private PackagingController $packagingController;
+    private CivilityController $civilityController;
     private CustomerController $customerController;
     private SupplierController $supplierController;
+    private ContactController $contactController;
+    private CountryController $countryController;
 
     public function __construct(ProductController $_productController, WarehouseController $_warehouseController, ManufacturerController $_manufacturerController,
-    UnitController $_unitController, PackagingController $_packagingController, CustomerController $_customerController, SupplierController $_supplierController)
+    UnitController $_unitController, PackagingController $_packagingController, CivilityController $_civilityController, CustomerController $_customerController,
+    SupplierController $_supplierController, ContactController $_contactController, CountryController $_countryController)
     {
         $this->urlGenerator = new UrlGenerator(dirname(__DIR__, 2).'\Assets\Data\json\config.json');
         parent::__construct($this->urlGenerator);
@@ -50,8 +60,11 @@ class ConfigController extends Controller
         $this->manufacturerController = $_manufacturerController;
         $this->unitController = $_unitController;
         $this->packagingController = $_packagingController;
+        $this->civilityController = $_civilityController;
         $this->customerController = $_customerController;
         $this->supplierController = $_supplierController;
+        $this->contactController = $_contactController;
+        $this->countryController = $_countryController;
     }
 
     /* Methods */
@@ -746,94 +759,174 @@ class ConfigController extends Controller
      */
     public function LoadCustomer(string $_customerId): void
     {
-        $customer = $this->customerController->GetById($_customerId);
-
-
-
-        $packaging = $this->packagingController->GetById($_packagingId);
-        $relations = $packaging->LanguageRelations();
-        $languages = $this->languageController->Get();
-        $arr = ['Id' => $packaging->It()->Id, 'Name' => $packaging->It()->Name, 'Description' => $packaging->It()->Description];
-        foreach ($relations as $relation) {
-            $langId = $relation->LangId;
-            $label = $languages->FirstOrDefault(fn($n) => $n->It()->Id == $langId)->It()->Label;
-            $arr[$label] = $relation->Label;
-        }
-        echo json_encode($arr);
-        exit;
     }
 
     /**
      * @throws ReflectionException
      */
-    public function Packaging(): void
+    public function Customer(): void
     {
         $languages = $this->languageController->Get();
         $apps = $this->config["apps"];
         $components = $this->config["components"];
-        $component = $this->getFlashMessage('component', 'NewPackaging');
+        $component = $this->getFlashMessage('component', 'NewCustomer');
         $ft = [
             'app' => $this->urlGenerator->application($_SERVER['REQUEST_URI']),
             'ctrl' => $this->urlGenerator->controller($_SERVER['REQUEST_URI']),
             'action' => $this->urlGenerator->action($_SERVER['REQUEST_URI'])
         ];
-        $this->view('Packaging', ['languages' => $languages, 'apps' => $apps, 'components' => $components, 'component' => $component, 'ft' => $ft]);
+        $this->view('Customer', ['languages' => $languages, 'apps' => $apps, 'components' => $components, 'component' => $component, 'ft' => $ft]);
+    }
+
+    /**
+     * @throws ReflectionException
+     * @throws Exception
+     */
+    public function NewCustomer(): void
+    {
+        $customers = $this->customerController->Get();
+        $civilities = $this->civilityController->Get();
+        $contactTypes = $this->contactController->GetTypes();
+        $countries = $this->countryController->Get();
+        $cities = $this->countryController->GetCities();
+        $components = $this->config["components"];
+        $languages = $this->languageController->Get();
+        $this->viewComponent('NewCustomer', ['customers' => $customers, 'civilities' => $civilities, 'contactTypes' => $contactTypes, 'countries' => $countries,
+            'cities' => $cities, 'languages' => $languages, 'components' => $components]);
     }
 
     /**
      * @throws ReflectionException
      */
-    public function NewPackaging(): void
+    public function ModifyCustomer(): void
     {
-        $packagings = $this->packagingController->Get();
-        $components = $this->config["components"];
-        $languages = $this->languageController->Get();
-        $this->viewComponent('NewPackaging', ['packagings' => $packagings, 'languages' => $languages, 'components' => $components]);
     }
 
     /**
      * @throws ReflectionException
      */
-    public function ModifyPackaging(): void
+    public function DeleteCustomer(): void
     {
-        $packagings = $this->packagingController->Get();
-        $components = $this->config["components"];
-        $languages = $this->languageController->Get();
-        $this->viewComponent('ModifyPackaging', ['packagings' => $packagings, 'languages' => $languages, 'components' => $components]);
-    }
-
-    /**
-     * @throws ReflectionException
-     */
-    public function DeletePackaging(): void
-    {
-        $packagings = $this->packagingController->Get();
-        $components = $this->config["components"];
-        $languages = $this->languageController->Get();
-        $this->viewComponent('DeletePackaging', ['packagings' => $packagings, 'languages' => $languages, 'components' => $components]);
     }
 
     /**
      * @throws Exception
      */
-    public function AddPackaging(PackagingModel $model): void
+    public function AddCustomer(CustomerModel $model): void
     {
-        $this->packagingController->Set($model);
-        $this->redirectToAction('Packaging');
+        $contacts = [];
+        foreach ($model->contacts as $contact){
+            if (empty($contact['contact'])) continue;
+            $item = new ContactModel();
+            $item->contacttypeid = $contact['contacttypeid'];
+            $item->contactname = $contact['contactname'];
+            $item->contactphoto = $contact['contactphoto'];
+            $item->contacts['FR'] = $contact['contact'];
+            $item->contacts['US'] = $contact['contact'];
+            $contacts[] = $item;
+        }
+        $model->contacts = $contacts;
+        $this->customerController->Set($model);
+        $this->redirectToAction('Customer');
     }
 
     /**
      * @throws Exception
      */
-    public function UpdatePackaging(PackagingModel $model): void
+    public function UpdateCustomer(CustomerModel $model): void
     {
-        $this->packagingController->Put($model);
-        $this->setFlashMessage('component', 'ModifyPackaging');
-        $this->redirectToAction('Packaging');
     }
 
-    public function RemovePackaging(string $packagingId): void
+    public function RemoveCustomer(string $customerId): void
     {
-        $this->packagingController->Delete($packagingId);
+    }
+
+    // Load Suppliers
+
+    /**
+     * @throws Exception
+     */
+    public function LoadSupplier(string $_supplierId): void
+    {
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function Supplier(): void
+    {
+        $languages = $this->languageController->Get();
+        $apps = $this->config["apps"];
+        $components = $this->config["components"];
+        $component = $this->getFlashMessage('component', 'NewSupplier');
+        $ft = [
+            'app' => $this->urlGenerator->application($_SERVER['REQUEST_URI']),
+            'ctrl' => $this->urlGenerator->controller($_SERVER['REQUEST_URI']),
+            'action' => $this->urlGenerator->action($_SERVER['REQUEST_URI'])
+        ];
+        $this->view('Supplier', ['languages' => $languages, 'apps' => $apps, 'components' => $components, 'component' => $component, 'ft' => $ft]);
+    }
+
+    /**
+     * @throws ReflectionException
+     * @throws Exception
+     */
+    public function NewSupplier(): void
+    {
+        $suppliers = $this->supplierController->Get();
+        $civilities = $this->civilityController->Get();
+        $contactTypes = $this->contactController->GetTypes();
+        $countries = $this->countryController->Get();
+        $cities = $this->countryController->GetCities();
+        $components = $this->config["components"];
+        $languages = $this->languageController->Get();
+        $this->viewComponent('NewSupplier', ['suppliers' => $suppliers, 'civilities' => $civilities, 'contactTypes' => $contactTypes, 'countries' => $countries,
+            'cities' => $cities, 'languages' => $languages, 'components' => $components]);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function ModifySupplier(): void
+    {
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function DeleteSupplier(): void
+    {
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function AddSupplier(SupplierModel $model): void
+    {
+        $contacts = [];
+        foreach ($model->contacts as $contact){
+            if (empty($contact['contact'])) continue;
+            $item = new ContactModel();
+            $item->contacttypeid = $contact['contacttypeid'];
+            $item->contactname = $contact['contactname'];
+            $item->contactphoto = $contact['contactphoto'];
+            $item->contacts['FR'] = $contact['contact'];
+            $item->contacts['US'] = $contact['contact'];
+            $contacts[] = $item;
+        }
+        $model->contacts = $contacts;
+        $this->supplierController->Set($model);
+        $this->redirectToAction('Supplier');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function UpdateSupplier(SupplierModel $model): void
+    {
+    }
+
+    public function RemoveSupplier(string $supplierId): void
+    {
     }
 }

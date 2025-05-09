@@ -10,10 +10,10 @@ class Stock extends DTOBase
     public string $ProductId;
     public string $UnitId;
     public string $WarehouseId;
+    public string $PackagingId;
     public DateTime $StockDate;
     public string $BatchNumber;
     public DateTime $LastChecked;
     public float $Quantity;
     public float $UnitCost;
-    public float $UnitPrice;
 }

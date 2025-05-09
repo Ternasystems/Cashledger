@@ -13,7 +13,7 @@ use ReflectionException;
 
 class DeliveryNoteFactory extends CollectableFactory
 {
-    protected Stocks $stocks;
+    protected StockFactory $stockFactory;
     protected DeliveryRelationRepository $deliveryRelations;
 
     /**
@@ -22,8 +22,7 @@ class DeliveryNoteFactory extends CollectableFactory
     public function __construct(DeliveryNoteRepository $repository, StockFactory $_stockFactory, DeliveryRelationRepository $_deliveryRelations)
     {
         parent::__construct($repository, null);
-        $_stockFactory->Create();
-        $this->stocks = $_stockFactory->Collectable();
+       $this->stockFactory = $_stockFactory;
         $this->deliveryRelations = $_deliveryRelations;
     }
 
@@ -34,12 +33,18 @@ class DeliveryNoteFactory extends CollectableFactory
     public function Create(): void
     {
         $collection = $this->repository->GetAll();
+        if (is_null($collection))
+            return;
+
         $colArray = [];
+        $this->stockFactory->Create();
+        $stocks = $this->stockFactory->Collectable();
+        //
         foreach ($collection as $item) {
             $deliveryRelations = $this->deliveryRelations->GetAll()->Where(fn($n) => $n->DeliveryId == $item->Id);
             $stockArray = [];
             foreach ($deliveryRelations as $deliveryRelation)
-                $stockArray[] = $this->stocks->FirstOrDefault(fn($n) => $n->Id == $deliveryRelation->StockId);
+                $stockArray[] = $stocks->FirstOrDefault(fn($n) => $n->It()->Id == $deliveryRelation->StockId);
             //
             $_stocks = new Stocks($stockArray);
             $colArray[] = new DeliveryNote($item, $_stocks);
@@ -50,7 +55,7 @@ class DeliveryNoteFactory extends CollectableFactory
 
     public function Collectable(): ?DeliveryNotes
     {
-        return $this->collectable;
+        return $this->collectable ?? null;
     }
 
     public function Repository(): DeliveryNoteRepository

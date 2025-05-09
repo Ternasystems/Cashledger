@@ -26,7 +26,7 @@ class DTOContext extends DBContext
     private string $appcategory = 'cl_AppCategories';
     private string $audit = 'cl_Audits';
     private string $city = 'cl_Cities';
-    private string $continent = 'cl_continents';
+    private string $continent = 'cl_Continents';
     private string $country = 'cl_Countries';
     private string $language = 'cl_Languages';
 
@@ -63,7 +63,9 @@ class DTOContext extends DBContext
         $this->propertyMap = [
             'ID' => 'Id',
             'ContinentID' => 'ContinentId',
-            'CountryID' => 'CountryId'
+            'CountryID' => 'CountryId',
+            'ISO2' => 'Iso2',
+            'ISO3' => 'Iso3'
         ];
     }
 }

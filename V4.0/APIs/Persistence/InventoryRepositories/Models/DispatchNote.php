@@ -10,4 +10,5 @@ class DispatchNote extends DTOBase
     public string $DispatchNumber;
     public ?string $Reference;
     public DateTime $DispatchDate;
+    public DateTime $EditDate;
 }

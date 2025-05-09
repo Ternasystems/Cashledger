@@ -12,10 +12,13 @@ class CustomerModel
     public ?string $maidenname;
     public string $lastname;
     public DateTime $birthdate;
+    public string $countryid;
+    public string $cityid;
     public array $civilities;
     public ?string $photo;
 
     // Contact data
+    public array $contacts;
 
     // Customer data
     public ?string $customerid;

@@ -47,12 +47,12 @@ class InventoryService implements IInventoryService
     public function SetInventory(object $model): void
     {
         $repository = $this->inventoryFactory->Repository();
-        $repository->Add(\API_InventoryRepositories_Model\Inventory::class, array($model->stockid, $model->unitid, $model->partnerid, $model->inventorytype,
-            $model->quantity, $model->desc));
-        $this->inventoryFactory->Create();
-        $id = $this->inventoryFactory->Collectable()->FirstOrDefault(fn($n) => $n->stockid == $model->stockid)->It()->Id;
+        $repository->Add(\API_InventoryRepositories_Model\Inventory::class, array($model->noteid, $model->stockid, $model->unitid, $model->partnerid, $model->inventorytype,
+            $model->quantity, $model->unitcost, $model->inventdesc ?? null));
+        $id = $repository->LastOrDefault(fn($n) => $n->StockId == $model->stockid)->Id;
         //
         $this->inventoryRelations->Add(InventoryRelation::class, array($id, $model->credentialid));
+        $this->inventoryFactory->Create();
     }
 
     /**

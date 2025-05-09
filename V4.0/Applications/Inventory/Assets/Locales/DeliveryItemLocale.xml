@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="HeaderProduct">Produit</item>
+        <item app="Inventory" action="StockIn" name="HeaderBatch">Numéro de lot</item>
+        <item app="Inventory" action="StockIn" name="HeaderQty">Quantité</item>
+        <item app="Inventory" action="StockIn" name="HeaderCost">Coût unitaire</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Coût total</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
+        <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
+        <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
+        <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
+        <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
+        <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
+        <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
+        <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
+        <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
+        <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
+    </ar-SA>
+</locale>

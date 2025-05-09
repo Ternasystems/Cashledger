@@ -7,10 +7,12 @@ use DateTime;
 
 class Inventory extends DTOBase
 {
+    public string $NoteId;
     public string $StockId;
     public string $UnitId;
     public string $PartnerId;
-    public string $InventoryType;
+    public InventoryType $InventoryType;
     public float $Quantity;
     public DateTime $InventDate;
+    public float $UnitCost;
 }

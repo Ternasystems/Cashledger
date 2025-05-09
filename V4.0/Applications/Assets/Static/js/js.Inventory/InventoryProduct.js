@@ -44,6 +44,7 @@ $(function (){
         else
             $('#attributes').removeClass('ts-disabled');
         //
+        $(form).find('select[name="attributes"]').val('0');
         $('[data-class="formelement"]').parent().remove();
     });
 
@@ -105,7 +106,6 @@ $(function (){
 
         $.loadResources('Inventory', 'Config', 'LoadProduct', { _productId: id })
             .then(data => {
-                console.log(data);
                 // Update basic fields
                 $(form).find('input[name="productname"]').val(data.Name);
                 $(form).find('input[name="productid"]').val(id);
@@ -137,7 +137,7 @@ $(function (){
             .catch(console.error);
     });
 
-// Helper: Sequentially select attributes and wait for AJAX + DOM updates
+    // Helper: Sequentially select attributes and wait for AJAX + DOM updates
     async function selectAttributesAsync(form, attributes) {
         const $select = $(form).find('select[name="attributes"]');
         const attributeKeys = Object.keys(attributes);
@@ -151,7 +151,7 @@ $(function (){
         });
     }
 
-// Helper: Set values for dynamically loaded inputs
+    // Helper: Set values for dynamically loaded inputs
     async function setAttributeInputValues(form, attributes) {
         for (const attr of Object.keys(attributes)) {
             await waitForInput(form, attr); // Wait until input is in the DOM
@@ -161,7 +161,7 @@ $(function (){
         }
     }
 
-// Helper: Wait for the input to exist in the DOM (max 500ms)
+    // Helper: Wait for the input to exist in the DOM (max 500ms)
     function waitForInput(form, attr) {
         return new Promise(resolve => {
             const selector = `[data-class="formelement"][id="${attr}"]`;

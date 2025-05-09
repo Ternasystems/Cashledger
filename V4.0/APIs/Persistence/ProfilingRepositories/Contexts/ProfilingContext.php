@@ -91,7 +91,9 @@ class ProfilingContext extends DBContext
             'ContactTypeID' => 'ContactTypeId',
             'ProfileID' => 'ProfileId',
             'SessionID' => 'SessionId',
-            'IP' => 'Ip'
+            'IP' => 'Ip',
+            'CountryID' => 'CountryId',
+            'CityID' => 'CityId'
         ];
     }
 }

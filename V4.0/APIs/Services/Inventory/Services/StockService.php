@@ -2,6 +2,7 @@
 
 namespace API_Inventory_Service;
 
+use API_Inventory_Contract\IInventoryService;
 use API_Inventory_Contract\IPackagingService;
 use API_Inventory_Contract\IProductService;
 use API_Inventory_Contract\IStockService;
@@ -94,16 +95,26 @@ class StockService implements IStockService
      */
     public function SetStock(object $model): void
     {
+        $this->stockFactory->Create();
+        $stock = $this->stockFactory->Collectable()?->FirstOrDefault(fn($n) => $n->It()->ProductId == $model->productid && $n->It()->WarehouseId == $model->warehouseid &&
+        $n->It()->PackagingId == $model->packagingid && $n->It()->BatchNumber == $model->batchnumber);
+        if (!is_null($stock)){
+            $model->stockid = $stock->It()->Id;
+            $model->stockquantity += $stock->It()->Quantity;
+            $this->PutStock($model);
+            return;
+        }
+        //
         $repository = $this->stockFactory->Repository();
         $repository->Add(\API_InventoryRepositories_Model\Stock::class, array($model->productid, $model->unitid, $model->warehouseid, $model->packagingid,
-            $model->batchnumber, $model->quantity, $model->unitcost, $model->unitprice, $model->desc));
+            $model->batchnumber, $model->stockquantity, $model->unitcost));
         $this->stockFactory->Create();
         //
-        //
-        if (count($model->attributes) == 0)
+        if (!isset($model->attributes))
             return;
 
-        $id = $this->stockFactory->Collectable()->FirstOrDefault(fn($n) => $n->ProductId == $model->productid)->It()->Id;
+        $id = $this->stockFactory->Collectable()->FirstOrDefault(fn($n) => $n->ProductId == $model->productid && $n->WarehouseId == $model->warehouseid && $n->PackagingId ==
+        $model->packagingid && $n->BatchNumber == $model->batchnumber)->It()->Id;
         foreach ($model->attributes as $key => $attribute)
             $this->stockRelationRepository->Add(StockRelation::class, array($key, $id, $attribute));
     }
@@ -116,15 +127,33 @@ class StockService implements IStockService
     {
         $repository = $this->stockFactory->Repository();
         $repository->Update(\API_InventoryRepositories_Model\Stock::class, array($model->stockid, $model->warehouseid, $model->packagingid, $model->batchnumber,
-            $model->unitcost, $model->unitprice, $model->desc));
+            $model->stockquantity, $model->unitcost, $model->desc ?? null));
         //
         $this->stockFactory->Create();
         //
-        foreach ($this->stockRelationRepository->GetBy(fn($n) => $n->StockId == $model->stockid) as $stockRelation)
-            $this->stockRelationRepository->Remove(StockRelation::class, array($stockRelation->Id));
+        if (!is_null($this->stockRelationRepository->GetAll())){
+            foreach ($this->stockRelationRepository->GetBy(fn($n) => $n->StockId == $model->stockid) as $stockRelation)
+                $this->stockRelationRepository->Remove(StockRelation::class, array($stockRelation->Id));
+        }
         //
+        if (!isset($model->attributes))
+            return;
+
         foreach ($model->attributes as $key => $attribute)
             $this->stockRelationRepository->Add(StockRelation::class, array($key, $model->stockid, $attribute));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function DispatchStock(object $model): void
+    {
+        $this->stockFactory->Create();
+        $repository = $this->stockFactory->Repository();
+        $stock = $this->stockFactory->Collectable()?->FirstOrDefault(fn($n) => $n->It()->Id == $model->stockid);
+        $stock->It()->Quantity -= $model->stockquantity;
+        $repository->UpdateQuantity($stock->It()->Id, $stock->It()->Quantity);
+        $this->stockFactory->Create();
     }
 
     /**

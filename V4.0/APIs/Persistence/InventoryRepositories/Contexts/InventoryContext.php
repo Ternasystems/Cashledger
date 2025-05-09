@@ -95,10 +95,15 @@ class InventoryContext extends DBContext
             'ID' => 'Id',
             'ProfileID' => 'ProfileId',
             'CategoryID' => 'CategoryId',
+            'ProductID' => 'ProductId',
             'UnitID' => 'UnitId',
+            'WarehouseID' => 'WarehouseId',
+            'PackagingID' => 'PackagingId',
             'StockID' => 'StockId',
             'DeliveryID' => 'DeliveryId',
-            'DispatchID' => 'DispatchId'
+            'DispatchID' => 'DispatchId',
+            'PartnerID' => 'PartnerId',
+            'NoteID' => 'NoteId'
         ];
     }
 }
