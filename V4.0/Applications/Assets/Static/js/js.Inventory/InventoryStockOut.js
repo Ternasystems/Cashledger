@@ -28,6 +28,22 @@ $(function (){
             $(this).submit();
     });
 
+    $(body).on('click', '#dispatch-list .form-row', function (){
+        let dispatchId = $(this).attr('data-id'), item = $(this);
+        $(item).toggleClass('ts-active');
+        $.ajax({
+            url: 'AddListItem',
+            method: 'POST',
+            data: {dispatchId: dispatchId},
+            success: function (response){
+                if ($(item).hasClass('ts-active'))
+                    $(item).after(response);
+                else
+                    $(item).next().remove();
+            }
+        });
+    });
+
     $(body).on('change', '#productid', function (){
         let productId = $(this).find('option:selected').attr('value'), target = $('#stock-item');
         $('#stock-item').empty();

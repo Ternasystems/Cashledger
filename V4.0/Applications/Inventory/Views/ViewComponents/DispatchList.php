@@ -41,12 +41,12 @@ $Localizer = [
         <?php
         if (isset($dispatches)) {
             foreach ($dispatches as $dispatch) {
-                $collection = $inventories->Where(fn($n) => $n->It()->NoteId == $dispatch->It()->Id);
+                $collection = $inventories->Where(fn($n) => $n->It()->NoteId == $dispatch->It()->Id && $n->It()->InventoryType->value == 'OUT');
                 $total = 0;
                 foreach ($collection as $item)
                     $total += $item->It()->UnitCost * $item->It()->Quantity;
                 ?>
-                <div class="form-row">
+                <div class="form-row" data-id="<?= $dispatch->It()->Id ?>">
                     <div><?= $formatter->format($dispatch->It()->DispatchDate); ?></div>
                     <div><?= $dispatch->It()->DispatchNumber; ?></div>
                     <div><?= $dispatch->It()->Reference; ?></div>

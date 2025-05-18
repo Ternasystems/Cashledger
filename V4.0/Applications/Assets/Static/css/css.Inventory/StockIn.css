@@ -144,6 +144,10 @@ form .form-row .bi-trash-fill:hover {
     grid-template-columns: repeat(5, 1fr);
 }
 
-#delivery-items .delivery-item:nth-of-type(2n+1) {
-    background-color: gainsboro;
+#delivery-items .delivery-item {
+    padding: 5px 0;
+}
+
+#delivery-items .delivery-item + .delivery-item {
+    border-top: thin dashed var(--bs-dark-bg-subtle);
 }

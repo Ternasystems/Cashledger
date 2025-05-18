@@ -39,9 +39,10 @@ $Localizer = [
         $stockId = $inventory->It()->StockId;
         $productId = $stocks->FirstOrDefault(fn($n) => $n->It()->Id == $stockId)->It()->ProductId;
         $product = $products->FirstOrDefault(fn($n) => $n->It()->Id == $productId);
+        $label = $product->LanguageRelations()->FirstOrDefault(fn($n) => $n->LangId == $langId)->Label;
         ?>
     <div class="delivery-item">
-        <div><?= $product->It()->Name; ?></div>
+        <div><?= $label ?></div>
         <div><?= $stocks->FirstOrDefault(fn($n) => $n->It()->Id == $stockId)->It()->BatchNumber ?></div>
         <div class="text-end"><?= $numberFormatter->format($inventory->It()->Quantity) ?></div>
         <div class="text-end"><?= $currencyFormatter->format($inventory->It()->UnitCost) ?></div>

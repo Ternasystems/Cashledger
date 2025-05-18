@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="Inventory" name="StockId">ID</item>
+        <item app="Inventory" action="Inventory" name="ProductLabel">Nom du produit</item>
+        <item app="Inventory" action="Inventory" name="BatchNumber">Numéro de lot</item>
+        <item app="Inventory" action="Inventory" name="StockDate">Date du stock</item>
+        <item app="Inventory" action="Inventory" name="LastChecked">Dernière MAJ</item>
+        <item app="Inventory" action="Inventory" name="Quantity">Quantité</item>
+        <item app="Inventory" action="Inventory" name="Warehouse">Magasin</item>
+        <item app="Inventory" action="Inventory" name="Packaging">Conditionnement</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="Customer">Client</item>
+        <item app="Inventory" action="Inventory" name="Supplier">Fournisseur</item>
+        <item app="Inventory" action="Inventory" name="DeliveryNote">Bon d'entrée</item>
+        <item app="Inventory" action="Inventory" name="DispatchNote">Bon de sortie</item>
+        <item app="Inventory" action="Inventory" name="UnitCost">Coût unitaire</item>
+        <item app="Inventory" action="Inventory" name="Maiden">epse</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="Inventory" name="StockId">ID</item>
+        <item app="Inventory" action="Inventory" name="ProductLabel">Product label</item>
+        <item app="Inventory" action="Inventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
+        <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
+        <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
+        <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="Customer">Customer</item>
+        <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
+        <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="Inventory" name="StockId">ID</item>
+        <item app="Inventory" action="Inventory" name="ProductLabel">Product label</item>
+        <item app="Inventory" action="Inventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
+        <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
+        <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
+        <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="Customer">Customer</item>
+        <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
+        <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="Inventory" name="StockId">ID</item>
+        <item app="Inventory" action="Inventory" name="ProductLabel">Product label</item>
+        <item app="Inventory" action="Inventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
+        <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
+        <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
+        <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="Customer">Customer</item>
+        <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
+        <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="Inventory" name="StockId">ID</item>
+        <item app="Inventory" action="Inventory" name="ProductLabel">Product label</item>
+        <item app="Inventory" action="Inventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
+        <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
+        <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
+        <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="Customer">Customer</item>
+        <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
+        <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
+        <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
+    </ar-SA>
+</locale>

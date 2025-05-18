@@ -150,3 +150,32 @@ form .form-row .bi-trash-fill:hover {
     border-bottom: thin solid var(--bs-dark-bg-subtle);
     padding: 1rem 0;
 }
+
+#dispatch-list .form-row {
+    cursor: pointer;
+}
+
+#dispatch-list .form-row:hover {
+    background-color: var(--ts-light-blue);
+}
+
+#dispatch-list .form-row.ts-active {
+    background-color: var(--ts-light-blue);
+}
+
+#dispatch-items {
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+#dispatch-items > div {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#dispatch-items .dispatch-item {
+    padding: 5px 0;
+}
+
+#dispatch-items .dispatch-item + .dispatch-item {
+    border-top: thin dashed var(--bs-dark-bg-subtle);
+}

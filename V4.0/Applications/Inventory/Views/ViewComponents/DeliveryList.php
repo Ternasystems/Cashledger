@@ -41,7 +41,7 @@ $Localizer = [
         <?php
         if (isset($deliveries)) {
             foreach ($deliveries as $delivery) {
-                $collection = $inventories->Where(fn($n) => $n->It()->NoteId == $delivery->It()->Id);
+                $collection = $inventories->Where(fn($n) => $n->It()->NoteId == $delivery->It()->Id && $n->It()->InventoryType->value == 'IN');
                 $total = 0;
                 foreach ($collection as $item)
                     $total += $item->It()->UnitCost * $item->It()->Quantity;

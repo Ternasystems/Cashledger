@@ -1174,6 +1174,7 @@ $BODY$;
 
 CREATE OR REPLACE PROCEDURE public."p_UpdateDeliveryNote"(
 	IN _id character varying(50),
+	IN _deliverynumber character varying(50),
 	IN _reference character varying(50) DEFAULT NULL::character varying,
 	IN _deliverydate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
@@ -1325,7 +1326,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _dispatchnumber, _reference, _dispatchdate, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'DLN');
+	CALL public."p_Query"(_sql, _tablename, 'DPN');
 END;
 $BODY$;
 
@@ -1333,6 +1334,7 @@ $BODY$;
 
 CREATE OR REPLACE PROCEDURE public."p_UpdateDispatchNote"(
 	IN _id character varying(50),
+	IN _dispatchnumber character varying(50),
 	IN _reference character varying(50) DEFAULT NULL::character varying,
 	IN _dispatchdate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
@@ -1455,6 +1457,486 @@ CREATE OR REPLACE TRIGGER "Remove_DispatchRelation"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
 
+-- Table: public.cl_ReturnNotes
+
+CREATE TABLE IF NOT EXISTS public."cl_ReturnNotes"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"ReturnNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
+	"Reference" character varying(50) COLLATE pg_catalog."default",
+	"ReturnDate" timestamp without time zone DEFAULT NOW(),
+	"EditDate" timestamp without time zone DEFAULT NOW(),
+	"IsActive" timestamp without time zone,
+    "Description" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertReturnNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertReturnNote"(
+	IN _returnnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _returndate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReturnNotes'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _returnnumber, _reference, _returndate, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'RTN');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateReturnNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateReturnNote"(
+	IN _id character varying(50),
+	IN _returnnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _returndate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReturnNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "ReturnNumber" = %L, "Reference" = %L, "ReturnDate" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _returnnumber, _reference, _returndate,
+	_description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteReturnNote(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteReturnNote"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReturnNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "IsActive" = NOW() WHERE "ID" = %L;', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- Trigger: Delete_ReturnNote
+
+CREATE OR REPLACE TRIGGER "Delete_ReturnNote"
+    BEFORE DELETE
+    ON public."cl_ReturnNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_ReturnNote
+
+CREATE OR REPLACE TRIGGER "Insert_ReturnNote"
+    BEFORE INSERT
+    ON public."cl_ReturnNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Update_ReturnNote
+
+CREATE OR REPLACE TRIGGER "Update_ReturnNote"
+    BEFORE UPDATE 
+    ON public."cl_ReturnNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Table: public.cl_ReturnRelations
+
+CREATE TABLE IF NOT EXISTS public."cl_ReturnRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"ReturnID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_ReturnNotes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default",
+	CONSTRAINT "UQ_ReturnRelation" UNIQUE ("ReturnID", "StockID")
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertReturnRelation(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertReturnRelation"(
+	IN _stockid character varying(50),
+	IN _returnid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReturnRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("ReturnID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _returnid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'RTR');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteReturnRelation(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteReturnRelation"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReturnRelations';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+END;
+$BODY$;
+
+-- Trigger: Update_ReturnRelation
+
+CREATE OR REPLACE TRIGGER "Update_ReturnRelation"
+	BEFORE UPDATE
+	ON public."cl_ReturnRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_ReturnRelation
+
+CREATE OR REPLACE TRIGGER "Insert_ReturnRelation"
+    BEFORE INSERT
+    ON public."cl_ReturnRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_ReturnRelation
+
+CREATE OR REPLACE TRIGGER "Remove_ReturnRelation"
+    BEFORE DELETE
+    ON public."cl_ReturnRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Table: public.cl_WasteNotes
+
+CREATE TABLE IF NOT EXISTS public."cl_WasteNotes"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"WasteNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
+	"Reference" character varying(50) COLLATE pg_catalog."default",
+	"WasteDate" timestamp without time zone DEFAULT NOW(),
+	"EditDate" timestamp without time zone DEFAULT NOW(),
+	"IsActive" timestamp without time zone,
+    "Description" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertWasteNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertWasteNote"(
+	IN _inventnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _inventdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_WasteNotes'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _inventnumber, _reference, _inventdate, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'WSN');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateWasteNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateWasteNote"(
+	IN _id character varying(50),
+	IN _inventnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _inventdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_WasteNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "WasteNumber" = %L, "Reference" = %L, "WasteDate" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _inventnumber, _reference, _inventdate,
+	_description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteWasteNote(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteWasteNote"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_WasteNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "IsActive" = NOW() WHERE "ID" = %L;', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- Trigger: Delete_WasteNote
+
+CREATE OR REPLACE TRIGGER "Delete_WasteNote"
+    BEFORE DELETE
+    ON public."cl_WasteNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_WasteNote
+
+CREATE OR REPLACE TRIGGER "Insert_WasteNote"
+    BEFORE INSERT
+    ON public."cl_WasteNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Update_WasteNote
+
+CREATE OR REPLACE TRIGGER "Update_WasteNote"
+    BEFORE UPDATE 
+    ON public."cl_WasteNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Table: public.cl_WasteRelations
+
+CREATE TABLE IF NOT EXISTS public."cl_WasteRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"WasteID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_WasteNotes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default",
+	CONSTRAINT "UQ_WasteRelation" UNIQUE ("WasteID", "StockID")
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertWasteRelation(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertWasteRelation"(
+	IN _stockid character varying(50),
+	IN _inventid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_WasteRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("WasteID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _inventid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'WSR');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteWasteRelation(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteWasteRelation"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_WasteRelations';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+END;
+$BODY$;
+
+-- Trigger: Update_WasteRelation
+
+CREATE OR REPLACE TRIGGER "Update_WasteRelation"
+	BEFORE UPDATE
+	ON public."cl_WasteRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_WasteRelation
+
+CREATE OR REPLACE TRIGGER "Insert_WasteRelation"
+    BEFORE INSERT
+    ON public."cl_WasteRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_WasteRelation
+
+CREATE OR REPLACE TRIGGER "Remove_WasteRelation"
+    BEFORE DELETE
+    ON public."cl_WasteRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Table: public.cl_InventNotes
+
+CREATE TABLE IF NOT EXISTS public."cl_InventNotes"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"InventNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
+	"Reference" character varying(50) COLLATE pg_catalog."default",
+	"InventDate" timestamp without time zone DEFAULT NOW(),
+	"EditDate" timestamp without time zone DEFAULT NOW(),
+	"IsActive" timestamp without time zone,
+    "Description" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertInventNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertInventNote"(
+	IN _inventnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _inventdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_InventNotes'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _inventnumber, _reference, _inventdate, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'WSN');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateInventNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateInventNote"(
+	IN _id character varying(50),
+	IN _inventnumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _inventdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_InventNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "InventNumber" = %L, "Reference" = %L, "InventDate" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _inventnumber, _reference, _inventdate,
+	_description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteInventNote(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteInventNote"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_InventNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "IsActive" = NOW() WHERE "ID" = %L;', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- Trigger: Delete_InventNote
+
+CREATE OR REPLACE TRIGGER "Delete_InventNote"
+    BEFORE DELETE
+    ON public."cl_InventNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_InventNote
+
+CREATE OR REPLACE TRIGGER "Insert_InventNote"
+    BEFORE INSERT
+    ON public."cl_InventNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Update_InventNote
+
+CREATE OR REPLACE TRIGGER "Update_InventNote"
+    BEFORE UPDATE 
+    ON public."cl_InventNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Table: public.cl_InventRelations
+
+CREATE TABLE IF NOT EXISTS public."cl_InventRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"InventID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_InventNotes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default",
+	CONSTRAINT "UQ_InventRelation" UNIQUE ("InventID", "StockID")
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertInventRelation(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertInventRelation"(
+	IN _stockid character varying(50),
+	IN _inventid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_InventRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("InventID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _inventid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'WSR');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteInventRelation(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteInventRelation"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_InventRelations';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+END;
+$BODY$;
+
+-- Trigger: Update_InventRelation
+
+CREATE OR REPLACE TRIGGER "Update_InventRelation"
+	BEFORE UPDATE
+	ON public."cl_InventRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_InventRelation
+
+CREATE OR REPLACE TRIGGER "Insert_InventRelation"
+    BEFORE INSERT
+    ON public."cl_InventRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_InventRelation
+
+CREATE OR REPLACE TRIGGER "Remove_InventRelation"
+    BEFORE DELETE
+    ON public."cl_InventRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
+
 -- FUNCTION: public."f_CheckInventory"(character varying);
 
 CREATE OR REPLACE FUNCTION public."f_CheckInventory"(_noteid character varying(50), _partnerid character varying(50))
@@ -1468,7 +1950,9 @@ BEGIN
 		RETURN FALSE;
 	END IF;
 	--
-	IF NOT EXISTS (SELECT 1 FROM public."cl_DeliveryNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_DispatchNotes" WHERE "ID" = _noteid) THEN
+	IF NOT EXISTS (SELECT 1 FROM public."cl_DeliveryNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_DispatchNotes" WHERE "ID" = _noteid)
+		AND NOT EXISTS (SELECT 1 FROM public."cl_ReturnNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_WasteNotes" WHERE "ID" = _noteid)
+		AND NOT EXISTS (SELECT 1 FROM public."cl_InventNotes" WHERE "ID" = _noteid) THEN
 		RETURN FALSE;
 	END IF;
 	RETURN TRUE;

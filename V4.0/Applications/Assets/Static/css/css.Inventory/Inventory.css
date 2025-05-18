@@ -1,0 +1,173 @@
+@import "../css.Global/Global.css";
+@import "../css.Global/Header.css";
+@import "../css.Global/Navbar.css";
+@import "../css.Global/Footer.css";
+
+/* Content */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+#stock-list, #stock-details {
+    padding: 0 1rem;
+}
+
+#stock-list .form-header, #stock-list .form-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    padding: 1rem 0;
+}
+
+#stock-list .form-header {
+    font-weight: bold;
+}
+
+#stock-list .form-row {
+    cursor: pointer;
+}
+
+#stock-list .form-row:hover {
+    background-color: var(--ts-light-blue);
+}
+
+#stock-list .form-row.ts-active {
+    background-color: var(--ts-light-blue);
+}
+
+#stock-detail, #inventory {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+    grid-column-end: span 2;
+}
+
+#inventory .ts-title {
+    font-weight: bold;
+    border-top: thin solid var(--bs-dark-bg-subtle);
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    background-color: #eee;
+    padding: 0.5rem 1rem;
+}
+
+#inventory .invent-elt + .invent-elt {
+    border-top: 3px solid var(--bs-dark-bg-subtle);
+    margin-top: 1rem;
+}
+
+#stock-detail .stock-elt, #inventory .stock-elt {
+    padding: 0.5rem 1rem;
+}
+
+#stock-detail .stock-elt span, #inventory .stock-elt span {
+    display: block;
+}
+
+#main[data-id="new-stockinventory"] {
+    grid-template-columns: 1fr 3fr;
+}
+
+[data-id="new-stockinventory"] form {
+    padding: 0 1rem;
+}
+
+[data-id="new-stockinventory"] form #form-body {
+    padding: 2rem 0 1rem 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+[data-id="new-stockinventory"] form #form-body > div + div {
+    margin-top: 2rem;
+}
+
+[data-id="new-stockinventory"] form .form-elt {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+[data-id="new-stockinventory"] form .form-elt:last-of-type > * {
+    grid-column-end: span 2;
+    justify-self: right;
+}
+
+[data-id="new-stockinventory"] form#new-stockinventory {
+    background-color: var(--bs-light);
+}
+
+[data-id="new-stockinventory"] form .form-hd, .form-header, .form-row {
+    display: grid;
+}
+
+[data-id="new-stockinventory"] form .form-hd {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 15px;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    padding-bottom: 2rem;
+}
+
+[data-id="new-stockinventory"] form .form-header, .form-row {
+    grid-template-columns: 1fr repeat(6, 3fr) 1fr;
+}
+
+[data-id="new-stockinventory"] form .form-row {
+    align-items: center;
+}
+
+[data-id="new-stockinventory"] form .form-header, .form-row {
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+    padding: 1rem 0;
+}
+
+[data-id="new-stockinventory"] form .form-hd label, .form-header {
+    font-weight: bold;
+}
+
+.stock-item {
+    padding: 5px 10px;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+.stock-item:hover {
+    cursor: pointer;
+}
+
+.stock-item.ts-active {
+    background-color: var(--ts-soft-blue);
+}
+
+.stock-item [data-class="title"] {
+    font-weight: bold;
+}
+
+.stock-item + .stock-item {
+    margin-top: 0.5rem !important;
+}
+
+#no-stock {
+    text-align: center;
+    color: darkred;
+    font-weight: bold;
+    background-color: transparent !important;
+}

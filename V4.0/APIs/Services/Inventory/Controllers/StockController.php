@@ -40,9 +40,24 @@ class StockController extends BaseController
     /**
      * @throws Exception
      */
-    public function GetByProductId(int $productId): ?Stocks
+    public function GetByProductId(string $productId): ?Stocks
     {
         $collection = $this->stockService->GetStocks(fn($n) => $n->It()->ProductId == $productId);
+        if (empty($collection))
+            return null;
+
+        if ($collection instanceof Stock)
+            $collection = new Stocks([$collection]);
+
+        return $collection;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function GetByWarehouseId(string $warehouseId): ?Stocks
+    {
+        $collection = $this->stockService->GetStocks(fn($n) => $n->It()->WarehouseId == $warehouseId);
         if (empty($collection))
             return null;
 

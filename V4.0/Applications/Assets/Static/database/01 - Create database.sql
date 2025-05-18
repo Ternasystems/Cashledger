@@ -49,6 +49,8 @@ CREATE DATABASE "Cashledger"
  * DPN cl_DispatchNotes
  * DPR cl_DispatchRelations
  * GLN cl_Galenics
+ * INN cl_InventNotes
+ * INR cl_InventRelations
  * IVT cl_Inventories
  * IVR cl_InventoryRelations
  * MFR cl_Manufacturers
@@ -56,11 +58,17 @@ CREATE DATABASE "Cashledger"
  * PRA cl_ProductAttributes
  * PRD cl_ProductCategories
  * PRT cl_Products
+ * RTN cl_ReturnNotes
+ * RTR cl_ReturnRelations
  * SKR cl_StockRelations
  * STK cl_Stocks
  * SUP cl_Suppliers
+ * TRN cl_TransferNotes
+ * TRR cl_TransferRelations
  * UNT cl_Units
  * WRH cl_Warehouses
+ * WSN cl_WasteNotes
+ * WSR cl_WasteRelations
  
  Invoicing app
  Meeting app
@@ -124,36 +132,45 @@ CREATE DATABASE "Cashledger"
  * GND cl_Genders
  
  * GNR cl_GenderRelations
+ * INN cl_InventNotes
+ * INR cl_InventRelations
  * IVT cl_Inventories
  * IVR cl_InventoryRelations
+ 
  * LGR cl_LanguageRelations
  * LNG cl_Languages
- 
  * MFR cl_Manufacturers
  * OCP cl_Occupations
  * OCR cl_OccupationRelations
+ 
  * PKG cl_Packagings
  * PRA cl_ProductAttributes
- 
  * PRD cl_ProductCategories
  * PRL cl_Profiles
  * PRM cl_Permissions
+ 
  * PRR cl_Role_*
  * PRT cl_Products
- 
  * ROL cl_Roles
  * ROR cl_RoleRelations
+ * RTN cl_ReturnNotes
+ 
+ * RTR cl_ReturnRelations
  * SKR cl_StockRelations
  * STK cl_Stocks
  * STR cl_StatusRelations
- 
  * STS cl_Status
+ 
  * SUP cl_Suppliers
  * TRK cl_Trackings
+ * TRN cl_TransferNotes
+ * TRR cl_TransferRelations
  * TTL cl_Titles
- * TTR cl_TitleRelations
  
+ * TTR cl_TitleRelations
  * UNT cl_Units
  * WRH cl_Warehouses
+ * WSN cl_WasteNotes
+ * WSR cl_WasteRelations
  */
  

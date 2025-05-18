@@ -4,8 +4,8 @@ namespace API_RelationRepositories_Model;
 
 use API_DTORepositories_Model\DTOBase;
 
-class InventoryRelation extends DTOBase
+class InventRelation extends DTOBase
 {
     public string $InventId;
-    public string $CredentialId;
+    public string $StockId;
 }

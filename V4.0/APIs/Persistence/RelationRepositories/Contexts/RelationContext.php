@@ -11,11 +11,14 @@ use API_RelationRepositories_Collection\DeliveryRelations;
 use API_RelationRepositories_Collection\DispatchRelations;
 use API_RelationRepositories_Collection\GenderRelations;
 use API_RelationRepositories_Collection\InventoryRelations;
+use API_RelationRepositories_Collection\InventRelations;
 use API_RelationRepositories_Collection\OccupationRelations;
+use API_RelationRepositories_Collection\ReturnRelations;
 use API_RelationRepositories_Collection\RoleRelations;
 use API_RelationRepositories_Collection\StatusRelations;
 use API_RelationRepositories_Collection\StockRelations;
 use API_RelationRepositories_Collection\TitleRelations;
+use API_RelationRepositories_Collection\WasteRelations;
 use API_RelationRepositories_Model\AppRelation;
 use API_RelationRepositories_Model\AttributeRelation;
 use API_RelationRepositories_Model\CivilityRelation;
@@ -24,11 +27,14 @@ use API_RelationRepositories_Model\DeliveryRelation;
 use API_RelationRepositories_Model\DispatchRelation;
 use API_RelationRepositories_Model\GenderRelation;
 use API_RelationRepositories_Model\InventoryRelation;
+use API_RelationRepositories_Model\InventRelation;
 use API_RelationRepositories_Model\OccupationRelation;
+use API_RelationRepositories_Model\ReturnRelation;
 use API_RelationRepositories_Model\RoleRelation;
 use API_RelationRepositories_Model\StatusRelation;
 use API_RelationRepositories_Model\StockRelation;
 use API_RelationRepositories_Model\TitleRelation;
+use API_RelationRepositories_Model\WasteRelation;
 use PDO;
 use API_RelationRepositories_Collection\LanguageRelations;
 use API_RelationRepositories_Model\LanguageRelation;
@@ -51,6 +57,9 @@ class RelationContext extends DBContext
     private string $titlerelation = 'cl_TitleRelations';
     private string $deliveryrelation = 'cl_DeliveryRelations';
     private string $dispatchrelation = 'cl_DispatchRelations';
+    private string $returnrelation = 'cl_ReturnRelations';
+    private string $wasterelation = 'cl_WasteRelations';
+    private string $inventrelation = 'cl_InventRelations';
 
     public function __construct(array $_connectionString){
         $this->pdo = DBContext::GetConnection($_connectionString);
@@ -77,6 +86,9 @@ class RelationContext extends DBContext
             'titlerelation' => TitleRelation::class,
             'deliveryrelation' => DeliveryRelation::class,
             'dispatchrelation' => DispatchRelation::class,
+            'returnrelation' => ReturnRelation::class,
+            'wasterelation' => WasteRelation::class,
+            'inventrelation' => InventRelation::class,
             'apprelationcollection' => AppRelations::class,
             'attributerelationcollection' => AttributeRelations::class,
             'civilityrelationcollection' => CivilityRelations::class,
@@ -90,7 +102,10 @@ class RelationContext extends DBContext
             'stockrelationcollection' => StockRelations::class,
             'titlerelationcollection' => TitleRelations::class,
             'deliveryrelationcollection' => DeliveryRelations::class,
-            'dispatchrelationcollection' => DispatchRelations::class
+            'dispatchrelationcollection' => DispatchRelations::class,
+            'returnrelationcollection' => ReturnRelations::class,
+            'wasterelationcollection' => WasteRelations::class,
+            'inventrelationcollection' => InventRelations::class
         ];
     }
 
@@ -114,9 +129,11 @@ class RelationContext extends DBContext
             'AttributeID' => 'AttributeId',
             'StockID' => 'StockId',
             'ProductID' => 'ProductId',
-            'InventID' => 'InventoryId',
+            'InventID' => 'InventId',
             'DeliveryID' => 'DeliveryId',
-            'DispatchID' => 'DispatchId'
+            'DispatchID' => 'DispatchId',
+            'ReturnID' => 'ReturnId',
+            'WasteID' => 'WasteId'
         ];
     }
 }

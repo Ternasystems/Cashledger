@@ -206,6 +206,7 @@ use APP_IDS_Controller\HomeController as IDSHomeController;
 //- Inventory
 use APP_Inventory_Controller\ConfigController as InventoryConfigController;
 use APP_Inventory_Controller\HomeController as InventoryHomeController;
+use APP_Inventory_Controller\InventController as InventoryInventController;
 use APP_Inventory_Controller\StockInController as InventoryStockInController;
 use APP_Inventory_Controller\StockOutController as InventoryStockOutController;
 
@@ -451,6 +452,7 @@ $builder->AddTransient(IDSHomeController::class, IDSHomeController::class);
 //-- Inventory
 $builder->AddTransient(InventoryConfigController::class, InventoryConfigController::class);
 $builder->AddTransient(InventoryHomeController::class, InventoryHomeController::class);
+$builder->AddTransient(InventoryInventController::class, InventoryInventController::class);
 $builder->AddTransient(InventoryStockInController::class, InventoryStockInController::class);
 $builder->AddTransient(InventoryStockOutController::class, InventoryStockOutController::class);
 

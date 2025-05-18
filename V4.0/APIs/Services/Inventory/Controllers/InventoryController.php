@@ -5,7 +5,10 @@ namespace API_Inventory_Controller;
 use API_Inventory_Contract\IInventoryService;
 use API_Inventory_Contract\IStockService;
 use API_InventoryEntities_Collection\Inventories;
+use API_InventoryEntities_Collection\Stocks;
 use API_InventoryEntities_Model\Inventory;
+use API_InventoryEntities_Model\Stock;
+use API_InventoryRepositories_Model\InventoryType;
 use Exception;
 use TS_Controller\Classes\BaseController;
 
@@ -39,17 +42,20 @@ class InventoryController extends BaseController
         if (empty($collection))
             return null;
 
+        if ($collection instanceof Stock)
+            $collection = new Stocks([$collection]);
+
         $inventories = null;
-        foreach ($collection as $item) {
-            $elts = $this->inventoryService->GetInventories(fn($n) => $n->It()->StockId == $item->id);
-            if ($elts instanceof Inventory)
-                $inventories[] = $elts;
-            else{
-                foreach ($elts as $elt)
-                    $inventories[] = $elt;
-            }
+        foreach ($collection as $stock) {
+            $inventories = $this->inventoryService->GetInventories(fn($n) => $n->It()->StockId == $stock->It()->Id);
+            if (empty($inventories))
+                continue;
+
+            if ($inventories instanceof Inventory)
+                $inventories = new Inventories([$inventories]);
         }
-        return new Inventories($inventories);
+
+        return $inventories;
     }
 
     /**
@@ -57,7 +63,22 @@ class InventoryController extends BaseController
      */
     public function GetByDeliveryId(string $deliveryId): ?Inventories
     {
-        $collection = $this->inventoryService->GetInventories(fn($n) => $n->It()->NoteId == $deliveryId);
+        $collection = $this->inventoryService->GetInventories(fn($n) => $n->It()->NoteId == $deliveryId && $n->It()->InventoryType == InventoryType::IN);
+        if (empty($collection))
+            return null;
+
+        if ($collection instanceof Inventory)
+            $collection = new Inventories([$collection]);
+
+        return $collection;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function GetByDispatchId(string $dispatchId): ?Inventories
+    {
+        $collection = $this->inventoryService->GetInventories(fn($n) => $n->It()->NoteId == $dispatchId && $n->It()->InventoryType == InventoryType::OUT);
         if (empty($collection))
             return null;
 

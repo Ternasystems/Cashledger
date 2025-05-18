@@ -87,6 +87,21 @@ class StockOutController extends Controller
 
     /**
      * @throws ReflectionException
+     * @throws Exception
+     */
+    public function AddListItem(string $dispatchId): void
+    {
+        $inventories = $this->inventoryController->GetByDispatchId($dispatchId);
+        $stocks = $this->stockController->Get();
+        $products = $this->productController->Get();
+        $customers = $this->customerController->Get();
+        $languages = $this->languageController->Get();
+        $this->viewComponent('DispatchItems', ['inventories' => $inventories, 'stocks' => $stocks, 'products' => $products, 'customers' => $customers,
+            'languages' => $languages]);
+    }
+
+    /**
+     * @throws ReflectionException
      */
     public function NewStockDispatch(): void
     {

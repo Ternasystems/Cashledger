@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="StockInventory" name="InventoryNumber">Numéro d'inventaire</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDate">Date d'inventaire</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseId">Magasin</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseSelect">Choisir un magasin</item>
+        <item app="Inventory" action="StockInventory" name="NoStock">Aucun stock disponible</item>
+        <item app="Inventory" action="StockInventory" name="StockQuantity">Stock physique</item>
+        <item app="Inventory" action="StockInventory" name="StockAvailable">Stock théorique</item>
+        <item app="Inventory" action="StockInventory" name="StockId">ID</item>
+        <item app="Inventory" action="StockInventory" name="ProductId">Produit</item>
+        <item app="Inventory" action="StockInventory" name="PackagingId">Conditionnement</item>
+        <item app="Inventory" action="StockInventory" name="BatchNumber">Numéro de lot</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDesc">Description</item>
+        <item app="Inventory" action="StockInventory" name="InventoryAddBtn">Ajouter</item>
+        <!-- -->
+        <item app="Inventory" action="StockInventory" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockInventory" name="HeaderTotal">Quantité totale</item>
+        <item app="Inventory" action="StockInventory" name="HeaderStock">Stock ID</item>
+        <item app="Inventory" action="StockInventory" name="UnitId">Unités de mesure</item>
+        <item app="Inventory" action="StockInventory" name="CredentialId">Effectué par</item>
+        <item app="Inventory" action="StockInventory" name="Maiden">epse</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Ecart</item>
+        <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Soumettre</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="StockInventory" name="InventoryNumber">Inventory number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDate">Inventory date</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockInventory" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockInventory" name="StockQuantity">Physical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockAvailable">Theoretical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockId">ID</item>
+        <item app="Inventory" action="StockInventory" name="ProductId">Product</item>
+        <item app="Inventory" action="StockInventory" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockInventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDesc">Description</item>
+        <item app="Inventory" action="StockInventory" name="InventoryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockInventory" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockInventory" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockInventory" name="HeaderStock">Stock ID</item>
+        <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
+        <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="StockInventory" name="InventoryNumber">Inventory number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDate">Inventory date</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockInventory" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockInventory" name="StockQuantity">Physical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockAvailable">Theoretical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockId">ID</item>
+        <item app="Inventory" action="StockInventory" name="ProductId">Product</item>
+        <item app="Inventory" action="StockInventory" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockInventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDesc">Description</item>
+        <item app="Inventory" action="StockInventory" name="InventoryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockInventory" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockInventory" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockInventory" name="HeaderStock">Stock ID</item>
+        <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
+        <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="StockInventory" name="InventoryNumber">Inventory number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDate">Inventory date</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockInventory" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockInventory" name="StockQuantity">Physical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockAvailable">Theoretical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockId">ID</item>
+        <item app="Inventory" action="StockInventory" name="ProductId">Product</item>
+        <item app="Inventory" action="StockInventory" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockInventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDesc">Description</item>
+        <item app="Inventory" action="StockInventory" name="InventoryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockInventory" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockInventory" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockInventory" name="HeaderStock">Stock ID</item>
+        <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
+        <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
+    </es-ES>
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="StockInventory" name="InventoryNumber">Inventory number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDate">Inventory date</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseId">Warehouse</item>
+        <item app="Inventory" action="StockInventory" name="WarehouseSelect">Select a warehouse</item>
+        <item app="Inventory" action="StockInventory" name="NoStock">No stock available</item>
+        <item app="Inventory" action="StockInventory" name="StockQuantity">Physical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockAvailable">Theoretical stock</item>
+        <item app="Inventory" action="StockInventory" name="StockId">ID</item>
+        <item app="Inventory" action="StockInventory" name="ProductId">Product</item>
+        <item app="Inventory" action="StockInventory" name="PackagingId">Packaging</item>
+        <item app="Inventory" action="StockInventory" name="BatchNumber">Batch number</item>
+        <item app="Inventory" action="StockInventory" name="InventoryDesc">Description</item>
+        <item app="Inventory" action="StockInventory" name="InventoryAddBtn">Add</item>
+        <!-- -->
+        <item app="Inventory" action="StockInventory" name="HeaderNumber">N°</item>
+        <item app="Inventory" action="StockInventory" name="HeaderTotal">Total quantity</item>
+        <item app="Inventory" action="StockInventory" name="HeaderStock">Stock ID</item>
+        <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
+        <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
+        <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
+    </ar-SA>
+</locale>

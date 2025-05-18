@@ -220,7 +220,7 @@
       },
       "url": {
         "app": "Inventory",
-        "controller": "Inventory",
+        "controller": "Invent",
         "action": "Index"
       }
     },
@@ -832,6 +832,102 @@
         "app": "Inventory",
         "parent": "main-content",
         "component": "NewStockDisposal"
+      }
+    },
+    "NavStockInvent": {
+      "fr-FR": {
+        "title": "Etat du stock",
+        "logo": "Inventory",
+        "description": "Présente l'état du stock par produit."
+      },
+      "en-US": {
+        "title": "Stock status",
+        "logo": "Inventory",
+        "description": "Display stock status by product."
+      },
+      "en-GB": {
+        "title": "Stock status",
+        "logo": "Inventory",
+        "description": "Display stock status by product."
+      },
+      "es-ES": {
+        "title": "Stock status",
+        "logo": "Inventory",
+        "description": "Display stock status by product."
+      },
+      "ar-SA": {
+        "title": "Stock status",
+        "logo": "Inventory",
+        "description": "Display stock status by product."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "StockInvent"
+      }
+    },
+    "NavNewInventory": {
+      "fr-FR": {
+        "title": "Inventaire physique",
+        "logo": "Inventory",
+        "description": "Effectue les rapprochements d'inventaire."
+      },
+      "en-US": {
+        "title": "Physical inventory",
+        "logo": "Inventory",
+        "description": "Operate inventory adjustments."
+      },
+      "en-GB": {
+        "title": "Physical inventory",
+        "logo": "Inventory",
+        "description": "Operate inventory adjustments."
+      },
+      "es-ES": {
+        "title": "Physical inventory",
+        "logo": "Inventory",
+        "description": "Operate inventory adjustments."
+      },
+      "ar-SA": {
+        "title": "Physical inventory",
+        "logo": "Inventory",
+        "description": "Operate inventory adjustments."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "NewStockInventory"
+      }
+    },
+    "NavStockTransfer": {
+      "fr-FR": {
+        "title": "Transfert de stock",
+        "logo": "Inventory",
+        "description": "Transfère des produits d'un magasin à un autre."
+      },
+      "en-US": {
+        "title": "Stock transfer",
+        "logo": "Inventory",
+        "description": "Transfer products from a warehouse to another."
+      },
+      "en-GB": {
+        "title": "Stock transfer",
+        "logo": "Inventory",
+        "description": "Transfer products from a warehouse to another."
+      },
+      "es-ES": {
+        "title": "Stock transfer",
+        "logo": "Inventory",
+        "description": "Transfer products from a warehouse to another."
+      },
+      "ar-SA": {
+        "title": "Stock transfer",
+        "logo": "Inventory",
+        "description": "Transfer products from a warehouse to another."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "StockTransfer"
       }
     },
     "NavNewProductCategory": {

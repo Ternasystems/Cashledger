@@ -44,7 +44,7 @@ $(function (){
         else
             $('#attributes').removeClass('ts-disabled');
         //
-        $(form).find('select[name="attributes"]').val('0');
+        $('select[name="attributes"]').val('0');
         $('[data-class="formelement"]').parent().remove();
     });
 
