@@ -30,7 +30,7 @@
         <item app="Inventory" action="StockInventory" name="UnitId">Unités de mesure</item>
         <item app="Inventory" action="StockInventory" name="CredentialId">Effectué par</item>
         <item app="Inventory" action="StockInventory" name="Maiden">epse</item>
-        <item app="Inventory" action="StockInventory" name="StockVariance">Ecart</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Ecart (T-P)</item>
         <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Soumettre</item>
     </fr-FR>
     <!-- English (US) locale -->
@@ -56,7 +56,7 @@
         <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
         <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
         <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
-        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance (T-P)</item>
         <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
     </en-US>
     <!-- English (GB) locale -->
@@ -82,7 +82,7 @@
         <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
         <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
         <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
-        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance (T-P)</item>
         <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
     </en-GB>
     <!-- Español locale -->
@@ -108,7 +108,7 @@
         <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
         <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
         <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
-        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance (T-P)</item>
         <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
     </es-ES>
     <ar-SA>
@@ -133,7 +133,7 @@
         <item app="Inventory" action="StockInventory" name="UnitId">Measurement unit</item>
         <item app="Inventory" action="StockInventory" name="CredentialId">Performed by</item>
         <item app="Inventory" action="StockInventory" name="Maiden">sp.</item>
-        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance</item>
+        <item app="Inventory" action="StockInventory" name="StockVariance">Stock variance (T-P)</item>
         <item app="Inventory" action="StockInventory" name="InventorySuccessBtn">Submit</item>
     </ar-SA>
 </locale>

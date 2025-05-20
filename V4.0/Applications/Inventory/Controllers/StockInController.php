@@ -91,8 +91,9 @@ class StockInController extends Controller
         $inventories = $this->inventoryController->GetByDeliveryId($deliveryId);
         $stocks = $this->stockController->Get();
         $products = $this->productController->Get();
+        $units = $this->unitController->Get();
         $languages = $this->languageController->Get();
-        $this->viewComponent('DeliveryItems', ['inventories' => $inventories, 'stocks' => $stocks, 'products' => $products, 'languages' => $languages]);
+        $this->viewComponent('DeliveryItems', ['inventories' => $inventories, 'stocks' => $stocks, 'products' => $products, 'units' => $units, 'languages' => $languages]);
     }
 
     /**

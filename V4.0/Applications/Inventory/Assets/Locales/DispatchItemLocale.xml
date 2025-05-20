@@ -13,6 +13,7 @@
         <item app="Inventory" action="StockOut" name="HeaderProduct">Produit</item>
         <item app="Inventory" action="StockOut" name="HeaderBatch">Numéro de lot</item>
         <item app="Inventory" action="StockOut" name="HeaderCustomer">Client</item>
+        <item app="Inventory" action="StockOut" name="HeaderUnit">Unité</item>
         <item app="Inventory" action="StockOut" name="HeaderQty">Quantité</item>
         <item app="Inventory" action="StockOut" name="HeaderCost">Coût unitaire</item>
         <item app="Inventory" action="StockOut" name="HeaderTotal">Coût total</item>
@@ -24,6 +25,7 @@
         <item app="Inventory" action="StockOut" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockOut" name="HeaderBatch">Batch number</item>
         <item app="Inventory" action="StockOut" name="HeaderCustomer">Customer</item>
+        <item app="Inventory" action="StockOut" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockOut" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockOut" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
@@ -35,6 +37,7 @@
         <item app="Inventory" action="StockOut" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockOut" name="HeaderBatch">Batch number</item>
         <item app="Inventory" action="StockOut" name="HeaderCustomer">Customer</item>
+        <item app="Inventory" action="StockOut" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockOut" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockOut" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
@@ -46,6 +49,7 @@
         <item app="Inventory" action="StockOut" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockOut" name="HeaderBatch">Batch number</item>
         <item app="Inventory" action="StockOut" name="HeaderCustomer">Customer</item>
+        <item app="Inventory" action="StockOut" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockOut" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockOut" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>
@@ -57,6 +61,7 @@
         <item app="Inventory" action="StockOut" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockOut" name="HeaderBatch">Batch number</item>
         <item app="Inventory" action="StockOut" name="HeaderCustomer">Customer</item>
+        <item app="Inventory" action="StockOut" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockOut" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockOut" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockOut" name="HeaderTotal">Total cost</item>

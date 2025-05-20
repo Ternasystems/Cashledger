@@ -139,6 +139,23 @@ abstract class AbstractCollectable extends AbstractCls implements ArrayAccess, S
         $this->offset = $this->count() - 1;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function add(mixed $value, string $_key): void
+    {
+        // Build the key
+        $keyValue = $this->setKeyName($_key);
+
+        // Check if key exists
+        if ($this->offsetExists($keyValue))
+            throw new Exception();
+
+        $this->offset = $this->count();
+        $this->indexArray[$this->offset] = $keyValue;
+        $this->keyArray[$keyValue] = $value;
+    }
+
     /* ArrayAccess */
 
     /**
@@ -375,6 +392,17 @@ abstract class AbstractCollectable extends AbstractCls implements ArrayAccess, S
         }
 
         return new $derivedClass($elements);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function merge(AbstractCollectable $collectable) : self
+    {
+        foreach ($collectable as $key => $value){
+            $this->add($value, $key);
+        }
+        return $this;
     }
 
     /**

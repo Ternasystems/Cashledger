@@ -25,7 +25,9 @@
         <item app="Inventory" action="StockDelivery" name="PackagingId">Conditionnements</item>
         <item app="Inventory" action="StockDelivery" name="PackagingSelect">Choisir un conditionnement</item>
         <item app="Inventory" action="StockDelivery" name="BatchNumber">Numéro de lot</item>
-        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantité</item>
+        <item app="Inventory" action="StockDelivery" name="NbPackaging">Nombre (cond.)</item>
+        <item app="Inventory" action="StockDelivery" name="NbUnit">Quantité (unité)</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantité totale</item>
         <item app="Inventory" action="StockDelivery" name="UnitCost">Coût unitaire d'achat</item>
         <item app="Inventory" action="StockDelivery" name="SupplierId">Fournisseurs</item>
         <item app="Inventory" action="StockDelivery" name="SupplierSelect">Choisir un fournisseur</item>
@@ -56,7 +58,9 @@
         <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
         <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
         <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
-        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="NbPackaging">Number (pack.)</item>
+        <item app="Inventory" action="StockDelivery" name="NbUnit">Quantity (unit)</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Total quantity</item>
         <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
         <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
@@ -87,7 +91,9 @@
         <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
         <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
         <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
-        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="NbPackaging">Number (pack.)</item>
+        <item app="Inventory" action="StockDelivery" name="NbUnit">Quantity (unit)</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Total quantity</item>
         <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
         <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
@@ -118,7 +124,9 @@
         <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
         <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
         <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
-        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="NbPackaging">Number (pack.)</item>
+        <item app="Inventory" action="StockDelivery" name="NbUnit">Quantity (unit)</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Total quantity</item>
         <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
         <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>
@@ -149,7 +157,9 @@
         <item app="Inventory" action="StockDelivery" name="PackagingId">Packagings</item>
         <item app="Inventory" action="StockDelivery" name="PackagingSelect">Select a packaging</item>
         <item app="Inventory" action="StockDelivery" name="BatchNumber">batch number</item>
-        <item app="Inventory" action="StockDelivery" name="StockQuantity">Quantity</item>
+        <item app="Inventory" action="StockDelivery" name="NbPackaging">Number (pack.)</item>
+        <item app="Inventory" action="StockDelivery" name="NbUnit">Quantity (unit)</item>
+        <item app="Inventory" action="StockDelivery" name="StockQuantity">Total quantity</item>
         <item app="Inventory" action="StockDelivery" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="StockDelivery" name="SupplierId">Suppliers</item>
         <item app="Inventory" action="StockDelivery" name="SupplierSelect">Select a supplier</item>

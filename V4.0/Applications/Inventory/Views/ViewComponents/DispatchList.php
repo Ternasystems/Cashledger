@@ -3,8 +3,7 @@
 $dispatches = $ViewData["dispatches"];
 $inventories = $ViewData["inventories"];
 $lang = $ViewData['CurrentLanguage'];
-$timezone = 'Africa/Douala';
-$formatter = new IntlDateFormatter($lang, IntlDateFormatter::SHORT, IntlDateFormatter::SHORT, $timezone, IntlDateFormatter::GREGORIAN);
+$formatter = new IntlDateFormatter($lang, IntlDateFormatter::SHORT, IntlDateFormatter::SHORT, null, IntlDateFormatter::GREGORIAN);
 $currencyFormatter = new NumberFormatter('fr-CM', NumberFormatter::CURRENCY);
 
 // Locales

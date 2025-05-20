@@ -33,8 +33,13 @@ $langId = $languages->FirstOrDefault(fn($n) => str_contains($lang, $n->It()->Lab
                 }
                 asort($relations);
             }else{
-                foreach ($collection as $item)
-                    $relations[$item->It()->Id] = $item->It()->Name;
+                if (!method_exists($collection[0], 'Profile')){
+                    foreach ($collection as $item)
+                        $relations[$item->It()->Id] = $item->It()->Name;
+                }else{
+                    foreach ($collection as $item)
+                        $relations[$item->It()->Id] = $item->Profile()->FullName()['LastName'];
+                }
             }
             ?>
             <select id="" name="" data-class="formelement" class="ts-form-control-light me-2">

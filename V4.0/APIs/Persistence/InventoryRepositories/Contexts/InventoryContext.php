@@ -16,6 +16,7 @@ use API_InventoryRepositories_Collection\Products;
 use API_InventoryRepositories_Collection\ReturnNotes;
 use API_InventoryRepositories_Collection\Stocks;
 use API_InventoryRepositories_Collection\Suppliers;
+use API_InventoryRepositories_Collection\TransferNotes;
 use API_InventoryRepositories_Collection\Units;
 use API_InventoryRepositories_Collection\Warehouses;
 use API_InventoryRepositories_Collection\WasteNotes;
@@ -32,6 +33,7 @@ use API_InventoryRepositories_Model\ProductCategory;
 use API_InventoryRepositories_Model\ReturnNote;
 use API_InventoryRepositories_Model\Stock;
 use API_InventoryRepositories_Model\Supplier;
+use API_InventoryRepositories_Model\TransferNote;
 use API_InventoryRepositories_Model\Unit;
 use API_InventoryRepositories_Model\Warehouse;
 use API_InventoryRepositories_Model\WasteNote;
@@ -56,6 +58,7 @@ class InventoryContext extends DBContext
     private string $dispatchnote = 'cl_DispatchNotes';
     private string $returnnote = 'cl_ReturnNotes';
     private string $wastenote = 'cl_WasteNotes';
+    private string $transfernote = 'cl_TransferNotes';
     private string $inventnote = 'cl_InventNotes';
 
     public function __construct(array $_connectionString){
@@ -84,6 +87,7 @@ class InventoryContext extends DBContext
             'dispatchnote' => DispatchNote::class,
             'returnnote' => ReturnNote::class,
             'wastenote' => WasteNote::class,
+            'transfernote' => TransferNote::class,
             'inventnote' => InventNote::class,
             'customercollection' => Customers::class,
             'inventorycollection' => Inventories::class,
@@ -100,6 +104,7 @@ class InventoryContext extends DBContext
             'dispatchnotecollection' => DispatchNotes::class,
             'returnnotecollection' => ReturnNotes::class,
             'wastenotecollection' => WasteNotes::class,
+            'transfernotecollection' => TransferNotes::class,
             'inventnotecollection' => InventNotes::class
         ];
     }
@@ -119,6 +124,7 @@ class InventoryContext extends DBContext
             'DispatchID' => 'DispatchId',
             'ReturnID' => 'ReturnId',
             'WasteID' => 'WasteId',
+            'TransferID' => 'TransferId',
             'InventID' => 'InventId',
             'PartnerID' => 'PartnerId',
             'NoteID' => 'NoteId'

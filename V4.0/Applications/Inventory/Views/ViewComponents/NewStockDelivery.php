@@ -36,6 +36,8 @@ $Localizer = [
     'PackagingId' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'PackagingId'),
     'PackagingSelect' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'PackagingSelect'),
     'BatchNumber' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'BatchNumber'),
+    'NbPackaging' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'NbPackaging'),
+    'NbUnit' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'NbUnit'),
     'StockQuantity' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'StockQuantity'),
     'UnitCost' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'UnitCost'),
     'SupplierId' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockDelivery', 'SupplierId'),
@@ -184,15 +186,31 @@ $Localizer = [
                     ?>
                 </select>
             </div>
+            <!-- Number packaging -->
+            <div class="form-elt">
+                <label for="nbpackaging" class="me-2 text-end"><?= $Localizer['NbPackaging'] ?></label>
+                <div class="d-flex">
+                    <input id="nbpackaging1" type="number" min="0" value="0" data-name="nbpackaging1" class="ts-form-control-light me-2">
+                    <input id="nbpackaging2" type="number" min="0" value="0" data-name="nbpackaging2" class="ts-form-control-light me-2">
+                </div>
+            </div>
+            <!-- Number unit -->
+            <div class="form-elt">
+                <label for="nbunit" class="me-2 text-end"><?= $Localizer['NbUnit'] ?></label>
+                <input id="nbunit" type="number" min="0" value="0" data-name="nbunit" class="ts-form-control-light me-2">
+            </div>
             <!-- Stock quantity -->
             <div class="form-elt">
                 <label for="stockquantity" class="me-2 text-end"><?= $Localizer['StockQuantity']; ?></label>
-                <input id="stockquantity" type="number" min="0" value="0" name="stockquantity" class="ts-form-control-light me-2"/>
+                <input id="stockquantity" type="number" min="0" value="0" name="stockquantity" class="ts-form-control-light me-2 ts-disabled"/>
             </div>
             <!-- Unit cost -->
             <div class="form-elt">
                 <label for="unitcost" class="me-2 text-end"><?= $Localizer['UnitCost']; ?></label>
-                <input id="unitcost" type="number" min="0" value="0" name="unitcost" class="ts-form-control-light me-2"/>
+                <div class="d-flex">
+                    <input id="totalcost" type="number" min="0" value="0" data-name="totalcost" class="ts-form-control-light me-2"/>
+                    <input id="unitcost" type="number" min="0" value="0" name="unitcost" class="ts-form-control-light me-2 ts-disabled"/>
+                </div>
             </div>
             <!-- Attribute ID -->
             <div class="form-elt d-none">

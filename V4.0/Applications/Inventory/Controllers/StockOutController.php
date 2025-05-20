@@ -95,8 +95,9 @@ class StockOutController extends Controller
         $stocks = $this->stockController->Get();
         $products = $this->productController->Get();
         $customers = $this->customerController->Get();
+        $units = $this->unitController->Get();
         $languages = $this->languageController->Get();
-        $this->viewComponent('DispatchItems', ['inventories' => $inventories, 'stocks' => $stocks, 'products' => $products, 'customers' => $customers,
+        $this->viewComponent('DispatchItems', ['inventories' => $inventories, 'stocks' => $stocks, 'products' => $products, 'customers' => $customers, 'units' => $units,
             'languages' => $languages]);
     }
 

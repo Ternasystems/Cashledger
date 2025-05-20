@@ -19,7 +19,6 @@ $Localizer = [
     'InventoryDate' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockInventory', 'InventoryDate'),
     'WarehouseId' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockInventory', 'WarehouseId'),
     'WarehouseSelect' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockInventory', 'WarehouseSelect'),
-
     'StockQuantity' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockInventory', 'StockQuantity'),
     'StockAvailable' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockInventory', 'StockAvailable'),
     'StockId' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'StockInventory', 'StockId'),
@@ -73,8 +72,8 @@ $Localizer = [
             </div>
             <!-- Quantity -->
             <div class="form-elt">
-                <label for="stockavailable" class="me-2 text-end"><?= $Localizer['StockAvailable']; ?></label>
-                <input id="stockavailable" type="number" min="0" value="0" name="stockavailable" class="ts-form-control-light me-2"/>
+                <label for="stockquantity" class="me-2 text-end"><?= $Localizer['StockQuantity']; ?></label>
+                <input id="stockquantity" type="number" min="0" value="0" name="stockquantity" class="ts-form-control-light me-2"/>
             </div>
             <div id="stock-item" class="d-none"></div>
             <!-- Btn -->
@@ -102,13 +101,13 @@ $Localizer = [
                 <div>
                     <label for="InventoryDate"><?= $Localizer['InventoryDate']; ?>: </label>
                     <span id="InventoryDate" data-value=""></span>
-                    <input type="hidden" name="dispatchdate" value="">
+                    <input type="hidden" name="inventorydate" value="">
                 </div>
                 <!-- Warehouse -->
                 <div>
                     <label for="Warehouse"><?= $Localizer['WarehouseId']; ?>: </label>
                     <span id="Warehouse" data-value=""></span>
-                    <input type="hidden" name="credential" value="">
+                    <input type="hidden" name="warehouseid" value="">
                 </div>
                 <!-- Credentials -->
                 <div>
@@ -127,6 +126,17 @@ $Localizer = [
                 <div class="text-end"><?= $Localizer['StockQuantity']; ?></div>
                 <div class="text-end"><?= $Localizer['StockVariance']; ?></div>
                 <div class="text-center"><span class="bi bi-trash-fill"></span></div>
+            </div>
+            <!-- -->
+            <div class="form-area"></div>
+            <!-- Dispatch description -->
+            <div class="form-elt">
+                <label for="inventorydesc" class="me-2 text-end"><?= $Localizer['InventoryDesc']; ?></label>
+                <input id="inventorydesc" type="text" name="inventorydesc" class="ts-form-control-light me-2"/>
+            </div>
+            <!-- Btn -->
+            <div class="form-elt">
+                <button class="btn btn-success"><?= $Localizer['InventorySuccessBtn'] ?></button>
             </div>
         </div>
     </form>

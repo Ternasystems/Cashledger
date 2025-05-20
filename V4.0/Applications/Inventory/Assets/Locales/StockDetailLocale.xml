@@ -16,14 +16,24 @@
         <item app="Inventory" action="Inventory" name="StockDate">Date du stock</item>
         <item app="Inventory" action="Inventory" name="LastChecked">Dernière MAJ</item>
         <item app="Inventory" action="Inventory" name="Quantity">Quantité</item>
+        <item app="Inventory" action="Inventory" name="MinStock">Stock min.</item>
+        <item app="Inventory" action="Inventory" name="MaxStock">Stock max.</item>
+        <item app="Inventory" action="Inventory" name="Category">Type de produit</item>
+        <item app="Inventory" action="Inventory" name="Manufacturer">Fabricant</item>
         <item app="Inventory" action="Inventory" name="Warehouse">Magasin</item>
         <item app="Inventory" action="Inventory" name="Packaging">Conditionnement</item>
-        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
-        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN/RET</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT/REB</item>
+        <item app="Inventory" action="Inventory" name="InventTitle">INV/TRF</item>
         <item app="Inventory" action="Inventory" name="Customer">Client</item>
         <item app="Inventory" action="Inventory" name="Supplier">Fournisseur</item>
+        <item app="Inventory" action="Inventory" name="Credential">Utilisateur</item>
         <item app="Inventory" action="Inventory" name="DeliveryNote">Bon d'entrée</item>
         <item app="Inventory" action="Inventory" name="DispatchNote">Bon de sortie</item>
+        <item app="Inventory" action="Inventory" name="ReturnNote">Bon de retour</item>
+        <item app="Inventory" action="Inventory" name="WasteNote">Mise au rebut</item>
+        <item app="Inventory" action="Inventory" name="TransferNote">Transfert</item>
+        <item app="Inventory" action="Inventory" name="InventNote">Inventaire physique</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Coût unitaire</item>
         <item app="Inventory" action="Inventory" name="Maiden">epse</item>
     </fr-FR>
@@ -36,14 +46,24 @@
         <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
         <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
         <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="MinStock">Min. stock</item>
+        <item app="Inventory" action="Inventory" name="MaxStock">Max. stock</item>
+        <item app="Inventory" action="Inventory" name="Category">Product type</item>
+        <item app="Inventory" action="Inventory" name="Manufacturer">Manufacturer</item>
         <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
         <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
-        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
-        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN/RET</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT/WST</item>
+        <item app="Inventory" action="Inventory" name="InventTitle">INV/TRF</item>
         <item app="Inventory" action="Inventory" name="Customer">Customer</item>
         <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="Credential">User</item>
         <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
         <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="ReturnNote">ReturnNote</item>
+        <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
+        <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
+        <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </en-US>
@@ -56,14 +76,24 @@
         <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
         <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
         <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="MinStock">Min. stock</item>
+        <item app="Inventory" action="Inventory" name="MaxStock">Max. stock</item>
+        <item app="Inventory" action="Inventory" name="Category">Product type</item>
+        <item app="Inventory" action="Inventory" name="Manufacturer">Manufacturer</item>
         <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
         <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
-        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
-        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN/RET</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT/WST</item>
+        <item app="Inventory" action="Inventory" name="InventTitle">INV/TRF</item>
         <item app="Inventory" action="Inventory" name="Customer">Customer</item>
         <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="Credential">User</item>
         <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
         <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="ReturnNote">ReturnNote</item>
+        <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
+        <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
+        <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </en-GB>
@@ -76,14 +106,24 @@
         <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
         <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
         <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="MinStock">Min. stock</item>
+        <item app="Inventory" action="Inventory" name="MaxStock">Max. stock</item>
+        <item app="Inventory" action="Inventory" name="Category">Product type</item>
+        <item app="Inventory" action="Inventory" name="Manufacturer">Manufacturer</item>
         <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
         <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
-        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
-        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN/RET</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT/WST</item>
+        <item app="Inventory" action="Inventory" name="InventTitle">INV/TRF</item>
         <item app="Inventory" action="Inventory" name="Customer">Customer</item>
         <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="Credential">User</item>
         <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
         <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="ReturnNote">ReturnNote</item>
+        <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
+        <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
+        <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </es-ES>
@@ -96,14 +136,24 @@
         <item app="Inventory" action="Inventory" name="StockDate">Stock date</item>
         <item app="Inventory" action="Inventory" name="LastChecked">Last checked</item>
         <item app="Inventory" action="Inventory" name="Quantity">Quantity</item>
+        <item app="Inventory" action="Inventory" name="MinStock">Min. stock</item>
+        <item app="Inventory" action="Inventory" name="MaxStock">Max. stock</item>
+        <item app="Inventory" action="Inventory" name="Category">Product type</item>
+        <item app="Inventory" action="Inventory" name="Manufacturer">Manufacturer</item>
         <item app="Inventory" action="Inventory" name="Warehouse">Warehouse</item>
         <item app="Inventory" action="Inventory" name="Packaging">Packaging</item>
-        <item app="Inventory" action="Inventory" name="InTitle">IN</item>
-        <item app="Inventory" action="Inventory" name="OutTitle">OUT</item>
+        <item app="Inventory" action="Inventory" name="InTitle">IN/RET</item>
+        <item app="Inventory" action="Inventory" name="OutTitle">OUT/WST</item>
+        <item app="Inventory" action="Inventory" name="InventTitle">INV/TRF</item>
         <item app="Inventory" action="Inventory" name="Customer">Customer</item>
         <item app="Inventory" action="Inventory" name="Supplier">Supplier</item>
+        <item app="Inventory" action="Inventory" name="Credential">User</item>
         <item app="Inventory" action="Inventory" name="DeliveryNote">DeliveryNote</item>
         <item app="Inventory" action="Inventory" name="DispatchNote">DispatchNote</item>
+        <item app="Inventory" action="Inventory" name="ReturnNote">ReturnNote</item>
+        <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
+        <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
+        <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </ar-SA>

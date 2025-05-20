@@ -18,6 +18,7 @@ use API_RelationRepositories_Collection\RoleRelations;
 use API_RelationRepositories_Collection\StatusRelations;
 use API_RelationRepositories_Collection\StockRelations;
 use API_RelationRepositories_Collection\TitleRelations;
+use API_RelationRepositories_Collection\TransferRelations;
 use API_RelationRepositories_Collection\WasteRelations;
 use API_RelationRepositories_Model\AppRelation;
 use API_RelationRepositories_Model\AttributeRelation;
@@ -34,6 +35,7 @@ use API_RelationRepositories_Model\RoleRelation;
 use API_RelationRepositories_Model\StatusRelation;
 use API_RelationRepositories_Model\StockRelation;
 use API_RelationRepositories_Model\TitleRelation;
+use API_RelationRepositories_Model\TransferRelation;
 use API_RelationRepositories_Model\WasteRelation;
 use PDO;
 use API_RelationRepositories_Collection\LanguageRelations;
@@ -59,6 +61,7 @@ class RelationContext extends DBContext
     private string $dispatchrelation = 'cl_DispatchRelations';
     private string $returnrelation = 'cl_ReturnRelations';
     private string $wasterelation = 'cl_WasteRelations';
+    private string $transferrelation = 'cl_TransferRelations';
     private string $inventrelation = 'cl_InventRelations';
 
     public function __construct(array $_connectionString){
@@ -88,6 +91,7 @@ class RelationContext extends DBContext
             'dispatchrelation' => DispatchRelation::class,
             'returnrelation' => ReturnRelation::class,
             'wasterelation' => WasteRelation::class,
+            'transferrelation' => TransferRelation::class,
             'inventrelation' => InventRelation::class,
             'apprelationcollection' => AppRelations::class,
             'attributerelationcollection' => AttributeRelations::class,
@@ -105,6 +109,7 @@ class RelationContext extends DBContext
             'dispatchrelationcollection' => DispatchRelations::class,
             'returnrelationcollection' => ReturnRelations::class,
             'wasterelationcollection' => WasteRelations::class,
+            'transferrelationcollection' => TransferRelations::class,
             'inventrelationcollection' => InventRelations::class
         ];
     }
@@ -133,7 +138,8 @@ class RelationContext extends DBContext
             'DeliveryID' => 'DeliveryId',
             'DispatchID' => 'DispatchId',
             'ReturnID' => 'ReturnId',
-            'WasteID' => 'WasteId'
+            'WasteID' => 'WasteId',
+            'TransferID' => 'TransferId'
         ];
     }
 }

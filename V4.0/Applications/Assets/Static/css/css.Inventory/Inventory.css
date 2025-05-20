@@ -20,7 +20,7 @@ main {
 
 #main {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 2fr;
 }
 
 .title {
@@ -58,9 +58,9 @@ main {
 
 #stock-detail, #inventory {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     column-gap: 5px;
-    grid-column-end: span 2;
+    grid-column-end: span 3;
 }
 
 #inventory .ts-title {
@@ -129,6 +129,10 @@ main {
 
 [data-id="new-stockinventory"] form .form-header, .form-row {
     grid-template-columns: 1fr repeat(6, 3fr) 1fr;
+}
+
+[data-id="new-stockinventory"] form .form-area {
+    margin-top: 0 !important;
 }
 
 [data-id="new-stockinventory"] form .form-row {

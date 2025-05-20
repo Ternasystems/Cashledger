@@ -1920,6 +1920,14 @@
       },
       "setter": "Set"
     },
+    "Suppliers": {
+      "controller": "supplierController",
+      "getter": {
+        "all":"Get",
+        "one": "GetById"
+      },
+      "setter": "Set"
+    },
     "Warehouses": {
       "controller": "warehouseController",
       "getter": {

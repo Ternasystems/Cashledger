@@ -57,4 +57,4 @@ else{
     <?php
 }
 ?>
-<input type="hidden" name="StockItemModel" value="">
+<input type="hidden" name="InventStockModel" value="">

@@ -46,13 +46,22 @@ class InventoryController extends BaseController
             $collection = new Stocks([$collection]);
 
         $inventories = null;
-        foreach ($collection as $stock) {
-            $inventories = $this->inventoryService->GetInventories(fn($n) => $n->It()->StockId == $stock->It()->Id);
-            if (empty($inventories))
+        foreach ($collection as $stock){
+            $collectable = $this->inventoryService->GetInventories(fn($n) => $n->It()->StockId == $stock->It()->Id);
+            if (empty($collectable))
                 continue;
 
-            if ($inventories instanceof Inventory)
-                $inventories = new Inventories([$inventories]);
+            if ($collectable instanceof Inventory){
+                if (is_null($inventories))
+                    $inventories = new Inventories([$collectable]);
+                else
+                    $inventories->add($collectable, $collectable->It()->Id);
+            }else{
+                if (is_null($inventories))
+                    $inventories = $collectable;
+                else
+                    $inventories->merge($collectable);
+            }
         }
 
         return $inventories;

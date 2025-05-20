@@ -12,6 +12,7 @@
         <!-- Components -->
         <item app="Inventory" action="StockIn" name="HeaderProduct">Produit</item>
         <item app="Inventory" action="StockIn" name="HeaderBatch">Numéro de lot</item>
+        <item app="Inventory" action="StockIn" name="HeaderUnit">Unité</item>
         <item app="Inventory" action="StockIn" name="HeaderQty">Quantité</item>
         <item app="Inventory" action="StockIn" name="HeaderCost">Coût unitaire</item>
         <item app="Inventory" action="StockIn" name="HeaderTotal">Coût total</item>
@@ -21,6 +22,7 @@
         <!-- Components -->
         <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
@@ -30,6 +32,7 @@
         <!-- Components -->
         <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
@@ -39,6 +42,7 @@
         <!-- Components -->
         <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>
@@ -48,6 +52,7 @@
         <!-- Components -->
         <item app="Inventory" action="StockIn" name="HeaderProduct">Product</item>
         <item app="Inventory" action="StockIn" name="HeaderBatch">Batch number</item>
+        <item app="Inventory" action="StockIn" name="HeaderUnit">Unit</item>
         <item app="Inventory" action="StockIn" name="HeaderQty">Quantity</item>
         <item app="Inventory" action="StockIn" name="HeaderCost">Unit cost</item>
         <item app="Inventory" action="StockIn" name="HeaderTotal">Total cost</item>

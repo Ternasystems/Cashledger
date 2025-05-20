@@ -30,16 +30,20 @@ use API_InventoryRepositories_Context\InventoryContext;
 use API_InventoryRepositories\CustomerRepository;
 use API_InventoryRepositories\DeliveryNoteRepository;
 use API_InventoryRepositories\DispatchNoteRepository;
+use API_InventoryRepositories\InventNoteRepository;
 use API_InventoryRepositories\InventoryRepository;
 use API_InventoryRepositories\ManufacturerRepository;
 use API_InventoryRepositories\PackagingRepository;
 use API_InventoryRepositories\ProductAttributeRepository;
 use API_InventoryRepositories\ProductCategoryRepository;
 use API_InventoryRepositories\ProductRepository;
+use API_InventoryRepositories\ReturnNoteRepository;
 use API_InventoryRepositories\StockRepository;
 use API_InventoryRepositories\SupplierRepository;
+use API_InventoryRepositories\TransferNoteRepository;
 use API_InventoryRepositories\UnitRepository;
 use API_InventoryRepositories\WarehouseRepository;
+use API_InventoryRepositories\WasteNoteRepository;
 
 //-- Profiling
 use API_ProfilingRepositories_Context\ProfilingContext;
@@ -67,12 +71,16 @@ use API_RelationRepositories\DeliveryRelationRepository;
 use API_RelationRepositories\DispatchRelationRepository;
 use API_RelationRepositories\GenderRelationRepository;
 use API_RelationRepositories\InventoryRelationRepository;
+use API_RelationRepositories\InventRelationRepository;
 use API_RelationRepositories\LanguageRelationRepository;
 use API_RelationRepositories\OccupationRelationRepository;
+use API_RelationRepositories\ReturnRelationRepository;
 use API_RelationRepositories\RoleRelationRepository;
 use API_RelationRepositories\StatusRelationRepository;
 use API_RelationRepositories\StockRelationRepository;
 use API_RelationRepositories\TitleRelationRepository;
+use API_RelationRepositories\TransferRelationRepository;
+use API_RelationRepositories\WasteRelationRepository;
 
 //- Supporting
 
@@ -85,12 +93,16 @@ use API_DTOEntities_Factory\CountryFactory;
 use API_InventoryEntities_Factory\CustomerFactory;
 use API_InventoryEntities_Factory\DeliveryNoteFactory;
 use API_InventoryEntities_Factory\DispatchNoteFactory;
+use API_InventoryEntities_Factory\InventNoteFactory;
 use API_InventoryEntities_Factory\InventoryFactory;
 use API_InventoryEntities_Factory\ProductAttributeFactory;
 use API_InventoryEntities_Factory\ProductFactory;
+use API_InventoryEntities_Factory\ReturnNoteFactory;
 use API_InventoryEntities_Factory\StockAttributeFactory;
 use API_InventoryEntities_Factory\StockFactory;
 use API_InventoryEntities_Factory\SupplierFactory;
+use API_InventoryEntities_Factory\TransferNoteFactory;
+use API_InventoryEntities_Factory\WasteNoteFactory;
 
 //-- Profiling
 use API_ProfilingEntities_Factory\CivilityFactory;
@@ -125,6 +137,7 @@ use API_Inventory_Contract\ICustomerService;
 use API_Inventory_Contract\IDeliveryService;
 use API_Inventory_Contract\IDispatchService;
 use API_Inventory_Contract\IInventoryService;
+use API_Inventory_Contract\IInventService;
 use API_Inventory_Contract\IManufacturerService;
 use API_Inventory_Contract\IPackagingService;
 use API_Inventory_Contract\IProductService;
@@ -136,6 +149,7 @@ use API_Inventory_Service\CustomerService;
 use API_Inventory_Service\DeliveryService;
 use API_Inventory_Service\DispatchService;
 use API_Inventory_Service\InventoryService;
+use API_Inventory_Service\InventService;
 use API_Inventory_Service\ManufacturerService;
 use API_Inventory_Service\PackagingService;
 use API_Inventory_Service\ProductService;
@@ -299,16 +313,20 @@ $builder->AddScoped(LanguageRepository::class, LanguageRepository::class);
 $builder->AddScoped(CustomerRepository::class, CustomerRepository::class);
 $builder->AddScoped(DeliveryNoteRepository::class, DeliveryNoteRepository::class);
 $builder->AddScoped(DispatchNoteRepository::class, DispatchNoteRepository::class);
+$builder->AddScoped(InventNoteRepository::class, InventNoteRepository::class);
 $builder->AddScoped(InventoryRepository::class, InventoryRepository::class);
 $builder->AddScoped(ManufacturerRepository::class, ManufacturerRepository::class);
 $builder->AddScoped(PackagingRepository::class, PackagingRepository::class);
 $builder->AddScoped(ProductAttributeRepository::class, ProductAttributeRepository::class);
 $builder->AddScoped(ProductCategoryRepository::class, ProductCategoryRepository::class);
 $builder->AddScoped(ProductRepository::class, ProductRepository::class);
+$builder->AddScoped(ReturnNoteRepository::class, ReturnNoteRepository::class);
 $builder->AddScoped(StockRepository::class, StockRepository::class);
 $builder->AddScoped(SupplierRepository::class, SupplierRepository::class);
+$builder->AddScoped(TransferNoteRepository::class, TransferNoteRepository::class);
 $builder->AddScoped(UnitRepository::class, UnitRepository::class);
 $builder->AddScoped(WarehouseRepository::class, WarehouseRepository::class);
+$builder->AddScoped(WasteNoteRepository::class, WasteNoteRepository::class);
 
 //-- Profiling
 $builder->AddScoped(CivilityRepository::class, CivilityRepository::class);
@@ -333,12 +351,16 @@ $builder->AddScoped(DeliveryRelationRepository::class, DeliveryRelationRepositor
 $builder->AddScoped(DispatchRelationRepository::class, DispatchRelationRepository::class);
 $builder->AddScoped(GenderRelationRepository::class, GenderRelationRepository::class);
 $builder->AddScoped(InventoryRelationRepository::class, InventoryRelationRepository::class);
+$builder->AddScoped(InventRelationRepository::class, InventRelationRepository::class);
 $builder->AddScoped(LanguageRelationRepository::class, LanguageRelationRepository::class);
 $builder->AddScoped(OccupationRelationRepository::class, OccupationRelationRepository::class);
+$builder->AddScoped(ReturnRelationRepository::class, ReturnRelationRepository::class);
 $builder->AddScoped(RoleRelationRepository::class, RoleRelationRepository::class);
 $builder->AddScoped(StockRelationRepository::class, StockRelationRepository::class);
 $builder->AddScoped(StatusRelationRepository::class, StatusRelationRepository::class);
 $builder->AddScoped(TitleRelationRepository::class, TitleRelationRepository::class);
+$builder->AddScoped(TransferRelationRepository::class, TransferRelationRepository::class);
+$builder->AddScoped(WasteRelationRepository::class, WasteRelationRepository::class);
 
 //- Supporting
 
@@ -351,12 +373,16 @@ $builder->AddScoped(CountryFactory::class, CountryFactory::class);
 $builder->AddScoped(CustomerFactory::class, CustomerFactory::class);
 $builder->AddScoped(DeliveryNoteFactory::class, DeliveryNoteFactory::class);
 $builder->AddScoped(DispatchNoteFactory::class, DispatchNoteFactory::class);
+$builder->AddScoped(InventNoteFactory::class, InventNoteFactory::class);
 $builder->AddScoped(InventoryFactory::class, InventoryFactory::class);
 $builder->AddScoped(ProductAttributeFactory::class, ProductAttributeFactory::class);
 $builder->AddScoped(ProductFactory::class, ProductFactory::class);
+$builder->AddScoped(ReturnNoteFactory::class, ReturnNoteFactory::class);
 $builder->AddScoped(StockAttributeFactory::class, StockAttributeFactory::class);
 $builder->AddScoped(StockFactory::class, StockFactory::class);
 $builder->AddScoped(SupplierFactory::class, SupplierFactory::class);
+$builder->AddScoped(TransferNoteFactory::class, TransferNoteFactory::class);
+$builder->AddScoped(WasteNoteFactory::class, WasteNoteFactory::class);
 
 //-- Profiling
 $builder->AddScoped(CivilityFactory::class, CivilityFactory::class);
@@ -387,6 +413,7 @@ $builder->AddScoped(ICustomerService::class, CustomerService::class);
 $builder->AddScoped(IDeliveryService::class, DeliveryService::class);
 $builder->AddScoped(IDispatchService::class, DispatchService::class);
 $builder->AddScoped(IInventoryService::class, InventoryService::class);
+$builder->AddScoped(IInventService::class, InventService::class);
 $builder->AddScoped(IManufacturerService::class, ManufacturerService::class);
 $builder->AddScoped(IPackagingService::class, PackagingService::class);
 $builder->AddScoped(IProductService::class, ProductService::class);

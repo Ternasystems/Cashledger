@@ -44,12 +44,22 @@ $(function (){
         });
     });
 
+    $(body).on('change','#nbpackaging1, #nbpackaging2, #nbunit',function (){
+        let pack1 = $('#nbpackaging1').val(), pack2 = $('#nbpackaging2').val(), unit = $('#nbunit').val();
+        $('#stockquantity').val(pack1 * pack2 * unit);
+    });
+
+    $(body).on('change','#totalcost',function (){
+        $('#unitcost').val($('#totalcost').val() / $('#stockquantity').val());
+    });
+
     $(body).on('activate', '#new-stock', function (){
         let bool = true;
 
-        if ((typeof $('#deliverynumber').val() !== 'string' || $('#deliverynumber').val().trim() == '') || ($('#unitcost').val().trim() == '' || isNaN($('#unitcost').val()))
-            || (typeof $('#deliveryreference').val() !== 'string' || $('#deliveryreference').val().trim() == '')
-            || (typeof $('#batchnumber').val() !== 'string' || $('#batchnumber').val().trim() == '') || ($('#stockquantity').val().trim() == '' || isNaN($('#stockquantity').val())))
+        if ((typeof $('#deliverynumber').val() !== 'string' || $('#deliverynumber').val().trim() == '') || ($('#totalcost').val().trim() == '' || isNaN($('#totalcost').val()))
+            || (typeof $('#deliveryreference').val() !== 'string' || $('#deliveryreference').val().trim() == '') || ($('#nbunit').val().trim() == '' || isNaN($('#nbunit').val()))
+            || (typeof $('#batchnumber').val() !== 'string' || $('#batchnumber').val().trim() == '') || ($('#nbpackaging1').val().trim() == '' || isNaN($('#nbpackaging1').val()))
+            || ($('#nbpackaging2').val().trim() == '' || isNaN($('#nbpackaging2').val())))
             bool = false;
 
         if (bool){

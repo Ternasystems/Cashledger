@@ -141,7 +141,7 @@ form .form-row .bi-trash-fill:hover {
 
 #delivery-items > div {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 }
 
 #delivery-items .delivery-item {

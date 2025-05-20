@@ -71,7 +71,7 @@ class DeliveryService implements IDeliveryService
                 $this->inventoryService->SetInventory($stockInvent);
             }
         }
-        //$this->deliveryFactory->Create();
+        $this->deliveryFactory->Create();
     }
 
     public function PutDelivery(object $model): void

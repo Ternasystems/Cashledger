@@ -167,7 +167,7 @@ $Localizer = [
             <div class="form-area">
                 <div id="totalcost" class="text-end">
                     <label class="fw-bold"><?= $Localizer['HeaderTotal']; ?> = </label>
-                    <span></span>
+                    <span data-total="0"></span>
                 </div>
             </div>
             <!-- Dispatch description -->

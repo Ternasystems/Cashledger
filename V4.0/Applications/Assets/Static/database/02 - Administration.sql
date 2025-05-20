@@ -810,13 +810,13 @@ BEGIN
 		-- Execute sql
 		EXECUTE _sql;
 	--
-	/*EXCEPTION WHEN OTHERS THEN
+	EXCEPTION WHEN OTHERS THEN
 		-- Reset IsProc parameter
 	    CALL public."p_IsProc"(FALSE);
 		
 		-- Reset CurrentThread parameter
 		CALL public."p_CurrentThread"(FALSE);
-		RETURN;*/
+		RETURN;
 	END;
 	-- Reset IsProc parameter
     CALL public."p_IsProc"(FALSE);
@@ -1895,8 +1895,31 @@ DECLARE _id character varying(50);
 
 BEGIN
 SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CMR';
+CALL public."p_InsertCity"(_id, 'MVR', 'Maroua');
+CALL public."p_InsertCity"(_id, 'GOU', 'Garoua');
+CALL public."p_InsertCity"(_id, 'NGE', 'Ngaoundéré');
 CALL public."p_InsertCity"(_id, 'YDE', 'Yaoundé');
 CALL public."p_InsertCity"(_id, 'DLA', 'Douala');
+CALL public."p_InsertCity"(_id, 'EBA', 'Ebolowa');
+CALL public."p_InsertCity"(_id, 'BFM', 'Bafoussam');
+CALL public."p_InsertCity"(_id, 'BUA', 'Buéa');
+CALL public."p_InsertCity"(_id, 'BDA', 'Bamenda');
+CALL public."p_InsertCity"(_id, 'BTA', 'Bertoua');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CAF';
+CALL public."p_InsertCity"(_id, 'BGF', 'Bangui');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'COG';
+CALL public."p_InsertCity"(_id, 'BZV', 'Brazzaville');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'GAB';
+CALL public."p_InsertCity"(_id, 'LBV', 'Libreville');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'GNQ';
+CALL public."p_InsertCity"(_id, 'SSG', 'Malabo');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'TCD';
+CALL public."p_InsertCity"(_id, 'NDJ', 'N''Djamena');
 END $BODY$;
 
 -- Insert LanguageRelations
@@ -2935,6 +2958,71 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Douala');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Douala');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Douala');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'MVR';
+	CALL public."p_InsertCity"(_id, 'MVR', 'Maroua');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Maroua');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Maroua');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Maroua');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'GOU';
+	CALL public."p_InsertCity"(_id, 'GOU', 'Garoua');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Garoua');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Garoua');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Garoua');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'NGE';
+	CALL public."p_InsertCity"(_id, 'NGE', 'Ngaoundéré');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Ngaoundéré');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Ngaoundéré');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Ngaoundéré');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'EBA';
+	CALL public."p_InsertCity"(_id, 'EBA', 'Ebolowa');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Ebolowa');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Ebolowa');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Ebolowa');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'BFM';
+	CALL public."p_InsertCity"(_id, 'BFM', 'Bafoussam');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bafoussam');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bafoussam');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Bafoussam');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'BUA';
+	CALL public."p_InsertCity"(_id, 'BUA', 'Buéa');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Buéa');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Buéa');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Buéa');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'BDA';
+	CALL public."p_InsertCity"(_id, 'BDA', 'Bamenda');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bamenda');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bamenda');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Bamenda');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'BTA';
+	CALL public."p_InsertCity"(_id, 'BTA', 'Bertoua');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bertoua');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bertoua');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Bertoua');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'BGF';
+	CALL public."p_InsertCity"(_id, 'BGF', 'Bangui');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bangui');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bangui');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Bangui');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'BZV';
+	CALL public."p_InsertCity"(_id, 'BZV', 'Brazzaville');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Brazzaville');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Brazzaville');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Brazzaville');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'LBV';
+	CALL public."p_InsertCity"(_id, 'LBV', 'Libreville');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Libreville');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Libreville');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Libreville');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'SSG';
+	CALL public."p_InsertCity"(_id, 'SSG', 'Malabo');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Malabo');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Malabo');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Malabo');
+	SELECT "ID" INTO _id FROM public."cl_Cities" WHERE "Name" = 'NDJ';
+	CALL public."p_InsertCity"(_id, 'NDJ', 'N''Djamena');
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'N''Djamena');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'N''Djamena');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'N''Djamena');
 END $BODY$;
 
 -- Trigger: Delete_Audit

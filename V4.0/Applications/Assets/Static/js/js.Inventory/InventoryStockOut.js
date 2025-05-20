@@ -101,12 +101,13 @@ $(function (){
                 method: $(this).attr('method') || 'POST', // Default to POST if not specified
                 data: $(this).serialize(), // Serialize the form data
                 success: function (response) {
-                    const currentTotal = parseFloat($('.form-area #totalcost span').text().replace(/[^\d.-]/g, '')) || 0;
+                    const currentTotal = parseFloat($('.form-area #totalcost span').attr('data-total').replace(/[^\d.-]/g, '')) || 0;
                     const responseTotal = parseFloat($(response).find('div[data-id="total"]').text().replace(/[^\d.-]/g, '')) || 0;
                     const total = currentTotal + responseTotal;
 
                     $('input[name="state"]').attr('value', 'true');
                     $('.form-area #totalcost').before(response);
+                    $('.form-area #totalcost span').attr('data-total', total);
                     $('.form-area #totalcost span').text(new Intl.NumberFormat(lang, {
                         style: 'decimal'
                     }).format(total));

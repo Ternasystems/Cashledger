@@ -1022,7 +1022,7 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "Quantity" = %L WHERE "ID" = %L;', _tablename, _quantity, _id);
+	_sql := FORMAT('UPDATE public.%I SET "Quantity" = %L, "LastChecked" = NOW() WHERE "ID" = %L;', _tablename, _quantity, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;
@@ -1806,7 +1806,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _inventnumber, _reference, _inventdate, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'WSN');
+	CALL public."p_Query"(_sql, _tablename, 'INN');
 END;
 $BODY$;
 
@@ -1896,7 +1896,7 @@ BEGIN
 	-- Format sql
 	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("InventID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _inventid, _description);
 	-- Execute sql
-	CALL public."p_Query"(_sql, _tablename, 'WSR');
+	CALL public."p_Query"(_sql, _tablename, 'INR');
 END;
 $BODY$;
 
@@ -1937,6 +1937,166 @@ CREATE OR REPLACE TRIGGER "Remove_InventRelation"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
 
+-- Table: public.cl_TransferNotes
+
+CREATE TABLE IF NOT EXISTS public."cl_TransferNotes"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"TransferNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
+	"Reference" character varying(50) COLLATE pg_catalog."default",
+	"TransferDate" timestamp without time zone DEFAULT NOW(),
+	"EditDate" timestamp without time zone DEFAULT NOW(),
+	"IsActive" timestamp without time zone,
+    "Description" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertTransferNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertTransferNote"(
+	IN _transfernumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _transferdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_TransferNotes'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, %L, NOW(), NULL, %L);', _tablename, _id, _transfernumber, _reference, _transferdate, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'TRN');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_UpdateTransferNote(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_UpdateTransferNote"(
+	IN _id character varying(50),
+	IN _transfernumber character varying(50),
+	IN _reference character varying(50) DEFAULT NULL::character varying,
+	IN _transferdate timestamp without time zone DEFAULT NOW(),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_TransferNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "TransferNumber" = %L, "Reference" = %L, "TransferDate" = %L, "Description" = %L WHERE "ID" = %L;', _tablename, _transfernumber, _reference, _transferdate,
+	_description, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteTransferNote(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteTransferNote"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_TransferNotes';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('UPDATE public.%I SET "IsActive" = NOW() WHERE "ID" = %L;', _tablename, _id);
+	-- Execute sql
+	CALL public."p_Query"(_sql);
+END;
+$BODY$;
+
+-- Trigger: Delete_TransferNote
+
+CREATE OR REPLACE TRIGGER "Delete_TransferNote"
+    BEFORE DELETE
+    ON public."cl_TransferNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_TransferNote
+
+CREATE OR REPLACE TRIGGER "Insert_TransferNote"
+    BEFORE INSERT
+    ON public."cl_TransferNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Update_TransferNote
+
+CREATE OR REPLACE TRIGGER "Update_TransferNote"
+    BEFORE UPDATE 
+    ON public."cl_TransferNotes"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Table: public.cl_TransferRelations
+
+CREATE TABLE IF NOT EXISTS public."cl_TransferRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
+	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"TransferID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_TransferNotes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default",
+	CONSTRAINT "UQ_TransferRelation" UNIQUE ("TransferID", "StockID")
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertTransferRelation(character varying, character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertTransferRelation"(
+	IN _stockid character varying(50),
+	IN _transferid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_TransferRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L) ON CONFLICT ("TransferID", "StockID") DO NOTHING;', _tablename, _id, _stockid, _transferid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'TRR');
+END;
+$BODY$;
+
+-- PROCEDURE: public.p_DeleteTransferRelation(character varying)
+
+CREATE OR REPLACE PROCEDURE public."p_DeleteTransferRelation"(
+	IN _id character varying(50))
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_TransferRelations';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('DELETE FROM public.%I WHERE "ID" = %L', _id);
+END;
+$BODY$;
+
+-- Trigger: Update_TransferRelation
+
+CREATE OR REPLACE TRIGGER "Update_TransferRelation"
+	BEFORE UPDATE
+	ON public."cl_TransferRelations"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_TransferRelation
+
+CREATE OR REPLACE TRIGGER "Insert_TransferRelation"
+    BEFORE INSERT
+    ON public."cl_TransferRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Trigger: Remove_TransferRelation
+
+CREATE OR REPLACE TRIGGER "Remove_TransferRelation"
+    BEFORE DELETE
+    ON public."cl_TransferRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_RemoveTrigger"();
+
 -- FUNCTION: public."f_CheckInventory"(character varying);
 
 CREATE OR REPLACE FUNCTION public."f_CheckInventory"(_noteid character varying(50), _partnerid character varying(50))
@@ -1946,13 +2106,14 @@ CREATE OR REPLACE FUNCTION public."f_CheckInventory"(_noteid character varying(5
     VOLATILE PARALLEL UNSAFE
 AS $BODY$
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM public."cl_Suppliers" WHERE "ID" = _partnerid) AND NOT EXISTS (SELECT 1 FROM public."cl_Customers" WHERE "ID" = _partnerid) THEN
+    IF NOT EXISTS (SELECT 1 FROM public."cl_Suppliers" WHERE "ID" = _partnerid) AND NOT EXISTS (SELECT 1 FROM public."cl_Customers" WHERE "ID" = _partnerid)
+		AND NOT EXISTS (SELECT 1 FROM public."cl_Credentials" WHERE "ID" = _partnerid) THEN
 		RETURN FALSE;
 	END IF;
 	--
 	IF NOT EXISTS (SELECT 1 FROM public."cl_DeliveryNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_DispatchNotes" WHERE "ID" = _noteid)
 		AND NOT EXISTS (SELECT 1 FROM public."cl_ReturnNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_WasteNotes" WHERE "ID" = _noteid)
-		AND NOT EXISTS (SELECT 1 FROM public."cl_InventNotes" WHERE "ID" = _noteid) THEN
+		AND NOT EXISTS (SELECT 1 FROM public."cl_InventNotes" WHERE "ID" = _noteid) AND NOT EXISTS (SELECT 1 FROM public."cl_TransferNotes" WHERE "ID" = _noteid) THEN
 		RETURN FALSE;
 	END IF;
 	RETURN TRUE;
@@ -1969,7 +2130,7 @@ CREATE TABLE IF NOT EXISTS public."cl_Inventories"
 	"UnitID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Units" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"PartnerID" character varying(50) COLLATE pg_catalog."default" NOT NULL,
 	"InventoryType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("InventoryType" IN ('IN', 'OUT', 'RETURN', 'WASTE', 'INVENT', 'TRANSFER')),
-	"Quantity" numeric(8,2) NOT NULL CHECK ("Quantity" >= 0),
+	"Quantity" numeric(8,2) NOT NULL,
 	"InventDate" timestamp without time zone DEFAULT NOW(),
 	"UnitCost" numeric(8,2) NOT NULL CHECK ("UnitCost" >= 0),
 	"IsActive" timestamp without time zone,
@@ -2273,29 +2434,11 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Meter');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Mètre');
 	--
-	CALL public."p_InsertUnit"('Foot', 'ft');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Foot';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Foot');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Foot');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Pied');
-	--
-	CALL public."p_InsertUnit"('Nautical mile', 'n. mile');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Nautical mile';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Nautical mile');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Nautical mile');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Mile nautique');
-	--
 	CALL public."p_InsertUnit"('Liter', 'l');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Liter';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Liter');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Liter');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Litre');
-	--
-	CALL public."p_InsertUnit"('Gallon', 'gal');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Gallon';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Gallon');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Gallon');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gallon');
 	--
 	CALL public."p_InsertUnit"('Second', 's');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Second';
@@ -2309,47 +2452,11 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Kilogram');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Kilogramme');
 	--
-	CALL public."p_InsertUnit"('Pound', 'p');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Pound';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Pound');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Pound');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Livre');
-	--
-	CALL public."p_InsertUnit"('Radian', 'rd');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Radian';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Radian');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Radian');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Radian');
-	--
-	CALL public."p_InsertUnit"('Bar', 'bar');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Bar';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bar');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bar');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Bar');
-	--
 	CALL public."p_InsertUnit"('Unit', 'u');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Unit';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Unit');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Unit');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Unité');
-	--
-	CALL public."p_InsertUnit"('Pixel', 'px');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Pixel';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Pixel');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Pixel');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Pixel');
-	--
-	CALL public."p_InsertUnit"('Joule', 'j');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Joule';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Joule');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Joule');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Joule');
-	--
-	CALL public."p_InsertUnit"('Hertz', 'Hz');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Hertz';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Hertz');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Hertz');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Hertz');
 	--
 	CALL public."p_InsertUnit"('Farenheit', '°F');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Farenheit';
@@ -2368,12 +2475,6 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Kelvin');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Kelvin');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Kelvin');
-	--
-	CALL public."p_InsertUnit"('Byte', 'b');
-	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Byte';
-	CALL public."p_InsertLanguageRelation"(_us, _id, 'Byte');
-	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Byte');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Octet');
 	--
 	CALL public."p_InsertUnit"('USD', '$');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'USD';
@@ -2398,6 +2499,66 @@ BEGIN
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'CFAF');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'CFAF');
 	CALL public."p_InsertLanguageRelation"(_fr, _id, 'FCFA');
+	--
+	/*CALL public."p_InsertUnit"('Foot', 'ft');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Foot';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Foot');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Foot');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Pied');
+	--
+	CALL public."p_InsertUnit"('Nautical mile', 'n. mile');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Nautical mile';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Nautical mile');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Nautical mile');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Mile nautique');
+	--
+	CALL public."p_InsertUnit"('Gallon', 'gal');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Gallon';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Gallon');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Gallon');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gallon');
+	--
+	CALL public."p_InsertUnit"('Pound', 'p');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Pound';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Pound');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Pound');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Livre');
+	--
+	CALL public."p_InsertUnit"('Radian', 'rd');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Radian';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Radian');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Radian');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Radian');
+	--
+	CALL public."p_InsertUnit"('Bar', 'bar');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Bar';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Bar');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Bar');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Bar');
+	--
+	CALL public."p_InsertUnit"('Pixel', 'px');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Pixel';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Pixel');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Pixel');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Pixel');
+	--
+	CALL public."p_InsertUnit"('Joule', 'j');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Joule';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Joule');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Joule');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Joule');
+	--
+	CALL public."p_InsertUnit"('Hertz', 'Hz');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Hertz';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Hertz');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Hertz');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Hertz');
+	--
+	CALL public."p_InsertUnit"('Byte', 'b');
+	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Byte';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Byte');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Byte');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Octet');
 	--
 	CALL public."p_InsertUnit"('Milli', 'm');
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Milli';
@@ -2445,7 +2606,7 @@ BEGIN
 	SELECT "ID" INTO _id FROM public."cl_Units" WHERE "Name" = 'Tera';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Tera');
 	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Tera');
-	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Tera');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Tera');*/
 
 	-- Insert Product categories
 
@@ -2585,8 +2746,9 @@ CREATE OR REPLACE TRIGGER "Check_StockAttribute"
 DO
 $BODY$
 DECLARE _tablename text; _triggername text;
-	_tablenames text[] := ARRAY['cl_Customers', 'cl_Suppliers', 'cl_ProductCategories', 'cl_Warehouses', 'cl_Manufacturers', 'cl_Units', 'cl_Packagings', 'cl_Products',
-	'cl_ProductAttributes', 'cl_AttributeRelations', 'cl_Stocks', 'cl_StockRelations', 'cl_Inventories', 'cl_InventoryRelations'];
+	_tablenames text[] := ARRAY['cl_Customers', 'cl_Suppliers', 'cl_ProductCategories', 'cl_Warehouses', 'cl_Manufacturers', 'cl_Units', 'cl_Packagings', 'cl_Products', 'cl_ProductAttributes',
+	'cl_AttributeRelations', 'cl_Stocks', 'cl_StockRelations', 'cl_DeliveryNotes', 'cl_DeliveryRelations', 'cl_DispatchNotes', 'cl_DispatchRelations', 'cl_ReturnNotes', 'cl_ReturnRelations', 'cl_WasteNotes',
+	'cl_WasteRelations', 'cl_InventNotes', 'cl_InventRelations', 'cl_TransferNotes', 'cl_TransferRelations', 'cl_Inventories', 'cl_InventoryRelations'];
 BEGIN
 	FOR _tablename IN SELECT tablename FROM pg_tables WHERE schemaname = 'public'
 	LOOP

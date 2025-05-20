@@ -3,10 +3,15 @@
 namespace APP_Inventory_Controller;
 
 use API_Inventory_Controller\InventoryController;
+use API_Inventory_Controller\ManufacturerController;
 use API_Inventory_Controller\ProductController;
 use API_Inventory_Controller\StockController;
+use API_Inventory_Controller\UnitController;
 use API_Inventory_Controller\WarehouseController;
 use APP_Administration_Controller\Controller;
+use APP_Inventory_Model\InventoryModel;
+use APP_Inventory_Model\InventStockModel;
+use APP_Inventory_Model\StockInventModel;
 use Exception;
 use ReflectionException;
 use TS_Utility\Classes\UrlGenerator;
@@ -19,9 +24,11 @@ class InventController extends Controller
     private WarehouseController $warehouseController;
     private StockController $stockController;
     private InventoryController $inventoryController;
+    private ManufacturerController $manufacturerController;
+    private UnitController $unitController;
 
     public function __construct(ProductController $_productController, WarehouseController $_warehouseController, StockController $_stockController,
-                                InventoryController  $_inventoryController)
+                                InventoryController  $_inventoryController, ManufacturerController $_manufacturerController, UnitController $_unitController)
     {
         $this->urlGenerator = new UrlGenerator(dirname(__DIR__, 2).'\Assets\Data\json\config.json');
         parent::__construct($this->urlGenerator);
@@ -34,6 +41,8 @@ class InventController extends Controller
         $this->warehouseController = $_warehouseController;
         $this->stockController = $_stockController;
         $this->inventoryController = $_inventoryController;
+        $this->manufacturerController = $_manufacturerController;
+        $this->unitController = $_unitController;
     }
 
     /**
@@ -73,7 +82,8 @@ class InventController extends Controller
         $stock = $this->stockController->GetById($stockId);
         $productId = $stock->Product()->It()->Id;
         $inventories = $this->inventoryController->GetByProductId($productId);
-        $this->viewComponent('StockDetails', ['stock' => $stock, 'inventories' => $inventories, 'languages' => $languages]);
+        $manufacturers = $this->manufacturerController->Get();
+        $this->viewComponent('StockDetails', ['stock' => $stock, 'inventories' => $inventories, 'manufacturers' => $manufacturers, 'languages' => $languages]);
     }
 
     /**
@@ -96,5 +106,59 @@ class InventController extends Controller
         $stocks = $this->stockController->GetByWarehouseId($_warehouseId);
         $languages = $this->languageController->Get();
         $this->viewComponent('InventStock', ['languages' => $languages, 'stocks' => $stocks]);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function AddInventory(InventStockModel $model): void
+    {
+        if (!isset($_SESSION['InventStockModel']) || !$model->state)
+            $_SESSION['InventStockModel'] = [];
+        //
+        $json = json_decode($_POST['InventStockModel']);
+        $model->stockid = $json->Id;
+        $model->json = $_POST['InventStockModel'];
+        //
+        $_SESSION['InventStockModel'][] = $model;
+        $languages = $this->languageController->Get();
+        $product = $this->stockController->GetById($model->stockid)->Product();
+        $model->productid = $product->It()->Id;
+        $model->stockavailable = $this->stockController->GetById($model->stockid)->It()->Quantity;
+        $unit = $this->unitController->GetById($json->UnitId);
+        $this->viewComponent('InventoryItem', ['stockNumber' => count($_SESSION['InventStockModel']), 'model' => $model, 'product' => $product, 'unit' => $unit,
+            'languages' => $languages]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function AddStockInventory(InventoryModel $model): void
+    {
+        $stocks = [];
+        foreach ($_POST['StockModel'] as $json){
+            $obj = json_decode($json);
+            $obj->inventorydate = $obj->inventorydate->date;
+            $obj->state = $obj->state ? 'true' : 'false';
+            $stockModel = new InventStockModel();
+            $stockModel = $this->Mapping($stockModel, (array)$obj);
+            $stockObj = json_decode($stockModel->json);
+            //
+            $inventModel = new StockInventModel();
+            $inventModel->stockid = $stockModel->stockid;
+            $inventModel->unitid = $stockObj->UnitId;
+            $inventModel->partnerid = $_SESSION['CredentialId'];
+            $inventModel->inventorytype = 'INVENT';
+            $inventModel->quantity = $stockModel->stockavailable - $stockModel->stockquantity;
+            $inventModel->unitcost = $stockObj->UnitCost;
+            $inventModel->credentialid = $_SESSION['CredentialId'];
+            //
+            $stockModel->stockinvent = $inventModel;
+            $stocks[$stockModel->stockid] = $stockModel;
+        }
+        $model->stocks = $stocks;
+        $this->stockController->SetInventories($model);
+        $this->setFlashMessage('component', 'NewStockInventory');
+        $this->redirectToAction('Index');
     }
 }
