@@ -17,3 +17,79 @@ body {
 main {
     flex: 1;
 }
+
+#main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.ts-hd, .ts-bd {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 1px;
+}
+
+.ts-hd {
+    margin-top: 1rem;
+}
+
+.ts-hd + .ts-bd {
+    margin-top: 1px;
+}
+
+.ts-hd > div {
+    padding: 0.5rem;
+    text-align: center;
+    background-color: var(--bs-dark-bg-subtle);
+}
+
+.ts-bd > div {
+    padding: 0.5rem;
+    border-bottom: thin solid var(--bs-dark-bg-subtle);
+}
+
+.ts-bd:nth-child(even) > div {
+    background-color: var(--bs-secondary-bg);
+}
+
+.tday-hd {
+    grid-column-start: 2;
+    padding: 0.25rem 0.5rem !important;
+}
+
+.yday-hd {
+    grid-column-start: 3;
+    padding: 0.25rem 0.5rem !important;
+}
+
+#warehouse-last-hd {
+    margin-top: 0;
+}
+
+[id^="warehouse-last"] > div:last-child {
+    grid-column-end: span 3;
+}
+
+#warehouse-delivery-hd > div:first-child, #warehouse-dispatch-hd > div:first-child,
+#product-threshold-hd > div:first-child, #product-delivery-hd > div:first-child,
+#product-dispatch-hd > div:first-child, #product-return-hd > div:first-child, #product-waste-hd > div:first-child {
+    grid-column-end: span 4;
+}
+
+#warehouse-delivery-hd > div:nth-child(2), #warehouse-dispatch-hd > div:nth-child(2),
+#warehouse-delivery-hd > div:nth-child(5), #warehouse-dispatch-hd > div:nth-child(5) {
+    grid-row-end: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#warehouse-delivery-bd > div:not(:first-child), #warehouse-dispatch-bd > div:not(:first-child) {
+    text-align: end;
+}
+
+#product-threshold-hd > div:nth-child(2), #product-threshold-bd > div:first-child {
+    grid-column-end: span 2;
+}

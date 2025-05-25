@@ -40,6 +40,16 @@ $(function (){
             data: {stockId: stockId},
             success: function (response){
                 $('#stock-detail').empty().html(response);
+
+                let stock = parseFloat($('#stock-detail').find('[data-id="stock"]').text().replace(/[^\d.-]/g, ''));
+                let minStock = parseFloat($('#stock-detail').find('[data-id="min-stock"]').text().replace(/[^\d.-]/g, ''));
+                let maxStock = parseFloat($('#stock-detail').find('[data-id="max-stock"]').text().replace(/[^\d.-]/g, ''));
+
+                if (stock <= minStock)
+                    $('#stock-detail').find('[data-id="min-stock"]').css('color', 'red');
+
+                if (stock >= maxStock)
+                    $('#stock-detail').find('[data-id="max-stock"]').css('color', 'red');
             }
         });
     });

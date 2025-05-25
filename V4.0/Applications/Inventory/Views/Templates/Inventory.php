@@ -10,6 +10,7 @@ $ViewData['css'] = $ViewData['cssPath'].'css.Inventory/Inventory.css';
 $ViewData['js'] = $ViewData['jsPath'].'js.Inventory/InventoryInvent.js';
 
 $xmlLocale = new XMLManager(dirname(__DIR__, 2).'\Assets\Locales\InventoryLocale.xml');
+$menuLocale = new XMLManager(dirname(__DIR__, 2).'\Assets\Locales\ContextMenuLocale.xml');
 
 // Instantiate Locales
 $locales = new Locales();
@@ -18,29 +19,30 @@ $title = $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventor
 
 // Include Home menu View Component
 $Localizer = [
-    'MenuOverview' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'MenuOverview'),
-    'GeneralOverview' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'GeneralOverview'),
-    'WareHouseOverview' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'WareHouseOverview'),
-    'ProductOverview' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'ProductOverview'),
-    'StockOverview' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'StockOverview'),
-    'MenuOperation' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'MenuOperation'),
-    'StockIn' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'StockIn'),
-    'StockOut' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'StockOut'),
-    'Inventories' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Inventories'),
-    'MenuConfig' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'MenuConfig'),
-    'ProductCategories' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'ProductCategories'),
-    'ProductAttributes' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'ProductAttributes'),
-    'Products' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Products'),
-    'Warehouses' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Warehouses'),
-    'Customers' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Customers'),
-    'Suppliers' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Suppliers'),
-    'Manufacturers' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Manufacturers'),
-    'Units' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Units'),
-    'Packaging' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Packaging')
+    'MenuOverview' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'MenuOverview'),
+    'GeneralOverview' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'GeneralOverview'),
+    'WareHouseOverview' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'WareHouseOverview'),
+    'ProductOverview' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'ProductOverview'),
+    'CustomerOverview' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'CustomerOverview'),
+    'SupplierOverview' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'SupplierOverview'),
+    'MenuOperation' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'MenuOperation'),
+    'StockIn' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'StockIn'),
+    'StockOut' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'StockOut'),
+    'Inventories' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Inventories'),
+    'MenuConfig' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'MenuConfig'),
+    'ProductCategories' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'ProductCategories'),
+    'ProductAttributes' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'ProductAttributes'),
+    'Products' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Products'),
+    'Warehouses' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Warehouses'),
+    'Customers' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Customers'),
+    'Suppliers' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Suppliers'),
+    'Manufacturers' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Manufacturers'),
+    'Units' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Units'),
+    'Packaging' => $locales->getLocale($menuLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Home', 'Packaging')
 ];
 
 $MenuItems = [
-    'MenuOverview' => ['GeneralOverview', 'WareHouseOverview', 'ProductOverview', 'StockOverview'],
+    'MenuOverview' => ['GeneralOverview', 'WareHouseOverview', 'ProductOverview', 'CustomerOverview', 'SupplierOverview'],
     'MenuOperation' => ['StockIn', 'StockOut', 'Inventories'],
     'MenuConfig' => ['ProductCategories', 'ProductAttributes', 'Products', 'Warehouses', 'Customers', 'Suppliers', 'Manufacturers', 'Units', 'Packaging'],
 ];

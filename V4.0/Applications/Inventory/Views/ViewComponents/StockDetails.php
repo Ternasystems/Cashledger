@@ -44,6 +44,7 @@ $Localizer = [
     'WasteNote' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'WasteNote'),
     'TransferNote' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'TransferNote'),
     'InventNote' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'InventNote'),
+    'Variation' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Variation'),
     'UnitCost' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'UnitCost'),
     'Maiden' => $locales->getLocale($xmlLocale, $ViewData['CurrentLanguage'], 'Inventory', 'Inventory', 'Maiden')
 ];
@@ -95,15 +96,15 @@ $manufacturer = is_null($manufacturerId) ? null : $manufacturers->FirstOrDefault
 </div>
 <div class="stock-elt">
     <span class="fw-bold"><?= $Localizer['Quantity'] ?></span>
-    <span><?= $numberFormatter->format($stock->It()->Quantity).' '.$unit ?></span>
+    <span data-id="stock"><?= $numberFormatter->format($stock->It()->Quantity).' '.$unit ?></span>
 </div>
 <div class="stock-elt">
     <span class="fw-bold"><?= $Localizer['MinStock'] ?></span>
-    <span><?= $numberFormatter->format($stock->Product()->It()->MinStock).' '.$unit ?></span>
+    <span data-id="min-stock"><?= $numberFormatter->format($stock->Product()->It()->MinStock).' '.$unit ?></span>
 </div>
 <div class="stock-elt">
     <span class="fw-bold"><?= $Localizer['MaxStock'] ?></span>
-    <span><?= $numberFormatter->format($stock->Product()->It()->MaxStock).' '.$unit ?></span>
+    <span data-id="max-stock"><?= $numberFormatter->format($stock->Product()->It()->MaxStock).' '.$unit ?></span>
 </div>
 <div id="inventory">
     <div id="stock-input">
@@ -218,8 +219,8 @@ $manufacturer = is_null($manufacturerId) ? null : $manufacturers->FirstOrDefault
                     <span><?= $formatter->format($output->It()->InventDate) ?></span>
                 </div>
                 <div class="stock-elt">
-                    <span class="fw-bold"><?= $Localizer['Quantity'] ?></span>
-                    <span><?= $numberFormatter->format(-$output->It()->Quantity).' '.$unit ?></span>
+                    <span class="fw-bold"><?= $Localizer['Variation'] ?></span>
+                    <span><?= $numberFormatter->format($output->It()->Quantity * ($output->It()->Quantity == 0 ? 1 : -1)).' '.$unit ?></span>
                 </div>
                 <div class="stock-elt">
                     <span class="fw-bold"><?= $Localizer['UnitCost'] ?></span>

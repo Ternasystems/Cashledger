@@ -16,27 +16,8 @@
         <item app="Inventory" action="Home" name="NavGeneral">Aperçu général</item>
         <item app="Inventory" action="Home" name="NavWareHouse">Aperçu magasins</item>
         <item app="Inventory" action="Home" name="NavProduct">Aperçu produits</item>
-        <item app="Inventory" action="Home" name="NavStock">Aperçu stocks</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Home" name="MenuOverview">Aperçus</item>
-        <item app="Inventory" action="Home" name="GeneralOverview">Aperçu général</item>
-        <item app="Inventory" action="Home" name="WareHouseOverview">Aperçu magasins</item>
-        <item app="Inventory" action="Home" name="ProductOverview">Aperçu produits</item>
-        <item app="Inventory" action="Home" name="StockOverview">Aperçu stocks</item>
-        <item app="Inventory" action="Home" name="MenuOperation">Opérations</item>
-        <item app="Inventory" action="Home" name="StockIn">Entrées en stocks</item>
-        <item app="Inventory" action="Home" name="StockOut">Sorties de stocks</item>
-        <item app="Inventory" action="Home" name="Inventories">Inventaires</item>
-        <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Types de produits</item>
-        <item app="Inventory" action="Home" name="ProductAttributes">Attributs de produits</item>
-        <item app="Inventory" action="Home" name="Products">Produits</item>
-        <item app="Inventory" action="Home" name="Warehouses">Magasins</item>
-        <item app="Inventory" action="Home" name="Customers">Clients</item>
-        <item app="Inventory" action="Home" name="Suppliers">Fournisseurs</item>
-        <item app="Inventory" action="Home" name="Manufacturers">Fabricants</item>
-        <item app="Inventory" action="Home" name="Units">Unités de mesure</item>
-        <item app="Inventory" action="Home" name="Packaging">Conditionnement</item>
+        <item app="Inventory" action="Home" name="NavCustomer">Aperçu clients</item>
+        <item app="Inventory" action="Home" name="NavSupplier">Aperçu fournisseurs</item>
     </fr-FR>
     <!-- English (US) locale -->
     <en-US>
@@ -47,27 +28,8 @@
         <item app="Inventory" action="Home" name="GeneralOverview">General overview</item>
         <item app="Inventory" action="Home" name="WareHouseOverview">Warehouses overview</item>
         <item app="Inventory" action="Home" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Home" name="StockOverview">Stocks overview</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Home" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Home" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Home" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Home" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Home" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Home" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Home" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Home" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Home" name="Products">Products</item>
-        <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Home" name="Customers">Customers</item>
-        <item app="Inventory" action="Home" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Home" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Home" name="Units">Measurement units</item>
-        <item app="Inventory" action="Home" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Home" name="NavCustomer">Customers overview</item>
+        <item app="Inventory" action="Home" name="NavSupplier">Suppliers overview</item>
     </en-US>
     <!-- English (GB) locale -->
     <en-GB>
@@ -78,27 +40,8 @@
         <item app="Inventory" action="Home" name="NavGeneral">General overview</item>
         <item app="Inventory" action="Home" name="NavWareHouse">Warehouses overview</item>
         <item app="Inventory" action="Home" name="NavProduct">Products overview</item>
-        <item app="Inventory" action="Home" name="NavStock">Stocks overview</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Home" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Home" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Home" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Home" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Home" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Home" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Home" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Home" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Home" name="Products">Products</item>
-        <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Home" name="Customers">Customers</item>
-        <item app="Inventory" action="Home" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Home" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Home" name="Units">Measurement units</item>
-        <item app="Inventory" action="Home" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Home" name="NavCustomer">Customers overview</item>
+        <item app="Inventory" action="Home" name="NavSupplier">Suppliers overview</item>
     </en-GB>
     <!-- Español locale -->
     <es-ES>
@@ -109,27 +52,8 @@
         <item app="Inventory" action="Home" name="NavGeneral">General overview</item>
         <item app="Inventory" action="Home" name="NavWareHouse">Warehouses overview</item>
         <item app="Inventory" action="Home" name="NavProduct">Products overview</item>
-        <item app="Inventory" action="Home" name="NavStock">Stocks overview</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Home" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Home" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Home" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Home" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Home" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Home" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Home" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Home" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Home" name="Products">Products</item>
-        <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Home" name="Customers">Customers</item>
-        <item app="Inventory" action="Home" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Home" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Home" name="Units">Measurement units</item>
-        <item app="Inventory" action="Home" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Home" name="NavCustomer">Customers overview</item>
+        <item app="Inventory" action="Home" name="NavSupplier">Suppliers overview</item>
     </es-ES>
     <!-- Arabe locale -->
     <ar-SA>
@@ -140,26 +64,7 @@
         <item app="Inventory" action="Home" name="NavGeneral">General overview</item>
         <item app="Inventory" action="Home" name="NavWareHouse">Warehouses overview</item>
         <item app="Inventory" action="Home" name="NavProduct">Products overview</item>
-        <item app="Inventory" action="Home" name="NavStock">Stocks overview</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Home" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Home" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Home" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Home" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Home" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Home" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Home" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Home" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Home" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Home" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Home" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Home" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Home" name="Products">Products</item>
-        <item app="Inventory" action="Home" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Home" name="Customers">Customers</item>
-        <item app="Inventory" action="Home" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Home" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Home" name="Units">Measurement units</item>
-        <item app="Inventory" action="Home" name="Packaging">Packaging</item>
+        <item app="Inventory" action="Home" name="NavCustomer">Customers overview</item>
+        <item app="Inventory" action="Home" name="NavSupplier">Suppliers overview</item>
     </ar-SA>
 </locale>

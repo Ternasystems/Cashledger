@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Locale is an XML file that stores data necessary for the localisation of the system.
+-->
+<locale>
+    <!-- French locale -->
+    <fr-FR>
+        <!-- Components -->
+        <item app="Inventory" action="GeneralOverview" name="Label">Intitulés</item>
+        <item app="Inventory" action="GeneralOverview" name="Delivery">Entrées</item>
+        <item app="Inventory" action="GeneralOverview" name="Dispatch">Sorties</item>
+        <item app="Inventory" action="GeneralOverview" name="Inventory">Dernier inventaire</item>
+        <item app="Inventory" action="GeneralOverview" name="Today">Auj.</item>
+        <item app="Inventory" action="GeneralOverview" name="Yesterday">Hier</item>
+        <item app="Inventory" action="GeneralOverview" name="Variation">Ecarts</item>
+        <!-- -->
+        <item app="Inventory" action="GeneralOverview" name="Threshold">Seuils critiques</item>
+        <item app="Inventory" action="GeneralOverview" name="MinThreshold">Seuil min.</item>
+        <item app="Inventory" action="GeneralOverview" name="MaxThreshold">Seuil max.</item>
+        <item app="Inventory" action="GeneralOverview" name="Return">Retours</item>
+        <item app="Inventory" action="GeneralOverview" name="Waste">Pertes</item>
+        <item app="Inventory" action="GeneralOverview" name="Week">Semaine</item>
+        <item app="Inventory" action="GeneralOverview" name="Month">Mois</item>
+        <item app="Inventory" action="GeneralOverview" name="Year">Année</item>
+        <item app="Inventory" action="GeneralOverview" name="Trimester">Trimestre</item>
+        <item app="Inventory" action="GeneralOverview" name="Semester">Semestre</item>
+    </fr-FR>
+    <!-- English (US) locale -->
+    <en-US>
+        <!-- Components -->
+        <item app="Inventory" action="GeneralOverview" name="Label">Labels</item>
+        <item app="Inventory" action="GeneralOverview" name="Delivery">Inputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Dispatch">Outputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Inventory">Last inventory</item>
+        <item app="Inventory" action="GeneralOverview" name="Today">today</item>
+        <item app="Inventory" action="GeneralOverview" name="Yesterday">Yest.</item>
+        <item app="Inventory" action="GeneralOverview" name="Variation">Variations</item>
+        <!-- -->
+        <item app="Inventory" action="GeneralOverview" name="Threshold">Critical thresholds</item>
+        <item app="Inventory" action="GeneralOverview" name="MinThreshold">Min. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="MaxThreshold">Max. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="Return">Returns</item>
+        <item app="Inventory" action="GeneralOverview" name="Waste">Wastes</item>
+        <item app="Inventory" action="GeneralOverview" name="Week">Week</item>
+        <item app="Inventory" action="GeneralOverview" name="Month">Month</item>
+        <item app="Inventory" action="GeneralOverview" name="Year">Year</item>
+        <item app="Inventory" action="GeneralOverview" name="Trimester">Trimester</item>
+        <item app="Inventory" action="GeneralOverview" name="Semester">Semester</item>
+    </en-US>
+    <!-- English (GB) locale -->
+    <en-GB>
+        <!-- Components -->
+        <item app="Inventory" action="GeneralOverview" name="Label">Labels</item>
+        <item app="Inventory" action="GeneralOverview" name="Delivery">Inputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Dispatch">Outputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Inventory">Last inventory</item>
+        <item app="Inventory" action="GeneralOverview" name="Today">today</item>
+        <item app="Inventory" action="GeneralOverview" name="Yesterday">Yest.</item>
+        <item app="Inventory" action="GeneralOverview" name="Variation">Variations</item>
+        <!-- -->
+        <item app="Inventory" action="GeneralOverview" name="Threshold">Critical thresholds</item>
+        <item app="Inventory" action="GeneralOverview" name="MinThreshold">Min. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="MaxThreshold">Max. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="Return">Returns</item>
+        <item app="Inventory" action="GeneralOverview" name="Waste">Wastes</item>
+        <item app="Inventory" action="GeneralOverview" name="Week">Week</item>
+        <item app="Inventory" action="GeneralOverview" name="Month">Month</item>
+        <item app="Inventory" action="GeneralOverview" name="Year">Year</item>
+        <item app="Inventory" action="GeneralOverview" name="Trimester">Trimester</item>
+        <item app="Inventory" action="GeneralOverview" name="Semester">Semester</item>
+    </en-GB>
+    <!-- Español locale -->
+    <es-ES>
+        <!-- Components -->
+        <item app="Inventory" action="GeneralOverview" name="Label">Labels</item>
+        <item app="Inventory" action="GeneralOverview" name="Delivery">Inputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Dispatch">Outputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Inventory">Last inventory</item>
+        <item app="Inventory" action="GeneralOverview" name="Today">today</item>
+        <item app="Inventory" action="GeneralOverview" name="Yesterday">Yest.</item>
+        <item app="Inventory" action="GeneralOverview" name="Variation">Variations</item>
+        <!-- -->
+        <item app="Inventory" action="GeneralOverview" name="Threshold">Critical thresholds</item>
+        <item app="Inventory" action="GeneralOverview" name="MinThreshold">Min. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="MaxThreshold">Max. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="Return">Returns</item>
+        <item app="Inventory" action="GeneralOverview" name="Waste">Wastes</item>
+        <item app="Inventory" action="GeneralOverview" name="Week">Week</item>
+        <item app="Inventory" action="GeneralOverview" name="Month">Month</item>
+        <item app="Inventory" action="GeneralOverview" name="Year">Year</item>
+        <item app="Inventory" action="GeneralOverview" name="Trimester">Trimester</item>
+        <item app="Inventory" action="GeneralOverview" name="Semester">Semester</item>
+    </es-ES>
+    <!-- Arabe locale -->
+    <ar-SA>
+        <!-- Components -->
+        <item app="Inventory" action="GeneralOverview" name="Label">Labels</item>
+        <item app="Inventory" action="GeneralOverview" name="Delivery">Inputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Dispatch">Outputs</item>
+        <item app="Inventory" action="GeneralOverview" name="Inventory">Last inventory</item>
+        <item app="Inventory" action="GeneralOverview" name="Today">today</item>
+        <item app="Inventory" action="GeneralOverview" name="Yesterday">Yest.</item>
+        <item app="Inventory" action="GeneralOverview" name="Variation">Variations</item>
+        <!-- -->
+        <item app="Inventory" action="GeneralOverview" name="Threshold">Critical thresholds</item>
+        <item app="Inventory" action="GeneralOverview" name="MinThreshold">Min. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="MaxThreshold">Max. Thres.</item>
+        <item app="Inventory" action="GeneralOverview" name="Return">Returns</item>
+        <item app="Inventory" action="GeneralOverview" name="Waste">Wastes</item>
+        <item app="Inventory" action="GeneralOverview" name="Week">Week</item>
+        <item app="Inventory" action="GeneralOverview" name="Month">Month</item>
+        <item app="Inventory" action="GeneralOverview" name="Year">Year</item>
+        <item app="Inventory" action="GeneralOverview" name="Trimester">Trimester</item>
+        <item app="Inventory" action="GeneralOverview" name="Semester">Semester</item>
+    </ar-SA>
+</locale>

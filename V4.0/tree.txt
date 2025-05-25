@@ -3,7 +3,6 @@ Volume serial number is B842-46BA
 C:.
 |   .htaccess
 |   autoload.php
-|   Cashledger map.txt
 |   index.php
 |   tree.txt
 |   
@@ -68,6 +67,7 @@ C:.
 |   |   |   |       ReturnNotes.php
 |   |   |   |       Stocks.php
 |   |   |   |       Suppliers.php
+|   |   |   |       TransferNotes.php
 |   |   |   |       Units.php
 |   |   |   |       Warehouses.php
 |   |   |   |       WasteNotes.php
@@ -91,6 +91,7 @@ C:.
 |   |   |   |       ReturnNote.php
 |   |   |   |       Stock.php
 |   |   |   |       Supplier.php
+|   |   |   |       TransferNote.php
 |   |   |   |       Unit.php
 |   |   |   |       Warehouse.php
 |   |   |   |       WasteNote.php
@@ -109,6 +110,7 @@ C:.
 |   |   |           ReturnNoteRepository.php
 |   |   |           StockRepository.php
 |   |   |           SupplierRepository.php
+|   |   |           TransferNoteRepository.php
 |   |   |           UnitRepository.php
 |   |   |           WarehouseRepository.php
 |   |   |           WasteNoteRepository.php
@@ -186,6 +188,7 @@ C:.
 |   |       |       StatusRelations.php
 |   |       |       StockRelations.php
 |   |       |       TitleRelations.php
+|   |       |       TransferRelations.php
 |   |       |       WasteRelations.php
 |   |       |       
 |   |       +---Contexts
@@ -209,6 +212,7 @@ C:.
 |   |       |       StatusRelation.php
 |   |       |       StockRelation.php
 |   |       |       TitleRelation.php
+|   |       |       TransferRelation.php
 |   |       |       WasteRelation.php
 |   |       |       
 |   |       \---Repositories
@@ -228,6 +232,7 @@ C:.
 |   |               StatusRelationRepository.php
 |   |               StockRelationRepository.php
 |   |               TitleRelationRepository.php
+|   |               TransferRelationRepository.php
 |   |               WasteRelationRepository.php
 |   |               
 |   +---Services
@@ -256,6 +261,7 @@ C:.
 |   |   |   |       IDeliveryService.php
 |   |   |   |       IDispatchService.php
 |   |   |   |       IInventoryService.php
+|   |   |   |       IInventService.php
 |   |   |   |       IManufacturerService.php
 |   |   |   |       IPackagingService.php
 |   |   |   |       IProductService.php
@@ -280,6 +286,7 @@ C:.
 |   |   |           DeliveryService.php
 |   |   |           DispatchService.php
 |   |   |           InventoryService.php
+|   |   |           InventService.php
 |   |   |           ManufacturerService.php
 |   |   |           PackagingService.php
 |   |   |           ProductService.php
@@ -358,6 +365,7 @@ C:.
 |       |   |       StockAttributes.php
 |       |   |       Stocks.php
 |       |   |       Suppliers.php
+|       |   |       TransferNotes.php
 |       |   |       Units.php
 |       |   |       Warehouses.php
 |       |   |       WasteNotes.php
@@ -375,6 +383,7 @@ C:.
 |       |   |       StockAttributeFactory.php
 |       |   |       StockFactory.php
 |       |   |       SupplierFactory.php
+|       |   |       TransferNoteFactory.php
 |       |   |       WasteNoteFactory.php
 |       |   |       
 |       |   \---Models
@@ -392,6 +401,7 @@ C:.
 |       |           Stock.php
 |       |           StockAttribute.php
 |       |           Supplier.php
+|       |           TransferNote.php
 |       |           Unit.php
 |       |           Warehouse.php
 |       |           WasteNote.php
@@ -3501,11 +3511,13 @@ C:.
 |   |   |   \---Locales
 |   |   |           AttributeLocale.xml
 |   |   |           CategoryLocale.xml
+|   |   |           ContextMenuLocale.xml
 |   |   |           CustomerLocale.xml
 |   |   |           DeliveryItemLocale.xml
 |   |   |           DeliveryListLocale.xml
 |   |   |           DispatchItemLocale.xml
 |   |   |           DispatchListLocale.xml
+|   |   |           GeneralOverviewLocale.xml
 |   |   |           HomeLocale.xml
 |   |   |           InventoryLocale.xml
 |   |   |           ManufacturerLocale.xml
@@ -3549,6 +3561,7 @@ C:.
 |   |   |       ConstraintTypeModel.php
 |   |   |       ContactModel.php
 |   |   |       CustomerModel.php
+|   |   |       InventoryModel.php
 |   |   |       InventStockModel.php
 |   |   |       ManufacturerModel.php
 |   |   |       PackagingModel.php
@@ -3599,6 +3612,7 @@ C:.
 |   |               FormElement.php
 |   |               GeneralOverview.php
 |   |               HomeMenu.php
+|   |               InventoryItem.php
 |   |               InventStock.php
 |   |               ModifyAttribute.php
 |   |               ModifyCategory.php
@@ -3619,10 +3633,13 @@ C:.
 |   |               NewSupplier.php
 |   |               NewUnit.php
 |   |               NewWarehouse.php
+|   |               ProductOverview.php
 |   |               StockDetails.php
 |   |               StockElement.php
 |   |               StockInvent.php
 |   |               StockItem.php
+|   |               StockOverview.php
+|   |               WarehouseOverview.php
 |   |               
 |   +---Invoicing
 |   |   +---Assets

@@ -96,36 +96,68 @@
         "action": "Products"
       }
     },
-    "StockOverview": {
+    "CustomerOverview": {
       "fr-FR": {
-        "title": "Aperçu stocks",
+        "title": "Aperçu clients",
         "logo": "Inventory",
-        "description": "Affiche les données synthétiques des stocks."
+        "description": "Affiche les données synthétiques des clients."
       },
       "en-US": {
-        "title": "Stocks overview",
+        "title": "Customers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on customers."
       },
       "en-GB": {
-        "title": "Stocks overview",
+        "title": "Customers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on customers."
       },
       "es-ES": {
-        "title": "Stocks overview",
+        "title": "Customers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on customers."
       },
       "ar-SA": {
-        "title": "Stocks overview",
+        "title": "Customers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on customers."
       },
       "url": {
         "app": "Inventory",
         "controller": "Home",
-        "action": "Stocks"
+        "action": "Customers"
+      }
+    },
+    "SupplierOverview": {
+      "fr-FR": {
+        "title": "Aperçu fournisseurs",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des fournisseurs."
+      },
+      "en-US": {
+        "title": "Suppliers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on suppliers."
+      },
+      "en-GB": {
+        "title": "Suppliers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on suppliers."
+      },
+      "es-ES": {
+        "title": "Suppliers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on suppliers."
+      },
+      "ar-SA": {
+        "title": "Suppliers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on suppliers."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Suppliers"
       }
     },
     "StockIn": {
@@ -610,36 +642,68 @@
         "component": "ProductOverview"
       }
     },
-    "NavStock": {
+    "NavSupplier": {
       "fr-FR": {
-        "title": "Aperçu stocks",
+        "title": "Aperçu fournisseurs",
         "logo": "Inventory",
-        "description": "Affiche les données synthétiques des stocks."
+        "description": "Affiche les données synthétiques des fournisseurs."
       },
       "en-US": {
-        "title": "Stocks overview",
+        "title": "Suppliers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on suppliers."
       },
       "en-GB": {
-        "title": "Stocks overview",
+        "title": "Suppliers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on suppliers."
       },
       "es-ES": {
-        "title": "Stocks overview",
+        "title": "Suppliers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on suppliers."
       },
       "ar-SA": {
-        "title": "Stocks overview",
+        "title": "Suppliers overview",
         "logo": "Inventory",
-        "description": "Display summary data on stocks."
+        "description": "Display summary data on suppliers."
       },
       "url": {
         "app": "Inventory",
         "parent": "main-content",
-        "component": "StockOverview"
+        "component": "SupplierOverview"
+      }
+    },
+    "NavCustomer": {
+      "fr-FR": {
+        "title": "Aperçu clients",
+        "logo": "Inventory",
+        "description": "Affiche les données synthétiques des clients."
+      },
+      "en-US": {
+        "title": "Customers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on customers."
+      },
+      "en-GB": {
+        "title": "Customers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on customers."
+      },
+      "es-ES": {
+        "title": "Customers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on customers."
+      },
+      "ar-SA": {
+        "title": "Customers overview",
+        "logo": "Inventory",
+        "description": "Display summary data on customers."
+      },
+      "url": {
+        "app": "Inventory",
+        "parent": "main-content",
+        "component": "CustomerOverview"
       }
     },
     "NavDeliveryList": {

@@ -16,26 +16,6 @@
         <item app="Inventory" action="Warehouse" name="NavNewWarehouse">Nouveau magasin</item>
         <item app="Inventory" action="Warehouse" name="NavModifyWarehouse">Modifier un magasin</item>
         <item app="Inventory" action="Warehouse" name="NavDeleteWarehouse">Supprimer un magasin</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Warehouse" name="MenuOverview">Aperçus</item>
-        <item app="Inventory" action="Warehouse" name="GeneralOverview">Aperçu général</item>
-        <item app="Inventory" action="Warehouse" name="WareHouseOverview">Aperçu magasins</item>
-        <item app="Inventory" action="Warehouse" name="ProductOverview">Aperçu produits</item>
-        <item app="Inventory" action="Warehouse" name="StockOverview">Aperçu stocks</item>
-        <item app="Inventory" action="Warehouse" name="MenuOperation">Opérations</item>
-        <item app="Inventory" action="Warehouse" name="StockIn">Entrées en stocks</item>
-        <item app="Inventory" action="Warehouse" name="StockOut">Sorties de stocks</item>
-        <item app="Inventory" action="Warehouse" name="Inventories">Inventaires</item>
-        <item app="Inventory" action="Warehouse" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Warehouse" name="ProductCategories">Types de produits</item>
-        <item app="Inventory" action="Warehouse" name="ProductAttributes">Attributs de produits</item>
-        <item app="Inventory" action="Warehouse" name="Products">Produits</item>
-        <item app="Inventory" action="Warehouse" name="Warehouses">Magasins</item>
-        <item app="Inventory" action="Warehouse" name="Customers">Clients</item>
-        <item app="Inventory" action="Warehouse" name="Suppliers">Fournisseurs</item>
-        <item app="Inventory" action="Warehouse" name="Manufacturers">Fabricants</item>
-        <item app="Inventory" action="Warehouse" name="Units">Unités de mesure</item>
-        <item app="Inventory" action="Warehouse" name="Packaging">Conditionnement</item>
     </fr-FR>
     <!-- English (US) locale -->
     <en-US>
@@ -46,26 +26,6 @@
         <item app="Inventory" action="Warehouse" name="NavNewWarehouse">New warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavModifyWarehouse">Modify a warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavDeleteWarehouse">Delete a warehouse</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Warehouse" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Warehouse" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Warehouse" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Warehouse" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Warehouse" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Warehouse" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Warehouse" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Warehouse" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Warehouse" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Warehouse" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Warehouse" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Warehouse" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Warehouse" name="Products">Products</item>
-        <item app="Inventory" action="Warehouse" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Warehouse" name="Customers">Customers</item>
-        <item app="Inventory" action="Warehouse" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Warehouse" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Warehouse" name="Units">Measurement units</item>
-        <item app="Inventory" action="Warehouse" name="Packaging">Packaging</item>
     </en-US>
     <!-- English (GB) locale -->
     <en-GB>
@@ -76,26 +36,6 @@
         <item app="Inventory" action="Warehouse" name="NavNewWarehouse">New warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavModifyWarehouse">Modify a warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavDeleteWarehouse">Delete a warehouse</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Warehouse" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Warehouse" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Warehouse" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Warehouse" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Warehouse" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Warehouse" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Warehouse" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Warehouse" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Warehouse" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Warehouse" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Warehouse" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Warehouse" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Warehouse" name="Products">Products</item>
-        <item app="Inventory" action="Warehouse" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Warehouse" name="Customers">Customers</item>
-        <item app="Inventory" action="Warehouse" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Warehouse" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Warehouse" name="Units">Measurement units</item>
-        <item app="Inventory" action="Warehouse" name="Packaging">Packaging</item>
     </en-GB>
     <!-- Español locale -->
     <es-ES>
@@ -106,26 +46,6 @@
         <item app="Inventory" action="Warehouse" name="NavNewWarehouse">New warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavModifyWarehouse">Modify a warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavDeleteWarehouse">Delete a warehouse</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Warehouse" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Warehouse" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Warehouse" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Warehouse" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Warehouse" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Warehouse" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Warehouse" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Warehouse" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Warehouse" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Warehouse" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Warehouse" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Warehouse" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Warehouse" name="Products">Products</item>
-        <item app="Inventory" action="Warehouse" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Warehouse" name="Customers">Customers</item>
-        <item app="Inventory" action="Warehouse" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Warehouse" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Warehouse" name="Units">Measurement units</item>
-        <item app="Inventory" action="Warehouse" name="Packaging">Packaging</item>
     </es-ES>
     <!-- Arabe locale -->
     <ar-SA>
@@ -136,25 +56,5 @@
         <item app="Inventory" action="Warehouse" name="NavNewWarehouse">New warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavModifyWarehouse">Modify a warehouse</item>
         <item app="Inventory" action="Warehouse" name="NavDeleteWarehouse">Delete a warehouse</item>
-        <!-- Context menu -->
-        <item app="Inventory" action="Warehouse" name="MenuOverview">Overviews</item>
-        <item app="Inventory" action="Warehouse" name="GeneralOverview">General overview</item>
-        <item app="Inventory" action="Warehouse" name="WareHouseOverview">Warehouses overview</item>
-        <item app="Inventory" action="Warehouse" name="ProductOverview">Products overview</item>
-        <item app="Inventory" action="Warehouse" name="StockOverview">Stocks overview</item>
-        <item app="Inventory" action="Warehouse" name="MenuOperation">Operations</item>
-        <item app="Inventory" action="Warehouse" name="StockIn">Stock-In</item>
-        <item app="Inventory" action="Warehouse" name="StockOut">Stock-Out</item>
-        <item app="Inventory" action="Warehouse" name="Inventories">Inventories</item>
-        <item app="Inventory" action="Warehouse" name="MenuConfig">Configuration</item>
-        <item app="Inventory" action="Warehouse" name="ProductCategories">Product types</item>
-        <item app="Inventory" action="Warehouse" name="ProductAttributes">Product attributes</item>
-        <item app="Inventory" action="Warehouse" name="Products">Products</item>
-        <item app="Inventory" action="Warehouse" name="Warehouses">Warehouses</item>
-        <item app="Inventory" action="Warehouse" name="Customers">Customers</item>
-        <item app="Inventory" action="Warehouse" name="Suppliers">Suppliers</item>
-        <item app="Inventory" action="Warehouse" name="Manufacturers">Manufacturers</item>
-        <item app="Inventory" action="Warehouse" name="Units">Measurement units</item>
-        <item app="Inventory" action="Warehouse" name="Packaging">Packaging</item>
     </ar-SA>
 </locale>

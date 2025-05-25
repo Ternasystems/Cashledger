@@ -34,6 +34,7 @@
         <item app="Inventory" action="Inventory" name="WasteNote">Mise au rebut</item>
         <item app="Inventory" action="Inventory" name="TransferNote">Transfert</item>
         <item app="Inventory" action="Inventory" name="InventNote">Inventaire physique</item>
+        <item app="Inventory" action="Inventory" name="Variation">Ajustement</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Coût unitaire</item>
         <item app="Inventory" action="Inventory" name="Maiden">epse</item>
     </fr-FR>
@@ -64,6 +65,7 @@
         <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
         <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
         <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
+        <item app="Inventory" action="Inventory" name="Variation">Variation</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </en-US>
@@ -94,6 +96,7 @@
         <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
         <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
         <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
+        <item app="Inventory" action="Inventory" name="Variation">Variation</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </en-GB>
@@ -124,6 +127,7 @@
         <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
         <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
         <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
+        <item app="Inventory" action="Inventory" name="Variation">Variation</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </es-ES>
@@ -154,6 +158,7 @@
         <item app="Inventory" action="Inventory" name="WasteNote">WasteNote</item>
         <item app="Inventory" action="Inventory" name="TransferNote">TransferNote</item>
         <item app="Inventory" action="Inventory" name="InventNote">InventNote</item>
+        <item app="Inventory" action="Inventory" name="Variation">Variation</item>
         <item app="Inventory" action="Inventory" name="UnitCost">Unit cost</item>
         <item app="Inventory" action="Inventory" name="Maiden">sp.</item>
     </ar-SA>

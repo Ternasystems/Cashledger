@@ -10,6 +10,8 @@ $(function (){
 
     $.language();
 
+    $.loadComponents('Inventory', 'Home', $('#main-content').attr('data-component'), 'main-content');
+
     // -Language switch
     $('select#lang').on('change', function (){
         let lg = $(this).find('option:selected').attr('value');
@@ -22,7 +24,7 @@ $(function (){
         const app = $(this).attr('data-app');
         const component = $(this).attr('data-component');
         const parent = $(this).attr('data-parent');
-        const actionUrl = `../../${app}/Config/${component}`;
+        const actionUrl = `../../${app}/Home/${component}`;
 
         $.ajax({
             url: actionUrl,
