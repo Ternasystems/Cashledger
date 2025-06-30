@@ -120,7 +120,7 @@ class Queryable extends Enumerable implements IQueryable
     public function limit(int $count, int $offset = 0): static
     {
         if (empty($this->sortCriteria)) {
-            throw new DomainException(['en' => 'sortBy() must be called before limit().']);
+            throw new DomainException('sort_before_limit');
         }
         $items = array_slice($this->items, $offset, $count);
         return new static($items);

@@ -7,11 +7,12 @@ namespace TS_Locale\Classes;
 use TS_Locale\Interfaces\TranslationLoaderInterface;
 
 /**
- * The main service for handling translations.
+ * The main service for handling translations from multiple sources.
  */
 final class Translator
 {
-    private TranslationLoaderInterface $loader;
+    /** @var TranslationLoaderInterface[] */
+    private array $loaders = [];
     private string $currentLocale;
     private string $fallbackLocale;
 
@@ -19,19 +20,26 @@ final class Translator
     private array $translations = [];
 
     public function __construct(
-        TranslationLoaderInterface $loader,
         string $currentLocale,
         string $fallbackLocale = 'en-US'
     ) {
-        $this->loader = $loader;
         $this->currentLocale = $currentLocale;
         $this->fallbackLocale = $fallbackLocale;
     }
 
     /**
+     * Adds a translation loader to the translator.
+     * Loaders will be checked in the order they are added.
+     */
+    public function addLoader(string $domainPrefix, TranslationLoaderInterface $loader): void
+    {
+        $this->loaders[$domainPrefix] = $loader;
+    }
+
+    /**
      * Translates a given key, with optional placeholders.
      *
-     * @param string $key The translation key (e.g., 'home.title').
+     * @param string $key The translation key (e.g., 'DBException.connection_failed').
      * @param array<string, string|int> $placeholders Key-value pairs for replacement.
      * @return string The translated string, or the key itself if not found.
      */
@@ -39,18 +47,14 @@ final class Translator
     {
         [$domain, $translationKey] = explode('.', $key, 2);
 
-        // Load translations for the domain if not already cached.
-        $this->loadDomain($this->currentLocale, $domain);
-        $this->loadDomain($this->fallbackLocale, $domain);
-
-        $message = $this->translations[$this->currentLocale][$domain][$translationKey]
-            ?? $this->translations[$this->fallbackLocale][$domain][$translationKey]
+        $message = $this->findTranslation($this->currentLocale, $domain, $translationKey)
+            ?? $this->findTranslation($this->fallbackLocale, $domain, $translationKey)
             ?? $key; // Return the key as a last resort.
 
-        // Replace placeholders like :name with their values.
-        if (!empty($placeholders)) {
+        // Replace placeholders
+        if (!empty($placeholders) && str_contains($message, ':')) {
             foreach ($placeholders as $placeholder => $value) {
-                $message = str_replace(':' . $placeholder, (string)$value, $message);
+                $message = str_replace($placeholder, (string)$value, $message);
             }
         }
 
@@ -58,14 +62,28 @@ final class Translator
     }
 
     /**
-     * Loads the translations for a given domain into the cache.
+     * Finds a translation by iterating through registered loaders.
      */
-    private function loadDomain(string $locale, string $domain): void
+    private function findTranslation(string $locale, string $domain, string $key): ?string
     {
-        if (isset($this->translations[$locale][$domain])) {
-            return; // Already loaded.
+        // First, check the cache
+        if (isset($this->translations[$locale][$domain][$key])) {
+            return $this->translations[$locale][$domain][$key];
         }
 
-        $this->translations[$locale][$domain] = $this->loader->load($locale, $domain);
+        // If not cached, try to load it from the registered loaders
+        foreach ($this->loaders as $prefix => $loader) {
+            // Check if the domain starts with the loader's prefix
+            if (str_starts_with($domain, $prefix)) {
+                // Load and cache the entire domain file
+                $this->translations[$locale][$domain] = $loader->load($locale, $domain);
+                // Now check again for the specific key
+                if (isset($this->translations[$locale][$domain][$key])) {
+                    return $this->translations[$locale][$domain][$key];
+                }
+            }
+        }
+
+        return null;
     }
 }

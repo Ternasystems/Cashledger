@@ -141,7 +141,7 @@ class Enumerable extends AbstractCls implements IEnumerable, JsonSerializable
     public function thenBy(string|Closure $keySelector, OrderEnum $direction = OrderEnum::ASC): static
     {
         if (empty($this->sortCriteria)) {
-            throw new DomainException(['en' => 'sortBy() must be called before thenBy().']);
+            throw new DomainException('sort_before_then');
         }
         $this->sortCriteria[] = ['selector' => $keySelector, 'direction' => $direction];
         $this->executeSort();
@@ -154,7 +154,7 @@ class Enumerable extends AbstractCls implements IEnumerable, JsonSerializable
     public function orderBy(OrderEnum $direction = OrderEnum::ASC, ?Closure $keySelector = null): static
     {
         if (empty($this->sortCriteria)) {
-            throw new DomainException(['en' => 'sortBy() must be called before orderBy().']);
+            throw new DomainException('sort_before_order');
         }
 
         $lastIndex = count($this->sortCriteria) - 1;
@@ -197,7 +197,7 @@ class Enumerable extends AbstractCls implements IEnumerable, JsonSerializable
             'sum' => $this->sum($selector),
             'average', 'avg' => $this->average($selector),
             'count' => $this->count(),
-            default => throw new DomainException(['en' => "Unsupported statistics operator: $operator"])
+            default => throw new DomainException('unsupported_statistic', [':operator' => $operator])
         };
     }
 

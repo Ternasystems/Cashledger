@@ -1,0 +1,14 @@
+{
+  "en-US": {
+    "service_not_found": "Service or class not found in the container: :id",
+    "failed_to_reflect": "Failed to reflect class ':class'. It may not exist or is misnamed.",
+    "class_not_instantiable": "The class ':class' is not instantiable. It might be an interface or an abstract class.",
+    "unresolvable_parameter": "Cannot resolve the primitive constructor parameter ':param' for class ':class'."
+  },
+  "fr-FR": {
+    "service_not_found": "Le service ou la classe est introuvable dans le conteneur : :id",
+    "failed_to_reflect": "Échec de la réflexion de la classe ':class'. Elle n'existe peut-être pas ou est mal nommée.",
+    "class_not_instantiable": "La classe ':class' n'est pas instanciable. Il s'agit peut-être d'une interface ou d'une classe abstraite.",
+    "unresolvable_parameter": "Impossible de résoudre le paramètre primitif ':param' dans le constructeur de la classe ':class'."
+  }
+}

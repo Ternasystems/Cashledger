@@ -1,0 +1,14 @@
+{
+  "en-US": {
+    "file_not_json": "File provided is not a valid JSON file. Path: :path",
+    "file_creation_failed": "Could not create new JSON file at: :path",
+    "file_read_failed": "Could not read JSON file at: :path",
+    "parse_failed": "Failed to parse JSON file. Error: :reason"
+  },
+  "fr-FR": {
+    "file_not_json": "Le fichier fourni n'est pas un fichier JSON valide. Chemin : :path",
+    "file_creation_failed": "Impossible de créer le nouveau fichier JSON à : :path",
+    "file_read_failed": "Impossible de lire le fichier JSON à : :path",
+    "parse_failed": "Échec de l'analyse du fichier JSON. Raison : :reason"
+  }
+}

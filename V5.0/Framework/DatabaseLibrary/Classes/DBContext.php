@@ -10,12 +10,16 @@ use PDOStatement;
 use TS_Exception\Classes\DBException;
 
 /**
- * Provides a unified and simplified interface for database interactions.
- * This class acts as a wrapper around a PDO connection object.
+ * Provides a unified and simplified interface for all database interactions.
+ * This class acts as a high-level wrapper around a PDO connection object,
+ * simplifying common tasks like SELECT, INSERT, UPDATE, DELETE, and transactions.
  */
-final class DatabaseContext
+final class DBContext
 {
     /**
+     * The constructor receives a pre-configured PDO instance, following
+     * the Dependency Injection pattern.
+     *
      * @param PDO $pdo A connected and configured PDO instance.
      */
     public function __construct(private PDO $pdo)
@@ -23,12 +27,12 @@ final class DatabaseContext
     }
 
     /**
-     * Executes a SELECT query and returns all results.
+     * Executes a SELECT query and returns all results as an array of associative arrays.
      *
      * @param string $sql The SQL query to execute.
      * @param array<string, mixed> $params The parameters to bind to the query.
-     * @return array<int, array<string, mixed>> An array of associative arrays representing the rows.
-     * @throws DBException
+     * @return array<int, array<string, mixed>>
+     * @throws DBException if the query fails.
      */
     public function select(string $sql, array $params = []): array
     {
@@ -37,7 +41,7 @@ final class DatabaseContext
             $stmt->execute($params);
             return $stmt->fetchAll();
         } catch (PDOException $e) {
-            throw new DBException(['en' => 'Select query failed: ' . $e->getMessage()], (int)$e->getCode(), $e);
+            throw new DBException('query_failed', [':reason' => $e->getMessage()], (int)$e->getCode(), $e);
         }
     }
 
@@ -61,7 +65,7 @@ final class DatabaseContext
      * @param string $sql The SQL statement to execute.
      * @param array<string, mixed> $params The parameters to bind to the statement.
      * @return int The number of affected rows.
-     * @throws DBException
+     * @throws DBException if the execution fails.
      */
     public function execute(string $sql, array $params = []): int
     {
@@ -70,28 +74,28 @@ final class DatabaseContext
             $stmt->execute($params);
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            throw new DBException(['en' => 'Execution query failed: ' . $e->getMessage()], (int)$e->getCode(), $e);
+            throw new DBException('query_failed', [':reason' => $e->getMessage()], (int)$e->getCode(), $e);
         }
     }
 
     /**
-     * Prepares an SQL statement for execution.
+     * Prepares an SQL statement for execution, useful for manual iteration or complex binding.
      *
      * @param string $sql The SQL statement to prepare.
      * @return PDOStatement The prepared statement object.
-     * @throws DBException
+     * @throws DBException if the preparation fails.
      */
     public function prepare(string $sql): PDOStatement
     {
         try {
             return $this->pdo->prepare($sql);
         } catch (PDOException $e) {
-            throw new DBException(['en' => 'Statement preparation failed: ' . $e->getMessage()], (int)$e->getCode(), $e);
+            throw new DBException('preparation_failed', [':reason' => $e->getMessage()], (int)$e->getCode(), $e);
         }
     }
 
     /**
-     * Initiates a transaction.
+     * Initiates a database transaction.
      */
     public function beginTransaction(): bool
     {
@@ -99,7 +103,7 @@ final class DatabaseContext
     }
 
     /**
-     * Commits a transaction.
+     * Commits the current database transaction.
      */
     public function commit(): bool
     {
@@ -107,7 +111,7 @@ final class DatabaseContext
     }
 
     /**
-     * Rolls back a transaction.
+     * Rolls back the current database transaction.
      */
     public function rollBack(): bool
     {
@@ -115,7 +119,7 @@ final class DatabaseContext
     }
 
     /**
-     * Returns the ID of the last inserted row.
+     * Returns the ID of the last inserted row or sequence value.
      */
     public function getLastInsertId(?string $name = null): string|false
     {

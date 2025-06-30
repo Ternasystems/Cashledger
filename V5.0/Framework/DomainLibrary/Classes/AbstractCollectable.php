@@ -70,7 +70,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
         // The first item determines the required type for the whole collection.
         $firstItem = reset($collection);
         if (!is_object($firstItem)) {
-            throw new DomainException(['en' => 'All items in this collection must be an object']);
+            throw new DomainException('item_not_object');
         }
 
         $this->itemType = get_class($firstItem);
@@ -78,7 +78,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
         // Process each item to ensure type safety and generate keys.
         foreach ($collection as $key => $item) {
             if (!($item instanceof $this->itemType)) {
-                throw new DomainException(['en' => 'All items in this collection must be an object of type ' . $this->itemType]);
+                throw new DomainException('item_type_mismatch', [':type' => $this->itemType]);
             }
 
             // If the key is numeric, it's likely an indexed array, so we generate a unique hash key.
@@ -195,7 +195,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
     public function thenBy(string|Closure $keySelector, OrderEnum $direction = OrderEnum::ASC): static
     {
         if (empty($this->sortCriteria)) {
-            throw new DomainException(['en' => 'sortBy() must be called before thenBy().']);
+            throw new DomainException('sort_before_then');
         }
         $this->sortCriteria[] = ['selector' => $keySelector, 'direction' => $direction];
         $this->executeSort();
@@ -230,6 +230,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
 
     /**
      * A placeholder for a potential future method for more complex statistics.
+     * @throws DomainException
      */
     public function statistics(string $operator, Closure $selector): float|int|array
     {
@@ -237,7 +238,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
             'sum' => $this->sum($selector),
             'average', 'avg' => $this->average($selector),
             'count' => $this->count(),
-            default => throw new DomainException(['en' => "Unsupported statistics operator: $operator"])
+            default => throw new DomainException('unsupported_statistic', [':operator' => $operator])
         };
     }
 
@@ -369,7 +370,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
     public function limit(int $count, int $offset = 0): static
     {
         if (empty($this->sortCriteria)) {
-            throw new DomainException(['en' => 'sortBy() must be called before limit().']);
+            throw new DomainException('sort_before_limit');
         }
         // Slice the ordered index to get the keys for the desired page.
         $limitedKeys = array_slice($this->indexArray, $offset, $count);
@@ -462,7 +463,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if ($this->itemType && !($value instanceof $this->itemType)) {
-            throw new DomainException(['en' => 'Value must be an instance of ' . $this->itemType]);
+            throw new DomainException('item_type_mismatch', [':type' => $this->itemType]);
         }
         if (is_null($offset)) { // Append
             $key = $this->hash($value);

@@ -5,51 +5,71 @@ declare(strict_types=1);
 namespace TS_Exception\Classes;
 
 use Exception;
+use ReflectionClass;
 use Throwable;
+use TS_Locale\Classes\Translator;
 
 /**
- * Base class for all custom exceptions in the framework.
- *
- * Provides functionality for handling localized exception messages.
+ * The modernized base class for all custom exceptions in the framework.
+ * It uses a centralized Translator service for localized error messages.
  */
 abstract class AbstractException extends Exception
 {
+    /** The globally available translator instance. */
+    private static ?Translator $translator = null;
+
     /**
-     * @param array<string, string> $localizedMessages An associative array of language codes to messages.
+     * @param string $messageKey The key for the translation lookup (e.g., 'database.connection_failed').
+     * @param array<string, string|int> $placeholders Values to substitute into the message.
      * @param int $code The Exception code.
      * @param ?Throwable $previous The previous throwable used for exception chaining.
      */
     public function __construct(
-        protected readonly array $localizedMessages = [],
+        string $messageKey = '',
+        protected readonly array $placeholders = [],
         int $code = 0,
         ?Throwable $previous = null
     ) {
-        // Find a default message from the localized messages to pass to the parent constructor.
-        // It will try to find 'en' (English), otherwise it uses the first available message.
-        $defaultMessage = $this->getLocalizedMessage('en', '');
-
-        parent::__construct($defaultMessage, $code, $previous);
+        // The message passed to the parent is the raw message key.
+        // The original getMessage() will now return this key.
+        parent::__construct($messageKey, $code, $previous);
     }
 
     /**
-     * Gets the exception message for a specific language.
-     *
-     * @param string $lang The desired language code (e.g., 'en', 'fr').
-     * @param string|null $fallbackLang The language to use if the desired one isn't found.
-     * If null, returns the original default message.
-     * @return string The localized message.
+     * Injects the Translator service for all exceptions to use.
+     * This should be called once during application bootstrap.
      */
-    public function getLocalizedMessage(string $lang, ?string $fallbackLang = 'en'): string
+    public static function setTranslator(Translator $translator): void
     {
-        if (isset($this->localizedMessages[$lang])) {
-            return $this->localizedMessages[$lang];
+        self::$translator = $translator;
+    }
+
+    /**
+     * Gets the translated, user-friendly error message.
+     *
+     * This method contains the logic to look up the message key,
+     * apply placeholders, and return the final string.
+     *
+     * @return string The final, translated, and formatted error message.
+     */
+    public function getTranslatedMessage(): string
+    {
+        $messageKey = parent::getMessage();
+
+        // If the translator hasn't been set, return a helpful debug message.
+        if (self::$translator === null) {
+            $rawMessage = 'Translator not set. Key: "' . $messageKey . '"';
+            if (!empty($this->placeholders)) {
+                $rawMessage .= ' | Placeholders: ' . json_encode($this->placeholders);
+            }
+            return $rawMessage;
         }
 
-        if ($fallbackLang && isset($this->localizedMessages[$fallbackLang])) {
-            return $this->localizedMessages[$fallbackLang];
-        }
+        // Dynamically create the full translation key
+        // e.g., if this is a DBException, the domain becomes "DBException"
+        $domain = new ReflectionClass($this)->getShortName();
+        $fullKey = "{$domain}.{$messageKey}";
 
-        // Fall back to the default message stored in the parent Exception class.
-        return $this->getMessage();
+        return self::$translator->trans($fullKey, $this->placeholders);
     }
 }

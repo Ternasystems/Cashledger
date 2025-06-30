@@ -1,0 +1,14 @@
+{
+  "en-US": {
+    "loader_path_invalid": "The specified path for locale files is not a valid directory: :path",
+    "file_read_failed": "Could not read translation file: :path",
+    "xml_parse_failed": "Failed to load XML translation file: :path. Reason: :reason",
+    "json_parse_failed": "Failed to parse JSON translation file: :path. Reason: :reason"
+  },
+  "fr-FR": {
+    "loader_path_invalid": "Le chemin spécifié pour les fichiers de locale n'est pas un répertoire valide : :path",
+    "file_read_failed": "Impossible de lire le fichier de traduction : :path",
+    "xml_parse_failed": "Échec du chargement du fichier de traduction XML : :path. Raison : :reason",
+    "json_parse_failed": "Échec de l'analyse du fichier de traduction JSON : :path. Raison : :reason"
+  }
+}

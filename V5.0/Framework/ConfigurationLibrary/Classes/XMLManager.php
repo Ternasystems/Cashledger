@@ -22,18 +22,33 @@ class XMLManager extends AbstractCls implements IConfigurationManager
     protected readonly string $file;
 
     /** The main DOMDocument object. */
-    protected DOMDocument $dom;
+    protected DOMDocument $dom {
+        get {
+            return $this->dom;
+        }
+    }
 
     /** The DOMXPath object for running queries. */
     protected DOMXPath $xpath;
 
     /** The root element of the XML document. */
-    protected DOMElement $rootNode;
+    protected DOMElement $rootNode {
+        get {
+            return $this->rootNode;
+        }
+    }
 
+    /**
+     * Constructs the XMLManager, loading an existing XML file or creating a new one.
+     *
+     * @param string $filepath The path to the XML file.
+     * @param string|null $rootElement The name of the root element for a new file.
+     * @throws XMLException|DOMException if the file is invalid or cannot be created/read.
+     */
     public function __construct(string $filepath, ?string $rootElement = 'root')
     {
         if (file_exists($filepath) && strtolower(pathinfo($filepath, PATHINFO_EXTENSION)) !== 'xml') {
-            throw new XMLException(['en' => "File provided is not an XML file. Path: $filepath"]);
+            throw new XMLException('file_not_xml', [':path' => $filepath]);
         }
 
         $this->file = $filepath;
@@ -43,23 +58,23 @@ class XMLManager extends AbstractCls implements IConfigurationManager
 
         if (!file_exists($this->file)) {
             if ($rootElement === null) {
-                throw new XMLException(['en' => 'File does not exist and no root element name was provided.']);
+                throw new XMLException('no_root_element');
             }
             $this->rootNode = $this->dom->createElement($rootElement);
             $this->dom->appendChild($this->rootNode);
             if (!$this->save()) {
-                throw new XMLException(['en' => "Could not create new XML file at: $this->file"]);
+                throw new XMLException('file_creation_failed', [':path' => $this->file]);
             }
         } else {
             libxml_use_internal_errors(true);
             if (!$this->dom->load($this->file)) {
                 $error = libxml_get_last_error();
                 libxml_clear_errors();
-                throw new XMLException(['en' => "Failed to load XML. Error: " . ($error ? trim($error->message) : 'Unknown')]);
+                throw new XMLException('load_failed', [':reason' => ($error ? trim($error->message) : 'Unknown')]);
             }
             $root = $this->dom->documentElement;
             if (!$root) {
-                throw new XMLException(['en' => "XML file is empty or missing a root element."]);
+                throw new XMLException('empty_or_no_root');
             }
             $this->rootNode = $root;
         }
@@ -67,11 +82,19 @@ class XMLManager extends AbstractCls implements IConfigurationManager
         $this->xpath = new DOMXPath($this->dom);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilename(): string
     {
         return $this->file;
     }
 
+    /**
+     * {@inheritdoc}
+     * This implementation translates dot notation to XPath. e.g., 'user.name' becomes './user/name'.
+     * To access an attribute, use '@', e.g., 'user.name@id'.
+     */
     public function get(string $path, mixed $default = null): mixed
     {
         $xpathQuery = $this->pathToXPath($path);
@@ -81,10 +104,12 @@ class XMLManager extends AbstractCls implements IConfigurationManager
             return $default;
         }
 
+        // Return the attribute value directly
         if (str_contains($path, '@')) {
             return $nodes->item(0)?->nodeValue ?? $default;
         }
 
+        // If multiple nodes match, return an array of their values
         if ($nodes->length > 1) {
             $values = [];
             foreach ($nodes as $node) {
@@ -96,6 +121,11 @@ class XMLManager extends AbstractCls implements IConfigurationManager
         return $nodes->item(0)?->nodeValue ?? $default;
     }
 
+    /**
+     * {@inheritdoc}
+     * This operation modifies the data in memory. Call save() to persist changes.
+     * @throws DOMException
+     */
     public function set(string $path, mixed $value): bool
     {
         $segments = explode('.', $path);
@@ -116,6 +146,10 @@ class XMLManager extends AbstractCls implements IConfigurationManager
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     * This operation modifies the data in memory. Call save() to persist changes.
+     */
     public function delete(string $path): bool
     {
         $xpathQuery = $this->pathToXPath($path);
@@ -141,21 +175,17 @@ class XMLManager extends AbstractCls implements IConfigurationManager
         return $this->xpath->query($xpathQuery);
     }
 
-    public function getDOM(): DOMDocument
-    {
-        return $this->dom;
-    }
-
-    public function getRootNode(): DOMElement
-    {
-        return $this->rootNode;
-    }
-
+    /**
+     * Persists all in-memory changes back to the XML file.
+     */
     public function save(): bool
     {
         return $this->dom->save($this->file) !== false;
     }
 
+    /**
+     * Converts a dot-notation path to a simple XPath query.
+     */
     private function pathToXPath(string $path): string
     {
         $path = str_replace('@', '/@', $path);

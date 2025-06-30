@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TS_Utility\Helpers;
 
+use NumberFormatter;
+
 /**
  * A collection of static helper methods for numeric formatting.
  * NOTE: Requires the 'php-intl' PHP extension.
@@ -26,7 +28,7 @@ final class NumberHelper
      */
     public static function format(float|int $number, string $locale = 'en_US'): string
     {
-        $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $formatter = new NumberFormatter($locale, NumberFormatter::DECIMAL);
         return $formatter->format($number) ?: '';
     }
 
@@ -40,7 +42,7 @@ final class NumberHelper
      */
     public static function formatCurrency(float|int $amount, string $currencyCode = 'USD', string $locale = 'en_US'): string
     {
-        $formatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
+        $formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
         return $formatter->formatCurrency($amount, $currencyCode) ?: '';
     }
 }

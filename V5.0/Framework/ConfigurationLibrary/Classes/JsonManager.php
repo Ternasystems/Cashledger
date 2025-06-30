@@ -29,7 +29,7 @@ class JsonManager extends AbstractCls implements IConfigurationManager
     public function __construct(string $filepath, array $defaultData = [])
     {
         if (file_exists($filepath) && strtolower(pathinfo($filepath, PATHINFO_EXTENSION)) !== 'json') {
-            throw new JsonException(['en' => "File is not a JSON file. Path: $filepath"]);
+            throw new JsonException('file_not_json', [':path' => $filepath]);
         }
 
         $this->file = $filepath;
@@ -37,42 +37,60 @@ class JsonManager extends AbstractCls implements IConfigurationManager
         if (!file_exists($this->file)) {
             $this->data = $defaultData;
             if (!$this->save()) {
-                throw new JsonException(['en' => "Could not create new JSON file at: $this->file"]);
+                throw new JsonException('file_creation_failed', [':path' => $this->file]);
             }
         } else {
             $jsonContent = file_get_contents($this->file);
             if ($jsonContent === false) {
-                throw new JsonException(['en' => "Could not read JSON file at: $this->file"]);
+                throw new JsonException('file_read_failed', [':path' => $this->file]);
             }
             $this->data = json_decode($jsonContent, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new JsonException(['en' => 'Failed to parse JSON file. Error: ' . json_last_error_msg()]);
+                throw new JsonException('parse_failed', [':reason' => json_last_error_msg()]);
             }
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilename(): string
     {
         return $this->file;
     }
 
+    /**
+     * {@inheritdoc}
+     * This implementation uses dot notation for nested access (e.g., 'database.mysql.host').
+     */
     public function get(string $path, mixed $default = null): mixed
     {
         return ArrayHelper::get($this->data, $path, $default);
     }
 
+    /**
+     * {@inheritdoc}
+     * This operation modifies the data in memory. Call save() to persist changes.
+     */
     public function set(string $path, mixed $value): bool
     {
         ArrayHelper::set($this->data, $path, $value);
         return true; // Operation is in-memory, save() will handle persistence.
     }
 
+    /**
+     * {@inheritdoc}
+     * This operation modifies the data in memory. Call save() to persist changes.
+     */
     public function delete(string $path): bool
     {
         ArrayHelper::delete($this->data, $path);
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function save(): bool
     {
         $jsonString = json_encode($this->data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);

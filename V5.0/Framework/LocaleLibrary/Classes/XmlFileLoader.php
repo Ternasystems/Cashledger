@@ -19,10 +19,13 @@ class XmlFileLoader implements TranslationLoaderInterface
 {
     private string $basePath;
 
+    /**
+     * @throws LocaleException
+     */
     public function __construct(string $basePath)
     {
         if (!is_dir($basePath)) {
-            throw new \InvalidArgumentException("The specified path for locale files is not a valid directory: $basePath");
+            throw new LocaleException('loader_path_invalid', [':path' => $basePath]);
         }
         $this->basePath = rtrim($basePath, DIRECTORY_SEPARATOR);
     }
@@ -69,7 +72,8 @@ class XmlFileLoader implements TranslationLoaderInterface
         } catch (XMLException $e) {
             // Wrap the XML exception in a LocaleException to provide clear context.
             throw new LocaleException(
-                ['en' => "Failed to load translation file: $filePath. Reason: " . $e->getLocalizedMessage('en')],
+                'xml_parse_failed',
+                [':path' => $filePath, ':reason' => $e->getTranslatedMessage()],
                 (int)$e->getCode(),
                 $e
             );

@@ -1,0 +1,16 @@
+{
+  "en-US": {
+    "file_not_xml": "File provided is not a valid XML file. Path: :path",
+    "no_root_element": "File does not exist and no root element name was provided.",
+    "file_creation_failed": "Could not create new XML file at: :path",
+    "load_failed": "Failed to load XML. Error: :reason",
+    "empty_or_no_root": "XML file is empty or missing a root element."
+  },
+  "fr-FR": {
+    "file_not_xml": "Le fichier fourni n'est pas un fichier XML valide. Chemin : :path",
+    "no_root_element": "Le fichier n'existe pas et aucun nom d'élément racine n'a été fourni.",
+    "file_creation_failed": "Impossible de créer le nouveau fichier XML à : :path",
+    "load_failed": "Échec du chargement XML. Raison : :reason",
+    "empty_or_no_root": "Le fichier XML est vide ou il manque un élément racine."
+  }
+}

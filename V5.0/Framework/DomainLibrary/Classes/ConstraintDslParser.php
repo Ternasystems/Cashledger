@@ -40,7 +40,7 @@ final class ConstraintDslParser
         $keyword = strtolower(explode('(', explode('[', explode(' ', $dsl)[0])[0])[0]);
 
         if (!in_array($keyword, self::DSL_KEYWORDS)) {
-            throw new DomainException(['en' => "Invalid DSL keyword: '$keyword'"]);
+            throw new DomainException('invalid_dsl_keyword', [':keyword' => $keyword]);
         }
 
         return match ($keyword) {
@@ -48,7 +48,7 @@ final class ConstraintDslParser
             'range' => self::parseRangeDsl($dsl),
             'list' => self::parseListDsl($dsl),
             '<', '=', '>', '!', '<=', '>=', '!=' => self::parseOperatorDsl($dsl),
-            default => throw new DomainException(['en' => "Unsupported DSL keyword: '$keyword'"])
+            default => throw new DomainException('unsupported_dsl_keyword', [':keyword' => $keyword])
         };
     }
 
@@ -70,7 +70,7 @@ final class ConstraintDslParser
     private static function parseFromDsl(string $dsl, DBDriver $driver, string $tablePrefix): string
     {
         if (preg_match('/^FROM\s+([a-zA-Z_]\w*)\.([a-zA-Z_]\w*)$/i', $dsl, $matches) !== 1) {
-            throw new DomainException(['en' => "Invalid 'FROM' DSL syntax. Expected: FROM table.column"]);
+            throw new DomainException('invalid_from_dsl');
         }
         $tableName = $matches[1];
         $columnName = $matches[2];
@@ -78,8 +78,6 @@ final class ConstraintDslParser
         $quotedTable = self::getQuotedIdentifier($tablePrefix . $tableName, $driver);
         $quotedColumn = self::getQuotedIdentifier($columnName, $driver);
 
-        // Note: Schema handling might differ. PostgreSQL uses public, MySQL uses the DB name.
-        // For simplicity, we omit the explicit schema for now, as it's often handled by the connection user.
         return sprintf('VALUE IN (SELECT %s FROM %s)', $quotedColumn, $quotedTable);
     }
 
@@ -87,12 +85,12 @@ final class ConstraintDslParser
     {
         $pattern = '/^RANGE\[\s*(?<min>' . self::VALUE_PATTERN . ')\s*,\s*(?<max>' . self::VALUE_PATTERN . ')\s*\]$/i';
         if (preg_match($pattern, $dsl, $matches) !== 1) {
-            throw new DomainException(['en' => "Invalid 'RANGE' DSL syntax. Expected: RANGE[min,max]"]);
+            throw new DomainException('invalid_range_dsl');
         }
         $min = $matches['min'];
         $max = $matches['max'];
         if ($min > $max) {
-            throw new DomainException(['en' => "Range min value cannot be greater than max value."]);
+            throw new DomainException('invalid_range_values');
         }
         $minFormatted = preg_match('/^\d{4}-\d{2}-\d{2}/', $min) ? "'$min'" : $min;
         $maxFormatted = preg_match('/^\d{4}-\d{2}-\d{2}/', $max) ? "'$max'" : $max;
@@ -102,7 +100,7 @@ final class ConstraintDslParser
     private static function parseListDsl(string $dsl): string
     {
         if (preg_match('/^LIST\(\s*(\'.*?\')\s*(?:,\s*\'.*?\'\s*)*\)$/i', $dsl) !== 1) {
-            throw new DomainException(['en' => "Invalid 'LIST' DSL syntax. Expected: LIST('val1', 'val2')"]);
+            throw new DomainException('invalid_list_dsl');
         }
         return preg_replace('/^list/i', 'VALUE IN', $dsl);
     }
@@ -111,7 +109,7 @@ final class ConstraintDslParser
     {
         $pattern = '/^(?<operator><=|>=|!=|=|<|>)\s*(?<value>' . self::QUOTED_VALUE_PATTERN . ')$/i';
         if (preg_match($pattern, $dsl) !== 1) {
-            throw new DomainException(['en' => "Invalid operator DSL syntax. Expected: > 100 or = 'some_value'"]);
+            throw new DomainException('invalid_operator_dsl');
         }
         return 'VALUE ' . $dsl;
     }

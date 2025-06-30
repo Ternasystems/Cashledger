@@ -1,0 +1,12 @@
+{
+  "en-US": {
+    "view_not_found": "The view file could not be found at path: :path",
+    "action_not_found": "The action ':action' does not exist on controller ':controller'.",
+    "reflection_error": "Could not reflect on class ':class'. It may not exist."
+  },
+  "fr-FR": {
+    "view_not_found": "Le fichier de vue est introuvable au chemin : :path",
+    "action_not_found": "L'action ':action' n'existe pas sur le contrôleur ':controller'.",
+    "reflection_error": "Impossible de lire la classe ':class'. Elle n'existe peut-être pas."
+  }
+}

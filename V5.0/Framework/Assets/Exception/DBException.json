@@ -1,0 +1,12 @@
+{
+  "en-US": {
+    "connection_failed": "Database connection failed: :message",
+    "query_failed": "The SQL query could not be executed. Reason: :reason",
+    "preparation_failed": "The SQL statement could not be prepared. Reason: :reason"
+  },
+  "fr-FR": {
+    "connection_failed": "La connexion à la base de données a échoué : :message",
+    "query_failed": "La requête SQL n'a pas pu être exécutée. Raison : :reason",
+    "preparation_failed": "La déclaration SQL n'a pas pu être préparée. Raison : :reason"
+  }
+}

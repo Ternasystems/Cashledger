@@ -1,0 +1,30 @@
+{
+  "en-US": {
+    "item_not_object": "All items in this collection must be an object.",
+    "item_type_mismatch": "All items in this collection must be an object of type :type",
+    "sort_before_then": "sortBy() must be called before thenBy().",
+    "unsupported_statistic": "Unsupported statistics operator: :operator",
+    "invalid_dsl_keyword": "Invalid DSL keyword: ':keyword'",
+    "unsupported_dsl_keyword": "Unsupported DSL keyword: ':keyword'",
+    "invalid_from_dsl": "Invalid 'FROM' DSL syntax. Expected: FROM table.column",
+    "invalid_range_dsl": "Invalid 'RANGE' DSL syntax. Expected: RANGE[min,max]",
+    "invalid_range_values": "Range min value cannot be greater than max value.",
+    "invalid_list_dsl": "Invalid 'LIST' DSL syntax. Expected: LIST('val1', 'val2')",
+    "invalid_operator_dsl": "Invalid operator DSL syntax. Expected: > 100 or = 'some_value'",
+    "key_selector_required": "A key selector function is required for an associative array."
+  },
+  "fr-FR": {
+    "item_not_object": "Tous les éléments de cette collection doivent être un objet.",
+    "item_type_mismatch": "Tous les éléments de cette collection doivent être un objet de type :type",
+    "sort_before_then": "sortBy() doit être appelé avant thenBy().",
+    "unsupported_statistic": "Opérateur de statistiques non pris en charge : :operator",
+    "invalid_dsl_keyword": "Mot-clé DSL invalide : ':keyword'",
+    "unsupported_dsl_keyword": "Mot-clé DSL non pris en charge : ':keyword'",
+    "invalid_from_dsl": "Syntaxe DSL 'FROM' invalide. Attendu : FROM table.column",
+    "invalid_range_dsl": "Syntaxe DSL 'RANGE' invalide. Attendu : RANGE[min,max]",
+    "invalid_range_values": "La valeur minimale de la plage ne peut pas être supérieure à la valeur maximale.",
+    "invalid_list_dsl": "Syntaxe DSL 'LIST' invalide. Attendu : LIST('val1', 'val2')",
+    "invalid_operator_dsl": "Syntaxe DSL d'opérateur invalide. Attendu : > 100 ou = 'une_valeur'",
+    "key_selector_required": "Une fonction de sélection de clé est requise pour un tableau associatif."
+  }
+}

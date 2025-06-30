@@ -46,13 +46,16 @@ class JsonFileLoader implements TranslationLoaderInterface
 
         $jsonContent = file_get_contents($filePath);
         if ($jsonContent === false) {
-            throw new LocaleException(['en' => "Could not read translation file: $filePath"]);
+            throw new LocaleException('file_read_failed', [':path' => $filePath]);
         }
 
         $allTranslations = json_decode($jsonContent, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new LocaleException(['en' => "Error decoding JSON from file: $filePath. Reason: " . json_last_error_msg()]);
+            throw new LocaleException('json_parse_failed', [
+                ':path' => $filePath,
+                ':reason' => json_last_error_msg()
+            ]);
         }
 
         // Navigate the nested structure to find the translations.

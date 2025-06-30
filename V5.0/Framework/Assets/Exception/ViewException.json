@@ -1,0 +1,8 @@
+{
+  "en-US": {
+    "view_not_found": "The view template file could not be found at the specified path: :path"
+  },
+  "fr-FR": {
+    "view_not_found": "Le fichier de modèle de vue est introuvable au chemin spécifié : :path"
+  }
+}

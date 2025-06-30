@@ -10,17 +10,18 @@ use TS_Database\Enums\DBDriver;
 use TS_Exception\Classes\DBException;
 
 /**
- * A factory for creating PDO database connection objects.
- * Supports multiple database drivers.
+ * A factory class responsible for creating PDO database connection objects.
+ * Its sole purpose is to build the correct DSN string for various database
+ * drivers and establish a connection, throwing a specific exception on failure.
  */
 final class DBConnection
 {
     /**
      * Creates and returns a PDO database connection instance.
      *
-     * @param DBCredentials $credentials The database credentials.
+     * @param DBCredentials $credentials The object containing all connection parameters.
      * @return PDO The configured PDO instance.
-     * @throws DBException if the connection fails.
+     * @throws DBException if the connection fails for any reason.
      */
     public static function create(DBCredentials $credentials): PDO
     {
@@ -38,20 +39,20 @@ final class DBConnection
                 ]
             );
         } catch (PDOException $e) {
+            // Throw our custom exception using a key and passing the original message as a placeholder.
             throw new DBException(
-                localizedMessages: [
-                    'en' => "Database connection failed: " . $e->getMessage()
-                ],
-                code: (int)$e->getCode(),
-                previous: $e
+                'connection_failed',
+                [':message' => $e->getMessage()],
+                (int)$e->getCode(),
+                $e
             );
         }
     }
 
     /**
-     * Builds the DSN string based on the database driver.
+     * Builds the appropriate Data Source Name (DSN) string based on the database driver.
      *
-     * @param DBCredentials $credentials
+     * @param DBCredentials $credentials The credentials object.
      * @return string The formatted DSN string.
      */
     private static function buildDsn(DBCredentials $credentials): string
