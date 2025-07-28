@@ -9,14 +9,291 @@ C:.
 +---.idea
 ¦       .gitignore
 ¦       Cashledger.iml
+¦       deployment.xml
 ¦       modules.xml
 ¦       php.xml
 ¦       workspace.xml
 ¦       
 +---APIs
 ¦   +---Persistence
+¦   ¦   +---AccountingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---BillingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---BookingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---ControlRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---DashboardingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---DTORepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   ¦       AppCategories.php
+¦   ¦   ¦   ¦       Apps.php
+¦   ¦   ¦   ¦       Audits.php
+¦   ¦   ¦   ¦       Cities.php
+¦   ¦   ¦   ¦       Collectable.php
+¦   ¦   ¦   ¦       Continents.php
+¦   ¦   ¦   ¦       Countries.php
+¦   ¦   ¦   ¦       Languages.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   ¦       DTOContext.php
+¦   ¦   ¦   ¦       TContext.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   ¦       IContext.php
+¦   ¦   ¦   ¦       IRepository.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   ¦       App.php
+¦   ¦   ¦   ¦       AppCategory.php
+¦   ¦   ¦   ¦       Audit.php
+¦   ¦   ¦   ¦       City.php
+¦   ¦   ¦   ¦       Continent.php
+¦   ¦   ¦   ¦       Country.php
+¦   ¦   ¦   ¦       DTOBase.php
+¦   ¦   ¦   ¦       Language.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Repositories
+¦   ¦   ¦           AppCategoryRepository.php
+¦   ¦   ¦           AppRepository.php
+¦   ¦   ¦           AuditRepository.php
+¦   ¦   ¦           CityRepository.php
+¦   ¦   ¦           ContinentRepository.php
+¦   ¦   ¦           CountryRepository.php
+¦   ¦   ¦           LanguageRepository.php
+¦   ¦   ¦           Repository.php
+¦   ¦   ¦           
+¦   ¦   +---EmailingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---ForecastingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---HrmRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---HudelRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---IdsRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---InventoryRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---InvoicingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---MeetingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---MessagingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PartnershipRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PaymentRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PayrollRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---ProfilingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   ¦       Civilities.php
+¦   ¦   ¦   ¦       Contacts.php
+¦   ¦   ¦   ¦       ContactTypes.php
+¦   ¦   ¦   ¦       Credentials.php
+¦   ¦   ¦   ¦       Genders.php
+¦   ¦   ¦   ¦       Occupations.php
+¦   ¦   ¦   ¦       Permissions.php
+¦   ¦   ¦   ¦       Profiles.php
+¦   ¦   ¦   ¦       Roles.php
+¦   ¦   ¦   ¦       Statuses.php
+¦   ¦   ¦   ¦       Titles.php
+¦   ¦   ¦   ¦       Tokens.php
+¦   ¦   ¦   ¦       Trackings.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   ¦       ProfilingContext.php
+¦   ¦   ¦   ¦       TokenContext.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   ¦       IProfile.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   ¦       Civility.php
+¦   ¦   ¦   ¦       Contact.php
+¦   ¦   ¦   ¦       ContactType.php
+¦   ¦   ¦   ¦       Credential.php
+¦   ¦   ¦   ¦       Gender.php
+¦   ¦   ¦   ¦       LoginStatus.php
+¦   ¦   ¦   ¦       Occupation.php
+¦   ¦   ¦   ¦       Permission.php
+¦   ¦   ¦   ¦       Profile.php
+¦   ¦   ¦   ¦       ProfileBase.php
+¦   ¦   ¦   ¦       Role.php
+¦   ¦   ¦   ¦       Status.php
+¦   ¦   ¦   ¦       Title.php
+¦   ¦   ¦   ¦       Token.php
+¦   ¦   ¦   ¦       Tracking.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Repositories
+¦   ¦   ¦           CivilityRepository.php
+¦   ¦   ¦           ContactRepository.php
+¦   ¦   ¦           ContactTypeRepository.php
+¦   ¦   ¦           CredentialRepository.php
+¦   ¦   ¦           GenderRepository.php
+¦   ¦   ¦           OccupationRepository.php
+¦   ¦   ¦           PermissionRepository.php
+¦   ¦   ¦           ProfileRepository.php
+¦   ¦   ¦           RoleRepository.php
+¦   ¦   ¦           StatusRepository.php
+¦   ¦   ¦           TitleRepository.php
+¦   ¦   ¦           TokenRepository.php
+¦   ¦   ¦           TrackingRepository.php
+¦   ¦   ¦           
+¦   ¦   +---PublishingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PurchaseRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---RelationRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   ¦       AppRelations.php
+¦   ¦   ¦   ¦       CivilityRelations.php
+¦   ¦   ¦   ¦       ContactRelations.php
+¦   ¦   ¦   ¦       GenderRelations.php
+¦   ¦   ¦   ¦       LanguageRelations.php
+¦   ¦   ¦   ¦       OccupationRelations.php
+¦   ¦   ¦   ¦       RoleRelations.php
+¦   ¦   ¦   ¦       StatusRelations.php
+¦   ¦   ¦   ¦       TitleRelations.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   ¦       RelationContext.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   ¦       AppRelation.php
+¦   ¦   ¦   ¦       CivilityRelation.php
+¦   ¦   ¦   ¦       ContactRelation.php
+¦   ¦   ¦   ¦       GenderRelation.php
+¦   ¦   ¦   ¦       LanguageRelation.php
+¦   ¦   ¦   ¦       OccupationRelation.php
+¦   ¦   ¦   ¦       RoleRelation.php
+¦   ¦   ¦   ¦       StatusRelation.php
+¦   ¦   ¦   ¦       TitleRelation.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Repositories
+¦   ¦   ¦           AppRelationRepository.php
+¦   ¦   ¦           CivilityRelationRepository.php
+¦   ¦   ¦           ContactRelationRepository.php
+¦   ¦   ¦           GenderRelationRepository.php
+¦   ¦   ¦           LanguageRelationRepository.php
+¦   ¦   ¦           OccupationRelationRepository.php
+¦   ¦   ¦           RoleRelationRepository.php
+¦   ¦   ¦           StatusRelationRepository.php
+¦   ¦   ¦           TitleRelationRepository.php
+¦   ¦   ¦           
+¦   ¦   +---ReportingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---TaskRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---TellerRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---WholesaleRepositories
+¦   ¦       +---Collections
+¦   ¦       +---Contexts
+¦   ¦       +---Contracts
+¦   ¦       +---Models
+¦   ¦       +---Repositories
 ¦   +---Services
 ¦   +---Supporting
+¦       +---Collections
+¦       +---Contracts
+¦       ¦       IEntity.php
+¦       ¦       
+¦       +---Factories
+¦       +---Models
 +---Applications
 ¦   +---Accounting
 ¦   ¦   +---Assets

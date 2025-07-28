@@ -73,7 +73,7 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
             throw new DomainException('item_not_object');
         }
 
-        $this->itemType = get_class($firstItem);
+        $this->itemType($firstItem);
 
         // Process each item to ensure type safety and generate keys.
         foreach ($collection as $key => $item) {
@@ -174,6 +174,24 @@ abstract class AbstractCollectable extends AbstractCls implements ICollectable
     }
 
     // --- IEnumerable Methods ---
+
+    /**
+     * Moves the iterator to the previous element.
+     */
+    public function prev(): void
+    {
+        if ($this->offset > 0) {
+            --$this->offset;
+        }
+    }
+
+    /**
+     * Moves the iterator to the last element.
+     */
+    public function end(): void
+    {
+        $this->offset = $this->count() > 0 ? $this->count() - 1 : 0;
+    }
 
     /**
      * Sorts the collection by a given key. This is the primary sort.
