@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace TS_Controller\Classes;
 
-use Exception;
 use ReflectionClass;
-use ReflectionException;
 use TS_Exception\Classes\ControllerException;
 use TS_Http\RedirectResponse;
 use TS_Http\Response;
 use TS_Utility\Classes\UrlGenerator;
-use TS_View\View;
 
 /**
  * A modern, lean base class for all controllers in the application.
@@ -21,35 +18,10 @@ use TS_View\View;
 abstract class BaseController
 {
     /**
-     * The constructor uses dependency injection to receive essential services.
-     *
-     * @param View $view The service responsible for rendering view templates.
-     * @param UrlGenerator $urlGenerator The service for generating application-aware URLs.
+     * The constructor is now parameterless to simplify inheritance.
      */
-    public function __construct(
-        protected readonly View $view,
-        protected readonly UrlGenerator $urlGenerator
-    ) {
-    }
-
-    /**
-     * Creates an HTML response by rendering a view template.
-     *
-     * @param string $viewName The path to the view file (relative to the configured view path).
-     * @param array<string, mixed> $data Data to be extracted into variables for the view.
-     * @param int $statusCode The HTTP status code for the response.
-     * @return Response A Response object containing the rendered HTML.
-     * @throws ControllerException if the view file cannot be found.
-     */
-    protected function view(string $viewName, array $data = [], int $statusCode = 200): Response
+    public function __construct(protected readonly UrlGenerator $urlGenerator)
     {
-        try {
-            $content = $this->view->render($viewName, $data);
-            return new Response($content, $statusCode, ['Content-Type' => 'text/html; charset=utf-8']);
-        } catch (Exception $e) {
-            // Re-throw a more specific, framework-level exception
-            throw new ControllerException('view_not_found', [':path' => $viewName], 404, $e);
-        }
     }
 
     /**
@@ -74,6 +46,9 @@ abstract class BaseController
      */
     protected function redirectToAction(string $action, ?string $controller = null, array $params = []): RedirectResponse
     {
+        if (!$this->urlGenerator)
+            throw new ControllerException('url_generator_not_set', [], 500);
+
         $controllerName = $controller ?? $this->getShortClassName();
         $urlParams = array_merge($params, ['action' => $action, 'controller' => $controllerName]);
 
@@ -99,15 +74,10 @@ abstract class BaseController
      * For example, 'PresentationHomeController' becomes 'PresentationHome'.
      *
      * @return string The short name of the class.
-     * @throws ControllerException if the class cannot be reflected.
      */
     private function getShortClassName(): string
     {
-        try {
-            $longName = new ReflectionClass($this)->getShortName();
-            return str_replace('Controller', '', $longName);
-        } catch (ReflectionException $e) {
-            throw new ControllerException('reflection_error', [':class' => static::class], 500, $e);
-        }
+        $longName = new ReflectionClass($this)->getShortName();
+        return str_replace('Controller', '', $longName);
     }
 }
