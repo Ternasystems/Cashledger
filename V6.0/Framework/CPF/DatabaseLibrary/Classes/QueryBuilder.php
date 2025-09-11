@@ -1,0 +1,162 @@
+<?php
+
+declare(strict_types=1);
+
+namespace TS_Database\Classes;
+
+use PDO;
+use PDOException;
+use TS_Configuration\Classes\AbstractCls;
+use TS_Database\Enums\OrderByDirection;
+use TS_Database\Enums\WhereType;
+use TS_Exception\Classes\DBException;
+
+/**
+ * A fluent, secure query builder for all database interactions.
+ */
+class QueryBuilder extends AbstractCls
+{
+    private array $columns = ['*'];
+    private array $wheres = [];
+    private array $bindings = [];
+    private ?string $orderBy = null;
+    private ?string $limit = null;
+
+    public function __construct(private PDO $pdo, private string $table)
+    {
+    }
+
+    public function select(string ...$columns): self
+    {
+        $this->columns = $columns;
+        return $this;
+    }
+
+    public function where(string $column, string $operator, mixed $value, WhereType $type = WhereType::AND): self
+    {
+        $this->wheres[] = ['column' => $column, 'operator' => $operator, 'value' => $value, 'type' => $type];
+        return $this;
+    }
+
+    public function orderBy(string $column, OrderByDirection $direction = OrderByDirection::ASC): self
+    {
+        $this->orderBy = " ORDER BY `{$column}` {$direction->value}";
+        return $this;
+    }
+
+    public function limit(int $count): self
+    {
+        $this->limit = " LIMIT {$count}";
+        return $this;
+    }
+
+    /**
+     * @throws DBException
+     */
+    public function get(): array
+    {
+        $sql = "SELECT " . implode(', ', $this->columns) . " FROM {$this->table}";
+        $sql .= $this->buildWhereClause();
+        $sql .= $this->orderBy;
+        $sql .= $this->limit;
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($this->bindings);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            throw new DBException('query_failed', [':reason' => $e->getMessage()], (int)$e->getCode(), $e);
+        }
+    }
+
+    /**
+     * @throws DBException
+     */
+    public function insert(array $data): int
+    {
+        $columns = implode('`, `', array_keys($data));
+        $placeholders = implode(', ', array_fill(0, count($data), '?'));
+        $sql = "INSERT INTO {$this->table} (`{$columns}`) VALUES ({$placeholders})";
+
+        return $this->execute($sql, array_values($data));
+    }
+
+    /**
+     * @throws DBException
+     */
+    public function update(array $data): int
+    {
+        $setClauses = [];
+        $params = [];
+        foreach ($data as $column => $value) {
+            $setClauses[] = "`{$column}` = ?";
+            $params[] = $value;
+        }
+
+        $sql = "UPDATE {$this->table} SET " . implode(', ', $setClauses);
+        $sql .= $this->buildWhereClause();
+
+        return $this->execute($sql, array_merge($params, $this->bindings));
+    }
+
+    /**
+     * @throws DBException
+     */
+    public function delete(): int
+    {
+        $sql = "DELETE FROM {$this->table}";
+        $sql .= $this->buildWhereClause();
+
+        return $this->execute($sql, $this->bindings);
+    }
+
+    /**
+     * @throws DBException
+     */
+    public function call(string $procedure, array $params = []): array
+    {
+        $placeholders = implode(', ', array_fill(0, count($params), '?'));
+        $sql = "CALL {$procedure}({$placeholders})";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            throw new DBException('procedure_call_failed', [':reason' => $e->getMessage()], (int)$e->getCode(), $e);
+        }
+    }
+
+    private function buildWhereClause(): string
+    {
+        if (empty($this->wheres)) {
+            $this->bindings = [];
+            return '';
+        }
+
+        $sqlParts = [];
+        $this->bindings = [];
+
+        foreach ($this->wheres as $i => $where) {
+            $prefix = ($i > 0) ? " {$where['type']->value} " : '';
+            $sqlParts[] = $prefix . "`{$where['column']}` {$where['operator']} ?";
+            $this->bindings[] = $where['value'];
+        }
+        return " WHERE " . ltrim(implode('', $sqlParts));
+    }
+
+    /**
+     * @throws DBException
+     */
+    private function execute(string $sql, array $params): int
+    {
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            throw new DBException('query_failed', [':reason' => $e->getMessage()], (int)$e->getCode(), $e);
+        }
+    }
+}
+

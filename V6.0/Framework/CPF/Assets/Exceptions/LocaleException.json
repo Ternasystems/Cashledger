@@ -1,0 +1,27 @@
+{
+  "en-US": {
+    "loader_path_invalid": "The specified path for locale files is not a valid directory: :path",
+    "xml_parse_failed": "Failed to parse the XML translation file at :path. Reason: :reason",
+    "file_read_failed": "Failed to read the contents of the translation file: :path",
+    "json_parse_failed": "Failed to parse the JSON translation file at :path. Reason: :reason"
+  },
+  "fr-FR": {
+    "loader_path_invalid": "Le chemin spécifié pour les fichiers de traduction n'est pas un répertoire valide : :path",
+    "xml_parse_failed": "Échec de l'analyse du fichier de traduction XML à :path. Raison : :reason",
+    "file_read_failed": "Échec de la lecture du contenu du fichier de traduction : :path",
+    "json_parse_failed": "Échec de l'analyse du fichier de traduction JSON à :path. Raison : :reason"
+  },
+  "es-ES": {
+    "loader_path_invalid": "La ruta especificada para los archivos de configuración regional no es un directorio válido: :path",
+    "xml_parse_failed": "Error al analizar el archivo de traducción XML en :path. Razón: :reason",
+    "file_read_failed": "Error al leer el contenido del archivo de traducción: :path",
+    "json_parse_failed": "Error al analizar el archivo de traducción JSON en :path. Razón: :reason"
+  },
+  "ar-SA": {
+    "loader_path_invalid": "المسار المحدد لملفات الإعدادات المحلية ليس دليلاً صالحًا: :path",
+    "xml_parse_failed": "فشل في تحليل ملف الترجمة XML في :path. السبب: :reason",
+    "file_read_failed": "فشل في قراءة محتويات ملف الترجمة: :path",
+    "json_parse_failed": "فشل في تحليل ملف الترجمة JSON في :path. السبب: :reason"
+  }
+}
+

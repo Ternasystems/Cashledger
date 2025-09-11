@@ -1,0 +1,22 @@
+/**
+ * =============================================================================
+ * C2S (Cashledger CSS Library) - Main Entry Point
+ * =============================================================================
+ * This file imports all the necessary partials in the correct order to compile
+ * the final c2s.css stylesheet.
+ */
+
+// 1. Core design tokens. Must be imported first.
+@import 'variables';
+
+// 2. CSS reset for cross-browser consistency.
+@import 'reset';
+
+// 3. The utility class library.
+@import 'utilities';
+
+// 4. Pre-built component classes.
+@import 'components';
+
+// 5. Icon font system
+@import 'icons';

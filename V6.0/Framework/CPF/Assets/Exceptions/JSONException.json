@@ -1,0 +1,27 @@
+{
+  "en-US": {
+    "file_not_json": "The provided file is not a valid JSON file. Path: :path",
+    "file_creation_failed": "Failed to create the JSON file at the specified path: :path",
+    "file_read_failed": "Failed to read the contents of the JSON file: :path",
+    "parse_failed": "Failed to parse the JSON file. Reason: :reason"
+  },
+  "fr-FR": {
+    "file_not_json": "Le fichier fourni n'est pas un fichier JSON valide. Chemin : :path",
+    "file_creation_failed": "Échec de la création du fichier JSON au chemin spécifié : :path",
+    "file_read_failed": "Échec de la lecture du contenu du fichier JSON : :path",
+    "parse_failed": "Échec de l'analyse du fichier JSON. Raison : :reason"
+  },
+  "es-ES": {
+    "file_not_json": "El archivo proporcionado no es un archivo JSON válido. Ruta: :path",
+    "file_creation_failed": "Error al crear el archivo JSON en la ruta especificada: :path",
+    "file_read_failed": "Error al leer el contenido del archivo JSON: :path",
+    "parse_failed": "Error al analizar el archivo JSON. Razón: :reason"
+  },
+  "ar-SA": {
+    "file_not_json": "الملف المقدم ليس ملف JSON صالح. المسار: :path",
+    "file_creation_failed": "فشل في إنشاء ملف JSON في المسار المحدد: :path",
+    "file_read_failed": "فشل في قراءة محتويات ملف JSON: :path",
+    "parse_failed": "فشل في تحليل ملف JSON. السبب: :reason"
+  }
+}
+

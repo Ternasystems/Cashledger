@@ -1,0 +1,123 @@
+/**
+ * =============================================================================
+ * C2S (Cashledger CSS Library) - Utility Classes
+ * =============================================================================
+ * This file uses the variables from _variables.scss to generate a full
+ * suite of utility classes for layout, spacing, typography, and more.
+ */
+
+// --- Helper Maps ---
+$spacing-map: (
+        "1": var(--c2s-spacing-1),
+        "2": var(--c2s-spacing-2),
+        "3": var(--c2s-spacing-3),
+        "4": var(--c2s-spacing-4),
+        "5": var(--c2s-spacing-5),
+        "6": var(--c2s-spacing-6),
+        "8": var(--c2s-spacing-8),
+        "10": var(--c2s-spacing-10),
+        "12": var(--c2s-spacing-12),
+        "16": var(--c2s-spacing-16),
+);
+
+$font-sizes: (
+        "xs": var(--c2s-font-size-xs),
+        "sm": var(--c2s-font-size-sm),
+        "base": var(--c2s-font-size-base),
+        "md": var(--c2s-font-size-md),
+        "lg": var(--c2s-font-size-lg),
+        "xl": var(--c2s-font-size-xl),
+        "2xl": var(--c2s-font-size-2xl),
+);
+
+// --- Layout Utilities ---
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+.d-none { display: none; }
+
+// --- Flexbox ---
+.flex-row { flex-direction: row; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-grow { flex-grow: 1; }
+
+// --- Spacing (Margin & Padding) ---
+@each $key, $value in $spacing-map {
+  // Margin
+  .m-#{$key} { margin: $value; }
+  .mx-#{$key} { margin-left: $value; margin-right: $value; }
+  .my-#{$key} { margin-top: $value; margin-bottom: $value; }
+  .mt-#{$key} { margin-top: $value; }
+  .mb-#{$key} { margin-bottom: $value; }
+  .ml-#{$key} { margin-left: $value; }
+  .mr-#{$key} { margin-right: $value; }
+
+  // Padding
+  .p-#{$key} { padding: $value; }
+  .px-#{$key} { padding-left: $value; padding-right: $value; }
+  .py-#{$key} { padding-top: $value; padding-bottom: $value; }
+  .pt-#{$key} { padding-top: $value; }
+  .pb-#{$key} { padding-bottom: $value; }
+  .pl-#{$key} { padding-left: $value; }
+  .pr-#{$key} { padding-right: $value; }
+}
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+// --- Typography ---
+@each $key, $value in $font-sizes {
+  .text-#{$key} { font-size: $value; }
+}
+.font-light { font-weight: var(--c2s-font-weight-light); }
+.font-normal { font-weight: var(--c2s-font-weight-normal); }
+.font-medium { font-weight: var(--c2s-font-weight-medium); }
+.font-bold { font-weight: var(--c2s-font-weight-bold); }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-underline { text-decoration: underline; }
+
+// --- Colors (Background, Text, Border) ---
+$color-types: (
+        "primary": "primary",
+        "secondary": "secondary",
+        "gray": "gray",
+);
+$shades: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+
+@each $name, $prefix in $color-types {
+  @each $shade in $shades {
+    .bg-#{$name}-#{$shade} { background-color: var(--c2s-#{$name}-#{$shade}); }
+    .text-#{$name}-#{$shade} { color: var(--c2s-#{$name}-#{$shade}); }
+    .border-#{$name}-#{$shade} { border-color: var(--c2s-#{$name}-#{$shade}); }
+  }
+}
+.bg-white { background-color: #ffffff; }
+.bg-success { background-color: var(--c2s-success); }
+.bg-warning { background-color: var(--c2s-warning); }
+.bg-error { background-color: var(--c2s-error); }
+.text-white { color: #ffffff; }
+.text-success { color: var(--c2s-success); }
+.text-warning { color: var(--c2s-warning); }
+.text-error { color: var(--c2s-error); }
+
+
+// --- Borders ---
+.border { border-width: var(--c2s-border-width); border-style: solid; border-color: var(--c2s-theme-border); }
+.rounded-sm { border-radius: var(--c2s-border-radius-sm); }
+.rounded-md { border-radius: var(--c2s-border-radius-md); }
+.rounded-lg { border-radius: var(--c2s-border-radius-lg); }
+.rounded-full { border-radius: 9999px; }
+
+// --- Sizing ---
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.w-screen { width: 100vw; }
+.h-screen { height: 100vh; }
+
+// --- Shadows ---
+.shadow-sm { box-shadow: var(--c2s-shadow-sm); }
+.shadow-md { box-shadow: var(--c2s-shadow-md); }
+.shadow-lg { box-shadow: var(--c2s-shadow-lg); }

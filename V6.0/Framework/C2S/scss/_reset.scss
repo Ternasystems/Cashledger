@@ -1,0 +1,61 @@
+/**
+ * =============================================================================
+ * C2S (Cashledger CSS Library) - CSS Reset
+ * =============================================================================
+ * A modern, minimal reset to ensure cross-browser consistency.
+ */
+
+/* 1. Use a more intuitive box-sizing model. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin on everything. */
+* {
+  margin: 0;
+}
+
+/* 3. Allow percentage-based heights in the application. */
+html,
+body {
+  height: 100%;
+}
+
+/* 4. Improve text rendering. */
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Set base theme styles. */
+body {
+  font-family: var(--c2s-font-family-sans);
+  font-size: var(--c2s-font-size-base);
+  line-height: var(--c2s-line-height-normal);
+  background-color: var(--c2s-theme-background);
+  color: var(--c2s-theme-text-primary);
+}
+
+/* 6. Improve media defaults. */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Remove built-in form typography styles. */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows. */
+h1, h2, h3, h4, h5, h6, p {
+  overflow-wrap: break-word;
+}

@@ -1,0 +1,139 @@
+/**
+ * =============================================================================
+ * C2S (Cashledger CSS Library) - Core Variables
+ * =============================================================================
+ * This file contains all the core design tokens for the Cashledger UI.
+ * It uses CSS Custom Properties for maximum flexibility and theming capabilities.
+ */
+
+:root {
+  /* -------------------------------------------------------------------------- */
+  /* Color Palette                                                            */
+  /* -------------------------------------------------------------------------- */
+  /* A full palette provides flexibility for various UI components.             */
+  /* Shades range from 100 (lightest) to 900 (darkest).                       */
+
+  /* --- Primary (Brand Color - e.g., a professional blue) --- */
+  --c2s-primary-100: #e6f0ff;
+  --c2s-primary-200: #b3d1ff;
+  --c2s-primary-300: #80b3ff;
+  --c2s-primary-400: #4d94ff;
+  --c2s-primary-500: #007bff; /* Main Primary Color */
+  --c2s-primary-600: #0062cc;
+  --c2s-primary-700: #004c99;
+  --c2s-primary-800: #003566;
+  --c2s-primary-900: #001f33;
+
+  /* --- Secondary (Accent Color - e.g., a vibrant teal) --- */
+  --c2s-secondary-100: #e0f7fa;
+  --c2s-secondary-200: #b2ebf2;
+  --c2s-secondary-300: #80deea;
+  --c2s-secondary-400: #4dd0e1;
+  --c2s-secondary-500: #00bcd4; /* Main Secondary Color */
+  --c2s-secondary-600: #00acc1;
+  --c2s-secondary-700: #0097a7;
+  --c2s-secondary-800: #00838f;
+  --c2s-secondary-900: #006064;
+
+  /* --- Grayscale (For text, backgrounds, borders) --- */
+  --c2s-gray-100: #f8f9fa;
+  --c2s-gray-200: #e9ecef;
+  --c2s-gray-300: #dee2e6;
+  --c2s-gray-400: #ced4da;
+  --c2s-gray-500: #adb5bd;
+  --c2s-gray-600: #6c757d;
+  --c2s-gray-700: #495057;
+  --c2s-gray-800: #343a40;
+  --c2s-gray-900: #212529;
+
+  /* --- Semantic Colors (For alerts, statuses, etc.) --- */
+  --c2s-success: #28a745;
+  --c2s-warning: #ffc107;
+  --c2s-error: #dc3545;
+  --c2s-info: #17a2b8;
+
+  /* -------------------------------------------------------------------------- */
+  /* Theme Colors (Semantic Mapping)                                          */
+  /* -------------------------------------------------------------------------- */
+  /* This allows for easy theming (e.g., dark mode) by remapping variables.   */
+
+  --c2s-theme-background: var(--c2s-gray-100);       /* Page background */
+  --c2s-theme-surface: #ffffff;                       /* Card/Modal backgrounds */
+  --c2s-theme-text-primary: var(--c2s-gray-800);      /* Main text color */
+  --c2s-theme-text-secondary: var(--c2s-gray-600);    /* Lighter text color */
+  --c2s-theme-border: var(--c2s-gray-300);            /* Default border color */
+  --c2s-theme-link: var(--c2s-primary-500);           /* Link color */
+  --c2s-theme-primary: var(--c2s-primary-500);        /* Primary action color */
+  --c2s-theme-secondary: var(--c2s-secondary-500);    /* Secondary action color */
+
+  /* -------------------------------------------------------------------------- */
+  /* Typography                                                               */
+  /* -------------------------------------------------------------------------- */
+  --c2s-font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --c2s-font-family-serif: 'Georgia', 'Times New Roman', serif;
+  --c2s-font-family-mono: 'Menlo', 'Monaco', 'Consolas', "Courier New", monospace;
+
+  /* A modular scale for font sizes */
+  --c2s-font-size-xs: 0.75rem;   /* 12px */
+  --c2s-font-size-sm: 0.875rem;  /* 14px */
+  --c2s-font-size-base: 1rem;    /* 16px */
+  --c2s-font-size-md: 1.125rem;  /* 18px */
+  --c2s-font-size-lg: 1.25rem;   /* 20px */
+  --c2s-font-size-xl: 1.5rem;    /* 24px */
+  --c2s-font-size-2xl: 1.875rem; /* 30px */
+
+  --c2s-font-weight-light: 300;
+  --c2s-font-weight-normal: 400;
+  --c2s-font-weight-medium: 500;
+  --c2s-font-weight-bold: 700;
+
+  --c2s-line-height-normal: 1.5;
+  --c2s-line-height-tight: 1.25;
+
+  /* -------------------------------------------------------------------------- */
+  /* Spacing                                                                  */
+  /* -------------------------------------------------------------------------- */
+  /* A consistent spacing scale (base unit: 4px) */
+  --c2s-spacing-1: 0.25rem;  /* 4px */
+  --c2s-spacing-2: 0.5rem;   /* 8px */
+  --c2s-spacing-3: 0.75rem;  /* 12px */
+  --c2s-spacing-4: 1rem;     /* 16px */
+  --c2s-spacing-5: 1.25rem;  /* 20px */
+  --c2s-spacing-6: 1.5rem;   /* 24px */
+  --c2s-spacing-8: 2rem;     /* 32px */
+  --c2s-spacing-10: 2.5rem;  /* 40px */
+  --c2s-spacing-12: 3rem;    /* 48px */
+  --c2s-spacing-16: 4rem;    /* 64px */
+
+  /* -------------------------------------------------------------------------- */
+  /* Borders                                                                  */
+  /* -------------------------------------------------------------------------- */
+  --c2s-border-radius-sm: 0.25rem;
+  --c2s-border-radius-md: 0.5rem;
+  --c2s-border-radius-lg: 1rem;
+  --c2s-border-width: 1px;
+
+  /* -------------------------------------------------------------------------- */
+  /* Layout                                                                   */
+  /* -------------------------------------------------------------------------- */
+  --c2s-breakpoint-sm: 576px;
+  --c2s-breakpoint-md: 768px;
+  --c2s-breakpoint-lg: 992px;
+  --c2s-breakpoint-xl: 1200px;
+
+  --c2s-container-max-width: 1140px;
+
+  /* -------------------------------------------------------------------------- */
+  /* Shadows                                                                  */
+  /* -------------------------------------------------------------------------- */
+  --c2s-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --c2s-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --c2s-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* -------------------------------------------------------------------------- */
+  /* Transitions                                                              */
+  /* -------------------------------------------------------------------------- */
+  --c2s-transition-property: all;
+  --c2s-transition-duration: 150ms;
+  --c2s-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,0 +1,31 @@
+{
+  "en-US": {
+    "file_not_xml": "The provided file is not a valid XML file. Path: :path",
+    "no_root_element": "A root element must be specified when creating a new XML file.",
+    "file_creation_failed": "Failed to create the XML file at the specified path: :path",
+    "load_failed": "Failed to load or parse the XML file. Reason: :reason",
+    "empty_or_no_root": "The XML file is empty or does not contain a root element."
+  },
+  "fr-FR": {
+    "file_not_xml": "Le fichier fourni n'est pas un fichier XML valide. Chemin : :path",
+    "no_root_element": "Un élément racine doit être spécifié lors de la création d'un nouveau fichier XML.",
+    "file_creation_failed": "Échec de la création du fichier XML au chemin spécifié : :path",
+    "load_failed": "Échec du chargement ou de l'analyse du fichier XML. Raison : :reason",
+    "empty_or_no_root": "Le fichier XML est vide ou ne contient pas d'élément racine."
+  },
+  "es-ES": {
+    "file_not_xml": "El archivo proporcionado no es un archivo XML válido. Ruta: :path",
+    "no_root_element": "Se debe especificar un elemento raíz al crear un nuevo archivo XML.",
+    "file_creation_failed": "Error al crear el archivo XML en la ruta especificada: :path",
+    "load_failed": "Error al cargar o analizar el archivo XML. Razón: :reason",
+    "empty_or_no_root": "El archivo XML está vacío o no contiene un elemento raíz."
+  },
+  "ar-SA": {
+    "file_not_xml": "الملف المقدم ليس ملف XML صالح. المسار: :path",
+    "no_root_element": "يجب تحديد عنصر جذر عند إنشاء ملف XML جديد.",
+    "file_creation_failed": "فشل في إنشاء ملف XML في المسار المحدد: :path",
+    "load_failed": "فشل في تحميل أو تحليل ملف XML. السبب: :reason",
+    "empty_or_no_root": "ملف XML فارغ أو لا يحتوي على عنصر جذر."
+  }
+}
+
