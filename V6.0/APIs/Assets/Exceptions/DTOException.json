@@ -1,0 +1,18 @@
+{
+  "en-US": {
+    "entity_not_found": "The requested entity could not be found with the provided ID: :id",
+    "mapping_failed": "Failed to map raw database data to the entity: :entity",
+    "collection_mapping_failed": "Failed to map raw database data to the collection: :collection",
+    "invalid_entity_name": "The provided entity name is not valid in this context: :name",
+    "invalid_collection_name": "The provided collection name is not valid in this context: :name",
+    "invalid_argument": "An invalid argument was provided for the repository method."
+  },
+  "fr-FR": {
+    "entity_not_found": "L'entité demandée n'a pas pu être trouvée avec l'ID fourni : :id",
+    "mapping_failed": "Échec du mappage des données brutes de la base de données vers l'entité : :entity",
+    "collection_mapping_failed": "Échec du mappage des données brutes de la base de données vers la collection : :collection",
+    "invalid_entity_name": "Le nom d'entité fourni n'est pas valide dans ce contexte : :name",
+    "invalid_collection_name": "Le nom de collection fourni n'est pas valide dans ce contexte : :name",
+    "invalid_argument": "Un argument invalide a été fourni pour la méthode du repository."
+  }
+}
