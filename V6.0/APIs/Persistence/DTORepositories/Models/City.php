@@ -1,0 +1,12 @@
+<?php
+
+namespace API_DTORepositories_Model;
+
+class City extends DTOBase
+{
+    /**
+     * The database table name for this model.
+     * @var string
+     */
+    protected static string $table = 'cl_Cities';
+}

@@ -46,7 +46,7 @@ final class Application extends AbstractCls
      * @template T
      * @param class-string<T> $id The identifier of the service to retrieve.
      * @return mixed The service instance.
-     * @throws DIException
+     * @throws DIException|ReflectionException
      */
     public function get(string $id): mixed
     {
