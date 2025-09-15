@@ -1,0 +1,308 @@
+/* Administration app */
+
+/* Initial data */
+
+-- Insert Continents
+
+CALL public."p_InsertContinent"('Africa');
+CALL public."p_InsertContinent"('Asia');
+CALL public."p_InsertContinent"('America');
+CALL public."p_InsertContinent"('Europe');
+CALL public."p_InsertContinent"('Oceania');
+
+-- Insert Countries
+
+DO
+$BODY$
+DECLARE _africa character varying(50); _america character varying(50); _asia character varying(50); _europe character varying(50); _oceania character varying(50);
+
+BEGIN
+SELECT "ID" INTO _africa FROM public."cl_Continents" WHERE "Name" = 'Africa';
+SELECT "ID" INTO _asia FROM public."cl_Continents" WHERE "Name" = 'Asia';
+SELECT "ID" INTO _america FROM public."cl_Continents" WHERE "Name" = 'America';
+SELECT "ID" INTO _oceania FROM public."cl_Continents" WHERE "Name" = 'Oceania';
+SELECT "ID" INTO _europe FROM public."cl_Continents" WHERE "Name" = 'Europe';
+
+--Countries data
+
+CALL public."p_InsertCountry"(93::integer, 'AF'::character(2), 'AFG'::character(3), _asia, 'Afghanistan'::text, 'afghanistan.png'::text);
+CALL public."p_InsertCountry"(355::integer, 'AL'::character(2), 'ALB'::character(3), _europe, 'Albania'::text, 'albania.png'::text);
+CALL public."p_InsertCountry"(213::integer, 'DZ'::character(2), 'DZA'::character(3), _africa, 'Algeria'::text, 'algeria.png'::text);
+CALL public."p_InsertCountry"(358::integer, 'AX'::character(2), 'ALA'::character(3), _europe, 'Åland Islands'::text, 'aland-islands.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'AS'::character(2), 'ASM'::character(3), _america, 'American Samoa'::text, 'american-samoa.png'::text);
+CALL public."p_InsertCountry"(376::integer, 'AD'::character(2), 'AND'::character(3), _america, 'Andorra'::text, 'andorra.png'::text);
+CALL public."p_InsertCountry"(244::integer, 'AO'::character(2), 'AGO'::character(3), _africa, 'Angola'::text, 'angola.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'AI'::character(2), 'AIA'::character(3), _oceania, 'Anguilla'::text, 'anguilla.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'AG'::character(2), 'ATG'::character(3), _oceania, 'Antigua and Barbuda'::text, 'antigua-and-barbuda.png'::text);
+CALL public."p_InsertCountry"(54::integer, 'AR'::character(2), 'ARG'::character(3), _america, 'Argentina'::text, 'argentina.png'::text);
+CALL public."p_InsertCountry"(374::integer, 'AM'::character(2), 'ARM'::character(3), _europe, 'Armenia'::text, 'armenia.png'::text);
+CALL public."p_InsertCountry"(297::integer, 'AW'::character(2), 'ABW'::character(3), _oceania, 'Aruba'::text, 'aruba.png'::text);
+CALL public."p_InsertCountry"(61::integer, 'AU'::character(2), 'AUS'::character(3), _oceania, 'Australia'::text, 'australia.png'::text);
+CALL public."p_InsertCountry"(43::integer, 'AT'::character(2), 'AUT'::character(3), _europe, 'Austria'::text, 'austria.png'::text);
+CALL public."p_InsertCountry"(994::integer, 'AZ'::character(2), 'AZE'::character(3), _asia, 'Azerbaijan'::text, 'azerbaijan.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'BS'::character(2), 'BHS'::character(3), _america, 'Bahamas'::text, 'bahamas.png'::text);
+CALL public."p_InsertCountry"(973::integer, 'BH'::character(2), 'BHR'::character(3), _asia, 'Bahrain'::text, 'bahrain.png'::text);
+CALL public."p_InsertCountry"(880::integer, 'BD'::character(2), 'BGD'::character(3), _asia, 'Bangladesh'::text, 'bangladesh.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'BB'::character(2), 'BRB'::character(3), _oceania, 'Barbados'::text, 'barbados.png'::text);
+CALL public."p_InsertCountry"(375::integer, 'BY'::character(2), 'BLR'::character(3), _europe, 'Belarus'::text, 'belarus.png'::text);
+CALL public."p_InsertCountry"(32::integer, 'BE'::character(2), 'BEL'::character(3), _europe, 'Belgium'::text, 'belgium.png'::text);
+CALL public."p_InsertCountry"(501::integer, 'BZ'::character(2), 'BLZ'::character(3), _oceania, 'Belize'::text, 'belize.png'::text);
+CALL public."p_InsertCountry"(229::integer, 'BJ'::character(2), 'BEN'::character(3), _africa, 'Benin'::text, 'benin.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'BM'::character(2), 'BMU'::character(3), _america, 'Bermuda'::text, 'bermuda.png'::text);
+CALL public."p_InsertCountry"(975::integer, 'BT'::character(2), 'BTN'::character(3), _asia, 'Bhutan'::text, 'bhutan.png'::text);
+CALL public."p_InsertCountry"(591::integer, 'BO'::character(2), 'BOL'::character(3), _america, 'Bolivia'::text, 'bolivia.png'::text);
+CALL public."p_InsertCountry"(387::integer, 'BA'::character(2), 'BIH'::character(3), _europe, 'Bosnia and Herzegovina'::text, 'bosnia-and-herzegovina.png'::text);
+CALL public."p_InsertCountry"(267::integer, 'BW'::character(2), 'BWA'::character(3), _africa, 'Botswana'::text, 'botswana.png'::text);
+CALL public."p_InsertCountry"(55::integer, 'BR'::character(2), 'BRA'::character(3), _america, 'Brazil'::text, 'brazil.png'::text);
+CALL public."p_InsertCountry"(246::integer, 'IO'::character(2), 'IOT'::character(3), _asia, 'British Indian Ocean Territory'::text, 'british-indian-ocean-territory.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'VG'::character(2), 'VGB'::character(3), _oceania, 'British Virgin Islands'::text, 'british-virgin-islands.png'::text);
+CALL public."p_InsertCountry"(673::integer, 'BN'::character(2), 'BRN'::character(3), _asia, 'Brunei'::text, 'brunei.png'::text);
+CALL public."p_InsertCountry"(359::integer, 'BG'::character(2), 'BGR'::character(3), _europe, 'Bulgaria'::text, 'bulgaria.png'::text);
+CALL public."p_InsertCountry"(226::integer, 'BF'::character(2), 'BFA'::character(3), _africa, 'Burkina Faso'::text, 'burkina-faso.png'::text);
+CALL public."p_InsertCountry"(257::integer, 'BI'::character(2), 'BDI'::character(3), _africa, 'Burundi'::text, 'burundi.png'::text);
+CALL public."p_InsertCountry"(855::integer, 'KH'::character(2), 'KHM'::character(3), _asia, 'Cambodia'::text, 'cambodia.png'::text);
+CALL public."p_InsertCountry"(237::integer, 'CM'::character(2), 'CMR'::character(3), _africa, 'Cameroon'::text, 'cameroon.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'CA'::character(2), 'CAN'::character(3), _america, 'Canada'::text, 'canada.png'::text);
+CALL public."p_InsertCountry"(238::integer, 'CV'::character(2), 'CPV'::character(3), _africa, 'Cape Verde'::text, 'cape-verde.png'::text);
+CALL public."p_InsertCountry"(599::integer, 'BQ'::character(2), 'BES'::character(3), _america, 'Caribbean Netherlands'::text, 'caribbean-netherlands.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'KY'::character(2), 'CYM'::character(3), _oceania, 'Cayman Islands'::text, 'cayman-islands.png'::text);
+CALL public."p_InsertCountry"(236::integer, 'CF'::character(2), 'CAF'::character(3), _africa, 'Central African Republic'::text, 'central-african-republic.png'::text);
+CALL public."p_InsertCountry"(235::integer, 'TD'::character(2), 'TCD'::character(3), _africa, 'Chad'::text, 'chad.png'::text);
+CALL public."p_InsertCountry"(56::integer, 'CL'::character(2), 'CHL'::character(3), _america, 'Chile'::text, 'chile.png'::text);
+CALL public."p_InsertCountry"(86::integer, 'CN'::character(2), 'CHN'::character(3), _asia, 'China'::text, 'china.png'::text);
+CALL public."p_InsertCountry"(61::integer, 'CX'::character(2), 'CXR'::character(3), _oceania, 'Christmas Island'::text, 'christmas-island.png'::text);
+CALL public."p_InsertCountry"(61::integer, 'CC'::character(2), 'CCK'::character(3), _oceania, 'Cocos Islands'::text, 'cocos-islands.png'::text);
+CALL public."p_InsertCountry"(57::integer, 'CO'::character(2), 'COL'::character(3), _america, 'Colombia'::text, 'colombia.png'::text);
+CALL public."p_InsertCountry"(269::integer, 'KM'::character(2), 'COM'::character(3), _africa, 'Comoros'::text, 'comoros.png'::text);
+CALL public."p_InsertCountry"(682::integer, 'CK'::character(2), 'COK'::character(3), _oceania, 'Cook Islands'::text, 'cook-islands.png'::text);
+CALL public."p_InsertCountry"(506::integer, 'CR'::character(2), 'CRI'::character(3), _america, 'Costa Rica'::text, 'costa-rica.png'::text);
+CALL public."p_InsertCountry"(385::integer, 'HR'::character(2), 'HRV'::character(3), _europe, 'Croatia'::text, 'croatia.png'::text);
+CALL public."p_InsertCountry"(53::integer, 'CU'::character(2), 'CUB'::character(3), _america, 'Cuba'::text, 'cuba.png'::text);
+CALL public."p_InsertCountry"(599::integer, 'CW'::character(2), 'CUW'::character(3), _oceania, 'Curacao'::text, 'curacao.png'::text);
+CALL public."p_InsertCountry"(357::integer, 'CY'::character(2), 'CYP'::character(3), _europe, 'Cyprus'::text, 'cyprus.png'::text);
+CALL public."p_InsertCountry"(420::integer, 'CZ'::character(2), 'CZE'::character(3), _europe, 'Czech Republic'::text, 'czech-republic.png'::text);
+CALL public."p_InsertCountry"(243::integer, 'CD'::character(2), 'COD'::character(3), _africa, 'Democratic Republic of the Congo'::text, 'democratic-republic-of-congo.png'::text);
+CALL public."p_InsertCountry"(45::integer, 'DK'::character(2), 'DNK'::character(3), _europe, 'Denmark'::text, 'denmark.png'::text);
+CALL public."p_InsertCountry"(253::integer, 'DJ'::character(2), 'DJI'::character(3), _africa, 'Djibouti'::text, 'djibouti.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'DM'::character(2), 'DMA'::character(3), _america, 'Dominica'::text, 'dominica.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'DO'::character(2), 'DOM'::character(3), _america, 'Dominican Republic'::text, 'dominican-republic.png'::text);
+CALL public."p_InsertCountry"(670::integer, 'TL'::character(2), 'TLS'::character(3), _oceania, 'East Timor'::text, 'east-timor.png'::text);
+CALL public."p_InsertCountry"(593::integer, 'EC'::character(2), 'ECU'::character(3), _america, 'Ecuador'::text, 'ecuador.png'::text);
+CALL public."p_InsertCountry"(20::integer, 'EG'::character(2), 'EGY'::character(3), _africa, 'Egypt'::text, 'egypt.png'::text);
+CALL public."p_InsertCountry"(503::integer, 'SV'::character(2), 'SLV'::character(3), _america, 'El Salvador'::text, 'el-salvador.png'::text);
+CALL public."p_InsertCountry"(240::integer, 'GQ'::character(2), 'GNQ'::character(3), _africa, 'Equatorial Guinea'::text, 'equatorial-guinea.png'::text);
+CALL public."p_InsertCountry"(291::integer, 'ER'::character(2), 'ERI'::character(3), _africa, 'Eritrea'::text, 'eritrea.png'::text);
+CALL public."p_InsertCountry"(372::integer, 'EE'::character(2), 'EST'::character(3), _europe, 'Estonia'::text, 'estonia.png'::text);
+CALL public."p_InsertCountry"(251::integer, 'ET'::character(2), 'ETH'::character(3), _africa, 'Ethiopia'::text, 'ethiopia.png'::text);
+CALL public."p_InsertCountry"(500::integer, 'FK'::character(2), 'FLK'::character(3), _oceania, 'Falkland Islands'::text, 'falkland-islands.png'::text);
+CALL public."p_InsertCountry"(298::integer, 'FO'::character(2), 'FRO'::character(3), _oceania, 'Faroe Islands'::text, 'faroe-islands.png'::text);
+CALL public."p_InsertCountry"(679::integer, 'FJ'::character(2), 'FJI'::character(3), _oceania, 'Fiji'::text, 'fiji.png'::text);
+CALL public."p_InsertCountry"(358::integer, 'FI'::character(2), 'FIN'::character(3), _europe, 'Finland'::text, 'finland.png'::text);
+CALL public."p_InsertCountry"(33::integer, 'FR'::character(2), 'FRA'::character(3), _europe, 'France'::text, 'france.png'::text);
+CALL public."p_InsertCountry"(594::integer, 'GF'::character(2), 'GUF'::character(3), _america, 'French Guiana'::text, 'france.png'::text);
+CALL public."p_InsertCountry"(689::integer, 'PF'::character(2), 'PYF'::character(3), _asia, 'French Polynesia'::text, 'french-polynesia.png'::text);
+CALL public."p_InsertCountry"(241::integer, 'GA'::character(2), 'GAB'::character(3), _africa, 'Gabon'::text, 'gabon.png'::text);
+CALL public."p_InsertCountry"(220::integer, 'GM'::character(2), 'GMB'::character(3), _africa, 'Gambia'::text, 'gambia.png'::text);
+CALL public."p_InsertCountry"(995::integer, 'GE'::character(2), 'GEO'::character(3), _europe, 'Georgia'::text, 'georgia.png'::text);
+CALL public."p_InsertCountry"(49::integer, 'DE'::character(2), 'DEU'::character(3), _europe, 'Germany'::text, 'germany.png'::text);
+CALL public."p_InsertCountry"(233::integer, 'GH'::character(2), 'GHA'::character(3), _africa, 'Ghana'::text, 'ghana.png'::text);
+CALL public."p_InsertCountry"(350::integer, 'GI'::character(2), 'GIB'::character(3), _europe, 'Gibraltar'::text, 'gibraltar.png'::text);
+CALL public."p_InsertCountry"(30::integer, 'GR'::character(2), 'GRC'::character(3), _europe, 'Greece'::text, 'greece.png'::text);
+CALL public."p_InsertCountry"(299::integer, 'GL'::character(2), 'GRL'::character(3), _europe, 'Greenland'::text, 'greenland.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'GD'::character(2), 'GRD'::character(3), _america, 'Grenada'::text, 'grenada.png'::text);
+CALL public."p_InsertCountry"(590::integer, 'GP'::character(2), 'GLP'::character(3), _america, 'Guadeloupe'::text, 'france.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'GU'::character(2), 'GUM'::character(3), _america, 'Guam'::text, 'guam.png'::text);
+CALL public."p_InsertCountry"(502::integer, 'GT'::character(2), 'GTM'::character(3), _america, 'Guatemala'::text, 'guatemala.png'::text);
+CALL public."p_InsertCountry"(44::integer, 'GG'::character(2), 'GGY'::character(3), _oceania, 'Guernsey'::text, 'guernsey.png'::text);
+CALL public."p_InsertCountry"(224::integer, 'GN'::character(2), 'GIN'::character(3), _africa, 'Guinea'::text, 'guinea.png'::text);
+CALL public."p_InsertCountry"(245::integer, 'GW'::character(2), 'GNB'::character(3), _africa, 'Guinea-Bissau'::text, 'guinea-bissau.png'::text);
+CALL public."p_InsertCountry"(592::integer, 'GY'::character(2), 'GUY'::character(3), _america, 'Guyana'::text, 'guyana.png'::text);
+CALL public."p_InsertCountry"(509::integer, 'HT'::character(2), 'HTI'::character(3), _america, 'Haiti'::text, 'haiti.png'::text);
+CALL public."p_InsertCountry"(504::integer, 'HN'::character(2), 'HND'::character(3), _america, 'Honduras'::text, 'honduras.png'::text);
+CALL public."p_InsertCountry"(852::integer, 'HK'::character(2), 'HKG'::character(3), _asia, 'Hong Kong'::text, 'hong-kong.png'::text);
+CALL public."p_InsertCountry"(36::integer, 'HU'::character(2), 'HUN'::character(3), _europe, 'Hungary'::text, 'hungary.png'::text);
+CALL public."p_InsertCountry"(354::integer, 'IS'::character(2), 'ISL'::character(3), _europe, 'Iceland'::text, 'iceland.png'::text);
+CALL public."p_InsertCountry"(91::integer, 'IN'::character(2), 'IND'::character(3), _asia, 'India'::text, 'india.png'::text);
+CALL public."p_InsertCountry"(62::integer, 'ID'::character(2), 'IDN'::character(3), _asia, 'Indonesia'::text, 'indonesia.png'::text);
+CALL public."p_InsertCountry"(98::integer, 'IR'::character(2), 'IRN'::character(3), _asia, 'Iran'::text, 'iran.png'::text);
+CALL public."p_InsertCountry"(964::integer, 'IQ'::character(2), 'IRQ'::character(3), _asia, 'Iraq'::text, 'iraq.png'::text);
+CALL public."p_InsertCountry"(353::integer, 'IE'::character(2), 'IRL'::character(3), _europe, 'Ireland'::text, 'ireland.png'::text);
+CALL public."p_InsertCountry"(44::integer, 'IM'::character(2), 'IMN'::character(3), _oceania, 'Isle of Man'::text, 'isle-of-man.png'::text);
+CALL public."p_InsertCountry"(972::integer, 'IL'::character(2), 'ISR'::character(3), _asia, 'Israel'::text, 'israel.png'::text);
+CALL public."p_InsertCountry"(39::integer, 'IT'::character(2), 'ITA'::character(3), _europe, 'Italy'::text, 'italy.png'::text);
+CALL public."p_InsertCountry"(225::integer, 'CI'::character(2), 'CIV'::character(3), _africa, 'Ivory Coast'::text, 'ivory-coast.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'JM'::character(2), 'JAM'::character(3), _america, 'Jamaica'::text, 'jamaica.png'::text);
+CALL public."p_InsertCountry"(81::integer, 'JP'::character(2), 'JPN'::character(3), _asia, 'Japan'::text, 'japan.png'::text);
+CALL public."p_InsertCountry"(44::integer, 'JE'::character(2), 'JEY'::character(3), _europe, 'Jersey'::text, 'jersey.png'::text);
+CALL public."p_InsertCountry"(962::integer, 'JO'::character(2), 'JOR'::character(3), _asia, 'Jordan'::text, 'jordan.png'::text);
+CALL public."p_InsertCountry"(7::integer, 'KZ'::character(2), 'KAZ'::character(3), _asia, 'Kazakhstan'::text, 'kazakhstan.png'::text);
+CALL public."p_InsertCountry"(254::integer, 'KE'::character(2), 'KEN'::character(3), _africa, 'Kenya'::text, 'kenya.png'::text);
+CALL public."p_InsertCountry"(686::integer, 'KI'::character(2), 'KIR'::character(3), _oceania, 'Kiribati'::text, 'kiribati.png'::text);
+CALL public."p_InsertCountry"(383::integer, 'XK'::character(2), 'XKX'::character(3), _europe, 'Kosovo'::text, 'kosovo.png'::text);
+CALL public."p_InsertCountry"(965::integer, 'KW'::character(2), 'KWT'::character(3), _asia, 'Kuwait'::text, 'kuwait.png'::text);
+CALL public."p_InsertCountry"(996::integer, 'KG'::character(2), 'KGZ'::character(3), _asia, 'Kyrgyzstan'::text, 'kyrgyzstan.png'::text);
+CALL public."p_InsertCountry"(856::integer, 'LA'::character(2), 'LAO'::character(3), _asia, 'Laos'::text, 'laos.png'::text);
+CALL public."p_InsertCountry"(371::integer, 'LV'::character(2), 'LVA'::character(3), _europe, 'Latvia'::text, 'latvia.png'::text);
+CALL public."p_InsertCountry"(961::integer, 'LB'::character(2), 'LBN'::character(3), _asia, 'Lebanon'::text, 'lebanon.png'::text);
+CALL public."p_InsertCountry"(266::integer, 'LS'::character(2), 'LSO'::character(3), _africa, 'Lesotho'::text, 'lesotho.png'::text);
+CALL public."p_InsertCountry"(231::integer, 'LR'::character(2), 'LBR'::character(3), _africa, 'Liberia'::text, 'liberia.png'::text);
+CALL public."p_InsertCountry"(218::integer, 'LY'::character(2), 'LBY'::character(3), _africa, 'Libya'::text, 'libya.png'::text);
+CALL public."p_InsertCountry"(423::integer, 'LI'::character(2), 'LIE'::character(3), _europe, 'Liechtenstein'::text, 'liechtenstein.png'::text);
+CALL public."p_InsertCountry"(370::integer, 'LT'::character(2), 'LTU'::character(3), _europe, 'Lithuania'::text, 'lithuania.png'::text);
+CALL public."p_InsertCountry"(352::integer, 'LU'::character(2), 'LUX'::character(3), _europe, 'Luxembourg'::text, 'luxembourg.png'::text);
+CALL public."p_InsertCountry"(853::integer, 'MO'::character(2), 'MAC'::character(3), _asia, 'Macau'::text, 'macau.png'::text);
+CALL public."p_InsertCountry"(389::integer, 'MK'::character(2), 'MKD'::character(3), _europe, 'Macedonia'::text, 'republic-of-macedonia.png'::text);
+CALL public."p_InsertCountry"(261::integer, 'MG'::character(2), 'MDG'::character(3), _africa, 'Madagascar'::text, 'madagascar.png'::text);
+CALL public."p_InsertCountry"(265::integer, 'MW'::character(2), 'MWI'::character(3), _africa, 'Malawi'::text, 'malawi.png'::text);
+CALL public."p_InsertCountry"(60::integer, 'MY'::character(2), 'MYS'::character(3), _asia, 'Malaysia'::text, 'malaysia.png'::text);
+CALL public."p_InsertCountry"(960::integer, 'MV'::character(2), 'MDV'::character(3), _america, 'Maldives'::text, 'maldives.png'::text);
+CALL public."p_InsertCountry"(223::integer, 'ML'::character(2), 'MLI'::character(3), _africa, 'Mali'::text, 'mali.png'::text);
+CALL public."p_InsertCountry"(356::integer, 'MT'::character(2), 'MLT'::character(3), _america, 'Malta'::text, 'malta.png'::text);
+CALL public."p_InsertCountry"(692::integer, 'MH'::character(2), 'MHL'::character(3), _oceania, 'Marshall Islands'::text, 'marshall-islands.png'::text);
+CALL public."p_InsertCountry"(596::integer, 'MQ'::character(2), 'MTQ'::character(3), _america, 'Martinique'::text, 'martinique.png'::text);
+CALL public."p_InsertCountry"(222::integer, 'MR'::character(2), 'MRT'::character(3), _africa, 'Mauritania'::text, 'mauritania.png'::text);
+CALL public."p_InsertCountry"(230::integer, 'MU'::character(2), 'MUS'::character(3), _africa, 'Mauritius'::text, 'mauritius.png'::text);
+CALL public."p_InsertCountry"(262::integer, 'YT'::character(2), 'MYT'::character(3), _africa, 'Mayotte'::text, 'mayotte.png'::text);
+CALL public."p_InsertCountry"(52::integer, 'MX'::character(2), 'MEX'::character(3), _america, 'Mexico'::text, 'mexico.png'::text);
+CALL public."p_InsertCountry"(691::integer, 'FM'::character(2), 'FSM'::character(3), _oceania, 'Micronesia'::text, 'micronesia.png'::text);
+CALL public."p_InsertCountry"(373::integer, 'MD'::character(2), 'MDA'::character(3), _europe, 'Moldova'::text, 'moldova.png'::text);
+CALL public."p_InsertCountry"(377::integer, 'MC'::character(2), 'MCO'::character(3), _europe, 'Monaco'::text, 'monaco.png'::text);
+CALL public."p_InsertCountry"(976::integer, 'MN'::character(2), 'MNG'::character(3), _america, 'Mongolia'::text, 'mongolia.png'::text);
+CALL public."p_InsertCountry"(382::integer, 'ME'::character(2), 'MNE'::character(3), _europe, 'Montenegro'::text, 'montenegro.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'MS'::character(2), 'MSR'::character(3), _europe, 'Montserrat'::text, 'montserrat.png'::text);
+CALL public."p_InsertCountry"(212::integer, 'MA'::character(2), 'MAR'::character(3), _africa, 'Morocco'::text, 'morocco.png'::text);
+CALL public."p_InsertCountry"(258::integer, 'MZ'::character(2), 'MOZ'::character(3), _africa, 'Mozambique'::text, 'mozambique.png'::text);
+CALL public."p_InsertCountry"(95::integer, 'MM'::character(2), 'MMR'::character(3), _asia, 'Myanmar'::text, 'myanmar.png'::text);
+CALL public."p_InsertCountry"(264::integer, 'NA'::character(2), 'NAM'::character(3), _africa, 'Namibia'::text, 'namibia.png'::text);
+CALL public."p_InsertCountry"(674::integer, 'NR'::character(2), 'NRU'::character(3), _oceania, 'Nauru'::text, 'nauru.png'::text);
+CALL public."p_InsertCountry"(977::integer, 'NP'::character(2), 'NPL'::character(3), _asia, 'Nepal'::text, 'nepal.png'::text);
+CALL public."p_InsertCountry"(31::integer, 'NL'::character(2), 'NLD'::character(3), _europe, 'Netherlands'::text, 'netherlands.png'::text);
+CALL public."p_InsertCountry"(687::integer, 'NC'::character(2), 'NCL'::character(3), _asia, 'New Caledonia'::text, 'new-caledonia.png'::text);
+CALL public."p_InsertCountry"(64::integer, 'NZ'::character(2), 'NZL'::character(3), _oceania, 'New Zealand'::text, 'new-zealand.png'::text);
+CALL public."p_InsertCountry"(505::integer, 'NI'::character(2), 'NIC'::character(3), _america, 'Nicaragua'::text, 'nicaragua.png'::text);
+CALL public."p_InsertCountry"(227::integer, 'NE'::character(2), 'NER'::character(3), _africa, 'Niger'::text, 'niger.png'::text);
+CALL public."p_InsertCountry"(234::integer, 'NG'::character(2), 'NGA'::character(3), _africa, 'Nigeria'::text, 'nigeria.png'::text);
+CALL public."p_InsertCountry"(683::integer, 'NU'::character(2), 'NIU'::character(3), _oceania, 'Niue'::text, 'niue.png'::text);
+CALL public."p_InsertCountry"(672::integer, 'NF'::character(2), 'NFK'::character(3), _oceania, 'Norfolk Island'::text, 'norfolk-island.png'::text);
+CALL public."p_InsertCountry"(850::integer, 'KP'::character(2), 'PRK'::character(3), _asia, 'North Korea'::text, 'north-korea.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'MP'::character(2), 'MNP'::character(3), _oceania, 'Northern Mariana Islands'::text, 'northern-mariana-islands.png'::text);
+CALL public."p_InsertCountry"(47::integer, 'NO'::character(2), 'NOR'::character(3), _europe, 'Norway'::text, 'norway.png'::text);
+CALL public."p_InsertCountry"(968::integer, 'OM'::character(2), 'OMN'::character(3), _asia, 'Oman'::text, 'oman.png'::text);
+CALL public."p_InsertCountry"(92::integer, 'PK'::character(2), 'PAK'::character(3), _asia, 'Pakistan'::text, 'pakistan.png'::text);
+CALL public."p_InsertCountry"(680::integer, 'PW'::character(2), 'PLW'::character(3), _oceania, 'Palau'::text, 'palau.png'::text);
+CALL public."p_InsertCountry"(970::integer, 'PS'::character(2), 'PSE'::character(3), _asia, 'Palestine'::text, 'palestine.png'::text);
+CALL public."p_InsertCountry"(507::integer, 'PA'::character(2), 'PAN'::character(3), _america, 'Panama'::text, 'panama.png'::text);
+CALL public."p_InsertCountry"(675::integer, 'PG'::character(2), 'PNG'::character(3), _oceania, 'Papua New Guinea'::text, 'papua-new-guinea.png'::text);
+CALL public."p_InsertCountry"(595::integer, 'PY'::character(2), 'PRY'::character(3), _america, 'Paraguay'::text, 'paraguay.png'::text);
+CALL public."p_InsertCountry"(51::integer, 'PE'::character(2), 'PER'::character(3), _america, 'Peru'::text, 'peru.png'::text);
+CALL public."p_InsertCountry"(63::integer, 'PH'::character(2), 'PHL'::character(3), _asia, 'Philippines'::text, 'philippines.png'::text);
+CALL public."p_InsertCountry"(64::integer, 'PN'::character(2), 'PCN'::character(3), _oceania, 'Pitcairn'::text, 'pitcairn-islands.png'::text);
+CALL public."p_InsertCountry"(48::integer, 'PL'::character(2), 'POL'::character(3), _europe, 'Poland'::text, 'poland.png'::text);
+CALL public."p_InsertCountry"(351::integer, 'PT'::character(2), 'PRT'::character(3), _europe, 'Portugal'::text, 'portugal.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'PR'::character(2), 'PRI'::character(3), _america, 'Puerto Rico'::text, 'puerto-rico.png'::text);
+CALL public."p_InsertCountry"(974::integer, 'QA'::character(2), 'QAT'::character(3), _asia, 'Qatar'::text, 'qatar.png'::text);
+CALL public."p_InsertCountry"(242::integer, 'CG'::character(2), 'COG'::character(3), _africa, 'Republic of the Congo'::text, 'republic-of-the-congo.png'::text);
+CALL public."p_InsertCountry"(262::integer, 'RE'::character(2), 'REU'::character(3), _africa, 'Reunion'::text, 'reunion.png'::text);
+CALL public."p_InsertCountry"(40::integer, 'RO'::character(2), 'ROU'::character(3), _europe, 'Romania'::text, 'romania.png'::text);
+CALL public."p_InsertCountry"(7::integer, 'RU'::character(2), 'RUS'::character(3), _asia, 'Russia'::text, 'russia.png'::text);
+CALL public."p_InsertCountry"(250::integer, 'RW'::character(2), 'RWA'::character(3), _africa, 'Rwanda'::text, 'rwanda.png'::text);
+CALL public."p_InsertCountry"(590::integer, 'BL'::character(2), 'BLM'::character(3), _america, 'Saint Barthelemy'::text, 'saint-barthelemy.png'::text);
+CALL public."p_InsertCountry"(290::integer, 'SH'::character(2), 'SHN'::character(3), _america, 'Saint Helena'::text, 'saint-helena.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'KN'::character(2), 'KNA'::character(3), _oceania, 'Saint Kitts and Nevis'::text, 'saint-kitts-and-nevis.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'LC'::character(2), 'LCA'::character(3), _oceania, 'Saint Lucia'::text, 'saint-lucia.png'::text);
+CALL public."p_InsertCountry"(590::integer, 'MF'::character(2), 'MAF'::character(3), _oceania, 'Saint Martin'::text, 'france.png'::text);
+CALL public."p_InsertCountry"(508::integer, 'PM'::character(2), 'SPM'::character(3), _oceania, 'Saint Pierre and Miquelon'::text, 'saint-pierre-and-miquelon.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'VC'::character(2), 'VCT'::character(3), _oceania, 'Saint Vincent and the Grenadines'::text, 'saint-vincent-and-the-grenadines.png'::text);
+CALL public."p_InsertCountry"(685::integer, 'WS'::character(2), 'WSM'::character(3), _oceania, 'Samoa'::text, 'samoa.png'::text);
+CALL public."p_InsertCountry"(378::integer, 'SM'::character(2), 'SMR'::character(3), _oceania, 'San Marino'::text, 'san-marino.png'::text);
+CALL public."p_InsertCountry"(239::integer, 'ST'::character(2), 'STP'::character(3), _africa, 'Sao Tome and Principe'::text, 'sao-tome-and-principe.png'::text);
+CALL public."p_InsertCountry"(966::integer, 'SA'::character(2), 'SAU'::character(3), _asia, 'Saudi Arabia'::text, 'saudi-arabia.png'::text);
+CALL public."p_InsertCountry"(221::integer, 'SN'::character(2), 'SEN'::character(3), _africa, 'Senegal'::text, 'senegal.png'::text);
+CALL public."p_InsertCountry"(381::integer, 'RS'::character(2), 'SRB'::character(3), _europe, 'Serbia'::text, 'serbia.png'::text);
+CALL public."p_InsertCountry"(248::integer, 'SC'::character(2), 'SYC'::character(3), _africa, 'Seychelles'::text, 'seychelles.png'::text);
+CALL public."p_InsertCountry"(232::integer, 'SL'::character(2), 'SLE'::character(3), _africa, 'Sierra Leone'::text, 'sierra-leone.png'::text);
+CALL public."p_InsertCountry"(65::integer, 'SG'::character(2), 'SGP'::character(3), _asia, 'Singapore'::text, 'singapore.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'SX'::character(2), 'SXM'::character(3), _oceania, 'Sint Maarten'::text, 'sint-maarten.png'::text);
+CALL public."p_InsertCountry"(421::integer, 'SK'::character(2), 'SVK'::character(3), _europe, 'Slovakia'::text, 'slovakia.png'::text);
+CALL public."p_InsertCountry"(386::integer, 'SI'::character(2), 'SVN'::character(3), _europe, 'Slovenia'::text, 'slovenia.png'::text);
+CALL public."p_InsertCountry"(677::integer, 'SB'::character(2), 'SLB'::character(3), _oceania, 'Solomon Islands'::text, 'solomon-islands.png'::text);
+CALL public."p_InsertCountry"(252::integer, 'SO'::character(2), 'SOM'::character(3), _africa, 'Somalia'::text, 'somalia.png'::text);
+CALL public."p_InsertCountry"(27::integer, 'ZA'::character(2), 'ZAF'::character(3), _africa, 'South Africa'::text, 'south-africa.png'::text);
+CALL public."p_InsertCountry"(82::integer, 'KR'::character(2), 'KOR'::character(3), _asia, 'South Korea'::text, 'south-korea.png'::text);
+CALL public."p_InsertCountry"(211::integer, 'SS'::character(2), 'SSD'::character(3), _africa, 'South Sudan'::text, 'south-sudan.png'::text);
+CALL public."p_InsertCountry"(34::integer, 'ES'::character(2), 'ESP'::character(3), _europe, 'Spain'::text, 'spain.png'::text);
+CALL public."p_InsertCountry"(94::integer, 'LK'::character(2), 'LKA'::character(3), _asia, 'Sri Lanka'::text, 'sri-lanka.png'::text);
+CALL public."p_InsertCountry"(249::integer, 'SD'::character(2), 'SDN'::character(3), _africa, 'Sudan'::text, 'sudan.png'::text);
+CALL public."p_InsertCountry"(597::integer, 'SR'::character(2), 'SUR'::character(3), _asia, 'Suriname'::text, 'suriname.png'::text);
+CALL public."p_InsertCountry"(47::integer, 'SJ'::character(2), 'SJM'::character(3), _oceania, 'Svalbard and Jan Mayen'::text, 'norway.png'::text);
+CALL public."p_InsertCountry"(268::integer, 'SZ'::character(2), 'SWZ'::character(3), _africa, 'Swaziland'::text, 'swaziland.png'::text);
+CALL public."p_InsertCountry"(46::integer, 'SE'::character(2), 'SWE'::character(3), _europe, 'Sweden'::text, 'sweden.png'::text);
+CALL public."p_InsertCountry"(41::integer, 'CH'::character(2), 'CHE'::character(3), _europe, 'Switzerland'::text, 'switzerland.png'::text);
+CALL public."p_InsertCountry"(963::integer, 'SY'::character(2), 'SYR'::character(3), _asia, 'Syria'::text, 'syria.png'::text);
+CALL public."p_InsertCountry"(886::integer, 'TW'::character(2), 'TWN'::character(3), _asia, 'Taiwan'::text, 'taiwan.png'::text);
+CALL public."p_InsertCountry"(992::integer, 'TJ'::character(2), 'TJK'::character(3), _asia, 'Tajikistan'::text, 'tajikistan.png'::text);
+CALL public."p_InsertCountry"(255::integer, 'TZ'::character(2), 'TZA'::character(3), _africa, 'Tanzania'::text, 'tanzania.png'::text);
+CALL public."p_InsertCountry"(66::integer, 'TH'::character(2), 'THA'::character(3), _asia, 'Thailand'::text, 'thailand.png'::text);
+CALL public."p_InsertCountry"(228::integer, 'TG'::character(2), 'TGO'::character(3), _africa, 'Togo'::text, 'togo.png'::text);
+CALL public."p_InsertCountry"(690::integer, 'TK'::character(2), 'TKL'::character(3), _oceania, 'Tokelau'::text, 'tokelau.png'::text);
+CALL public."p_InsertCountry"(676::integer, 'TO'::character(2), 'TON'::character(3), _oceania, 'Tonga'::text, 'tonga.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'TT'::character(2), 'TTO'::character(3), _oceania, 'Trinidad and Tobago'::text, 'trinidad-and-tobago.png'::text);
+CALL public."p_InsertCountry"(216::integer, 'TN'::character(2), 'TUN'::character(3), _africa, 'Tunisia'::text, 'tunisia.png'::text);
+CALL public."p_InsertCountry"(90::integer, 'TR'::character(2), 'TUR'::character(3), _europe, 'Turkey'::text, 'turkey.png'::text);
+CALL public."p_InsertCountry"(993::integer, 'TM'::character(2), 'TKM'::character(3), _asia, 'Turkmenistan'::text, 'turkmenistan.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'TC'::character(2), 'TCA'::character(3), _oceania, 'Turks and Caicos Islands'::text, 'turks-and-caicos-islands.png'::text);
+CALL public."p_InsertCountry"(688::integer, 'TV'::character(2), 'TUV'::character(3), _oceania, 'Tuvalu'::text, 'tuvalu.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'VI'::character(2), 'VIR'::character(3), _oceania, 'U.S. Virgin Islands'::text, 'virgin-islands.png'::text);
+CALL public."p_InsertCountry"(256::integer, 'UG'::character(2), 'UGA'::character(3), _africa, 'Uganda'::text, 'uganda.png'::text);
+CALL public."p_InsertCountry"(380::integer, 'UA'::character(2), 'UKR'::character(3), _europe, 'Ukraine'::text, 'ukraine.png'::text);
+CALL public."p_InsertCountry"(971::integer, 'AE'::character(2), 'ARE'::character(3), _asia, 'United Arab Emirates'::text, 'united-arab-emirates.png'::text);
+CALL public."p_InsertCountry"(44::integer, 'GB'::character(2), 'GBR'::character(3), _europe, 'United Kingdom'::text, 'united-kingdom.png'::text);
+CALL public."p_InsertCountry"(1::integer, 'US'::character(2), 'USA'::character(3), _america, 'United States'::text, 'united-states.png'::text);
+CALL public."p_InsertCountry"(598::integer, 'UY'::character(2), 'URY'::character(3), _america, 'Uruguay'::text, 'uruguay.png'::text);
+CALL public."p_InsertCountry"(998::integer, 'UZ'::character(2), 'UZB'::character(3), _asia, 'Uzbekistan'::text, 'uzbekistan.png'::text);
+CALL public."p_InsertCountry"(678::integer, 'VU'::character(2), 'VUT'::character(3), _oceania, 'Vanuatu'::text, 'vanuatu.png'::text);
+CALL public."p_InsertCountry"(379::integer, 'VA'::character(2), 'VAT'::character(3), _europe, 'Vatican'::text, 'vatican.png'::text);
+CALL public."p_InsertCountry"(58::integer, 'VE'::character(2), 'VEN'::character(3), _america, 'Venezuela'::text, 'venezuela.png'::text);
+CALL public."p_InsertCountry"(84::integer, 'VN'::character(2), 'VNM'::character(3), _asia, 'Vietnam'::text, 'vietnam.png'::text);
+CALL public."p_InsertCountry"(681::integer, 'WF'::character(2), 'WLF'::character(3), _oceania, 'Wallis and Futuna'::text, 'wallis-and-futuna.png'::text);
+CALL public."p_InsertCountry"(212::integer, 'EH'::character(2), 'ESH'::character(3), _africa, 'Western Sahara'::text, 'western-sahara.png'::text);
+CALL public."p_InsertCountry"(967::integer, 'YE'::character(2), 'YEM'::character(3), _asia, 'Yemen'::text, 'yemen.png'::text);
+CALL public."p_InsertCountry"(260::integer, 'ZM'::character(2), 'ZMB'::character(3), _africa, 'Zambia'::text, 'zambia.png'::text);
+CALL public."p_InsertCountry"(263::integer, 'ZW'::character(2), 'ZWE'::character(3), _africa, 'Zimbabwe'::text, 'zimbabwe.png'::text);
+END $BODY$;
+
+-- Insert Cities
+
+DO
+$BODY$
+DECLARE _id character varying(50);
+
+BEGIN
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CMR';
+CALL public."p_InsertCity"(_id, 'MVR', 'Maroua');
+CALL public."p_InsertCity"(_id, 'GOU', 'Garoua');
+CALL public."p_InsertCity"(_id, 'NGE', 'Ngaoundéré');
+CALL public."p_InsertCity"(_id, 'YDE', 'Yaoundé');
+CALL public."p_InsertCity"(_id, 'DLA', 'Douala');
+CALL public."p_InsertCity"(_id, 'EBA', 'Ebolowa');
+CALL public."p_InsertCity"(_id, 'BFM', 'Bafoussam');
+CALL public."p_InsertCity"(_id, 'BUA', 'Buéa');
+CALL public."p_InsertCity"(_id, 'BDA', 'Bamenda');
+CALL public."p_InsertCity"(_id, 'BTA', 'Bertoua');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CAF';
+CALL public."p_InsertCity"(_id, 'BGF', 'Bangui');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'COG';
+CALL public."p_InsertCity"(_id, 'BZV', 'Brazzaville');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'GAB';
+CALL public."p_InsertCity"(_id, 'LBV', 'Libreville');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'GNQ';
+CALL public."p_InsertCity"(_id, 'SSG', 'Malabo');
+--
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'TCD';
+CALL public."p_InsertCity"(_id, 'NDJ', 'N''Djamena');
+
+END $BODY$;

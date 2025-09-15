@@ -1,0 +1,1466 @@
+Folder PATH listing
+Volume serial number is 90CB-DE01
+C:.
+¦   .htaccess
+¦   autoload.php
+¦   index.php
+¦   tree.txt
+¦   
++---.idea
+¦       .gitignore
+¦       Cashledger.iml
+¦       deployment.xml
+¦       modules.xml
+¦       php.xml
+¦       watcherTasks.xml
+¦       workspace.xml
+¦       
++---APIs
+¦   +---Assets
+¦   ¦   +---Classes
+¦   ¦   ¦       DTOException.php
+¦   ¦   ¦       
+¦   ¦   +---Exceptions
+¦   ¦   ¦       DTOException.json
+¦   ¦   ¦       
+¦   ¦   +---Logs
+¦   +---Persistence
+¦   ¦   +---AccountingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---BillingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---BookingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---ControlRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---DashboardingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---DTORepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   ¦       AppCategories.php
+¦   ¦   ¦   ¦       Apps.php
+¦   ¦   ¦   ¦       Audits.php
+¦   ¦   ¦   ¦       Cities.php
+¦   ¦   ¦   ¦       Collectable.php
+¦   ¦   ¦   ¦       Continents.php
+¦   ¦   ¦   ¦       Countries.php
+¦   ¦   ¦   ¦       Languages.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   ¦       Context.php
+¦   ¦   ¦   ¦       DTOContext.php
+¦   ¦   ¦   ¦       TContext.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   ¦       IContext.php
+¦   ¦   ¦   ¦       IRepository.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   ¦       App.php
+¦   ¦   ¦   ¦       AppCategory.php
+¦   ¦   ¦   ¦       Audit.php
+¦   ¦   ¦   ¦       City.php
+¦   ¦   ¦   ¦       Continent.php
+¦   ¦   ¦   ¦       Country.php
+¦   ¦   ¦   ¦       DTOBase.php
+¦   ¦   ¦   ¦       Language.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Repositories
+¦   ¦   ¦           AppCategoryRepository.php
+¦   ¦   ¦           AppRepository.php
+¦   ¦   ¦           AuditRepository.php
+¦   ¦   ¦           CityRepository.php
+¦   ¦   ¦           ContinentRepository.php
+¦   ¦   ¦           CountryRepository.php
+¦   ¦   ¦           LanguageRepository.php
+¦   ¦   ¦           Repository.php
+¦   ¦   ¦           
+¦   ¦   +---EmailingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---ForecastingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---HrmRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---HudelRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---IdsRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---InventoryRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---InvoicingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---MeetingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---MessagingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PartnershipRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PaymentRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PayrollRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---ProfilingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   ¦       Civilities.php
+¦   ¦   ¦   ¦       Contacts.php
+¦   ¦   ¦   ¦       ContactTypes.php
+¦   ¦   ¦   ¦       Credentials.php
+¦   ¦   ¦   ¦       Genders.php
+¦   ¦   ¦   ¦       Occupations.php
+¦   ¦   ¦   ¦       Permissions.php
+¦   ¦   ¦   ¦       Profiles.php
+¦   ¦   ¦   ¦       Roles.php
+¦   ¦   ¦   ¦       Statuses.php
+¦   ¦   ¦   ¦       Titles.php
+¦   ¦   ¦   ¦       Tokens.php
+¦   ¦   ¦   ¦       Trackings.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   ¦       ProfilingContext.php
+¦   ¦   ¦   ¦       TokenContext.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   ¦       IProfile.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   ¦       Civility.php
+¦   ¦   ¦   ¦       Contact.php
+¦   ¦   ¦   ¦       ContactType.php
+¦   ¦   ¦   ¦       Credential.php
+¦   ¦   ¦   ¦       Gender.php
+¦   ¦   ¦   ¦       LoginStatus.php
+¦   ¦   ¦   ¦       Occupation.php
+¦   ¦   ¦   ¦       Permission.php
+¦   ¦   ¦   ¦       Profile.php
+¦   ¦   ¦   ¦       Role.php
+¦   ¦   ¦   ¦       Status.php
+¦   ¦   ¦   ¦       Title.php
+¦   ¦   ¦   ¦       Token.php
+¦   ¦   ¦   ¦       Tracking.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Repositories
+¦   ¦   ¦           CivilityRepository.php
+¦   ¦   ¦           ContactRepository.php
+¦   ¦   ¦           ContactTypeRepository.php
+¦   ¦   ¦           CredentialRepository.php
+¦   ¦   ¦           GenderRepository.php
+¦   ¦   ¦           OccupationRepository.php
+¦   ¦   ¦           PermissionRepository.php
+¦   ¦   ¦           ProfileRepository.php
+¦   ¦   ¦           RoleRepository.php
+¦   ¦   ¦           StatusRepository.php
+¦   ¦   ¦           TitleRepository.php
+¦   ¦   ¦           TokenRepository.php
+¦   ¦   ¦           TrackingRepository.php
+¦   ¦   ¦           
+¦   ¦   +---PublishingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---PurchaseRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---RelationRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   ¦       AppRelations.php
+¦   ¦   ¦   ¦       CivilityRelations.php
+¦   ¦   ¦   ¦       ContactRelations.php
+¦   ¦   ¦   ¦       GenderRelations.php
+¦   ¦   ¦   ¦       LanguageRelations.php
+¦   ¦   ¦   ¦       OccupationRelations.php
+¦   ¦   ¦   ¦       RoleRelations.php
+¦   ¦   ¦   ¦       StatusRelations.php
+¦   ¦   ¦   ¦       TitleRelations.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   ¦       RelationContext.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   ¦       AppRelation.php
+¦   ¦   ¦   ¦       CivilityRelation.php
+¦   ¦   ¦   ¦       ContactRelation.php
+¦   ¦   ¦   ¦       GenderRelation.php
+¦   ¦   ¦   ¦       LanguageRelation.php
+¦   ¦   ¦   ¦       OccupationRelation.php
+¦   ¦   ¦   ¦       RoleRelation.php
+¦   ¦   ¦   ¦       StatusRelation.php
+¦   ¦   ¦   ¦       TitleRelation.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Repositories
+¦   ¦   ¦           ApprelationRepository.php
+¦   ¦   ¦           CivilityRelationRepository.php
+¦   ¦   ¦           ContactRelationRepository.php
+¦   ¦   ¦           GenderRelationRepository.php
+¦   ¦   ¦           LanguageRelationRepository.php
+¦   ¦   ¦           OccupationRelationRepository.php
+¦   ¦   ¦           RoleRelationRepository.php
+¦   ¦   ¦           StatusRelationRepository.php
+¦   ¦   ¦           TitleRelationRepository.php
+¦   ¦   ¦           
+¦   ¦   +---ReportingRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---TaskRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---TellerRepositories
+¦   ¦   ¦   +---Collections
+¦   ¦   ¦   +---Contexts
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Repositories
+¦   ¦   +---WholesaleRepositories
+¦   ¦       +---Collections
+¦   ¦       +---Contexts
+¦   ¦       +---Contracts
+¦   ¦       +---Models
+¦   ¦       +---Repositories
+¦   +---Services
+¦   ¦   +---Administration
+¦   ¦   ¦   +---Contracts
+¦   ¦   ¦   +---Controllers
+¦   ¦   ¦   +---Services
+¦   ¦   +---Profiling
+¦   ¦       +---Contracts
+¦   ¦       +---Controllers
+¦   ¦       +---Services
+¦   +---Supporting
+¦       +---AccountingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---BookingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---ControlEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---DashboardingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---DTOEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   ¦       IEntity.php
+¦       ¦   ¦       
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---EmailingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---ForecastingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---HrmEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---HudelEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---IdsEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---InventoryEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---InvoicingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---MeetingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---MessagingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---PartnershipEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---PaymentEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---PayrollEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---ProfilingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---PublishingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---PurchaseEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---ReportingEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---TaskEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---TellerEntities
+¦       ¦   +---Collections
+¦       ¦   +---Contracts
+¦       ¦   +---Factories
+¦       ¦   +---Models
+¦       +---WholesaleEntities
+¦           +---Collections
+¦           +---Contracts
+¦           +---Factories
+¦           +---Models
++---Applications
+¦   +---Accounting
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Administration
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Assets
+¦   ¦   +---Data
+¦   ¦   ¦   +---Json
+¦   ¦   ¦   +---Locales
+¦   ¦   ¦   +---Xml
+¦   ¦   +---Librairies
+¦   ¦   ¦   +---Applications
+¦   ¦   ¦       +---Views
+¦   ¦   ¦           +---Layouts
+¦   ¦   ¦           +---ViewComponents
+¦   ¦   +---Static
+¦   ¦       +---css
+¦   ¦       ¦   +---css.Accounting
+¦   ¦       ¦   +---css.Administration
+¦   ¦       ¦   +---css.Billing
+¦   ¦       ¦   +---css.Booking
+¦   ¦       ¦   +---css.Control
+¦   ¦       ¦   +---css.Dashboarding
+¦   ¦       ¦   +---css.Emailing
+¦   ¦       ¦   +---css.Forecasting
+¦   ¦       ¦   +---css.Global
+¦   ¦       ¦   +---css.Hrm
+¦   ¦       ¦   +---css.Hudel
+¦   ¦       ¦   +---css.Ids
+¦   ¦       ¦   +---css.Inventory
+¦   ¦       ¦   +---css.Invoicing
+¦   ¦       ¦   +---css.Meeting
+¦   ¦       ¦   +---css.Messaging
+¦   ¦       ¦   +---css.Partnership
+¦   ¦       ¦   +---css.Payments
+¦   ¦       ¦   +---css.Payroll
+¦   ¦       ¦   +---css.Presentation
+¦   ¦       ¦   +---css.Profiling
+¦   ¦       ¦   +---css.Publishing
+¦   ¦       ¦   +---css.Purchase
+¦   ¦       ¦   +---css.Reporting
+¦   ¦       ¦   +---css.Tasks
+¦   ¦       ¦   +---css.Teller
+¦   ¦       ¦   +---css.Wholesale
+¦   ¦       +---database
+¦   ¦       ¦   +---MySQL
+¦   ¦       ¦   ¦       01 - Administration.sql
+¦   ¦       ¦   ¦       Create database.sql
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---OracleDB
+¦   ¦       ¦   +---PostgreSQL
+¦   ¦       ¦   ¦   +---01 - GeneralInstance
+¦   ¦       ¦   ¦   ¦       01 - Create database.sql
+¦   ¦       ¦   ¦   ¦       04 - All apps.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---02 - AdministrationInstance
+¦   ¦       ¦   ¦   ¦       01 - Parameters.sql
+¦   ¦       ¦   ¦   ¦       02 - ParameterRelations.sql
+¦   ¦       ¦   ¦   ¦       03 - Languages.sql
+¦   ¦       ¦   ¦   ¦       04 - Apps.sql
+¦   ¦       ¦   ¦   ¦       05 - Countries.sql
+¦   ¦       ¦   ¦   ¦       06 - Audits.sql
+¦   ¦       ¦   ¦   ¦       07 - Countries data.sql
+¦   ¦       ¦   ¦   ¦       08 - LanguageRelations data.sql
+¦   ¦       ¦   ¦   ¦       09 - Audits.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---03 - ProfilingInstance
+¦   ¦       ¦   ¦   ¦       01 - Profiles.sql
+¦   ¦       ¦   ¦   ¦       02 - Civilities.sql
+¦   ¦       ¦   ¦   ¦       03 - Contacts.sql
+¦   ¦       ¦   ¦   ¦       04 - Credentials.sql
+¦   ¦       ¦   ¦   ¦       05 - Roles.sql
+¦   ¦       ¦   ¦   ¦       06 - Tracking.sql
+¦   ¦       ¦   ¦   ¦       07 - Initial data.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---04 - AccountingInstance
+¦   ¦       ¦   ¦   ¦       04 - Accounting.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---05 - BillingInstance
+¦   ¦       ¦   ¦   ¦       05 - Billing.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---06 - BookingInstance
+¦   ¦       ¦   ¦   ¦       06 - Booking.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---07 - ControlInstance
+¦   ¦       ¦   ¦   ¦       07 - Control.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---08 - DashboardingInstance
+¦   ¦       ¦   ¦   ¦       08 - Dashboarding.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---09 - EmailingInstance
+¦   ¦       ¦   ¦   ¦       09 - Emailing.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---10 - ForecastingInstance
+¦   ¦       ¦   ¦   ¦       10 - Forecasting.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---11 - HrmInstance
+¦   ¦       ¦   ¦   ¦       11 - Hrm.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---12 - HudelInstance
+¦   ¦       ¦   ¦   ¦       12 - Hudel.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---13 - IdsInstance
+¦   ¦       ¦   ¦   ¦       13 - Ids.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---14 - InventoryInstance
+¦   ¦       ¦   ¦   ¦       01 - Customers.sql
+¦   ¦       ¦   ¦   ¦       02 - Products.sql
+¦   ¦       ¦   ¦   ¦       03 - Stocks.sql
+¦   ¦       ¦   ¦   ¦       04 - Notes.sql
+¦   ¦       ¦   ¦   ¦       05 - Notes.sql
+¦   ¦       ¦   ¦   ¦       06 - Inventories.sql
+¦   ¦       ¦   ¦   ¦       07 - Initial data.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---15 - InvoicingInstance
+¦   ¦       ¦   ¦   ¦       15 - Invoicing.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---16 - MeetingInstance
+¦   ¦       ¦   ¦   ¦       16 - Meeting.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---17 - MessagingInstance
+¦   ¦       ¦   ¦   ¦       17 - Messaging.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---18 - PartnershipInstance
+¦   ¦       ¦   ¦   ¦       18 - Partnership.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---19 - PaymentsInstance
+¦   ¦       ¦   ¦   ¦       19 - Payments.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---20 - PayrollInstance
+¦   ¦       ¦   ¦   ¦       20 - Payroll.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---21 - PublishingInstance
+¦   ¦       ¦   ¦   ¦       21 - Publishing.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---22 - PurchaseInstance
+¦   ¦       ¦   ¦   ¦       22 - Purchase.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---23 - ReportingInstance
+¦   ¦       ¦   ¦   ¦       23 - Reporting.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---24 - TasksInstance
+¦   ¦       ¦   ¦   ¦       24 - Tasks.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---25 - TellerInstance
+¦   ¦       ¦   ¦   ¦       25 - Teller.sql
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---26 - WholesaleInstance
+¦   ¦       ¦   ¦           26 - Wholesale.sql
+¦   ¦       ¦   ¦           
+¦   ¦       ¦   +---SQLServer
+¦   ¦       ¦           01 - Create database.sql
+¦   ¦       ¦           02 - Administration.sql
+¦   ¦       ¦           
+¦   ¦       +---images
+¦   ¦       ¦   +---admin
+¦   ¦       ¦   ¦   +---img.Accounting
+¦   ¦       ¦   ¦   +---img.Administration
+¦   ¦       ¦   ¦   ¦       blue_jeon.png
+¦   ¦       ¦   ¦   ¦       Files.png
+¦   ¦       ¦   ¦   ¦       gold_jeon.png
+¦   ¦       ¦   ¦   ¦       Logout.png
+¦   ¦       ¦   ¦   ¦       red_jeon.png
+¦   ¦       ¦   ¦   ¦       Settings.png
+¦   ¦       ¦   ¦   ¦       User_round_black.png
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---img.Billing
+¦   ¦       ¦   ¦   +---img.Booking
+¦   ¦       ¦   ¦   +---img.Control
+¦   ¦       ¦   ¦   +---img.Dashboarding
+¦   ¦       ¦   ¦   +---img.Emailing
+¦   ¦       ¦   ¦   +---img.Forecasting
+¦   ¦       ¦   ¦   +---img.Global
+¦   ¦       ¦   ¦   +---img.Hrm
+¦   ¦       ¦   ¦   +---img.Hudel
+¦   ¦       ¦   ¦   +---img.Ids
+¦   ¦       ¦   ¦   +---img.Inventory
+¦   ¦       ¦   ¦   +---img.Invoicing
+¦   ¦       ¦   ¦   +---img.Meeting
+¦   ¦       ¦   ¦   +---img.Messaging
+¦   ¦       ¦   ¦   +---img.Partnership
+¦   ¦       ¦   ¦   +---img.Payments
+¦   ¦       ¦   ¦   +---img.Payroll
+¦   ¦       ¦   ¦   +---img.Presentation
+¦   ¦       ¦   ¦   ¦       accounting_logo.png
+¦   ¦       ¦   ¦   ¦       billing_logo.png
+¦   ¦       ¦   ¦   ¦       booking_logo.png
+¦   ¦       ¦   ¦   ¦       control_logo.png
+¦   ¦       ¦   ¦   ¦       dashboarding_logo.png
+¦   ¦       ¦   ¦   ¦       emailing_logo.png
+¦   ¦       ¦   ¦   ¦       forecasting_logo.png
+¦   ¦       ¦   ¦   ¦       hrm_logo.png
+¦   ¦       ¦   ¦   ¦       hudel_logo.png
+¦   ¦       ¦   ¦   ¦       ids_logo.png
+¦   ¦       ¦   ¦   ¦       inventory_logo.png
+¦   ¦       ¦   ¦   ¦       invoicing_logo.png
+¦   ¦       ¦   ¦   ¦       meeting_logo.png
+¦   ¦       ¦   ¦   ¦       messaging_logo.png
+¦   ¦       ¦   ¦   ¦       partnership_logo.png
+¦   ¦       ¦   ¦   ¦       payments_logo.png
+¦   ¦       ¦   ¦   ¦       payroll_logo.png
+¦   ¦       ¦   ¦   ¦       profiling_logo.png
+¦   ¦       ¦   ¦   ¦       publishing_logo.png
+¦   ¦       ¦   ¦   ¦       purchase_logo.png
+¦   ¦       ¦   ¦   ¦       reporting_logo.png
+¦   ¦       ¦   ¦   ¦       tasks_logo.png
+¦   ¦       ¦   ¦   ¦       teller_logo.png
+¦   ¦       ¦   ¦   ¦       wholesale_logo.png
+¦   ¦       ¦   ¦   ¦       
+¦   ¦       ¦   ¦   +---img.Profiling
+¦   ¦       ¦   ¦   +---img.Publishing
+¦   ¦       ¦   ¦   +---img.Purchase
+¦   ¦       ¦   ¦   +---img.Reporting
+¦   ¦       ¦   ¦   +---img.Tasks
+¦   ¦       ¦   ¦   +---img.Teller
+¦   ¦       ¦   ¦   +---img.Wholesale
+¦   ¦       ¦   +---flags
+¦   ¦       ¦   ¦   ¦   afghanistan.png
+¦   ¦       ¦   ¦   ¦   africa.png
+¦   ¦       ¦   ¦   ¦   aland-islands.png
+¦   ¦       ¦   ¦   ¦   albania.png
+¦   ¦       ¦   ¦   ¦   algeria.png
+¦   ¦       ¦   ¦   ¦   american-samoa.png
+¦   ¦       ¦   ¦   ¦   andorra.png
+¦   ¦       ¦   ¦   ¦   angola.png
+¦   ¦       ¦   ¦   ¦   anguilla.png
+¦   ¦       ¦   ¦   ¦   antigua-and-barbuda.png
+¦   ¦       ¦   ¦   ¦   argentina.png
+¦   ¦       ¦   ¦   ¦   armenia.png
+¦   ¦       ¦   ¦   ¦   aruba.png
+¦   ¦       ¦   ¦   ¦   australia.png
+¦   ¦       ¦   ¦   ¦   austria.png
+¦   ¦       ¦   ¦   ¦   azerbaijan.png
+¦   ¦       ¦   ¦   ¦   azores-islands.png
+¦   ¦       ¦   ¦   ¦   bahamas.png
+¦   ¦       ¦   ¦   ¦   bahrain.png
+¦   ¦       ¦   ¦   ¦   balearic-islands.png
+¦   ¦       ¦   ¦   ¦   bangladesh.png
+¦   ¦       ¦   ¦   ¦   barbados.png
+¦   ¦       ¦   ¦   ¦   basque-country.png
+¦   ¦       ¦   ¦   ¦   belarus.png
+¦   ¦       ¦   ¦   ¦   belgium.png
+¦   ¦       ¦   ¦   ¦   belize.png
+¦   ¦       ¦   ¦   ¦   benin.png
+¦   ¦       ¦   ¦   ¦   bermuda.png
+¦   ¦       ¦   ¦   ¦   bhutan.png
+¦   ¦       ¦   ¦   ¦   bolivia.png
+¦   ¦       ¦   ¦   ¦   bonaire.png
+¦   ¦       ¦   ¦   ¦   bosnia-and-herzegovina.png
+¦   ¦       ¦   ¦   ¦   botswana.png
+¦   ¦       ¦   ¦   ¦   brazil.png
+¦   ¦       ¦   ¦   ¦   british-columbia.png
+¦   ¦       ¦   ¦   ¦   british-indian-ocean-territory.png
+¦   ¦       ¦   ¦   ¦   british-virgin-islands.png
+¦   ¦       ¦   ¦   ¦   brunei.png
+¦   ¦       ¦   ¦   ¦   bulgaria.png
+¦   ¦       ¦   ¦   ¦   burkina-faso.png
+¦   ¦       ¦   ¦   ¦   burundi.png
+¦   ¦       ¦   ¦   ¦   cambodia.png
+¦   ¦       ¦   ¦   ¦   cameroon.png
+¦   ¦       ¦   ¦   ¦   canada.png
+¦   ¦       ¦   ¦   ¦   canary-islands.png
+¦   ¦       ¦   ¦   ¦   cape-verde.png
+¦   ¦       ¦   ¦   ¦   caribbean-netherlands.png
+¦   ¦       ¦   ¦   ¦   cayman-islands.png
+¦   ¦       ¦   ¦   ¦   central-african-republic.png
+¦   ¦       ¦   ¦   ¦   ceuta.png
+¦   ¦       ¦   ¦   ¦   chad.png
+¦   ¦       ¦   ¦   ¦   chile.png
+¦   ¦       ¦   ¦   ¦   china.png
+¦   ¦       ¦   ¦   ¦   christmas-island.png
+¦   ¦       ¦   ¦   ¦   cocos-islands.png
+¦   ¦       ¦   ¦   ¦   colombia.png
+¦   ¦       ¦   ¦   ¦   comoros.png
+¦   ¦       ¦   ¦   ¦   cook-islands.png
+¦   ¦       ¦   ¦   ¦   corsica.png
+¦   ¦       ¦   ¦   ¦   costa-rica.png
+¦   ¦       ¦   ¦   ¦   croatia.png
+¦   ¦       ¦   ¦   ¦   cuba.png
+¦   ¦       ¦   ¦   ¦   curacao.png
+¦   ¦       ¦   ¦   ¦   cyprus.png
+¦   ¦       ¦   ¦   ¦   czech-republic.png
+¦   ¦       ¦   ¦   ¦   democratic-republic-of-congo.png
+¦   ¦       ¦   ¦   ¦   denmark.png
+¦   ¦       ¦   ¦   ¦   djibouti.png
+¦   ¦       ¦   ¦   ¦   dominica.png
+¦   ¦       ¦   ¦   ¦   dominican-republic.png
+¦   ¦       ¦   ¦   ¦   east-timor.png
+¦   ¦       ¦   ¦   ¦   ecuador.png
+¦   ¦       ¦   ¦   ¦   egypt.png
+¦   ¦       ¦   ¦   ¦   el-salvador.png
+¦   ¦       ¦   ¦   ¦   england.png
+¦   ¦       ¦   ¦   ¦   equatorial-guinea.png
+¦   ¦       ¦   ¦   ¦   eritrea.png
+¦   ¦       ¦   ¦   ¦   estonia.png
+¦   ¦       ¦   ¦   ¦   ethiopia.png
+¦   ¦       ¦   ¦   ¦   european-union.png
+¦   ¦       ¦   ¦   ¦   falkland-islands.png
+¦   ¦       ¦   ¦   ¦   faroe-islands.png
+¦   ¦       ¦   ¦   ¦   fiji.png
+¦   ¦       ¦   ¦   ¦   finland.png
+¦   ¦       ¦   ¦   ¦   france.png
+¦   ¦       ¦   ¦   ¦   french-polynesia.png
+¦   ¦       ¦   ¦   ¦   gabon.png
+¦   ¦       ¦   ¦   ¦   galapagos-islands.png
+¦   ¦       ¦   ¦   ¦   gambia.png
+¦   ¦       ¦   ¦   ¦   georgia.png
+¦   ¦       ¦   ¦   ¦   germany.png
+¦   ¦       ¦   ¦   ¦   ghana.png
+¦   ¦       ¦   ¦   ¦   gibraltar.png
+¦   ¦       ¦   ¦   ¦   greece.png
+¦   ¦       ¦   ¦   ¦   greenland.png
+¦   ¦       ¦   ¦   ¦   grenada.png
+¦   ¦       ¦   ¦   ¦   guam.png
+¦   ¦       ¦   ¦   ¦   guatemala.png
+¦   ¦       ¦   ¦   ¦   guernsey.png
+¦   ¦       ¦   ¦   ¦   guinea-bissau.png
+¦   ¦       ¦   ¦   ¦   guinea.png
+¦   ¦       ¦   ¦   ¦   guyana.png
+¦   ¦       ¦   ¦   ¦   haiti.png
+¦   ¦       ¦   ¦   ¦   hawaii.png
+¦   ¦       ¦   ¦   ¦   honduras.png
+¦   ¦       ¦   ¦   ¦   hong-kong.png
+¦   ¦       ¦   ¦   ¦   hungary.png
+¦   ¦       ¦   ¦   ¦   iceland.png
+¦   ¦       ¦   ¦   ¦   india.png
+¦   ¦       ¦   ¦   ¦   indonesia.png
+¦   ¦       ¦   ¦   ¦   international.png
+¦   ¦       ¦   ¦   ¦   iran.png
+¦   ¦       ¦   ¦   ¦   iraq.png
+¦   ¦       ¦   ¦   ¦   ireland.png
+¦   ¦       ¦   ¦   ¦   isle-of-man.png
+¦   ¦       ¦   ¦   ¦   israel.png
+¦   ¦       ¦   ¦   ¦   italy.png
+¦   ¦       ¦   ¦   ¦   ivory-coast.png
+¦   ¦       ¦   ¦   ¦   jamaica.png
+¦   ¦       ¦   ¦   ¦   japan.png
+¦   ¦       ¦   ¦   ¦   jersey.png
+¦   ¦       ¦   ¦   ¦   jordan.png
+¦   ¦       ¦   ¦   ¦   kazakhstan.png
+¦   ¦       ¦   ¦   ¦   kenya.png
+¦   ¦       ¦   ¦   ¦   kiribati.png
+¦   ¦       ¦   ¦   ¦   kosovo.png
+¦   ¦       ¦   ¦   ¦   kuwait.png
+¦   ¦       ¦   ¦   ¦   kyrgyzstan.png
+¦   ¦       ¦   ¦   ¦   laos.png
+¦   ¦       ¦   ¦   ¦   latvia.png
+¦   ¦       ¦   ¦   ¦   lebanon.png
+¦   ¦       ¦   ¦   ¦   lesotho.png
+¦   ¦       ¦   ¦   ¦   liberia.png
+¦   ¦       ¦   ¦   ¦   libya.png
+¦   ¦       ¦   ¦   ¦   liechtenstein.png
+¦   ¦       ¦   ¦   ¦   lithuania.png
+¦   ¦       ¦   ¦   ¦   luxembourg.png
+¦   ¦       ¦   ¦   ¦   macau.png
+¦   ¦       ¦   ¦   ¦   madagascar.png
+¦   ¦       ¦   ¦   ¦   madeira.png
+¦   ¦       ¦   ¦   ¦   malawi.png
+¦   ¦       ¦   ¦   ¦   malaysia.png
+¦   ¦       ¦   ¦   ¦   maldives.png
+¦   ¦       ¦   ¦   ¦   mali.png
+¦   ¦       ¦   ¦   ¦   malta.png
+¦   ¦       ¦   ¦   ¦   marshall-islands.png
+¦   ¦       ¦   ¦   ¦   martinique.png
+¦   ¦       ¦   ¦   ¦   mauritania.png
+¦   ¦       ¦   ¦   ¦   mauritius.png
+¦   ¦       ¦   ¦   ¦   mayotte.png
+¦   ¦       ¦   ¦   ¦   melilla.png
+¦   ¦       ¦   ¦   ¦   mexico.png
+¦   ¦       ¦   ¦   ¦   micronesia.png
+¦   ¦       ¦   ¦   ¦   moldova.png
+¦   ¦       ¦   ¦   ¦   monaco.png
+¦   ¦       ¦   ¦   ¦   mongolia.png
+¦   ¦       ¦   ¦   ¦   montenegro.png
+¦   ¦       ¦   ¦   ¦   montserrat.png
+¦   ¦       ¦   ¦   ¦   morocco.png
+¦   ¦       ¦   ¦   ¦   mozambique.png
+¦   ¦       ¦   ¦   ¦   myanmar.png
+¦   ¦       ¦   ¦   ¦   namibia.png
+¦   ¦       ¦   ¦   ¦   nauru.png
+¦   ¦       ¦   ¦   ¦   nepal.png
+¦   ¦       ¦   ¦   ¦   netherlands.png
+¦   ¦       ¦   ¦   ¦   new-caledonia.png
+¦   ¦       ¦   ¦   ¦   new-zealand.png
+¦   ¦       ¦   ¦   ¦   nicaragua.png
+¦   ¦       ¦   ¦   ¦   niger.png
+¦   ¦       ¦   ¦   ¦   nigeria.png
+¦   ¦       ¦   ¦   ¦   niue.png
+¦   ¦       ¦   ¦   ¦   norfolk-island.png
+¦   ¦       ¦   ¦   ¦   north-korea.png
+¦   ¦       ¦   ¦   ¦   northen-cyprus.png
+¦   ¦       ¦   ¦   ¦   northern-mariana-islands.png
+¦   ¦       ¦   ¦   ¦   norway.png
+¦   ¦       ¦   ¦   ¦   oman.png
+¦   ¦       ¦   ¦   ¦   orkney-islands.png
+¦   ¦       ¦   ¦   ¦   ossetia.png
+¦   ¦       ¦   ¦   ¦   otan.png
+¦   ¦       ¦   ¦   ¦   pakistan.png
+¦   ¦       ¦   ¦   ¦   palau.png
+¦   ¦       ¦   ¦   ¦   palestine.png
+¦   ¦       ¦   ¦   ¦   panama.png
+¦   ¦       ¦   ¦   ¦   papua-new-guinea.png
+¦   ¦       ¦   ¦   ¦   paraguay.png
+¦   ¦       ¦   ¦   ¦   peru.png
+¦   ¦       ¦   ¦   ¦   philippines.png
+¦   ¦       ¦   ¦   ¦   pitcairn-islands.png
+¦   ¦       ¦   ¦   ¦   poland.png
+¦   ¦       ¦   ¦   ¦   portugal.png
+¦   ¦       ¦   ¦   ¦   puerto-rico.png
+¦   ¦       ¦   ¦   ¦   qatar.png
+¦   ¦       ¦   ¦   ¦   rapa-nui.png
+¦   ¦       ¦   ¦   ¦   republic-of-macedonia.png
+¦   ¦       ¦   ¦   ¦   republic-of-the-congo.png
+¦   ¦       ¦   ¦   ¦   reunion.png
+¦   ¦       ¦   ¦   ¦   romania.png
+¦   ¦       ¦   ¦   ¦   russia.png
+¦   ¦       ¦   ¦   ¦   rwanda.png
+¦   ¦       ¦   ¦   ¦   saba-island.png
+¦   ¦       ¦   ¦   ¦   sahrawi-arab-democratic-republic.png
+¦   ¦       ¦   ¦   ¦   saint-barthelemy.png
+¦   ¦       ¦   ¦   ¦   saint-helena.png
+¦   ¦       ¦   ¦   ¦   saint-kitts-and-nevis.png
+¦   ¦       ¦   ¦   ¦   saint-lucia.png
+¦   ¦       ¦   ¦   ¦   saint-pierre-and-miquelon.png
+¦   ¦       ¦   ¦   ¦   saint-vincent-and-the-grenadines.png
+¦   ¦       ¦   ¦   ¦   samoa.png
+¦   ¦       ¦   ¦   ¦   san-marino.png
+¦   ¦       ¦   ¦   ¦   sao-tome-and-principe.png
+¦   ¦       ¦   ¦   ¦   sardinia.png
+¦   ¦       ¦   ¦   ¦   saudi-arabia.png
+¦   ¦       ¦   ¦   ¦   scotland.png
+¦   ¦       ¦   ¦   ¦   senegal.png
+¦   ¦       ¦   ¦   ¦   serbia.png
+¦   ¦       ¦   ¦   ¦   seychelles.png
+¦   ¦       ¦   ¦   ¦   sicily.png
+¦   ¦       ¦   ¦   ¦   sierra-leone.png
+¦   ¦       ¦   ¦   ¦   singapore.png
+¦   ¦       ¦   ¦   ¦   sint-eustatius.png
+¦   ¦       ¦   ¦   ¦   sint-maarten.png
+¦   ¦       ¦   ¦   ¦   slovakia.png
+¦   ¦       ¦   ¦   ¦   slovenia.png
+¦   ¦       ¦   ¦   ¦   solomon-islands.png
+¦   ¦       ¦   ¦   ¦   somalia.png
+¦   ¦       ¦   ¦   ¦   somaliland.png
+¦   ¦       ¦   ¦   ¦   south-africa.png
+¦   ¦       ¦   ¦   ¦   south-korea.png
+¦   ¦       ¦   ¦   ¦   south-sudan.png
+¦   ¦       ¦   ¦   ¦   spain.png
+¦   ¦       ¦   ¦   ¦   sri-lanka.png
+¦   ¦       ¦   ¦   ¦   st-barts.png
+¦   ¦       ¦   ¦   ¦   st-lucia.png
+¦   ¦       ¦   ¦   ¦   st-vincent-and-the-grenadines.png
+¦   ¦       ¦   ¦   ¦   sudan.png
+¦   ¦       ¦   ¦   ¦   suriname.png
+¦   ¦       ¦   ¦   ¦   swaziland.png
+¦   ¦       ¦   ¦   ¦   sweden.png
+¦   ¦       ¦   ¦   ¦   switzerland.png
+¦   ¦       ¦   ¦   ¦   syria.png
+¦   ¦       ¦   ¦   ¦   taiwan.png
+¦   ¦       ¦   ¦   ¦   tajikistan.png
+¦   ¦       ¦   ¦   ¦   tanzania.png
+¦   ¦       ¦   ¦   ¦   thailand.png
+¦   ¦       ¦   ¦   ¦   tibet.png
+¦   ¦       ¦   ¦   ¦   togo.png
+¦   ¦       ¦   ¦   ¦   tokelau.png
+¦   ¦       ¦   ¦   ¦   tonga.png
+¦   ¦       ¦   ¦   ¦   transnistria.png
+¦   ¦       ¦   ¦   ¦   trinidad-and-tobago.png
+¦   ¦       ¦   ¦   ¦   tunisia.png
+¦   ¦       ¦   ¦   ¦   turkey.png
+¦   ¦       ¦   ¦   ¦   turkmenistan.png
+¦   ¦       ¦   ¦   ¦   turks-and-caicos-islands.png
+¦   ¦       ¦   ¦   ¦   tuvalu.png
+¦   ¦       ¦   ¦   ¦   uganda.png
+¦   ¦       ¦   ¦   ¦   ukraine.png
+¦   ¦       ¦   ¦   ¦   united-arab-emirates.png
+¦   ¦       ¦   ¦   ¦   united-kingdom.png
+¦   ¦       ¦   ¦   ¦   united-nations.png
+¦   ¦       ¦   ¦   ¦   united-states.png
+¦   ¦       ¦   ¦   ¦   uruguay.png
+¦   ¦       ¦   ¦   ¦   uzbekistan.png
+¦   ¦       ¦   ¦   ¦   vanuatu.png
+¦   ¦       ¦   ¦   ¦   vatican.png
+¦   ¦       ¦   ¦   ¦   venezuela.png
+¦   ¦       ¦   ¦   ¦   vietnam.png
+¦   ¦       ¦   ¦   ¦   virgin-islands.png
+¦   ¦       ¦   ¦   ¦   wales.png
+¦   ¦       ¦   ¦   ¦   wallis-and-futuna.png
+¦   ¦       ¦   ¦   ¦   western-sahara.png
+¦   ¦       ¦   ¦   ¦   yemen.png
+¦   ¦       ¦   ¦   ¦   zambia.png
+¦   ¦       ¦   ¦   ¦   zimbabwe.png
+¦   ¦       ¦   ¦   ¦   _SOURCE www.flaticon.com.URL
+¦   ¦       ¦   ¦   ¦   
+¦   ¦       ¦   ¦   +---Sélection
+¦   ¦       ¦   ¦           algeria.png
+¦   ¦       ¦   ¦           angola.png
+¦   ¦       ¦   ¦           belgium.png
+¦   ¦       ¦   ¦           benin.png
+¦   ¦       ¦   ¦           botswana.png
+¦   ¦       ¦   ¦           brazil.png
+¦   ¦       ¦   ¦           burkina-faso.png
+¦   ¦       ¦   ¦           burundi.png
+¦   ¦       ¦   ¦           cameroon.png
+¦   ¦       ¦   ¦           canada.png
+¦   ¦       ¦   ¦           cape-verde.png
+¦   ¦       ¦   ¦           central-african-republic.png
+¦   ¦       ¦   ¦           chad.png
+¦   ¦       ¦   ¦           china.png
+¦   ¦       ¦   ¦           comoros.png
+¦   ¦       ¦   ¦           democratic-republic-of-congo.png
+¦   ¦       ¦   ¦           djibouti.png
+¦   ¦       ¦   ¦           egypt.png
+¦   ¦       ¦   ¦           equatorial-guinea.png
+¦   ¦       ¦   ¦           eritrea.png
+¦   ¦       ¦   ¦           ethiopia.png
+¦   ¦       ¦   ¦           european-union.png
+¦   ¦       ¦   ¦           france.png
+¦   ¦       ¦   ¦           gabon.png
+¦   ¦       ¦   ¦           germany.png
+¦   ¦       ¦   ¦           ghana.png
+¦   ¦       ¦   ¦           guinea-bissau.png
+¦   ¦       ¦   ¦           guinea.png
+¦   ¦       ¦   ¦           hong-kong.png
+¦   ¦       ¦   ¦           india.png
+¦   ¦       ¦   ¦           israel.png
+¦   ¦       ¦   ¦           italy.png
+¦   ¦       ¦   ¦           ivory-coast.png
+¦   ¦       ¦   ¦           japan.png
+¦   ¦       ¦   ¦           kenya.png
+¦   ¦       ¦   ¦           lesotho.png
+¦   ¦       ¦   ¦           liberia.png
+¦   ¦       ¦   ¦           libya.png
+¦   ¦       ¦   ¦           madagascar.png
+¦   ¦       ¦   ¦           mali.png
+¦   ¦       ¦   ¦           martinique.png
+¦   ¦       ¦   ¦           mauritania.png
+¦   ¦       ¦   ¦           mauritius.png
+¦   ¦       ¦   ¦           morocco.png
+¦   ¦       ¦   ¦           mozambique.png
+¦   ¦       ¦   ¦           namibia.png
+¦   ¦       ¦   ¦           netherlands.png
+¦   ¦       ¦   ¦           niger.png
+¦   ¦       ¦   ¦           nigeria.png
+¦   ¦       ¦   ¦           portugal.png
+¦   ¦       ¦   ¦           republic-of-the-congo.png
+¦   ¦       ¦   ¦           rwanda.png
+¦   ¦       ¦   ¦           sao-tome-and-principe.png
+¦   ¦       ¦   ¦           senegal.png
+¦   ¦       ¦   ¦           sierra-leone.png
+¦   ¦       ¦   ¦           somalia.png
+¦   ¦       ¦   ¦           somaliland.png
+¦   ¦       ¦   ¦           south-africa.png
+¦   ¦       ¦   ¦           south-sudan.png
+¦   ¦       ¦   ¦           spain.png
+¦   ¦       ¦   ¦           sudan.png
+¦   ¦       ¦   ¦           swaziland.png
+¦   ¦       ¦   ¦           switzerland.png
+¦   ¦       ¦   ¦           tanzania.png
+¦   ¦       ¦   ¦           togo.png
+¦   ¦       ¦   ¦           tunisia.png
+¦   ¦       ¦   ¦           united-kingdom.png
+¦   ¦       ¦   ¦           united-states-of-america.png
+¦   ¦       ¦   ¦           zambia.png
+¦   ¦       ¦   ¦           zimbabwe.png
+¦   ¦       ¦   ¦           
+¦   ¦       ¦   +---logos
+¦   ¦       ¦   ¦       corporates_logo.png
+¦   ¦       ¦   ¦       corporates_logo_white.png
+¦   ¦       ¦   ¦       C_logo.psd
+¦   ¦       ¦   ¦       damascus.png
+¦   ¦       ¦   ¦       golden.png
+¦   ¦       ¦   ¦       jeons.png
+¦   ¦       ¦   ¦       logo.ico
+¦   ¦       ¦   ¦       logo.png
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---socials
+¦   ¦       ¦           Email_round.png
+¦   ¦       ¦           Email_round_black.png
+¦   ¦       ¦           Facebook_round.png
+¦   ¦       ¦           Facebook_round_black.png
+¦   ¦       ¦           Instagram_round.png
+¦   ¦       ¦           Instagram_round_black.png
+¦   ¦       ¦           Linkedin_round.png
+¦   ¦       ¦           Linkedin_round_black.png
+¦   ¦       ¦           Location_round.png
+¦   ¦       ¦           Location_round_black.png
+¦   ¦       ¦           Phone_round.png
+¦   ¦       ¦           Phone_round_black.png
+¦   ¦       ¦           Phone_round_green.png
+¦   ¦       ¦           Pinterest_round.png
+¦   ¦       ¦           Twitter_round.png
+¦   ¦       ¦           Twitter_round_black.png
+¦   ¦       ¦           Whatsapp_round.png
+¦   ¦       ¦           WhatsApp_round_black.png
+¦   ¦       ¦           YouTube_black.png
+¦   ¦       ¦           Youtube_round.png
+¦   ¦       ¦           
+¦   ¦       +---js
+¦   ¦           +---js.Accounting
+¦   ¦           +---js.Administration
+¦   ¦           +---js.Billing
+¦   ¦           +---js.Booking
+¦   ¦           +---js.Control
+¦   ¦           +---js.Dashboarding
+¦   ¦           +---js.Emailing
+¦   ¦           +---js.Forecasting
+¦   ¦           +---js.Global
+¦   ¦           +---js.Hrm
+¦   ¦           +---js.Hudel
+¦   ¦           +---js.Ids
+¦   ¦           +---js.Inventory
+¦   ¦           +---js.Invoicing
+¦   ¦           +---js.Meeting
+¦   ¦           +---js.Messaging
+¦   ¦           +---js.Partnership
+¦   ¦           +---js.Payments
+¦   ¦           +---js.Payroll
+¦   ¦           +---js.Presentation
+¦   ¦           +---js.Profiling
+¦   ¦           +---js.Publishing
+¦   ¦           +---js.Purchase
+¦   ¦           +---js.Reporting
+¦   ¦           +---js.Tasks
+¦   ¦           +---js.Teller
+¦   ¦           +---js.Wholesale
+¦   +---Billing
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Booking
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Control
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Corporation
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Dashboarding
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Emailing
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Forecasting
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Hrm
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Hudel
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Ids
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Inventory
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Invoicing
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Maintenance
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Meeting
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Messaging
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Partnership
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Payments
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Payroll
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Presentation
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Profiling
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Publishing
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Purchase
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Reporting
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Tasks
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Teller
+¦   ¦   +---Assets
+¦   ¦   ¦   +---Configs
+¦   ¦   ¦   +---Locales
+¦   ¦   +---Controllers
+¦   ¦   +---Models
+¦   ¦   +---Views
+¦   ¦       +---Templates
+¦   ¦       +---ViewComponents
+¦   +---Wholesale
+¦       +---Assets
+¦       ¦   +---Configs
+¦       ¦   +---Locales
+¦       +---Controllers
+¦       +---Models
+¦       +---Views
+¦           +---Templates
+¦           +---ViewComponents
++---Documentation
++---Framework
+    +---C2S
+    ¦   +---css
+    ¦   ¦       c2s-mini.css
+    ¦   ¦       c2s.css
+    ¦   ¦       c2s.css.map
+    ¦   ¦       
+    ¦   +---icons
+    ¦   ¦   +---fonts
+    ¦   ¦           fa-brands-400.woff2
+    ¦   ¦           fa-regular-400.woff2
+    ¦   ¦           fa-solid-900.woff2
+    ¦   ¦           
+    ¦   +---js
+    ¦   ¦       c2s.js
+    ¦   ¦       
+    ¦   +---scss
+    ¦           c2s.scss
+    ¦           _components.scss
+    ¦           _icons.scss
+    ¦           _reset.scss
+    ¦           _utilities.scss
+    ¦           _variables.scss
+    ¦           
+    +---CJS
+    ¦       cjs.js
+    ¦       
+    +---CPF
+        +---Assets
+        ¦   +---Exceptions
+        ¦   ¦       JSONException.json
+        ¦   ¦       LocaleException.json
+        ¦   ¦       XMLException.json
+        ¦   ¦       
+        ¦   +---Logs
+        +---ConfigurationLibrary
+        ¦   +---Classes
+        ¦   ¦       AbstractCls.php
+        ¦   ¦       FileHandler.php
+        ¦   ¦       JsonManager.php
+        ¦   ¦       Logger.php
+        ¦   ¦       StreamFileHandler.php
+        ¦   ¦       TextStreamManager.php
+        ¦   ¦       XMLManager.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   ¦       LogLevel.php
+        ¦   ¦       
+        ¦   +---Interfaces
+        ¦   ¦       IConfigurationManager.php
+        ¦   ¦       ILogger.php
+        ¦   ¦       ILogHandler.php
+        ¦   ¦       
+        ¦   +---Traits
+        +---ControllerLibrary
+        ¦   +---Classes
+        ¦   ¦       BaseController.php
+        ¦   ¦       Controller.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   +---Traits
+        +---DatabaseLibrary
+        ¦   +---Classes
+        ¦   ¦       AbstractModel.php
+        ¦   ¦       DBConnection.php
+        ¦   ¦       DBContext.php
+        ¦   ¦       DBCredentials.php
+        ¦   ¦       QueryBuilder.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   ¦       DBDriver.php
+        ¦   ¦       OrderByDirection.php
+        ¦   ¦       WhereType.php
+        ¦   ¦       
+        ¦   +---Interfaces
+        ¦   +---Traits
+        +---DependencyLibrary
+        ¦   +---Classes
+        ¦   ¦       Application.php
+        ¦   ¦       ApplicationBuilder.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   ¦       IServiceCollection.php
+        ¦   ¦       
+        ¦   +---Traits
+        +---DomainLibrary
+        ¦   +---Classes
+        ¦   ¦       AbstractCollectable.php
+        ¦   ¦       ConstraintDslParser.php
+        ¦   ¦       Enumerable.php
+        ¦   ¦       Queryable.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   ¦       ArrayEnum.php
+        ¦   ¦       OrderEnum.php
+        ¦   ¦       
+        ¦   +---Interfaces
+        ¦   ¦       ICollectable.php
+        ¦   ¦       IEnumerable.php
+        ¦   ¦       IQueryable.php
+        ¦   ¦       
+        ¦   +---Traits
+        +---ExceptionLibrary
+        ¦   +---Classes
+        ¦   ¦       AbstractException.php
+        ¦   ¦       ControllerException.php
+        ¦   ¦       DBException.php
+        ¦   ¦       DIException.php
+        ¦   ¦       DomainException.php
+        ¦   ¦       DSLException.php
+        ¦   ¦       HttpException.php
+        ¦   ¦       JSONException.php
+        ¦   ¦       LocaleException.php
+        ¦   ¦       StreamException.php
+        ¦   ¦       ViewException.php
+        ¦   ¦       XMLException.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   +---Traits
+        +---HttpLibrary
+        ¦   +---Classes
+        ¦   ¦       FlashMessageService.php
+        ¦   ¦       RedirectResponse.php
+        ¦   ¦       Request.php
+        ¦   ¦       Response.php
+        ¦   ¦       Router.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   +---Traits
+        +---LocaleLibrary
+        ¦   +---Classes
+        ¦   ¦       JsonFileLoader.php
+        ¦   ¦       Translator.php
+        ¦   ¦       XmlFileLoader.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   ¦       ITranslationLoader.php
+        ¦   ¦       
+        ¦   +---Traits
+        +---UtilityLibrary
+        ¦   +---Classes
+        ¦   ¦       ArrayHelper.php
+        ¦   ¦       DateHelper.php
+        ¦   ¦       NumberHelper.php
+        ¦   ¦       StringHelper.php
+        ¦   ¦       UrlGenerator.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   +---Traits
+        +---ViewLibrary
+            +---Classes
+            ¦       View.php
+            ¦       
+            +---Enums
+            +---Interfaces
+            +---Traits

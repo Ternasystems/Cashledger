@@ -1,0 +1,590 @@
+/* Profiling app */
+
+/* Initial data */
+
+DO
+$BODY$
+DECLARE _profileid character varying(50); _langid character varying(50); _id character varying(50); _pwd character varying(50);
+BEGIN
+
+-- App registry
+
+CALL public."p_InsertApp"('Profiling');
+
+-- Insert Profiles
+
+SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CMR';
+SELECT "ID" INTO _profileid FROM public."cl_Cities" WHERE "Name" = 'DLA';
+CALL public."p_InsertProfile"('Jéoline', LOCALTIMESTAMP, _id, _profileid);
+CALL public."p_InsertProfile"('Unknown', LOCALTIMESTAMP, _id, _profileid);
+CALL public."p_InsertProfile"('Administrator', LOCALTIMESTAMP, _id, _profileid);
+CALL public."p_InsertProfile"('GWET', LOCALTIMESTAMP, _id, _profileid, 'Bell Béa');
+CALL public."p_InsertProfile"('NDEDI PENDA', LOCALTIMESTAMP, _id, _profileid, 'Gaëlla');
+CALL public."p_InsertProfile"('CARLE', LOCALTIMESTAMP, _id, _profileid, 'Julia');
+CALL public."p_InsertProfile"('NJOLLE NGANGUE', LOCALTIMESTAMP, _id, _profileid, 'Nancy');
+--
+SELECT "ID" INTO _id FROM public."cl_Profiles" WHERE "LastName" = 'Unknown';
+CALL public."p_DeleteProfile"(_id);
+
+-- Insert titles
+
+CALL public."p_InsertTitle"('Non applicable');
+CALL public."p_InsertTitle"('Doctor');
+CALL public."p_InsertTitle"('Professor');
+
+-- Insert TitleRelations
+
+SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Code" = 1;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertTitleRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
+CALL public."p_InsertTitleRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertTitleRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertTitleRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Code" = 2;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertTitleRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertTitleRelation"(_id, _profileid);
+
+-- Insert Statuses
+
+CALL public."p_InsertStatus"('Non applicable');
+CALL public."p_InsertStatus"('Single');
+CALL public."p_InsertStatus"('Married');
+CALL public."p_InsertStatus"('Divorced');
+CALL public."p_InsertStatus"('Widow');
+
+-- Insert StatusRelations
+
+SELECT "ID" INTO _id FROM public."cl_Statuses" WHERE "Code" = 1;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertStatusRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
+CALL public."p_InsertStatusRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertStatusRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertStatusRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertStatusRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertStatusRelation"(_id, _profileid);
+
+-- Insert Genders
+
+CALL public."p_InsertGender"('Non applicable');
+CALL public."p_InsertGender"('Male');
+CALL public."p_InsertGender"('Female');
+
+-- Insert GenderRelations
+
+SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Code" = 1;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertGenderRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
+CALL public."p_InsertGenderRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Code" = 2;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertGenderRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Code" = 3;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertGenderRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertGenderRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertGenderRelation"(_id, _profileid);
+
+-- Insert Civilities
+
+CALL public."p_InsertCivility"('Non applicable');
+CALL public."p_InsertCivility"('Mister');
+CALL public."p_InsertCivility"('Madam');
+CALL public."p_InsertCivility"('Miss');
+
+-- Insert CivilityRelations
+
+SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Code" = 1;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertCivilityRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
+CALL public."p_InsertCivilityRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Code" = 2;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertCivilityRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Code" = 4;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertCivilityRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertCivilityRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertCivilityRelation"(_id, _profileid);
+
+-- Insert Occupations
+
+CALL public."p_InsertOccupation"('Non applicable');
+CALL public."p_InsertOccupation"('Gynecologist');
+CALL public."p_InsertOccupation"('Obstetrician');
+CALL public."p_InsertOccupation"('Nurse');
+CALL public."p_InsertOccupation"('Lab technician');
+CALL public."p_InsertOccupation"('Anesthetist');
+
+-- Insert OccupationRelations
+
+SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 1;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 2;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 3;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 6;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 4;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+--
+SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 5;
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertOccupationRelation"(_id, _profileid);
+
+-- Insert ContactTypes
+
+CALL public."p_InsertContactType"('Phone');
+CALL public."p_InsertContactType"('Email');
+CALL public."p_InsertContactType"('Address');
+CALL public."p_InsertContactType"('WhatsApp');
+CALL public."p_InsertContactType"('Telegram');
+CALL public."p_InsertContactType"('YouTube');
+CALL public."p_InsertContactType"('Instagram');
+CALL public."p_InsertContactType"('Twitter');
+CALL public."p_InsertContactType"('LinkedIn');
+
+-- Insert Contacts
+
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertContact"(_id, _profileid, 'Jéoline email');
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Phone';
+CALL public."p_InsertContact"(_id, _profileid, 'Jéoline phone');
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Address';
+CALL public."p_InsertContact"(_id, _profileid, 'Jéoline location');
+--
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertContact"(_id, _profileid, 'Bell Béa GWET email');
+--
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertContact"(_id, _profileid, 'Gaëlla NDEDI PENDA email');
+--
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertContact"(_id, _profileid, 'Julia CARLE email');
+--
+SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertContact"(_id, _profileid, 'Nancy NJOLLE NGANGUE email');
+
+-- Insert ContactRelations
+
+SELECT "ID" INTO _langid FROM public."cl_Languages" WHERE "Label" = 'US';
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'infos@jeolinecorporates.com', 'Email_round_black');
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline phone';
+CALL public."p_InsertContactRelation"(_langid, _id, '+237675507158', 'Phone_round_black');
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline location';
+CALL public."p_InsertContactRelation"(_langid, _id, '264 de la Motte-Picquet Street, Bonanjo', 'Location_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Bell Béa GWET email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'bellbeagwet@cliniqueodyssee.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Gaëlla NDEDI PENDA email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'ndedipendagaella@gmail.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Julia CARLE email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'carlejulia@gmail.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Nancy NJOLLE NGANGUE email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'nancynjolle.odyssee@gmail.com', 'Email_round_black');
+
+--
+SELECT "ID" INTO _langid FROM public."cl_Languages" WHERE "Label" = 'GB';
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'infos@jeolinecorporates.com', 'Email_round_black');
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline phone';
+CALL public."p_InsertContactRelation"(_langid, _id, '+237675507158', 'Phone_round_black');
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline location';
+CALL public."p_InsertContactRelation"(_langid, _id, '264 de la Motte-Picquet Street, Bonanjo', 'Location_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Bell Béa GWET email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'bellbeagwet@cliniqueodyssee.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Gaëlla NDEDI PENDA email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'ndedipendagaella@gmail.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Julia CARLE email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'carlejulia@gmail.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Nancy NJOLLE NGANGUE email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'nancynjolle.odyssee@gmail.com', 'Email_round_black');
+
+--
+SELECT "ID" INTO _langid FROM public."cl_Languages" WHERE "Label" = 'FR';
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'infos@jeolinecorporates.com', 'Email_round_black');
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline phone';
+CALL public."p_InsertContactRelation"(_langid, _id, '+237675507158', 'Phone_round_black');
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline location';
+CALL public."p_InsertContactRelation"(_langid, _id, '264 rue de la Motte-Picquet, Bonanjo', 'Location_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Bell Béa GWET email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'bellbeagwet@cliniqueodyssee.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Gaëlla NDEDI PENDA email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'ndedipendagaella@gmail.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Julia CARLE email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'carlejulia.odysse@gmail.com', 'Email_round_black');
+--
+SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Nancy NJOLLE NGANGUE email';
+CALL public."p_InsertContactRelation"(_langid, _id, 'nancynjolle.odyssee@gmail.com', 'Email_round_black');
+
+-- Insert Credentials
+
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'infos@jeolinecorporates.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_UpdatePassword"(_id, _pwd, 'pat1380/*56');
+--
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Unknown';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'unkown@unkown.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_DeleteCredential"(_id);
+--
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'admin@cashledger.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_UpdatePassword"(_id, _pwd, 'admin1234');
+--
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'bellbeagwet@cliniqueodyssee.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_UpdatePassword"(_id, _pwd, 'U7JvtsKTcB');
+--
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'ndedipendagaella@gmail.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_UpdatePassword"(_id, _pwd, 'BnpHd8ZR5z');
+--
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'carlejulia.odysse@gmail.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_UpdatePassword"(_id, _pwd, 'pVAf75D4yq');
+--
+SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
+CALL public."p_InsertCredential"(_pwd, _profileid, 'nancynjolle.odyssee@gmail.com');
+SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
+CALL public."p_UpdatePassword"(_id, _pwd, 'M3Q82Prj5v');
+
+-- Insert Permissions
+
+CALL public."p_InsertPermission"('All', 'A', 'Full resource permission');
+CALL public."p_InsertPermission"('None', 'N', 'No resource permission');
+CALL public."p_InsertPermission"('Create', 'C', 'Create data permission');
+CALL public."p_InsertPermission"('Read', 'R', 'Read data permission');
+CALL public."p_InsertPermission"('Update', 'U', 'Update data permission');
+CALL public."p_InsertPermission"('Delete', 'D', 'Delete data permission');
+CALL public."p_InsertPermission"('Execute', 'X', 'Execute app permission');
+
+-- Insert Roles
+
+CALL public."p_InsertRole"('Administrator');
+
+-- Insert RoleRelations
+
+SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'infos@jeolinecorporates.com';
+SELECT "ID" INTO _id FROM public."cl_Roles" WHERE "Name" = 'Administrator';
+CALL public."p_InsertRoleRelation"(_profileid, _id);
+SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'admin@cashledger.com';
+CALL public."p_InsertRoleRelation"(_profileid, _id);
+SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'bellbeagwet@cliniqueodyssee.com';
+CALL public."p_InsertRoleRelation"(_profileid, _id);
+SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'ndedipendagaella@gmail.com';
+CALL public."p_InsertRoleRelation"(_profileid, _id);
+SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'carlejulia.odysse@gmail.com';
+CALL public."p_InsertRoleRelation"(_profileid, _id);
+SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'nancynjolle.odyssee@gmail.com';
+CALL public."p_InsertRoleRelation"(_profileid, _id);
+
+-- Insert Permissions tokens
+
+SELECT "ID" INTO _id FROM public."cl_Roles" WHERE "Name" = 'Administrator';
+CALL public."p_InsertRole_Administrator"(_id, 'All', 'All', 'A', 'All');
+
+END $BODY$;
+
+-- Insert LanguageRelations
+
+DO
+$BODY$
+DECLARE _id character varying(50); _appid character varying(50); _us character varying(50); _gb character varying(50); _fr character varying(50); _es character varying(50); _ar character varying(50);
+
+BEGIN
+	SELECT "ID" INTO _us FROM public."cl_Languages" WHERE "Label" = 'US';
+	SELECT "ID" INTO _gb FROM public."cl_Languages" WHERE "Label" = 'GB';
+	SELECT "ID" INTO _fr FROM public."cl_Languages" WHERE "Label" = 'FR';
+	SELECT "ID" INTO _es FROM public."cl_Languages" WHERE "Label" = 'ES';
+	SELECT "ID" INTO _ar FROM public."cl_Languages" WHERE "Label" = 'AR';
+
+	-- App
+
+	SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Profiling';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Profiling');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Profiling');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Gestion des utilisateurs');
+	
+	-- App category
+	
+	IF NOT EXISTS(SELECT 1 FROM public."cl_AppCategories" WHERE "Name" = 'User management') THEN
+		CALL public."p_InsertAppCategory"('User management');
+		SELECT "ID" INTO _appid from public."cl_AppCategories" WHERE "Name" = 'User management';
+		CALL public."p_InsertLanguageRelation"(_us, _appid, 'User management');
+		CALL public."p_InsertLanguageRelation"(_gb, _appid, 'User management');
+		CALL public."p_InsertLanguageRelation"(_fr, _appid, 'Gestion des utilisateurs');
+	END IF;
+	--
+	SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Profiling';
+	SELECT "ID" INTO _appid from public."cl_AppCategories" WHERE "Name" = 'User management';
+	CALL public."p_InsertAppRelation"(_id, _appid);
+	
+	-- Titles
+	
+	SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Name" = 'Non applicable';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Non applicable');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Name" = 'Doctor';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Docteur');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Doctor');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Doctor');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Name" = 'Professor';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Professeur');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Professor');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Professor');
+	
+	-- Statuses
+	
+	SELECT "ID" INTO _id FROM public."cl_Statuses" WHERE "Name" = 'Non applicable';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Non applicable');
+	SELECT "ID" INTO _id FROM public."cl_Statuses" WHERE "Name" = 'Single';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Single');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Single');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Célibataire');
+	SELECT "ID" INTO _id FROM public."cl_Statuses" WHERE "Name" = 'Married';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Married');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Married');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Marié(e)');
+	SELECT "ID" INTO _id FROM public."cl_Statuses" WHERE "Name" = 'Divorced';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Divorced');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Divorced');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Divorcé(e)');
+	SELECT "ID" INTO _id FROM public."cl_Statuses" WHERE "Name" = 'Widow';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Widow');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Widow');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Veuf(ve)');
+	
+	-- Genders
+	
+	SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Name" = 'Non applicable';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Non applicable');
+	SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Name" = 'Male';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Male');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Male');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Homme');
+	SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Name" = 'Female';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Female');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Female');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Femme');
+	
+	-- Civilities
+	
+	SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Name" = 'Non applicable';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Non applicable');
+	SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Name" = 'Mister';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Mister');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Mister');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Monsieur');
+	SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Name" = 'Madam';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Madam');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Madam');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Madame');
+	SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Name" = 'Miss';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Miss');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Miss');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Mademoiselle');
+	
+	-- Occupations
+	
+	SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Name" = 'Non applicable';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Non applicable');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Name" = 'Gynecologist';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Non applicable');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Non applicable');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Name" = 'Obstetrician';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Obstetrician');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Obstetrician');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Obstétricien');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Name" = 'Nurse';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Nurse');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Nurse');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Infirmier');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Name" = 'Lab technician';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Lab technician');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Lab technician');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Laborantin');
+	--
+	SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Name" = 'Anesthetist';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Anesthetist');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Anesthetist');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'anésthésiste');
+	
+	-- ContactTypes
+	
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Phone';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Phone');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Phone');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Téléphone');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Email');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Email');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Email');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Address';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Location');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Location');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Localisation');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'WhatsApp';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'WhatsApp');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'WhatsApp');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'WhatsApp');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Telegram';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Telegram');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Telegram');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Telegram');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'YouTube';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'YouTube');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'YouTube');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'YouTube');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Instagram';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Instagram');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Instagram');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Instagram');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Twitter';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Twitter');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Twitter');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Twitter');
+	SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'LinkedIn';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'LinkedIn');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'LinkedIn');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'LinkedIn');
+	
+	-- Roles
+	
+	SELECT "ID" INTO _id FROM public."cl_Roles" WHERE "Name" = 'Administrator';
+	CALL public."p_InsertLanguageRelation"(_us, _id, 'Administrator');
+	CALL public."p_InsertLanguageRelation"(_gb, _id, 'Administrator');
+	CALL public."p_InsertLanguageRelation"(_fr, _id, 'Administrateur');
+	
+END $BODY$;
+
+-- Trigger: Credential_Log
+
+CREATE OR REPLACE TRIGGER "Credential_Log"
+	AFTER UPDATE
+	ON public."cl_Credentials"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_CreditLog"();
+
+-- Trigger: Log_Credential
+
+CREATE OR REPLACE TRIGGER "Log_Credential"
+	AFTER INSERT OR UPDATE OR DELETE
+	ON public."cl_Credentials"
+	FOR EACH ROW
+	EXECUTE FUNCTION public."t_LogCredential"();
+
+-- Trigger: Log_Audit
+DO
+$BODY$
+DECLARE _tablename text; _triggername text;
+	_tablenames text[] := ARRAY['cl_AppCategories', 'cl_AppRelations', 'cl_Apps', 'cl_Cities', 'cl_Civilities', 'cl_CivilityRelations', 'cl_ContactRelations', 'cl_Contacts', 'cl_ContactTypes', 'cl_Continents',
+	'cl_Countries', 'cl_Genders', 'cl_GenderRelations', 'cl_Languages', 'cl_LanguageRelations', 'cl_OccupationRelations', 'cl_Occupations', 'cl_Parameters', 'cl_ParameterRelations', 'cl_Permissions',
+	'cl_Profiles', 'cl_RoleRelations', 'cl_Roles', 'cl_Statuses', 'cl_StatusRelations', 'cl_TitleRelations', 'cl_Titles'];
+BEGIN
+	FOR _tablename IN SELECT tablename FROM pg_tables WHERE schemaname = 'public'
+	LOOP
+		IF _tablename != ALL(_tablenames) THEN CONTINUE; END IF;
+		_triggername :=
+			CASE
+				WHEN _tablename ~ 'ies$' THEN REGEXP_REPLACE(SUBSTRING(_tablename FROM 4 FOR LENGTH(_tablename) - 3), 'ies$', 'y')
+				WHEN _tablename = 'cl_Statuses' THEN 'Status'
+				ELSE REGEXP_REPLACE(SUBSTRING(_tablename FROM 4 FOR LENGTH(_tablename) - 1), 's$', '')
+			END;
+		_triggername := 'Log_' || _triggername;
+		IF _triggername NOT IN (SELECT tgname FROM pg_trigger WHERE tgname ~ 'Log_') THEN
+			EXECUTE FORMAT('
+				CREATE OR REPLACE TRIGGER %I
+					AFTER INSERT OR UPDATE OR DELETE
+					ON public.%I
+					FOR EACH ROW
+					EXECUTE FUNCTION public."t_LogAudit"();
+			', _triggername, _tablename);
+		END IF;
+		--
+		_triggername :=
+			CASE
+				WHEN _tablename ~ 'ies$' THEN REGEXP_REPLACE(SUBSTRING(_tablename FROM 4 FOR LENGTH(_tablename) - 3), 'ies$', 'y')
+				WHEN _tablename = 'cl_Statuses' THEN 'Status'
+				ELSE REGEXP_REPLACE(SUBSTRING(_tablename FROM 4 FOR LENGTH(_tablename) - 1), 's$', '')
+			END;
+			_triggername := 'Release_' || _triggername;
+		EXECUTE FORMAT('
+			CREATE OR REPLACE TRIGGER %I
+				AFTER INSERT OR UPDATE OR DELETE
+				ON public.%I
+				FOR EACH ROW
+				EXECUTE FUNCTION public."t_ReleaseThread"();
+		', _triggername, _tablename);
+	END LOOP;
+END $BODY$;
