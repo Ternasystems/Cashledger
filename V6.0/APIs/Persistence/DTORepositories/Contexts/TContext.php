@@ -9,6 +9,8 @@ use Exception;
 use PDOStatement;
 use ReflectionClass;
 use ReflectionException;
+use TS_Database\Enums\OrderByDirection;
+use TS_Database\Enums\WhereType;
 use TS_Exception\Classes\DBException;
 
 /**
@@ -20,7 +22,7 @@ trait TContext
      * @throws DBException
      * @throws Exception
      */
-    public function SelectAll(string $entityName): array
+    public function SelectAll(string $entityName, ?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): array
     {
         if (!isset($this->entityMap[$entityName])) {
             throw new DTOException('invalid_entity_name', [':name' => $entityName]);
@@ -31,7 +33,21 @@ trait TContext
 
         // Use the model's own query builder to fetch all active records.
         // We assume the query builder correctly handles a `null` value as an `IS NULL` check.
-        return $modelClass::query()->where('IsActive', '=', null)->get();
+        $builder = $modelClass::query();
+
+        if (!is_null($whereClause)) {
+            foreach ($whereClause as $value)
+                $builder->where($value[0], $value[1], $value[2], $value[3] ?? WhereType::AND);
+        }
+        $builder->where('IsActive', '=', null);
+
+        if (!is_null($orderBy)){
+            foreach ($orderBy as $value)
+                $builder->orderBy($value[0], $value[1] ?? OrderByDirection::ASC);
+        }
+        $builder->limit($limit, $offset);
+
+        return $builder->get();
     }
 
     /**

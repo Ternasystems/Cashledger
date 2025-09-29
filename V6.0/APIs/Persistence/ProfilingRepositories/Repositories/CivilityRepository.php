@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Civilities;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Civility;
-use Closure;
 
 class CivilityRepository extends Repository
 {
@@ -17,15 +16,15 @@ class CivilityRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Civility
+    public function first(?array $whereClause = null): ?Civility
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Civility ? $entity : null;
     }
 
-    public function getAll(): ?Civilities
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Civilities
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Civilities ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class CivilityRepository extends Repository
         return $entity instanceof Civility ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Civilities
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Civilities
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Civilities ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Civility
+    public function last(?array $whereClause = null): ?Civility
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Civility ? $entity : null;
     }
 

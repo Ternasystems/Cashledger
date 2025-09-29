@@ -17,15 +17,15 @@ class ContactRelationRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?ContactRelation
+    public function first(?array $whereClause = null): ?ContactRelation
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof ContactRelation ? $entity : null;
     }
 
-    public function getAll(): ?ContactRelations
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?ContactRelations
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof ContactRelations ? $collection : null;
     }
 
@@ -35,15 +35,15 @@ class ContactRelationRepository extends Repository
         return $entity instanceof ContactRelation ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?ContactRelations
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?ContactRelations
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof ContactRelations ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?ContactRelation
+    public function last(?array $whereClause = null): ?ContactRelation
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof ContactRelation ? $entity : null;
     }
 
@@ -67,5 +67,10 @@ class ContactRelationRepository extends Repository
             throw new DTOException('invalid_argument');
         }
         parent::update($entity);
+    }
+
+    public function deactivate(string $id): void
+    {
+        $this->context->Delete($this->modelClass, [$id, true]);
     }
 }

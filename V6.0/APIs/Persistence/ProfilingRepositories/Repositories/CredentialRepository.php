@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Credentials;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Credential;
-use Closure;
 use PDO;
 
 class CredentialRepository extends Repository
@@ -18,15 +17,15 @@ class CredentialRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Credential
+    public function first(?array $whereClause = null): ?Credential
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Credential ? $entity : null;
     }
 
-    public function getAll(): ?Credentials
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Credentials
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Credentials ? $collection : null;
     }
 
@@ -36,15 +35,15 @@ class CredentialRepository extends Repository
         return $entity instanceof Credential ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Credentials
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Credentials
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Credentials ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Credential
+    public function last(?array $whereClause = null): ?Credential
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Credential ? $entity : null;
     }
 

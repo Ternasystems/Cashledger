@@ -44,9 +44,14 @@ class QueryBuilder extends AbstractCls
         return $this;
     }
 
-    public function limit(int $count): self
+    public function limit(?int $_limit, ?int $_offset): self
     {
-        $this->limit = " LIMIT {$count}";
+        if (!is_null($_limit))
+            $this->limit = " LIMIT {$_limit}";
+
+        if (!is_null($_offset))
+            $this->limit = ($this->limit ?? '') . " OFFSET {$_offset}";
+
         return $this;
     }
 
@@ -139,8 +144,21 @@ class QueryBuilder extends AbstractCls
 
         foreach ($this->wheres as $i => $where) {
             $prefix = ($i > 0) ? " {$where['type']->value} " : '';
-            $sqlParts[] = $prefix . "`{$where['column']}` {$where['operator']} ?";
-            $this->bindings[] = $where['value'];
+            $operator = strtoupper($where['operator']);
+
+            if (in_array($operator, ['IN', 'NOT IN']) && is_array($where['value'])) {
+                if (empty($where['value'])) {
+                    // Handle empty array case to avoid SQL errors
+                    $sqlParts[] = $prefix . ($operator === 'IN' ? '0' : '1'); // WHERE 0 or WHERE 1
+                    continue;
+                }
+                $placeholders = implode(', ', array_fill(0, count($where['value']), '?'));
+                $sqlParts[] = $prefix . "`{$where['column']}` {$operator} ({$placeholders})";
+                $this->bindings = array_merge($this->bindings, $where['value']);
+            } else {
+                $sqlParts[] = $prefix . "`{$where['column']}` {$where['operator']} ?";
+                $this->bindings[] = $where['value'];
+            }
         }
         return " WHERE " . ltrim(implode('', $sqlParts));
     }

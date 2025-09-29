@@ -17,15 +17,15 @@ class OccupationRelationRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?OccupationRelation
+    public function first(?array $whereClause = null): ?OccupationRelation
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof OccupationRelation ? $entity : null;
     }
 
-    public function getAll(): ?OccupationRelations
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?OccupationRelations
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof OccupationRelations ? $collection : null;
     }
 
@@ -35,15 +35,15 @@ class OccupationRelationRepository extends Repository
         return $entity instanceof OccupationRelation ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?OccupationRelations
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?OccupationRelations
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof OccupationRelations ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?OccupationRelation
+    public function last(?array $whereClause = null): ?OccupationRelation
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof OccupationRelation ? $entity : null;
     }
 

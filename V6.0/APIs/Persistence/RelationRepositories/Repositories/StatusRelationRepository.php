@@ -17,15 +17,15 @@ class StatusRelationRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?StatusRelation
+    public function first(?array $whereClause = null): ?StatusRelation
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof StatusRelation ? $entity : null;
     }
 
-    public function getAll(): ?StatusRelations
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?StatusRelations
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof StatusRelations ? $collection : null;
     }
 
@@ -35,15 +35,15 @@ class StatusRelationRepository extends Repository
         return $entity instanceof StatusRelation ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?StatusRelations
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?StatusRelations
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof StatusRelations ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?StatusRelation
+    public function last(?array $whereClause = null): ?StatusRelation
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof StatusRelation ? $entity : null;
     }
 

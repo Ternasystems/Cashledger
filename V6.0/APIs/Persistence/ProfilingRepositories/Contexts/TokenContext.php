@@ -10,6 +10,8 @@ use API_ProfilingRepositories_Collection\Tokens;
 use API_ProfilingRepositories_Model\Token;
 use TS_Database\Classes\DBContext;
 use TS_Database\Classes\DBCredentials;
+use TS_Database\Enums\OrderByDirection;
+use TS_Database\Enums\WhereType;
 use TS_Exception\Classes\DBException;
 use PDOStatement;
 
@@ -54,12 +56,26 @@ class TokenContext implements IContext
      * @inheritDoc
      * @throws DBException
      */
-    public function SelectAll(string $entityName): array
+    public function SelectAll(string $entityName, ?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): array
     {
         if (!Token::hasTableName())
             Token::setTableName($this->prefix . $entityName);
 
-        return Token::query()->where('IsActive', '=', null)->get();
+        $builder = Token::query();
+
+        if (!is_null($whereClause)) {
+            foreach ($whereClause as $value)
+                $builder->where($value['column'], $value['operator'], $value['value'], $value['type'] ?? WhereType::AND);
+        }
+        $builder->where('IsActive', '=', null);
+
+        if (!is_null($orderBy)){
+            foreach ($orderBy as $value)
+                $builder->orderBy($value['column'], $value['direction'] ?? OrderByDirection::ASC);
+        }
+        $builder->limit($limit, $offset);
+
+        return $builder->get();
     }
 
     /**

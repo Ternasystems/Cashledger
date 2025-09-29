@@ -17,15 +17,15 @@ class RoleRelationRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?RoleRelation
+    public function first(?array $whereClause = null): ?RoleRelation
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof RoleRelation ? $entity : null;
     }
 
-    public function getAll(): ?RoleRelations
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?RoleRelations
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof RoleRelations ? $collection : null;
     }
 
@@ -35,15 +35,15 @@ class RoleRelationRepository extends Repository
         return $entity instanceof RoleRelation ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?RoleRelations
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?RoleRelations
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof RoleRelations ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?RoleRelation
+    public function last(?array $whereClause = null): ?RoleRelation
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof RoleRelation ? $entity : null;
     }
 

@@ -1,0 +1,46 @@
+<?php
+
+namespace API_Profiling_Contract;
+
+use API_Administration_Service\ReloadMode;
+use API_ProfilingEntities_Collection\Credentials;
+use API_ProfilingEntities_Model\Credential;
+
+interface ICredentialService
+{
+    /**
+     * Gets a paginated list of Credential entities.
+     *
+     * @param array|null $filter
+     * @param int $page
+     * @param int $pageSize
+     * @param ReloadMode $reloadMode
+     * @return Credential|Credentials|null An associative array containing 'data' and 'total'.
+     */
+    public function getCredentials(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Credential|Credentials|null;
+
+    /**
+     * Creates a new Credential and assigns roles.
+     *
+     * @param array $data
+     * @return Credential The newly created Credential entity.
+     */
+    public function SetCredential(array $data): Credential;
+
+    /**
+     * Updates an existing Credential
+     *
+     * @param string $id
+     * @param array $data
+     * @return Credential|null
+     */
+    public function PutCredential(string $id, array $data): ?Credential;
+
+    /**
+     * Deletes a Credential and its associated role relations.
+     *
+     * @param string $id The ID of the credential to delete.
+     * @return bool True on success, false otherwise.
+     */
+    public function DeleteCredential(string $id): bool;
+}

@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Cities;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\City;
 use API_DTORepositories_Model\DTOBase;
-use Closure;
 
 class CityRepository extends Repository
 {
@@ -16,15 +15,15 @@ class CityRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?City
+    public function first(?array $whereClause = null): ?City
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof City ? $entity : null;
     }
 
-    public function getAll(): ?Cities
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Cities
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Cities ? $collection : null;
     }
 
@@ -34,15 +33,15 @@ class CityRepository extends Repository
         return $entity instanceof City ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Cities
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Cities
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Cities ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?City
+    public function last(?array $whereClause = null): ?City
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof City ? $entity : null;
     }
 

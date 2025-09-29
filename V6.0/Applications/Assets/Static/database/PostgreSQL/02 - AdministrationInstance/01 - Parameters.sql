@@ -123,6 +123,20 @@ BEGIN
     (DIGEST('AppVersion', 'sha256'), 'Cashledger Professional Server Edition (SE) build 2025.1.1', NULL, 'Administration', TRUE, FALSE, NULL);
 END $BODY$;
 
+-- FUNCTION: public.f_ReadParameter()
+
+CREATE OR REPLACE FUNCTION public."f_ReadParameter"(IN _paramName character varying(50))
+	RETURNS SETOF "cl_Parameters"
+	LANGUAGE 'plpgsql'
+	COST 100
+	VOLATILE PARALLEL UNSAFE
+AS $BODY$
+BEGIN
+	-- Check successful
+	RETURN QUERY SELECT * FROM public."cl_Parameters" WHERE "ParamName" = DIGEST(_paramName, 'sha256');	
+END
+$BODY$;
+
 -- FUNCTION: public.f_CurrentThread()
 
 CREATE OR REPLACE FUNCTION public."f_CurrentThread"()

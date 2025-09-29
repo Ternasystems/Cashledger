@@ -3,6 +3,7 @@
 namespace API_DTOEntities_Contract;
 
 use API_DTORepositories_Model\DTOBase;
+use API_RelationRepositories_Collection\LanguageRelations;
 
 /**
  * Defines the contract for a rich domain entity.

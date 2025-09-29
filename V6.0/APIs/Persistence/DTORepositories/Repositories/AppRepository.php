@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Apps;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\App;
 use API_DTORepositories_Model\DTOBase;
-use Closure;
 
 class AppRepository extends Repository
 {
@@ -16,15 +15,15 @@ class AppRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?App
+    public function first(?array $whereClause = null): ?App
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof App ? $entity : null;
     }
 
-    public function getAll(): ?Apps
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Apps
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Apps ? $collection : null;
     }
 
@@ -34,15 +33,15 @@ class AppRepository extends Repository
         return $entity instanceof App ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Apps
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Apps
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Apps ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?App
+    public function last(?array $whereClause = null): ?App
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof App ? $entity : null;
     }
 

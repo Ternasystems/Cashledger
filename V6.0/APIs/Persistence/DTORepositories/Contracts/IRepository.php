@@ -16,16 +16,18 @@ interface IRepository
 {
     /**
      * Finds the first entity in the collection, optionally matching a predicate.
-     * @param Closure|null $predicate
+     * @param array|null $whereClause
      * @return object|null
      */
-    public function first(?Closure $predicate = null): ?object;
+    public function first(?array $whereClause = null): ?object;
 
     /**
      * Gets all entities managed by the repository.
+     * @param int|null $limit
+     * @param int|null $offset
      * @return Collectable|null
      */
-    public function getAll(): ?Collectable;
+    public function getAll(?int $limit = null, ?int $offset = null): ?Collectable;
 
     /**
      * Gets a single entity by its unique identifier.
@@ -36,17 +38,20 @@ interface IRepository
 
     /**
      * Finds all entities that match a given predicate.
-     * @param Closure $predicate
+     * @param array|null $whereClause
+     * @param int|null $limit
+     * @param int|null $offset
+     * @param array|null $orderBy
      * @return Collectable|null
      */
-    public function getBy(Closure $predicate): ?Collectable;
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Collectable;
 
     /**
      * Finds the last entity in the collection, optionally matching a predicate.
-     * @param Closure|null $predicate
+     * @param array|null $whereClause
      * @return object|null
      */
-    public function last(?Closure $predicate = null): ?object;
+    public function last(?array $whereClause = null): ?object;
 
     /**
      * Calls the corresponding 'Insert' stored procedure for the entity.

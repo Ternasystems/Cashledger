@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Languages;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\DTOBase;
 use API_DTORepositories_Model\Language;
-use Closure;
 
 class LanguageRepository extends Repository
 {
@@ -16,15 +15,15 @@ class LanguageRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Language
+    public function first(?array $whereClause = null): ?Language
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Language ? $entity : null;
     }
 
-    public function getAll(): ?Languages
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Languages
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Languages ? $collection : null;
     }
 
@@ -34,15 +33,15 @@ class LanguageRepository extends Repository
         return $entity instanceof Language ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Languages
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Languages
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Languages ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Language
+    public function last(?array $whereClause = null): ?Language
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Language ? $entity : null;
     }
 

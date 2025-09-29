@@ -17,15 +17,15 @@ class LanguageRelationRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?LanguageRelation
+    public function first(?array $whereClause = null): ?LanguageRelation
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof LanguageRelation ? $entity : null;
     }
 
-    public function getAll(): ?LanguageRelations
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?LanguageRelations
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof LanguageRelations ? $collection : null;
     }
 
@@ -35,15 +35,15 @@ class LanguageRelationRepository extends Repository
         return $entity instanceof LanguageRelation ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?LanguageRelations
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?LanguageRelations
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof LanguageRelations ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?LanguageRelation
+    public function last(?array $whereClause = null): ?LanguageRelation
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof LanguageRelation ? $entity : null;
     }
 

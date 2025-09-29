@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Titles;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Title;
-use Closure;
 
 class TitleRepository extends Repository
 {
@@ -17,15 +16,15 @@ class TitleRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Title
+    public function first(?array $whereClause = null): ?Title
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Title ? $entity : null;
     }
 
-    public function getAll(): ?Titles
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Titles
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Titles ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class TitleRepository extends Repository
         return $entity instanceof Title ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Titles
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Titles
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Titles ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Title
+    public function last(?array $whereClause = null): ?Title
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Title ? $entity : null;
     }
 

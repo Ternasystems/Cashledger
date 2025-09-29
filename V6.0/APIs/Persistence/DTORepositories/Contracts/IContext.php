@@ -18,7 +18,7 @@ interface IContext
      * @param string $entityName The short name of the entity (e.g., 'country').
      * @return array The raw associative array of data from the database.
      */
-    public function SelectAll(string $entityName): array;
+    public function SelectAll(string $entityName, ?array $whereClause = null, ?int $limit = null, ?int $offset = null): array;
 
     /**
      * Selects a single record by its ID.

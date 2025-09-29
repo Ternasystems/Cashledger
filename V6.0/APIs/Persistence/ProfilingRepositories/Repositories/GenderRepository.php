@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Genders;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Gender;
-use Closure;
 
 class GenderRepository extends Repository
 {
@@ -17,15 +16,15 @@ class GenderRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Gender
+    public function first(?array $whereClause = null): ?Gender
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Gender ? $entity : null;
     }
 
-    public function getAll(): ?Genders
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Genders
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Genders ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class GenderRepository extends Repository
         return $entity instanceof Gender ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Genders
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Genders
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Genders ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Gender
+    public function last(?array $whereClause = null): ?Gender
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Gender ? $entity : null;
     }
 

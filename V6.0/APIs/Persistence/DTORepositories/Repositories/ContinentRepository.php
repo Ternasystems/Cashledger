@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Continents;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\Continent;
 use API_DTORepositories_Model\DTOBase;
-use Closure;
 
 class ContinentRepository extends Repository
 {
@@ -16,15 +15,15 @@ class ContinentRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Continent
+    public function first(?array $whereClause = null): ?Continent
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Continent ? $entity : null;
     }
 
-    public function getAll(): ?Continents
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Continents
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Continents ? $collection : null;
     }
 
@@ -34,15 +33,15 @@ class ContinentRepository extends Repository
         return $entity instanceof Continent ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Continents
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Continents
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Continents ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Continent
+    public function last(?array $whereClause = null): ?Continent
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Continent ? $entity : null;
     }
 

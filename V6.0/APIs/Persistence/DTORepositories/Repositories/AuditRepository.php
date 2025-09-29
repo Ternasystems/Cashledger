@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Audits;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\Audit;
 use API_DTORepositories_Model\DTOBase;
-use Closure;
 
 class AuditRepository extends Repository
 {
@@ -16,15 +15,15 @@ class AuditRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Audit
+    public function first(?array $whereClause = null): ?Audit
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Audit ? $entity : null;
     }
 
-    public function getAll(): ?Audits
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Audits
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Audits ? $collection : null;
     }
 
@@ -34,15 +33,15 @@ class AuditRepository extends Repository
         return $entity instanceof Audit ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Audits
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Audits
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Audits ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Audit
+    public function last(?array $whereClause = null): ?Audit
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Audit ? $entity : null;
     }
 

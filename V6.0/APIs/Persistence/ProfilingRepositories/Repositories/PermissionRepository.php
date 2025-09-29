@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Permissions;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Permission;
-use Closure;
 
 class PermissionRepository extends Repository
 {
@@ -17,15 +16,15 @@ class PermissionRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Permission
+    public function first(?array $whereClause = null): ?Permission
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Permission ? $entity : null;
     }
 
-    public function getAll(): ?Permissions
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Permissions
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Permissions ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class PermissionRepository extends Repository
         return $entity instanceof Permission ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Permissions
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Permissions
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Permissions ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Permission
+    public function last(?array $whereClause = null): ?Permission
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Permission ? $entity : null;
     }
 

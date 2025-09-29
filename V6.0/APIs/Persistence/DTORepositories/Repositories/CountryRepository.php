@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Countries;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\Country;
 use API_DTORepositories_Model\DTOBase;
-use Closure;
 
 class CountryRepository extends Repository
 {
@@ -16,15 +15,15 @@ class CountryRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Country
+    public function first(?array $whereClause = null): ?Country
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Country ? $entity : null;
     }
 
-    public function getAll(): ?Countries
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Countries
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Countries ? $collection : null;
     }
 
@@ -34,15 +33,15 @@ class CountryRepository extends Repository
         return $entity instanceof Country ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Countries
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Countries
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Countries ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Country
+    public function last(?array $whereClause = null): ?Country
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Country ? $entity : null;
     }
 

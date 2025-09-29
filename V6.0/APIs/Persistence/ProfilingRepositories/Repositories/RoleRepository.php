@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Roles;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Role;
-use Closure;
 
 class RoleRepository extends Repository
 {
@@ -17,15 +16,15 @@ class RoleRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Role
+    public function first(?array $whereClause = null): ?Role
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Role ? $entity : null;
     }
 
-    public function getAll(): ?Roles
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Roles
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Roles ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class RoleRepository extends Repository
         return $entity instanceof Role ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Roles
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Roles
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Roles ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Role
+    public function last(?array $whereClause = null): ?Role
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Role ? $entity : null;
     }
 

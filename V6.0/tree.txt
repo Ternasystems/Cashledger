@@ -327,11 +327,36 @@ C:.
 ¦       ¦   +---Models
 ¦       +---DTOEntities
 ¦       ¦   +---Collections
+¦       ¦   ¦       AppCategories.php
+¦       ¦   ¦       Apps.php
+¦       ¦   ¦       Audits.php
+¦       ¦   ¦       Cities.php
+¦       ¦   ¦       Continents.php
+¦       ¦   ¦       Countries.php
+¦       ¦   ¦       EntityCollectable.php
+¦       ¦   ¦       Languages.php
+¦       ¦   ¦       
 ¦       ¦   +---Contracts
+¦       ¦   ¦       ICollectableFactory.php
 ¦       ¦   ¦       IEntity.php
 ¦       ¦   ¦       
 ¦       ¦   +---Factories
+¦       ¦   ¦       AppFactory.php
+¦       ¦   ¦       CityFactory.php
+¦       ¦   ¦       CollectableFactory.php
+¦       ¦   ¦       CountryFactory.php
+¦       ¦   ¦       
 ¦       ¦   +---Models
+¦       ¦           App.php
+¦       ¦           AppCategory.php
+¦       ¦           Audit.php
+¦       ¦           City.php
+¦       ¦           Continent.php
+¦       ¦           Country.php
+¦       ¦           Entity.php
+¦       ¦           Language.php
+¦       ¦           TLanguageRelation.php
+¦       ¦           
 ¦       +---EmailingEntities
 ¦       ¦   +---Collections
 ¦       ¦   +---Contracts
@@ -394,9 +419,49 @@ C:.
 ¦       ¦   +---Models
 ¦       +---ProfilingEntities
 ¦       ¦   +---Collections
+¦       ¦   ¦       Civilities.php
+¦       ¦   ¦       Contacts.php
+¦       ¦   ¦       ContactTypes.php
+¦       ¦   ¦       Credentials.php
+¦       ¦   ¦       Genders.php
+¦       ¦   ¦       Occupations.php
+¦       ¦   ¦       Permissions.php
+¦       ¦   ¦       Profiles.php
+¦       ¦   ¦       Roles.php
+¦       ¦   ¦       Statuses.php
+¦       ¦   ¦       Titles.php
+¦       ¦   ¦       Tokens.php
+¦       ¦   ¦       Trackings.php
+¦       ¦   ¦       
 ¦       ¦   +---Contracts
 ¦       ¦   +---Factories
+¦       ¦   ¦       CivilityFactory.php
+¦       ¦   ¦       ContactFactory.php
+¦       ¦   ¦       CredentialFactory.php
+¦       ¦   ¦       GenderFactory.php
+¦       ¦   ¦       OccupationFactory.php
+¦       ¦   ¦       ProfileFactory.php
+¦       ¦   ¦       RoleFactory.php
+¦       ¦   ¦       StatusFactory.php
+¦       ¦   ¦       TitleFactory.php
+¦       ¦   ¦       TokenFactory.php
+¦       ¦   ¦       TrackingFactory.php
+¦       ¦   ¦       
 ¦       ¦   +---Models
+¦       ¦           Civility.php
+¦       ¦           Contact.php
+¦       ¦           ContactType.php
+¦       ¦           Credential.php
+¦       ¦           Gender.php
+¦       ¦           Occupation.php
+¦       ¦           Permission.php
+¦       ¦           Profile.php
+¦       ¦           Role.php
+¦       ¦           Status.php
+¦       ¦           Title.php
+¦       ¦           Token.php
+¦       ¦           Tracking.php
+¦       ¦           
 ¦       +---PublishingEntities
 ¦       ¦   +---Collections
 ¦       ¦   +---Contracts

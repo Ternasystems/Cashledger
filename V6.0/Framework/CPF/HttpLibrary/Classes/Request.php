@@ -15,6 +15,14 @@ final class Request extends AbstractCls
     private array $get;
     private array $post;
     private array $server;
+    public ?string $content = null {
+        get {
+            if ($this->content === null) {
+                $this->content = file_get_contents('php://input') ?: '';
+            }
+            return $this->content;
+        }
+    }
 
     public function __construct(array $get, array $post, array $server)
     {
@@ -50,22 +58,36 @@ final class Request extends AbstractCls
     /**
      * Gets a value from the POST data.
      *
-     * @param string $key The key of the POST variable.
+     * @param string|null $key The key of the POST variable.
      * @param mixed|null $default The default value to return if the key is not found.
+     * @return mixed
      */
-    public function getPost(string $key, mixed $default = null): mixed
+    public function getPost(?string $key = null, mixed $default = null): mixed
     {
-        return $this->post[$key] ?? $default;
+        return is_null($key) ? $this->post : $this->post[$key] ?? $default;
     }
 
     /**
      * Gets a value from the GET query string.
      *
-     * @param string $key The key of the query variable.
+     * @param string|null $key The key of the query variable.
      * @param mixed|null $default The default value to return if the key is not found.
+     * @return mixed
      */
-    public function getQuery(string $key, mixed $default = null): mixed
+    public function getQuery(?string $key = null, mixed $default = null): mixed
     {
-        return $this->get[$key] ?? $default;
+        return is_null($key) ? $this->get : $this->get[$key] ?? $default;
+    }
+
+    /**
+     * Gets a server variable.
+     *
+     * @param string $key The key of the server variable (e.g., 'REMOTE_ADDR').
+     * @param mixed|null $default The default value to return if not found.
+     * @return mixed
+     */
+    public function getServer(string $key, mixed $default = null): mixed
+    {
+        return $this->server[$key] ?? $default;
     }
 }

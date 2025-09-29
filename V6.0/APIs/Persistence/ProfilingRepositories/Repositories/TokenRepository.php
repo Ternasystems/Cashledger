@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Tokens;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Token;
-use Closure;
 
 class TokenRepository extends Repository
 {
@@ -29,15 +28,15 @@ class TokenRepository extends Repository
         return $this->roleName;
     }
 
-    public function first(?Closure $predicate = null): ?Token
+    public function first(?array $whereClause = null): ?Token
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Token ? $entity : null;
     }
 
-    public function getAll(): ?Tokens
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Tokens
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Tokens ? $collection : null;
     }
 
@@ -47,15 +46,15 @@ class TokenRepository extends Repository
         return $entity instanceof Token ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Tokens
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Tokens
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Tokens ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Token
+    public function last(?array $whereClause = null): ?Token
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Token ? $entity : null;
     }
 

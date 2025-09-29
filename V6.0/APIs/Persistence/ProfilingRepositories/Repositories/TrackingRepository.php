@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Trackings;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Tracking;
-use Closure;
 
 class TrackingRepository extends Repository
 {
@@ -17,15 +16,15 @@ class TrackingRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Tracking
+    public function first(?array $whereClause = null): ?Tracking
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Tracking ? $entity : null;
     }
 
-    public function getAll(): ?Trackings
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Trackings
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Trackings ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class TrackingRepository extends Repository
         return $entity instanceof Tracking ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Trackings
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Trackings
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Trackings ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Tracking
+    public function last(?array $whereClause = null): ?Tracking
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Tracking ? $entity : null;
     }
 

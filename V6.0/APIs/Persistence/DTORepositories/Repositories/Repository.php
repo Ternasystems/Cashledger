@@ -7,7 +7,6 @@ use API_DTORepositories_Collection\Collectable;
 use API_DTORepositories_Contract\IContext;
 use API_DTORepositories_Contract\IRepository;
 use API_DTORepositories_Model\DTOBase;
-use Closure;
 use Exception;
 use ReflectionClass;
 use TS_Database\Enums\OrderByDirection;
@@ -73,32 +72,30 @@ abstract class Repository implements IRepository
         $this->collectionName = $this->entityName . 'collection';
     }
 
-    public function first(?Closure $predicate = null): ?object
+    /**
+     * @param array|null $whereClause
+     * @return object|null
+     */
+    public function first(?array $whereClause = null): ?object
     {
-        if ($predicate) {
-            return $this->getAll()?->first($predicate);
-        }
-
-        $data = $this->modelClass::query()
-            ->orderBy('ID', OrderByDirection::ASC)
-            ->limit(1)
-            ->get();
-
-        if (empty($data[0])) {
-            return null;
-        }
-        return $this->context->Mapping($this->entityName, $data[0]);
+        return $this->getBy($whereClause, 1, null, [['ID', OrderByDirection::ASC]])?->first();
     }
 
-    public function getAll(): ?Collectable
+    /**
+     * @param int|null $limit
+     * @param int|null $offset
+     * @param array|null $orderBy
+     * @return Collectable|null
+     */
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Collectable
     {
-        $data = $this->context->SelectAll($this->entityName);
-        if (empty($data)) {
-            return null;
-        }
-        return $this->context->MappingCollection($this->collectionName, $data);
+        return $this->getBy(null, $limit, $offset, $orderBy);
     }
 
+    /**
+     * @param string $id
+     * @return object|null
+     */
     public function getById(string $id): ?object
     {
         $data = $this->context->SelectById($id, $this->entityName);
@@ -108,27 +105,29 @@ abstract class Repository implements IRepository
         return $this->context->Mapping($this->entityName, $data);
     }
 
-    public function getBy(Closure $predicate): ?Collectable
+    /**
+     * @param array|null $whereClause
+     * @param int|null $limit
+     * @param int|null $offset
+     * @param array|null $orderBy
+     * @return Collectable|null
+     */
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Collectable
     {
-        $collection = $this->getAll();
-        return $collection?->where($predicate);
-    }
-
-    public function last(?Closure $predicate = null): ?object
-    {
-        if ($predicate) {
-            return $this->getAll()?->last($predicate);
-        }
-
-        $data = $this->modelClass::query()
-            ->orderBy('ID', OrderByDirection::DESC)
-            ->limit(1)
-            ->get();
-
-        if (empty($data[0])) {
+        $data = $this->context->SelectAll($this->entityName, $whereClause, $limit, $offset, $orderBy);
+        if (empty($data)) {
             return null;
         }
-        return $this->context->Mapping($this->entityName, $data[0]);
+        return $this->context->MappingCollection($this->collectionName, $data);
+    }
+
+    /**
+     * @param array|null $whereClause
+     * @return object|null
+     */
+    public function last(?array $whereClause = null): ?object
+    {
+        return $this->getBy($whereClause, 1, null, [['ID', OrderByDirection::DESC]])?->last();
     }
 
     public function add(DTOBase $entity): void

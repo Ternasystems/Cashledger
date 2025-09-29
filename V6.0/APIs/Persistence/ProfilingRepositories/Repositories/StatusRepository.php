@@ -8,7 +8,6 @@ use API_DTORepositories\Repository;
 use API_ProfilingRepositories_Collection\Statuses;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Status;
-use Closure;
 
 class StatusRepository extends Repository
 {
@@ -17,15 +16,15 @@ class StatusRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Status
+    public function first(?array $whereClause = null): ?Status
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Status ? $entity : null;
     }
 
-    public function getAll(): ?Statuses
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Statuses
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Statuses ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class StatusRepository extends Repository
         return $entity instanceof Status ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Statuses
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Statuses
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Statuses ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Status
+    public function last(?array $whereClause = null): ?Status
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Status ? $entity : null;
     }
 

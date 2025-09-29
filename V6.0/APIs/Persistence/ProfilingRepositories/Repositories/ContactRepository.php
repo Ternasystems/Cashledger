@@ -8,7 +8,6 @@ use API_DTORepositories_Model\DTOBase;
 use API_ProfilingRepositories_Collection\Contacts;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Contact;
-use Closure;
 
 class ContactRepository extends Repository
 {
@@ -17,15 +16,15 @@ class ContactRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?Contact
+    public function first(?array $whereClause = null): ?Contact
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof Contact ? $entity : null;
     }
 
-    public function getAll(): ?Contacts
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Contacts
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof Contacts ? $collection : null;
     }
 
@@ -35,15 +34,15 @@ class ContactRepository extends Repository
         return $entity instanceof Contact ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?Contacts
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?Contacts
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof Contacts ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?Contact
+    public function last(?array $whereClause = null): ?Contact
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof Contact ? $entity : null;
     }
 

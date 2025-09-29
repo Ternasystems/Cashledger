@@ -17,15 +17,15 @@ class TitleRelationRepository extends Repository
         parent::__construct($context);
     }
 
-    public function first(?Closure $predicate = null): ?TitleRelation
+    public function first(?array $whereClause = null): ?TitleRelation
     {
-        $entity = parent::first($predicate);
+        $entity = parent::first($whereClause);
         return $entity instanceof TitleRelation ? $entity : null;
     }
 
-    public function getAll(): ?TitleRelations
+    public function getAll(?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?TitleRelations
     {
-        $collection = parent::getAll();
+        $collection = parent::getAll($limit, $offset, $orderBy);
         return $collection instanceof TitleRelations ? $collection : null;
     }
 
@@ -35,15 +35,15 @@ class TitleRelationRepository extends Repository
         return $entity instanceof TitleRelation ? $entity : null;
     }
 
-    public function getBy(Closure $predicate): ?TitleRelations
+    public function getBy(?array $whereClause = null, ?int $limit = null, ?int $offset = null, ?array $orderBy = null): ?TitleRelations
     {
-        $collection = parent::getBy($predicate);
+        $collection = parent::getBy($whereClause, $limit, $offset, $orderBy);
         return $collection instanceof TitleRelations ? $collection : null;
     }
 
-    public function last(?Closure $predicate = null): ?TitleRelation
+    public function last(?array $whereClause = null): ?TitleRelation
     {
-        $entity = parent::last($predicate);
+        $entity = parent::last($whereClause);
         return $entity instanceof TitleRelation ? $entity : null;
     }
 
