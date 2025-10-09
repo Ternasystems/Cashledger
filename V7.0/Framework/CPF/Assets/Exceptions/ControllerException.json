@@ -1,0 +1,18 @@
+{
+  "en-US": {
+    "controller_not_found": "Failed to find the Controller named: :name",
+    "action_not_found": "Failed to find the action named: :name"
+  },
+  "fr-FR": {
+    "controller_not_found": "Échec de la recherche du contrôleur nommé : :name",
+    "action_not_found": "Échec de la recherche de l'action nommée : :name"
+  },
+  "es-ES": {
+    "controller_not_found": "Error al encontrar el controlador llamado: :name",
+    "action_not_found": "Error al encontrar la acción llamada: :name"
+  },
+  "ar-SA": {
+    "controller_not_found": "فشل في العثور على المتحكم المُسمى: :name",
+    "action_not_found": "فشل في العثور على الإجراء المُسمى: :name"
+  }
+}

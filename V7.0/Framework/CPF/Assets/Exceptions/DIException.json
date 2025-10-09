@@ -1,0 +1,22 @@
+{
+  "en-US": {
+    "failed_to_reflect": "Failed to reflect the specified class: :class",
+    "class_not_instantiable": "Failed to instantiate the specified class: :class",
+    "unresolvable_parameter": "Failed to resolve the constructor (:class) parameters: :param"
+  },
+  "fr-FR": {
+    "failed_to_reflect": "Échec de la réflection pour la class spécifiée : :class",
+    "class_not_instantiable": "Échec de l'instantiation de la classe spécifiée : :class",
+    "unresolvable_parameter": "Échec de la résolution des paramètres du constructeur (:class) : :param"
+  },
+  "es-ES": {
+    "failed_to_reflect": "Error de reflexión para la clase especificada : :class",
+    "class_not_instantiable": "Error de instanciación de la clase especificada : :class",
+    "unresolvable_parameter": "Error de resolución de los parámetros del constructor (:class) : :param"
+  },
+  "ar-SA": {
+    "failed_to_reflect": "فشل في الانعكاس للفئة المحددة : :class",
+    "class_not_instantiable": "فشل في إنشاء كائن من الفئة المحددة : :class",
+    "unresolvable_parameter": "فشل في حل معلمات المُنشئ (:class) : :param"
+  }
+}

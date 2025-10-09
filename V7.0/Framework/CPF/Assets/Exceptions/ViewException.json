@@ -1,0 +1,50 @@
+{
+  "en-US": {
+    "view_not_found": "Failed to find the View at the specified path: :path",
+    "nested_section_error": "Error while trying to capture data for section",
+    "end_section_without_start": "Trying to end a section without starting",
+    "component_not_found": "Failed to find the Component named: :name",
+    "invalid_component_class": "The Component class named :name is invalid.",
+    "missing_component_argument": "The argument :param is missing in the component :component",
+    "component_render_must_return_view": "Failed to return a View from the Component named :name",
+    "component_service_not_set": "Component service must be set before rendering.",
+    "helper_already_registered": "The helper method :name is already registered.",
+    "helper_not_found": "The helper method :name does not exists."
+  },
+  "fr-FR": {
+    "view_not_found": "Échec à trouver la Vue au chemin spécifié : :path",
+    "nested_section_error": "Erreur lors de la tentative de capture des données pour la section.",
+    "end_section_without_start": "Tentative de terminer une section sans l'avoir commencée.",
+    "component_not_found": "Échec de la recherche du composant nommé : :name",
+    "invalid_component_class": "La classe de composant nommée :name est non valide.",
+    "missing_component_argument": "L'argument :param est manquant dans le composant :component.",
+    "component_render_must_return_view": "Échec à renvoyer une Vue depuis le composant nommé :name",
+    "component_service_not_set": "Le service de composants doit être défini avant le rendu.",
+    "helper_already_registered": "La méthode Helper :name est déjà enregistrée.",
+    "helper_not_found": "La méthode Helper :name n'existe pas."
+  },
+  "es-ES": {
+    "view_not_found": "Error al encontrar la Vista en la ruta especificada: :path",
+    "nested_section_error": "Error al intentar capturar datos para la sección.",
+    "end_section_without_start": "Intentando terminar una sección sin haberla comenzado.",
+    "component_not_found": "Error al encontrar el componente llamado: :name",
+    "invalid_component_class": "La clase de componente llamada :name no es válida.",
+    "missing_component_argument": "Falta el argumento :param en el componente :component.",
+    "component_render_must_return_view": "Error al devolver una Vista desde el componente llamado :name",
+    "component_service_not_set": "El servicio de componentes debe establecerse antes del renderizado.",
+    "helper_already_registered": "El método de Helper :name ya está registrado.",
+    "helper_not_found": "El método de Helper :name no existe."
+  },
+  "ar-SA": {
+    "view_not_found": "فشل في العثور على العرض في المسار المحدد: :path",
+    "nested_section_error": "خطأ أثناء محاولة capture بيانات للقسم.",
+    "end_section_without_start": "محاولة إنهاء قسم بدون بدئه.",
+    "component_not_found": "فشل في العثور على المكون المُسمى: :name",
+    "invalid_component_class": "فئة المكون المُسماة :name غير صالحة.",
+    "missing_component_argument": "الوسيط :param مفقود في المكون :component.",
+    "component_render_must_return_view": "فشل في إعادة عرض من المكون المُسمى :name",
+    "component_service_not_set": "يجب تعيين خدمة المكونات قبل التصيير.",
+    "helper_already_registered": "دالة المساعدة :name مسجلة مسبقًا.",
+    "helper_not_found": "دالة المساعدة :name غير موجودة."
+  }
+}

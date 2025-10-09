@@ -1,0 +1,21 @@
+{
+  "en-US": {
+    "file_creation_failed": "Failed to create the TEXT file at the specified path: :path",
+    "file_read_failed": "Failed to read the contents of the TEXT file: :path",
+    "file_open_failed": "Failed to open the TEXT file at the specified path: :path"
+  },
+  "fr-FR": {
+    "file_creation_failed": "Échec de la création du fichier TEXT au chemin spécifié : :path",
+    "file_read_failed": "Échec de la lecture du contenu du fichier TEXT : :path",
+    "file_open_failed": "Échec de l'ouverture du fichier TEXT au chemin spécifié : :path"
+  },
+  "es-ES": {
+    "file_creation_failed": "Error al crear el archivo TEXT en la ruta especificada: :path",
+    "file_read_failed": "Error al leer el contenido del archivo TEXT: :path"
+  },
+  "ar-SA": {
+    "file_creation_failed": "فشل في إنشاء ملف TEXT في المسار المحدد: :path",
+    "file_read_failed": "فشل في قراءة محتويات ملف TEXT: :path",
+    "file_open_failed": "فشل في فتح ملف النص في المسار المحدد: :path"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "en-US": {
+    "cache_dir_creation_failed": "Failed to create the Cache file at the specified path: :path",
+    "apcu_extension_not_loaded": "The APCu is not loaded on this server"
+  },
+  "fr-FR": {
+    "cache_dir_creation_failed": "Échec de la création du fichier Cache au chemin spécifié : :path",
+    "apcu_extension_not_loaded": "L’extension APCu n’est pas chargée sur ce serveur"
+  },
+  "es-ES": {
+    "cache_dir_creation_failed": "Error al crear el archivo Cache en la ruta especificada: :path",
+    "apcu_extension_not_loaded": "La extensión APCu no está cargada en este servidor"
+  },
+  "ar-SA": {
+    "cache_dir_creation_failed": "فشل في إنشاء ملف Cache في المسار المحدد: :path",
+    "apcu_extension_not_loaded": "APCu ما محمل في السيرفر ده"
+  }
+}

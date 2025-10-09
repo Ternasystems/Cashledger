@@ -1,0 +1,76 @@
+/**
+ * =============================================================================
+ * C2S (Cashledger CSS Library) - Icon System
+ * =============================================================================
+ * This file integrates the Font Awesome icon font into the C2S library.
+ * It assumes the font files are located in the ../icons/fonts/ directory.
+ */
+
+/* -------------------------------------------------------------------------- */
+/* Font Face Declarations                                                     */
+/* -------------------------------------------------------------------------- */
+/* We load the different font weights for each style of icon.                 */
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900; /* For Solid icons */
+  font-display: block;
+  src: url("../icons/fonts/fa-solid-900.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 400; /* For Regular icons */
+  font-display: block;
+  src: url("../icons/fonts/fa-regular-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../icons/fonts/fa-brands-400.woff2") format("woff2");
+}
+
+/* -------------------------------------------------------------------------- */
+/* Base Icon Class                                                            */
+/* -------------------------------------------------------------------------- */
+/* This is the main class to apply to any icon element.                       */
+
+.c2s-icon {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Icon Style Classes                                                         */
+/* -------------------------------------------------------------------------- */
+/* These classes apply the correct font family and weight.                    */
+
+.icon-solid {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+.icon-regular {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 400;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sizing Utilities                                                           */
+/* -------------------------------------------------------------------------- */
+/* Aligns icon sizes with our typography scale.                               */
+
+.icon-sm { font-size: var(--c2s-font-size-sm); }
+.icon-md { font-size: var(--c2s-font-size-md); }
+.icon-lg { font-size: var(--c2s-font-size-lg); }
+.icon-xl { font-size: var(--c2s-font-size-xl); }
