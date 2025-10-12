@@ -1,0 +1,42 @@
+{
+  "en-US": {
+    "entity_not_found": "The requested entity could not be found with the provided ID: :id",
+    "mapping_failed": "Failed to map raw database data to the entity: :entity",
+    "collection_mapping_failed": "Failed to map raw database data to the collection: :collection",
+    "invalid_entity_name": "The provided entity name is not valid in this context: :name",
+    "invalid_collection_name": "The provided collection name is not valid in this context: :name",
+    "invalid_argument": "An invalid argument was provided for the repository method.",
+    "unauthorized_method": "The operation is not authorized in this specific context.",
+    "item_not_found": "The requested item could not be found with the provided ID: :id"
+  },
+  "fr-FR": {
+    "entity_not_found": "L'entité demandée n'a pas pu être trouvée avec l'ID fourni : :id",
+    "mapping_failed": "Échec du mappage des données brutes de la base de données vers l'entité : :entity",
+    "collection_mapping_failed": "Échec du mappage des données brutes de la base de données vers la collection : :collection",
+    "invalid_entity_name": "Le nom d'entité fourni n'est pas valide dans ce contexte : :name",
+    "invalid_collection_name": "Le nom de collection fourni n'est pas valide dans ce contexte : :name",
+    "invalid_argument": "Un argument invalide a été fourni pour la méthode du repository.",
+    "unauthorized_method": "L'opération n'est pas autorisée dans ce context.",
+    "item_not_found": "L'élément demandé n'a pas pu être trouvée avec l'ID fourni : :id"
+  },
+  "es-ES": {
+    "entity_not_found": "No se pudo encontrar la entidad solicitada con el ID proporcionado: :id",
+    "mapping_failed": "Error al mapear los datos sin procesar de la base de datos a la entidad: :entity",
+    "collection_mapping_failed": "Error al mapear los datos sin procesar de la base de datos a la colección: :collection",
+    "invalid_entity_name": "El nombre de entidad proporcionado no es válido en este contexto: :name",
+    "invalid_collection_name": "El nombre de colección proporcionado no es válido en este contexto: :name",
+    "invalid_argument": "Se proporcionó un argumento no válido para el método del repositorio.",
+    "unauthorized_method": "La operación no está autorizada en este contexto específico.",
+    "item_not_found": "No se pudo encontrar el elemento solicitado con el ID proporcionado: :id"
+  },
+  "ar-SA": {
+    "entity_not_found": "تعذر العثور على الكيان المطلوب باستخدام المعرف المقدم: :id",
+    "mapping_failed": "فشل في تعيين بيانات قاعدة البيانات الأولية للكيان: :entity",
+    "collection_mapping_failed": "فشل في تعيين بيانات قاعدة البيانات الأولية إلى المجموعة: :collection",
+    "invalid_entity_name": "اسم الكيان المقدم غير صالح في هذا السياق: :name",
+    "invalid_collection_name": "اسم المجموعة المقدم غير صالح في هذا السياق: :name",
+    "invalid_argument": "تم تقديم وسيط غير صالح لأداة طريقة المستودع.",
+    "unauthorized_method": "العملية غير مصرح بها في هذا السياق المحدد.",
+    "item_not_found": "تعذر العثور على العنصر المطلوب باستخدام المعرف المقدم: :id"
+  }
+}
