@@ -1397,11 +1397,27 @@ C:.
     +---CPF
         +---Assets
         ¦   +---Exceptions
+        ¦   ¦       CacheException.json
+        ¦   ¦       ControllerException.json
+        ¦   ¦       DIException.json
         ¦   ¦       JSONException.json
-        ¦   ¦       LocaleException.json
+        ¦   ¦       StreamException.json
+        ¦   ¦       ViewException.json
         ¦   ¦       XMLException.json
         ¦   ¦       
         ¦   +---Logs
+        +---CacheLibrary
+        ¦   +---Classes
+        ¦   ¦       APCAdapter.php
+        ¦   ¦       ArrayCacheAdapter.php
+        ¦   ¦       CacheManager.php
+        ¦   ¦       FileCacheAdapter.php
+        ¦   ¦       
+        ¦   +---Enums
+        ¦   +---Interfaces
+        ¦   ¦       ICacheAdapter.php
+        ¦   ¦       
+        ¦   +---Traits
         +---ConfigurationLibrary
         ¦   +---Classes
         ¦   ¦       AbstractCls.php
@@ -1423,19 +1439,27 @@ C:.
         ¦   +---Traits
         +---ControllerLibrary
         ¦   +---Classes
+        ¦   ¦       ActionFilterExecutor.php
+        ¦   ¦       Authorize.php
         ¦   ¦       BaseController.php
         ¦   ¦       Controller.php
+        ¦   ¦       FilterRegistry.php
         ¦   ¦       
         ¦   +---Enums
         ¦   +---Interfaces
+        ¦   ¦       IActionFilter.php
+        ¦   ¦       
         ¦   +---Traits
         +---DatabaseLibrary
         ¦   +---Classes
         ¦   ¦       AbstractModel.php
+        ¦   ¦       AbstractRelation.php
         ¦   ¦       DBConnection.php
         ¦   ¦       DBContext.php
         ¦   ¦       DBCredentials.php
         ¦   ¦       QueryBuilder.php
+        ¦   ¦       Reference.php
+        ¦   ¦       Set.php
         ¦   ¦       
         ¦   +---Enums
         ¦   ¦       DBDriver.php
@@ -1444,12 +1468,16 @@ C:.
         ¦   ¦       
         ¦   +---Interfaces
         ¦   +---Traits
+        ¦           TRelations.php
+        ¦           
         +---DependencyLibrary
         ¦   +---Classes
         ¦   ¦       Application.php
         ¦   ¦       ApplicationBuilder.php
         ¦   ¦       
         ¦   +---Enums
+        ¦   ¦       Lifetime.php
+        ¦   ¦       
         ¦   +---Interfaces
         ¦   ¦       IServiceCollection.php
         ¦   ¦       
@@ -1458,8 +1486,11 @@ C:.
         ¦   +---Classes
         ¦   ¦       AbstractCollectable.php
         ¦   ¦       ConstraintDslParser.php
+        ¦   ¦       DomainEventDispatcher.php
+        ¦   ¦       DomainModel.php
         ¦   ¦       Enumerable.php
         ¦   ¦       Queryable.php
+        ¦   ¦       SystemEventDispatcher.php
         ¦   ¦       
         ¦   +---Enums
         ¦   ¦       ArrayEnum.php
@@ -1467,13 +1498,18 @@ C:.
         ¦   ¦       
         ¦   +---Interfaces
         ¦   ¦       ICollectable.php
+        ¦   ¦       IDomainEvent.php
         ¦   ¦       IEnumerable.php
+        ¦   ¦       IEvent.php
         ¦   ¦       IQueryable.php
+        ¦   ¦       ISpecification.php
+        ¦   ¦       ISystemEvent.php
         ¦   ¦       
         ¦   +---Traits
         +---ExceptionLibrary
         ¦   +---Classes
         ¦   ¦       AbstractException.php
+        ¦   ¦       CacheException.php
         ¦   ¦       ControllerException.php
         ¦   ¦       DBException.php
         ¦   ¦       DIException.php
@@ -1492,6 +1528,7 @@ C:.
         +---HttpLibrary
         ¦   +---Classes
         ¦   ¦       FlashMessageService.php
+        ¦   ¦       Pipeline.php
         ¦   ¦       RedirectResponse.php
         ¦   ¦       Request.php
         ¦   ¦       Response.php
@@ -1499,12 +1536,12 @@ C:.
         ¦   ¦       
         ¦   +---Enums
         ¦   +---Interfaces
+        ¦   ¦       IMiddleware.php
+        ¦   ¦       
         ¦   +---Traits
         +---LocaleLibrary
         ¦   +---Classes
-        ¦   ¦       JsonFileLoader.php
         ¦   ¦       Translator.php
-        ¦   ¦       XmlFileLoader.php
         ¦   ¦       
         ¦   +---Enums
         ¦   +---Interfaces
@@ -1524,7 +1561,11 @@ C:.
         ¦   +---Traits
         +---ViewLibrary
             +---Classes
+            ¦       ComponentService.php
+            ¦       Escaper.php
+            ¦       HelpersRegistry.php
             ¦       View.php
+            ¦       ViewComponent.php
             ¦       
             +---Enums
             +---Interfaces
