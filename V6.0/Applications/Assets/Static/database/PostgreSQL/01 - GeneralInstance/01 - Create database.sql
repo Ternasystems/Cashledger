@@ -30,10 +30,13 @@ CREATE DATABASE "Cashledger"
  * CTY cl_Countries
  * LNG cl_Languages
  * LGR cl_LanguageRelations
+ * RFT cl_ReferenceTables
+ * RFR cl_ReferenceRelations
 
  Billing app
  Booking app
  Control app
+ Corporation app
  Dashboarding app
  Emailing app
  Forecasting app
@@ -71,10 +74,14 @@ CREATE DATABASE "Cashledger"
  * WSR cl_WasteRelations
  
  Invoicing app
+ Maintenance app
  Meeting app
  Messaging app
  Partnership app
+ 
  Payments app
+ * PYM cl_PaymentMethods
+ 
  Payroll app
 
  Profiling app
@@ -103,7 +110,15 @@ CREATE DATABASE "Cashledger"
  Purchase app
  Reporting app
  Tasks app
+ 
  Teller app
+ * TEL cl_Tellers
+ * TLT cl_TellerTransfers
+ * TPM cl_TellerPayments
+ * TRT cl_TellerReceipts
+ * TSS cl_TellerSessions
+ * TTN cl_TellerTransactions
+ 
  Wholesale app
 
  Summary
@@ -151,23 +166,34 @@ CREATE DATABASE "Cashledger"
  
  * PRR cl_Role_*
  * PRT cl_Products
+ * PYM cl_PaymentMethods
+ * RFR cl_ReferenceRelations
+ * RFT cl_ReferenceTables
+ 
  * ROL cl_Roles
  * ROR cl_RoleRelations
  * RTN cl_ReturnNotes
- 
  * RTR cl_ReturnRelations
  * SKR cl_StockRelations
+ 
  * STK cl_Stocks
  * STR cl_StatusRelations
  * STS cl_Status
- 
  * SUP cl_Suppliers
+ * TEL cl_Tellers
+
+ * TLT cl_TellerTransfers
+ * TPM cl_TellerPayments
  * TRK cl_Trackings
  * TRN cl_TransferNotes
  * TRR cl_TransferRelations
- * TTL cl_Titles
  
+ * TRT cl_TellerReceipts
+ * TSS cl_TellerSessions
+ * TTL cl_Titles
+ * TTN cl_TellerTransactions
  * TTR cl_TitleRelations
+ 
  * UNT cl_Units
  * WRH cl_Warehouses
  * WSN cl_WasteNotes

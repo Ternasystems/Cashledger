@@ -2,7 +2,7 @@
 
 namespace API_ProfilingEntities_Model;
 
-use API_Assets\Classes\DTOException;
+use API_Assets\Classes\EntityException;
 use API_DTOEntities_Model\Entity;
 use API_RelationRepositories_Collection\CivilityRelations;
 
@@ -25,13 +25,13 @@ class Civility extends Entity
     }
 
     /**
-     * @throws DTOException
+     * @throws EntityException
      */
     public function it(): \API_ProfilingRepositories_Model\Civility
     {
         $entity = parent::it();
         if (!$entity instanceof \API_ProfilingRepositories_Model\Civility) {
-            throw new DTOException('invalid_entity_name', [':name' => \API_ProfilingRepositories_Model\Civility::class]);
+            throw new EntityException('invalid_entity_name', [':name' => \API_ProfilingRepositories_Model\Civility::class]);
         }
 
         return $entity;

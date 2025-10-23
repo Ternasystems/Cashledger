@@ -2,12 +2,10 @@
 
 namespace API_DTORepositories;
 
-use API_Assets\Classes\DTOException;
 use API_DTORepositories_Collection\Collectable;
 use API_DTORepositories_Contract\IContext;
 use API_DTORepositories_Contract\IRepository;
 use API_DTORepositories_Model\DTOBase;
-use Exception;
 use ReflectionClass;
 use ReflectionException;
 use TS_Database\Enums\OrderByDirection;
@@ -24,7 +22,7 @@ use TS_Domain\Interfaces\ISpecification;
  */
 abstract class Repository implements IRepository
 {
-    protected IContext $context;
+    public readonly IContext $context;
 
     /**
      * The fully qualified class name of the DTO model (e.g., "API\Supporting\DTOEntities\Models\App").

@@ -1,10 +1,11 @@
 /* Profiling app */
 
-/* Civilities */
+/* Titles, TitleRelations, Statuses, StatusRelations, Genders, GenderRelations, Civilities, CivilityRelations, Occupations, OccupationRelations */
 
 -- Table: public.cl_Titles
 
-CREATE TABLE IF NOT EXISTS public."cl_Titles"
+DROP TABLE IF EXISTS public."cl_Titles";
+CREATE TABLE public."cl_Titles"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -91,7 +92,8 @@ CREATE OR REPLACE TRIGGER "Update_Title"
 
 -- Table: public.cl_TitleRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_TitleRelations"
+DROP TABLE IF EXISTS public."cl_TitleRelations";
+CREATE TABLE public."cl_TitleRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"TitleID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Titles" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -159,7 +161,8 @@ CREATE OR REPLACE TRIGGER "Remove_TitleRelation"
 	
 -- Table: public.cl_Statuses
 
-CREATE TABLE IF NOT EXISTS public."cl_Statuses"
+DROP TABLE IF EXISTS public."cl_Statuses";
+CREATE TABLE public."cl_Statuses"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -246,7 +249,8 @@ CREATE OR REPLACE TRIGGER "Update_Status"
 
 -- Table: public.cl_StatusRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_StatusRelations"
+DROP TABLE IF EXISTS public."cl_StatusRelations";
+CREATE TABLE public."cl_StatusRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StatusID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Statuses" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -314,9 +318,8 @@ CREATE OR REPLACE TRIGGER "Remove_StatusRelation"
 
 -- Table: public.cl_Genders
 
--- DROP TABLE IF EXISTS public."cl_Genders";
-
-CREATE TABLE IF NOT EXISTS public."cl_Genders"
+DROP TABLE IF EXISTS public."cl_Genders";
+CREATE TABLE public."cl_Genders"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -403,7 +406,8 @@ CREATE OR REPLACE TRIGGER "Update_Gender"
 
 -- Table: public.cl_GenderRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_GenderRelations"
+DROP TABLE IF EXISTS public."GenderRelations";
+CREATE TABLE public."cl_GenderRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"GenderID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Genders" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -471,7 +475,8 @@ CREATE OR REPLACE TRIGGER "Remove_GenderRelation"
 
 -- Table: public.cl_Civilities
 
-CREATE TABLE IF NOT EXISTS public."cl_Civilities"
+DROP TABLE IF EXISTS public."cl_Civilities";
+CREATE TABLE public."cl_Civilities"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "Code" integer NOT NULL,
@@ -560,7 +565,8 @@ CREATE OR REPLACE TRIGGER "Update_Civility"
 
 -- Table: public.cl_CivilityRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_CivilityRelations"
+DROP TABLE IF EXISTS public."cl_CivilityRelations";
+CREATE TABLE public."cl_CivilityRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"CivilityID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Civilities" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -628,7 +634,8 @@ CREATE OR REPLACE TRIGGER "Remove_CivilityRelation"
 
 -- Table: public.cl_Occupations
 
-CREATE TABLE IF NOT EXISTS public."cl_Occupations"
+DROP TABLE IF EXISTS public."cl_Occupations"
+CREATE TABLE public."cl_Occupations"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -715,7 +722,8 @@ CREATE OR REPLACE TRIGGER "Update_Occupation"
 
 -- Table: public.cl_OccupationRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_OccupationRelations"
+DROP TABLE IF EXISTS public."cl_OccupationRelations";
+CREATE TABLE public."cl_OccupationRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"OccupationID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Occupations" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -780,3 +788,11 @@ CREATE OR REPLACE TRIGGER "Remove_OccupationRelation"
     ON public."cl_OccupationRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_Civilities');
+CALL public."p_InsertReferenceTable"('cl_Genders');
+CALL public."p_InsertReferenceTable"('cl_Statuses');
+CALL public."p_InsertReferenceTable"('cl_Occupations');
+CALL public."p_InsertReferenceTable"('cl_Titles');

@@ -4,7 +4,8 @@
 
 -- Table: public.cl_Languages
 
-CREATE TABLE IF NOT EXISTS public."cl_Languages"
+DROP TABLE IF EXISTS public."cl_Languages";
+CREATE TABLE public."cl_Languages"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
@@ -89,13 +90,154 @@ CREATE OR REPLACE TRIGGER "Update_Language"
 	FOR EACH ROW
 	EXECUTE FUNCTION public."t_UpdateTrigger"();
 
+-- Table: public.ReferenceTables
+
+DROP TABLE IF EXISTS public."cl_ReferenceTables";
+CREATE TABLE public."cl_ReferenceTables"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" NOT NULL PRIMARY KEY,
+	"TableName" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertReferenceTable(character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertReferenceTable"(
+	IN _name character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReferenceTables'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, NULL, %L);', _tablename, _id, _name, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'RFT');
+END;
+$BODY$;
+
+-- Trigger: Delete_ReferenceTable
+
+CREATE OR REPLACE TRIGGER "Delete_ReferenceTable"
+    BEFORE DELETE OR UPDATE
+    ON public."cl_ReferenceTables"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_ReferenceTable
+
+CREATE OR REPLACE TRIGGER "Insert_ReferenceTable"
+    BEFORE INSERT 
+    ON public."cl_ReferenceTables"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- Table: public.ReferenceRelations
+
+DROP TABLE IF EXISTS public."cl_ReferenceRelations";
+CREATE TABLE public."cl_ReferenceRelations"
+(
+	"ID" character varying(50) COLLATE pg_catalog."default" NOT NULL PRIMARY KEY,
+	"ReferenceID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_ReferenceTables" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"AppID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Apps" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"IsActive" timestamp without time zone,
+	"Description" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+-- PROCEDURE: public.p_InsertReferenceRelation(character varying, text)
+
+CREATE OR REPLACE PROCEDURE public."p_InsertReferenceRelation"(
+	IN _referenceid character varying(50),
+	IN _appid character varying(50),
+	IN _description text DEFAULT NULL::text)
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE _sql text; _tablename character varying(50) := 'cl_ReferenceRelations'; _id character varying(50) := '%s';
+BEGIN
+	-- Format sql
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, %L, %L, NULL, %L);', _tablename, _id, _referenceid, _appid, _description);
+	-- Execute sql
+	CALL public."p_Query"(_sql, _tablename, 'RFR');
+END;
+$BODY$;
+
+-- Trigger: Delete_ReferenceRelation
+
+CREATE OR REPLACE TRIGGER "Delete_ReferenceRelation"
+    BEFORE DELETE OR UPDATE
+    ON public."cl_ReferenceRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_DeleteTrigger"();
+
+-- Trigger: Insert_ReferenceRelation
+
+CREATE OR REPLACE TRIGGER "Insert_ReferenceRelation"
+    BEFORE INSERT 
+    ON public."cl_ReferenceRelations"
+    FOR EACH ROW
+    EXECUTE FUNCTION public."t_InsertTrigger"();
+
+-- FUNCTION: public.t_CheckReference(character varying)
+
+CREATE OR REPLACE FUNCTION public."f_CheckReference"(
+    _id character varying(50),
+    _app_id character varying(50) DEFAULT NULL
+)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    _table_name VARCHAR(50);
+    _sql TEXT;
+    _exists BOOLEAN;
+BEGIN
+    -- Loop through reference tables, optionally filtered by application
+    FOR _table_name IN 
+        SELECT DISTINCT rt."TableName" 
+        FROM public."cl_ReferenceTables" rt
+        WHERE rt."IsActive" IS NOT NULL
+          AND (
+              _app_id IS NULL 
+              OR EXISTS (
+                  SELECT 1 
+                  FROM public."cl_ReferenceRelations" rr
+                  WHERE rr."ReferenceID" = rt."ID"
+                    AND rr."AppID" = _app_id
+                    AND rr."IsActive" IS NOT NULL
+              )
+          )
+        ORDER BY rt."TableName"
+    LOOP
+        -- Build dynamic query
+        _sql := FORMAT('SELECT EXISTS(SELECT 1 FROM public.%I WHERE "ID" = $1)', _table_name);
+        
+        -- Execute and check if ID exists
+        EXECUTE _sql INTO _exists USING _id;
+        
+        IF _exists THEN
+            RETURN TRUE;
+        END IF;
+    END LOOP;
+    
+    RETURN FALSE;
+END;
+$BODY$;
+
 -- Table: public.LanguageRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_LanguageRelations"
+DROP TABLE IF EXISTS public."cl_LanguageRelations";
+CREATE TABLE public."cl_LanguageRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" NOT NULL PRIMARY KEY,
 	"LangID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Languages" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
-	"ReferenceID" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+	"ReferenceID" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK (public."f_CheckReference"("ReferenceID")),
 	"Label" text COLLATE pg_catalog."default" NOT NULL,
 	"IsActive" timestamp without time zone,
 	"Description" text COLLATE pg_catalog."default",
@@ -185,3 +327,7 @@ CALL public."p_InsertLanguage"('GB', 'English (GB)');
 CALL public."p_InsertLanguage"('FR', 'Français');
 CALL public."p_InsertLanguage"('ES', 'Español');
 CALL public."p_InsertLanguage"('AR', 'عربي');
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_Languages');

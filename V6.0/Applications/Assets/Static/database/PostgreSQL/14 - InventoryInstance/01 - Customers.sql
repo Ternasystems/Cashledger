@@ -1,6 +1,6 @@
 /* Inventory app */
 
-/* Customers */
+/* Customers, Suppliers */
 
 -- Table: public.cl_Customers
 

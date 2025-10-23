@@ -66,7 +66,8 @@ $BODY$;
 
 -- Table: public.cl_ParameterRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_ParameterRelations"
+DROP TABLE IF EXISTS public."cl_ParameterRelations";
+CREATE TABLE public."cl_ParameterRelations"
 (
 	"ID" serial PRIMARY KEY,
 	"ParamID" integer,

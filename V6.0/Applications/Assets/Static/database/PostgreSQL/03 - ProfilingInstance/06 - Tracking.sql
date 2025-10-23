@@ -4,7 +4,8 @@
 
 -- Table: public.cl_Trackings
 
-CREATE TABLE IF NOT EXISTS public."cl_Trackings"
+DROP TABLE IF EXISTS public."cl_Tracings";
+CREATE TABLE public."cl_Trackings"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "CredentialID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Credentials" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,

@@ -2,7 +2,7 @@
 
 namespace API_DTOEntities_Model;
 
-use API_Assets\Classes\DTOException;
+use API_Assets\Classes\EntityException;
 
 class Language extends Entity
 {
@@ -18,13 +18,13 @@ class Language extends Entity
     }
 
     /**
-     * @throws DTOException
+     * @throws EntityException
      */
     public function it(): \API_DTORepositories_Model\Language
     {
         $entity = parent::it();
         if (!$entity instanceof \API_DTORepositories_Model\Language) {
-            throw new DTOException('invalid_entity_name', [':name' => \API_DTORepositories_Model\Language::class]);
+            throw new EntityException('invalid_entity_name', [':name' => \API_DTORepositories_Model\Language::class]);
         }
 
         return $entity;

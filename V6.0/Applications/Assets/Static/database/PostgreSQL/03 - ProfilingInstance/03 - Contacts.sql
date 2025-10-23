@@ -1,10 +1,11 @@
 /* Profiling app */
 
-/* Contacts */
+/* ContactTypes, Contacts, ContactRelations */
 
 -- Table: public.cl_ContactTypes
 
-CREATE TABLE IF NOT EXISTS public."cl_ContactTypes"
+DROP TABLE IF EXISTS public."cl_ContactTypes";
+CREATE TABLE public."cl_ContactTypes"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -91,7 +92,8 @@ CREATE OR REPLACE TRIGGER "Update_ContactType"
 
 -- Table: public.cl_Contacts
 
-CREATE TABLE IF NOT EXISTS public."cl_Contacts"
+DROP TABLE IF EXISTS public."cl_Contacts";
+CREATE TABLE public."cl_Contacts"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "ContactTypeID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_ContactTypes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -202,7 +204,8 @@ CREATE OR REPLACE TRIGGER "Update_Contact"
 
 -- Table: public.cl_ContactRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_ContactRelations"
+DROP TABLE IF EXISTS public."cl_ContactRelations";
+CREATE TABLE public."cl_ContactRelations"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"LangID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Languages" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -278,3 +281,9 @@ CREATE OR REPLACE TRIGGER "Remove_ContactRelation"
     ON public."cl_ContactRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_ContactTypes');
+CALL public."p_InsertReferenceTable"('cl_Contacts');
+CALL public."p_InsertReferenceTable"('cl_ContactRelations');

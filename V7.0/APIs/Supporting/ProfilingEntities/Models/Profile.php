@@ -2,7 +2,7 @@
 
 namespace API_ProfilingEntities_Model;
 
-use API_Assets\Classes\DTOException;
+use API_Assets\Classes\EntityException;
 use API_DTOEntities_Model\City;
 use API_DTOEntities_Model\Country;
 use API_DTOEntities_Model\Entity;
@@ -36,13 +36,13 @@ class Profile extends Entity
     }
 
     /**
-     * @throws DTOException
+     * @throws EntityException
      */
     public function it(): \API_ProfilingRepositories_Model\Profile
     {
         $entity = parent::it();
         if (!$entity instanceof \API_ProfilingRepositories_Model\Profile) {
-            throw new DTOException('invalid_entity_name', [':name' => \API_ProfilingRepositories_Model\Profile::class]);
+            throw new EntityException('invalid_entity_name', [':name' => \API_ProfilingRepositories_Model\Profile::class]);
         }
 
         return $entity;

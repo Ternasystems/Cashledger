@@ -1,0 +1,14 @@
+{
+  "en-US": {
+    "invalid_entity_name": "The provided entity name is not valid in this context: :name"
+  },
+  "fr-FR": {
+    "invalid_entity_name": "Le nom d'entité fourni n'est pas valide dans ce contexte : :name"
+  },
+  "es-ES": {
+    "invalid_entity_name": "El nombre de entidad proporcionado no es válido en este contexto: :name"
+  },
+  "ar-SA": {
+    "invalid_entity_name": "اسم الكيان المقدم غير صالح في هذا السياق: :name"
+  }
+}

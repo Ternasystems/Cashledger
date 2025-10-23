@@ -4,7 +4,8 @@
 
 -- Table: public.cl_Credentials
 
-CREATE TABLE IF NOT EXISTS public."cl_Credentials"
+DROP TABLE IF EXISTS public."cl_Credentials";
+CREATE TABLE public."cl_Credentials"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "ProfileID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Profiles" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -33,7 +34,6 @@ CREATE OR REPLACE FUNCTION public."t_LogCredential"()
 	COST 100
 	VOLATILE NOT LEAKPROOF
 AS $BODY$
-DECLARE _threads integer;
 BEGIN
 	IF TG_OP = 'INSERT' THEN
 		CALL public."p_InsertAudit"(TG_OP::character varying(50), TG_TABLE_NAME::character varying(50), NEW."ID"::character varying(50), row_to_json(NEW)::jsonb);		
@@ -440,3 +440,7 @@ CREATE OR REPLACE TRIGGER "Update_Credential"
     ON public."cl_Credentials"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_Credentials');

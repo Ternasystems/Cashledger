@@ -1,10 +1,11 @@
 /* Inventory app */
 
-/* Stocks */
+/* Stocks, StockRelations */
 
 -- Table: public.cl_Stocks
 
-CREATE TABLE IF NOT EXISTS public."cl_Stocks"
+DROP TABLE IF EXISTS public."cl_Stocks";
+CREATE TABLE public."cl_Stocks"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"ProductID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Products" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -125,7 +126,8 @@ CREATE OR REPLACE TRIGGER "Update_Stock"
 
 -- Table: public.cl_StockRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_StockRelations"
+DROP TABLE IF EXISTS public."cl_StockRelations";
+CREATE TABLE public."cl_StockRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"AttributeID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_ProductAttributes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,

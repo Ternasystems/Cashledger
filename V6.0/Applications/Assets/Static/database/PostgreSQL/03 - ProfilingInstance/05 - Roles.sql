@@ -1,10 +1,11 @@
 /* Profiling app */
 
-/* Roles */
+/* Permissions, Roles, RoleRelations */
 
 -- Table: public.cl_Permissions
 
-CREATE TABLE IF NOT EXISTS public."cl_Permissions"
+DROP TABLE IF EXISTS public."cl_Permissions";
+CREATE TABLE public."cl_Permissions"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" character(1) COLLATE pg_catalog."default" UNIQUE NOT NULL,
@@ -90,7 +91,8 @@ CREATE OR REPLACE TRIGGER "Update_Permission"
 
 -- Table: public.cl_Roles
 
-CREATE TABLE IF NOT EXISTS public."cl_Roles"
+DROP TABLE IF EXISTS public."cl_Roles";
+CREATE TABLE public."cl_Roles"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -330,7 +332,8 @@ CREATE OR REPLACE TRIGGER "Update_Role"
 
 -- Table: public.cl_RoleRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_RoleRelations"
+DROP TABLE IF EXISTS public."cl_RoleRelations";
+CREATE TABLE public."cl_RoleRelations"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "CredentialID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Credentials" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -395,3 +398,9 @@ CREATE OR REPLACE TRIGGER "Remove_RoleRelation"
     ON public."cl_RoleRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_Permissions');
+CALL public."p_InsertReferenceTable"('cl_Roles');
+CALL public."p_InsertReferenceTable"('cl_RoleRelations');

@@ -4,7 +4,8 @@
 
 -- Table: public.cl_Profiles
 
-CREATE TABLE IF NOT EXISTS public."cl_Profiles"
+DROP TABLE IF EXISTS public."cl_Profiles";
+CREATE TABLE public."cl_Profiles"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "FirstName" character varying(50) COLLATE pg_catalog."default",
@@ -122,3 +123,7 @@ CREATE OR REPLACE TRIGGER "Update_Profile"
     ON public."cl_Profiles"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_Profiles');

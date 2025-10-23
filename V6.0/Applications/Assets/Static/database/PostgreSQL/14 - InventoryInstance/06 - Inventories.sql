@@ -1,10 +1,11 @@
 /* Inventory app */
 
-/* Inventories */
+/* Inventories, Inventoryrelations */
 
 -- Table: public.cl_Inventories
 
-CREATE TABLE IF NOT EXISTS public."cl_Inventories"
+DROP TABLE IF EXISTS public."cl_Inventories";
+CREATE TABLE public."cl_Inventories"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"NoteID" character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -102,7 +103,8 @@ CREATE OR REPLACE TRIGGER "Update_Inventory"
 
 -- Table: public.cl_InventoryRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_InventoryRelations"
+DROP TABLE IF EXISTS public."cl_InventoryRelations";
+CREATE TABLE public."cl_InventoryRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"InventID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Inventories" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,

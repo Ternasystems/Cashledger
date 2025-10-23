@@ -4,7 +4,8 @@
 
 -- Table: public.cl_Continents
 
-CREATE TABLE IF NOT EXISTS public."cl_Continents"
+DROP TABLE IF EXISTS public."cl_Countries";
+CREATE TABLE public."cl_Continents"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -91,7 +92,8 @@ CREATE OR REPLACE TRIGGER "Update_Continent"
 
 -- Table: public.cl_Countries
 
-CREATE TABLE IF NOT EXISTS public."cl_Countries"
+DROP TABLE IF EXISTS public."cl_Countries";
+CREATE TABLE public."cl_Countries"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer NOT NULL,
@@ -191,7 +193,8 @@ CREATE OR REPLACE TRIGGER "Update_Country"
 
 -- Table: public.cl_Cities
 
-CREATE TABLE IF NOT EXISTS public."cl_Cities"
+DROP TABLE IF EXISTS public."cl_Cities";
+CREATE TABLE public."cl_Cities"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
@@ -278,3 +281,9 @@ CREATE OR REPLACE TRIGGER "Update_City"
 	ON public."cl_Cities"
 	FOR EACH ROW
 	EXECUTE FUNCTION public."t_UpdateTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_Continents');
+CALL public."p_InsertReferenceTable"('cl_Countries');
+CALL public."p_InsertReferenceTable"('cl_Cities');

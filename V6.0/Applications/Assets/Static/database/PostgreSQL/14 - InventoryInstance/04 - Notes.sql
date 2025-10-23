@@ -2,9 +2,12 @@
 
 /* Notes (1) */
 
+/* DeliveryNotes, DeliveryRelations, DispatchNotes, DispatchRelations, ReturnNotes, ReturnRelations, WasteNotes, WasteRelations */
+
 -- Table: public.cl_DeliveryNotes
 
-CREATE TABLE IF NOT EXISTS public."cl_DeliveryNotes"
+DROP TABLE IF EXISTS public."cl_DeliveryNotes";
+CREATE TABLE public."cl_DeliveryNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"DeliveryNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
@@ -96,7 +99,8 @@ CREATE OR REPLACE TRIGGER "Update_DeliveryNote"
 
 -- Table: public.cl_DeliveryRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_DeliveryRelations"
+DROP TABLE IF EXISTS public."cl_DeliveryRelations";
+CREATE TABLE public."cl_DeliveryRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -164,7 +168,8 @@ CREATE OR REPLACE TRIGGER "Remove_DeliveryRelation"
 
 -- Table: public.cl_DispatchNotes
 
-CREATE TABLE IF NOT EXISTS public."cl_DispatchNotes"
+DROP TABLE IF EXISTS public."cl_DispatchNotes";
+CREATE TABLE public."cl_DispatchNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"DispatchNumber" character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -256,7 +261,8 @@ CREATE OR REPLACE TRIGGER "Update_DispatchNote"
 
 -- Table: public.cl_DispatchRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_DispatchRelations"
+DROP TABLE IF EXISTS public."cl_DispatchRelations";
+CREATE TABLE public."cl_DispatchRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -324,7 +330,8 @@ CREATE OR REPLACE TRIGGER "Remove_DispatchRelation"
 
 -- Table: public.cl_ReturnNotes
 
-CREATE TABLE IF NOT EXISTS public."cl_ReturnNotes"
+DROP TABLE IF EXISTS public."cl_ReturnNotes";
+CREATE TABLE public."cl_ReturnNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"ReturnNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
@@ -416,7 +423,8 @@ CREATE OR REPLACE TRIGGER "Update_ReturnNote"
 
 -- Table: public.cl_ReturnRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_ReturnRelations"
+DROP TABLE IF EXISTS public."cl_ReturnRelations";
+CREATE TABLE public."cl_ReturnRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -484,7 +492,8 @@ CREATE OR REPLACE TRIGGER "Remove_ReturnRelation"
 
 -- Table: public.cl_WasteNotes
 
-CREATE TABLE IF NOT EXISTS public."cl_WasteNotes"
+DROP TABLE IF EXISTS public."cl_WasteNotes";
+CREATE TABLE public."cl_WasteNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"WasteNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
@@ -576,7 +585,8 @@ CREATE OR REPLACE TRIGGER "Update_WasteNote"
 
 -- Table: public.cl_WasteRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_WasteRelations"
+DROP TABLE IF EXISTS public."cl_WasteRelations";
+CREATE TABLE public."cl_WasteRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,

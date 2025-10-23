@@ -4,7 +4,8 @@
 
 -- Table: public.cl_AppCategories
 
-CREATE TABLE IF NOT EXISTS public."cl_AppCategories"
+DROP TABLE IF EXISTS public."cl_AppCategories";
+CREATE TABLE public."cl_AppCategories"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -91,7 +92,8 @@ CREATE OR REPLACE TRIGGER "Update_AppCategory"
 
 -- Table: public.cl_Apps
 
-CREATE TABLE IF NOT EXISTS public."cl_Apps"
+DROP TABLE IF EXISTS public."cl_Apps";
+CREATE TABLE public."cl_Apps"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -178,7 +180,8 @@ CREATE OR REPLACE TRIGGER "Update_App"
 
 -- Table: public.cl_AppRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_AppRelations"
+DROP TABLE IF EXISTS public."cl_AppRelations";
+CREATE TABLE public."cl_AppRelations"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "AppID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Apps" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -243,3 +246,8 @@ CREATE OR REPLACE TRIGGER "Remove_AppRelation"
 	ON public."cl_AppRelations"
 	FOR EACH ROW
 	EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_AppCategories');
+CALL public."p_InsertReferenceTable"('cl_Apps');

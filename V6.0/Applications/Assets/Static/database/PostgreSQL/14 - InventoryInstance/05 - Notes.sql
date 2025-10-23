@@ -2,9 +2,12 @@
 
 /* Notes (2) */
 
+/* InventNotes, InventRelations, TransferNotes, TransferRelations */
+
 -- Table: public.cl_InventNotes
 
-CREATE TABLE IF NOT EXISTS public."cl_InventNotes"
+DROP TABLE IF EXISTS public."cl_InventNotes";
+CREATE TABLE public."cl_InventNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"InventNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
@@ -96,7 +99,8 @@ CREATE OR REPLACE TRIGGER "Update_InventNote"
 
 -- Table: public.cl_InventRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_InventRelations"
+DROP TABLE IF EXISTS public."cl_InventRelations";
+CREATE TABLE public."cl_InventRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -164,7 +168,8 @@ CREATE OR REPLACE TRIGGER "Remove_InventRelation"
 
 -- Table: public.cl_TransferNotes
 
-CREATE TABLE IF NOT EXISTS public."cl_TransferNotes"
+DROP TABLE IF EXISTS public."cl_TransferNotes";
+CREATE TABLE public."cl_TransferNotes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"TransferNumber" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
@@ -256,7 +261,8 @@ CREATE OR REPLACE TRIGGER "Update_TransferNote"
 
 -- Table: public.cl_TransferRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_TransferRelations"
+DROP TABLE IF EXISTS public."cl_TransferRelations";
+CREATE TABLE public."cl_TransferRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"StockID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Stocks" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,

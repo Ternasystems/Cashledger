@@ -1,10 +1,11 @@
 /* Inventory app */
 
-/* Products */
+/* ProductCategories, Warehouses, Manufacturers, Units, Packagings, Products, ProductAttributes, AttributeRelations */
 
 -- Table: public.cl_ProductCategories
 
-CREATE TABLE IF NOT EXISTS public."cl_ProductCategories"
+DROP TABLE IF EXISTS public."cl_ProductCategories";
+CREATE TABLE public."cl_ProductCategories"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
@@ -91,7 +92,8 @@ CREATE OR REPLACE TRIGGER "Update_ProductCategory"
 
 -- Table: public.cl_Warehouses
 
-CREATE TABLE IF NOT EXISTS public."cl_Warehouses"
+DROP TABLE IF EXISTS public."cl_Warehouses";
+CREATE TABLE public."cl_Warehouses"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
@@ -181,7 +183,8 @@ CREATE OR REPLACE TRIGGER "Update_Warehouse"
 
 -- Table: public.cl_Manufacturers
 
-CREATE TABLE IF NOT EXISTS public."cl_Manufacturers"
+DROP TABLE IF EXISTS public."cl_Manufacturers";
+CREATE TABLE public."cl_Manufacturers"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -268,7 +271,8 @@ CREATE OR REPLACE TRIGGER "Update_Manufacturer"
 
 -- Table: public.cl_Units
 
-CREATE TABLE IF NOT EXISTS public."cl_Units"
+DROP TABLE IF EXISTS public."Units";
+CREATE TABLE public."cl_Units"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -358,7 +362,8 @@ CREATE OR REPLACE TRIGGER "Update_Unit"
 
 -- table: public.cl_Packagings
 
-CREATE TABLE IF NOT EXISTS public."cl_Packagings"
+DROP TABLE IF EXISTS public."cl_Packagings";
+CREATE TABLE public."cl_Packagings"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
@@ -445,7 +450,8 @@ CREATE OR REPLACE TRIGGER "Update_Packaging"
 
 -- Table: public.cl_Products
 
-CREATE TABLE IF NOT EXISTS public."cl_Products"
+DROP TABLE IF EXISTS public."cl_Products";
+CREATE TABLE public."cl_Products"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
@@ -544,7 +550,8 @@ CREATE OR REPLACE TRIGGER "Update_Product"
 
 -- Table: public.cl_ProductAttributes
 
-CREATE TABLE IF NOT EXISTS public."cl_ProductAttributes"
+DROP TABLE IF EXISTS public."cl_ProductAttributes";
+CREATE TABLE public."cl_ProductAttributes"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"Code" integer UNIQUE NOT NULL,
@@ -641,7 +648,8 @@ CREATE OR REPLACE TRIGGER "Update_ProductAttribute"
 
 -- Table: public.cl_AttributeRelations
 
-CREATE TABLE IF NOT EXISTS public."cl_AttributeRelations"
+DROP TABLE IF EXISTS public."AttributeRelations";
+CREATE TABLE public."cl_AttributeRelations"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
 	"AttributeID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_ProductAttributes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -747,3 +755,13 @@ CREATE OR REPLACE TRIGGER "Remove_AttributeRelation"
 	ON public."cl_AttributeRelations"
 	FOR EACH ROW
 	EXECUTE FUNCTION public."t_RemoveTrigger"();
+
+-- Insert References
+
+CALL public."p_InsertReferenceTable"('cl_ProductCategories');
+CALL public."p_InsertReferenceTable"('cl_Warehouses');
+CALL public."p_InsertReferenceTable"('cl_Manufacturers');
+CALL public."p_InsertReferenceTable"('cl_Units');
+CALL public."p_InsertReferenceTable"('cl_Packagings');
+CALL public."p_InsertReferenceTable"('cl_Products');
+CALL public."p_InsertReferenceTable"('cl_ProductAttributes');

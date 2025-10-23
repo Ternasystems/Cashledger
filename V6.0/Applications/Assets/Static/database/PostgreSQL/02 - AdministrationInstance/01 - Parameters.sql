@@ -79,7 +79,8 @@ $BODY$;
 
 -- Table: public.cl_Parameters
 
-CREATE TABLE IF NOT EXISTS public."cl_Parameters"
+DROP TABLE IF EXISTS public."cl_Parameters";
+CREATE TABLE public."cl_Parameters"
 (
     "ID" serial PRIMARY KEY,
     "ParamName" bytea UNIQUE NOT NULL,

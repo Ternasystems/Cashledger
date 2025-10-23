@@ -4,7 +4,8 @@
 
 -- Table: public.cl_Audits
 
-CREATE TABLE IF NOT EXISTS public."cl_Audits"
+DROP TABLE IF EXISTS public."cl_Audits";
+CREATE TABLE public."cl_Audits"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Action" character varying(50) COLLATE pg_catalog."default" NOT NULL,
