@@ -398,9 +398,3 @@ CREATE OR REPLACE TRIGGER "Remove_RoleRelation"
     ON public."cl_RoleRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
-
--- Insert References
-
-CALL public."p_InsertReferenceTable"('cl_Permissions');
-CALL public."p_InsertReferenceTable"('cl_Roles');
-CALL public."p_InsertReferenceTable"('cl_RoleRelations');

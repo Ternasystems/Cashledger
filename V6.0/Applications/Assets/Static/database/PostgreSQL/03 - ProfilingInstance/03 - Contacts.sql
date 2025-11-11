@@ -281,9 +281,3 @@ CREATE OR REPLACE TRIGGER "Remove_ContactRelation"
     ON public."cl_ContactRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
-
--- Insert References
-
-CALL public."p_InsertReferenceTable"('cl_ContactTypes');
-CALL public."p_InsertReferenceTable"('cl_Contacts');
-CALL public."p_InsertReferenceTable"('cl_ContactRelations');

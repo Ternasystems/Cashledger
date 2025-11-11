@@ -788,11 +788,3 @@ CREATE OR REPLACE TRIGGER "Remove_OccupationRelation"
     ON public."cl_OccupationRelations"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_RemoveTrigger"();
-
--- Insert References
-
-CALL public."p_InsertReferenceTable"('cl_Civilities');
-CALL public."p_InsertReferenceTable"('cl_Genders');
-CALL public."p_InsertReferenceTable"('cl_Statuses');
-CALL public."p_InsertReferenceTable"('cl_Occupations');
-CALL public."p_InsertReferenceTable"('cl_Titles');

@@ -440,7 +440,3 @@ CREATE OR REPLACE TRIGGER "Update_Credential"
     ON public."cl_Credentials"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
-
--- Insert References
-
-CALL public."p_InsertReferenceTable"('cl_Credentials');

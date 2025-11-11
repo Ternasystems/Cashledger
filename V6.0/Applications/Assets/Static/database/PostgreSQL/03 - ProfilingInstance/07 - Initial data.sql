@@ -11,6 +11,42 @@ BEGIN
 
 CALL public."p_InsertApp"('Profiling');
 
+-- Insert References
+
+SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Profiling';
+--
+CALL public."p_InsertReferenceTable"('cl_Civilities');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Civilities';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_Genders');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Genders';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_Statuses');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Statuses';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_Occupations');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Occupations';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_Titles');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Titles';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_ContactTypes');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_ContactTypes';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_Permissions');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Permissions';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+--
+CALL public."p_InsertReferenceTable"('cl_Roles');
+SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Roles';
+CALL public."p_InsertReferenceRelation"(_profileid, _id);
+
 -- Insert Profiles
 
 SELECT "ID" INTO _id FROM public."cl_Countries" WHERE "ISO3" = 'CMR';
@@ -18,10 +54,6 @@ SELECT "ID" INTO _profileid FROM public."cl_Cities" WHERE "Name" = 'DLA';
 CALL public."p_InsertProfile"('Jéoline', LOCALTIMESTAMP, _id, _profileid);
 CALL public."p_InsertProfile"('Unknown', LOCALTIMESTAMP, _id, _profileid);
 CALL public."p_InsertProfile"('Administrator', LOCALTIMESTAMP, _id, _profileid);
-CALL public."p_InsertProfile"('GWET', LOCALTIMESTAMP, _id, _profileid, 'Bell Béa');
-CALL public."p_InsertProfile"('NDEDI PENDA', LOCALTIMESTAMP, _id, _profileid, 'Gaëlla');
-CALL public."p_InsertProfile"('CARLE', LOCALTIMESTAMP, _id, _profileid, 'Julia');
-CALL public."p_InsertProfile"('NJOLLE NGANGUE', LOCALTIMESTAMP, _id, _profileid, 'Nancy');
 --
 SELECT "ID" INTO _id FROM public."cl_Profiles" WHERE "LastName" = 'Unknown';
 CALL public."p_DeleteProfile"(_id);
@@ -29,8 +61,6 @@ CALL public."p_DeleteProfile"(_id);
 -- Insert titles
 
 CALL public."p_InsertTitle"('Non applicable');
-CALL public."p_InsertTitle"('Doctor');
-CALL public."p_InsertTitle"('Professor');
 
 -- Insert TitleRelations
 
@@ -38,16 +68,6 @@ SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Code" = 1;
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
 CALL public."p_InsertTitleRelation"(_id, _profileid);
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
-CALL public."p_InsertTitleRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertTitleRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
-CALL public."p_InsertTitleRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Titles" WHERE "Code" = 2;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertTitleRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
 CALL public."p_InsertTitleRelation"(_id, _profileid);
 
 -- Insert Statuses
@@ -65,14 +85,6 @@ SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoli
 CALL public."p_InsertStatusRelation"(_id, _profileid);
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
 CALL public."p_InsertStatusRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertStatusRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
-CALL public."p_InsertStatusRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertStatusRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
-CALL public."p_InsertStatusRelation"(_id, _profileid);
 
 -- Insert Genders
 
@@ -86,18 +98,6 @@ SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Code" = 1;
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
 CALL public."p_InsertGenderRelation"(_id, _profileid);
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
-CALL public."p_InsertGenderRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Code" = 2;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertGenderRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Genders" WHERE "Code" = 3;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
-CALL public."p_InsertGenderRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertGenderRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
 CALL public."p_InsertGenderRelation"(_id, _profileid);
 
 -- Insert Civilities
@@ -114,27 +114,10 @@ SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoli
 CALL public."p_InsertCivilityRelation"(_id, _profileid);
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
 CALL public."p_InsertCivilityRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Code" = 2;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertCivilityRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Civilities" WHERE "Code" = 4;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
-CALL public."p_InsertCivilityRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertCivilityRelation"(_id, _profileid);
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
-CALL public."p_InsertCivilityRelation"(_id, _profileid);
 
 -- Insert Occupations
 
 CALL public."p_InsertOccupation"('Non applicable');
-CALL public."p_InsertOccupation"('Gynecologist');
-CALL public."p_InsertOccupation"('Obstetrician');
-CALL public."p_InsertOccupation"('Nurse');
-CALL public."p_InsertOccupation"('Lab technician');
-CALL public."p_InsertOccupation"('Anesthetist');
 
 -- Insert OccupationRelations
 
@@ -142,26 +125,6 @@ SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 1;
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Jéoline';
 CALL public."p_InsertOccupationRelation"(_id, _profileid);
 SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Administrator';
-CALL public."p_InsertOccupationRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 2;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertOccupationRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 3;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertOccupationRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 6;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
-CALL public."p_InsertOccupationRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 4;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertOccupationRelation"(_id, _profileid);
---
-SELECT "ID" INTO _id FROM public."cl_Occupations" WHERE "Code" = 5;
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
 CALL public."p_InsertOccupationRelation"(_id, _profileid);
 
 -- Insert ContactTypes
@@ -185,22 +148,6 @@ SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Phone';
 CALL public."p_InsertContact"(_id, _profileid, 'Jéoline phone');
 SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Address';
 CALL public."p_InsertContact"(_id, _profileid, 'Jéoline location');
---
-SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertContact"(_id, _profileid, 'Bell Béa GWET email');
---
-SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
-CALL public."p_InsertContact"(_id, _profileid, 'Gaëlla NDEDI PENDA email');
---
-SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertContact"(_id, _profileid, 'Julia CARLE email');
---
-SELECT "ID" INTO _id FROM public."cl_ContactTypes" WHERE "Name" = 'Email';
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
-CALL public."p_InsertContact"(_id, _profileid, 'Nancy NJOLLE NGANGUE email');
 
 -- Insert ContactRelations
 
@@ -211,18 +158,6 @@ SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline phone';
 CALL public."p_InsertContactRelation"(_langid, _id, '+237675507158', 'Phone_round_black');
 SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline location';
 CALL public."p_InsertContactRelation"(_langid, _id, '264 de la Motte-Picquet Street, Bonanjo', 'Location_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Bell Béa GWET email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'bellbeagwet@cliniqueodyssee.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Gaëlla NDEDI PENDA email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'ndedipendagaella@gmail.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Julia CARLE email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'carlejulia@gmail.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Nancy NJOLLE NGANGUE email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'nancynjolle.odyssee@gmail.com', 'Email_round_black');
 
 --
 SELECT "ID" INTO _langid FROM public."cl_Languages" WHERE "Label" = 'GB';
@@ -232,18 +167,6 @@ SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline phone';
 CALL public."p_InsertContactRelation"(_langid, _id, '+237675507158', 'Phone_round_black');
 SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline location';
 CALL public."p_InsertContactRelation"(_langid, _id, '264 de la Motte-Picquet Street, Bonanjo', 'Location_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Bell Béa GWET email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'bellbeagwet@cliniqueodyssee.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Gaëlla NDEDI PENDA email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'ndedipendagaella@gmail.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Julia CARLE email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'carlejulia@gmail.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Nancy NJOLLE NGANGUE email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'nancynjolle.odyssee@gmail.com', 'Email_round_black');
 
 --
 SELECT "ID" INTO _langid FROM public."cl_Languages" WHERE "Label" = 'FR';
@@ -253,18 +176,6 @@ SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline phone';
 CALL public."p_InsertContactRelation"(_langid, _id, '+237675507158', 'Phone_round_black');
 SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Jéoline location';
 CALL public."p_InsertContactRelation"(_langid, _id, '264 rue de la Motte-Picquet, Bonanjo', 'Location_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Bell Béa GWET email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'bellbeagwet@cliniqueodyssee.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Gaëlla NDEDI PENDA email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'ndedipendagaella@gmail.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Julia CARLE email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'carlejulia.odysse@gmail.com', 'Email_round_black');
---
-SELECT "ID" INTO _id FROM public."cl_Contacts" WHERE "Name" = 'Nancy NJOLLE NGANGUE email';
-CALL public."p_InsertContactRelation"(_langid, _id, 'nancynjolle.odyssee@gmail.com', 'Email_round_black');
 
 -- Insert Credentials
 
@@ -282,26 +193,6 @@ SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'Admini
 CALL public."p_InsertCredential"(_pwd, _profileid, 'admin@cashledger.com');
 SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
 CALL public."p_UpdatePassword"(_id, _pwd, 'admin1234');
---
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'GWET';
-CALL public."p_InsertCredential"(_pwd, _profileid, 'bellbeagwet@cliniqueodyssee.com');
-SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
-CALL public."p_UpdatePassword"(_id, _pwd, 'U7JvtsKTcB');
---
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NDEDI PENDA';
-CALL public."p_InsertCredential"(_pwd, _profileid, 'ndedipendagaella@gmail.com');
-SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
-CALL public."p_UpdatePassword"(_id, _pwd, 'BnpHd8ZR5z');
---
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'CARLE';
-CALL public."p_InsertCredential"(_pwd, _profileid, 'carlejulia.odysse@gmail.com');
-SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
-CALL public."p_UpdatePassword"(_id, _pwd, 'pVAf75D4yq');
---
-SELECT "ID" INTO _profileid FROM public."cl_Profiles" WHERE "LastName" = 'NJOLLE NGANGUE';
-CALL public."p_InsertCredential"(_pwd, _profileid, 'nancynjolle.odyssee@gmail.com');
-SELECT "ID" INTO _id FROM public."cl_Credentials" WHERE "ProfileID" = _profileid;
-CALL public."p_UpdatePassword"(_id, _pwd, 'M3Q82Prj5v');
 
 -- Insert Permissions
 
@@ -323,14 +214,6 @@ SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'inf
 SELECT "ID" INTO _id FROM public."cl_Roles" WHERE "Name" = 'Administrator';
 CALL public."p_InsertRoleRelation"(_profileid, _id);
 SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'admin@cashledger.com';
-CALL public."p_InsertRoleRelation"(_profileid, _id);
-SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'bellbeagwet@cliniqueodyssee.com';
-CALL public."p_InsertRoleRelation"(_profileid, _id);
-SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'ndedipendagaella@gmail.com';
-CALL public."p_InsertRoleRelation"(_profileid, _id);
-SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'carlejulia.odysse@gmail.com';
-CALL public."p_InsertRoleRelation"(_profileid, _id);
-SELECT "ID" INTO _profileid FROM public."cl_Credentials" WHERE "UserName" = 'nancynjolle.odyssee@gmail.com';
 CALL public."p_InsertRoleRelation"(_profileid, _id);
 
 -- Insert Permissions tokens

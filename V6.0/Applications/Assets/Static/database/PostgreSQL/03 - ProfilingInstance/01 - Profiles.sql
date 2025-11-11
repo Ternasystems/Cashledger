@@ -123,7 +123,3 @@ CREATE OR REPLACE TRIGGER "Update_Profile"
     ON public."cl_Profiles"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
-
--- Insert References
-
-CALL public."p_InsertReferenceTable"('cl_Profiles');
