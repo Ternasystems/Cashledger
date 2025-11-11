@@ -13,16 +13,13 @@ use TS_Exception\Classes\DomainException;
 
 class TokenFactory extends CollectableFactory
 {
-    private PermissionRepository $permissionRepository;
     private CollectableFactory $factory;
     private Permissions $permissions;
 
     public function __construct(TokenRepository $repository, PermissionRepository $permissionRepository, LanguageRelationRepository $languageRelationRepository)
     {
         parent::__construct($repository, $languageRelationRepository);
-        $this->permissionRepository = $permissionRepository;
-
-        $this->factory = new CollectableFactory($this->permissionRepository, $languageRelationRepository);
+        $this->factory = new CollectableFactory($permissionRepository, $languageRelationRepository);
     }
 
     /**

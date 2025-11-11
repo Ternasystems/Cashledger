@@ -1,0 +1,18 @@
+{
+  "en-US": {
+    "item_not_found": "The requested item could not be found with the provided ID: :id",
+    "tax_creation_failed": "Failed to create the DTO Tax entity."
+  },
+  "fr-FR": {
+    "item_not_found": "L'élément demandé n'a pas pu être trouvée avec l'ID fourni : :id",
+    "tax_creation_failed": "Échec de la création de l'entité DTO Tax."
+  },
+  "es-ES": {
+    "item_not_found": "No se pudo encontrar el elemento solicitado con el ID proporcionado: :id",
+    "tax_creation_failed": "Error al crear la entidad DTO Tax."
+  },
+  "ar-SA": {
+    "item_not_found": "تعذر العثور على العنصر المطلوب باستخدام المعرف المقدم: :id",
+    "tax_creation_failed": "فشل في إنشاء كائن DTO Tax."
+  }
+}

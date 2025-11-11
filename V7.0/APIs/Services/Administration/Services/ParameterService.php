@@ -7,19 +7,16 @@ use API_Assets\Classes\AdministrationException;
 use API_DTOEntities_Collection\Parameters;
 use API_DTOEntities_Factory\ParameterFactory;
 use API_DTOEntities_Model\Parameter;
-use API_RelationRepositories\LanguageRelationRepository;
 use TS_Exception\Classes\DomainException;
 
 class ParameterService implements IParameterService
 {
     protected ParameterFactory $factory;
     protected Parameters $parameters;
-    protected LanguageRelationRepository $relationRepository;
 
-    function __construct(ParameterFactory $_factory, LanguageRelationRepository $_relationRepository)
+    function __construct(ParameterFactory $_factory)
     {
         $this->factory = $_factory;
-        $this->relationRepository = $_relationRepository;
     }
 
     /**

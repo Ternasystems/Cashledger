@@ -18,7 +18,6 @@ class ContactFactory extends CollectableFactory
 {
     private ContactRelationRepository $contactRelationRepository;
     private ContactRelations $contactRelations;
-    private ContactTypeRepository $contactTypeRepository;
     private CollectableFactory $factory;
     private ContactTypes $contactTypes;
 
@@ -27,9 +26,7 @@ class ContactFactory extends CollectableFactory
     {
         parent::__construct($repository, $languageRelationRepository);
         $this->contactRelationRepository = $relationRepository;
-        $this->contactTypeRepository = $contactTypeRepository;
-
-        $this->factory = new CollectableFactory($this->contactTypeRepository, $languageRelationRepository);
+        $this->factory = new CollectableFactory($contactTypeRepository, $languageRelationRepository);
     }
 
     /**

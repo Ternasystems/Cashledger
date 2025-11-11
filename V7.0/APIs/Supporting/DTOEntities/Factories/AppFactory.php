@@ -43,7 +43,7 @@ class AppFactory extends CollectableFactory
     {
         $apps = [];
         if ($this->collection)
-            $apps = $this->collection->select(fn($n) => new App($n, $this->appRelations))->toArray();
+            $apps = $this->collection->select(fn($n) => new App($n, $this->appRelations->where(fn($t) => $t->AppId == $n->Id)))->toArray();
 
         $this->collectable = new Apps($apps);
     }

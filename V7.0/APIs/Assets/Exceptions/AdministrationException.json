@@ -1,14 +1,36 @@
 {
   "en-US": {
-    "item_not_found": "The requested item could not be found with the provided ID: :id"
+    "item_not_found": "The requested item could not be found with the provided ID: :id",
+    "app_creation_failed": "Failed to create the DTO App entity.",
+    "appcategory_creation_failed": "Failed to create the DTO AppCategory entity.",
+    "continent_creation_failed": "Failed to create the DTO Continent entity.",
+    "country_creation_failed": "Failed to create the DTO Country entity.",
+    "city_creation_failed": "Failed to create the DTO City entity.",
+    "language_creation_failed": "Failed to create the DTO Language entity."
   },
   "fr-FR": {
-    "item_not_found": "L'élément demandé n'a pas pu être trouvée avec l'ID fourni : :id"
+    "item_not_found": "L'élément demandé n'a pas pu être trouvée avec l'ID fourni : :id",
+    "app_creation_failed": "Échec de la création de l'entité DTO App.",
+    "appcategory_creation_failed": "Échec de la création de l'entité DTO AppCategory.",
+    "continent_creation_failed": "Échec de la création de l'entité DTO Continent.",
+    "country_creation_failed": "Échec de la création de l'entité DTO Country.",
+    "city_creation_failed": "Échec de la création de l'entité DTO City.",
+    "language_creation_failed": "Échec de la création de l'entité DTO Language."
   },
   "es-ES": {
-    "item_not_found": "No se pudo encontrar el elemento solicitado con el ID proporcionado: :id"
+    "item_not_found": "No se pudo encontrar el elemento solicitado con el ID proporcionado: :id",
+    "app_creation_failed": "Error al crear la entidad DTO App.",
+    "appcategory_creation_failed": "Error al crear la entidad DTO AppCategory.",
+    "continent_creation_failed": "Error al crear la entidad DTO Continent.",
+    "city_creation_failed": "Error al crear la entidad DTO City.",
+    "language_creation_failed": "Error al crear la entidad DTO Language."
   },
   "ar-SA": {
-    "item_not_found": "تعذر العثور على العنصر المطلوب باستخدام المعرف المقدم: :id"
+    "item_not_found": "تعذر العثور على العنصر المطلوب باستخدام المعرف المقدم: :id",
+    "app_creation_failed": "فشل في إنشاء كائن DTO App.",
+    "appcategory_creation_failed": "فشل في إنشاء كائن DTO AppCategory.",
+    "continent_creation_failed": "فشل في إنشاء كائن DTO Continent.",
+    "city_creation_failed": "فشل في إنشاء كائن DTO City.",
+    "language_creation_failed": "فشل في إنشاء كائن DTO Language."
   }
 }

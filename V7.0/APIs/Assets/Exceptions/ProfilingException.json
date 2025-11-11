@@ -1,18 +1,44 @@
 {
   "en-US": {
     "entity_not_found": "The requested entity could not be found with the provided ID: :id",
-    "credential_creation_failed": "Failed to create the DTO Credential entity."
+    "civility_creation_failed": "Failed to create the DTO Civility entity.",
+    "contact_creation_failed": "Failed to create the DTO Contact entity.",
+    "gender_creation_failed": "Failed to create the DTO Gender entity.",
+    "occupation_creation_failed": "Failed to create the DTO Occupation entity.",
+    "title_creation_failed": "Failed to create the DTO Title entity.",
+    "status_creation_failed": "Failed to create the DTO Status entity.",
+    "credential_creation_failed": "Failed to create the DTO Credential entity.",
+    "profile_creation_failed": "Failed to create the DTO Profile entity."
   },
   "fr-FR": {
     "entity_not_found": "L'entité demandée n'a pas pu être trouvée avec l'ID fourni : :id",
-    "credential_creation_failed": "Échec de la création de l'entité DTO Credential."
+    "civility_creation_failed": "Échec de la création de l'entité DTO Civility.",
+    "contact_creation_failed": "Échec de la création de l'entité DTO Contact.",
+    "gender_creation_failed": "Échec de la création de l'entité DTO Gender.",
+    "occupation_creation_failed": "Échec de la création de l'entité DTO Occupation.",
+    "status_creation_failed": "Échec de la création de l'entité DTO Status.",
+    "credential_creation_failed": "Échec de la création de l'entité DTO Credential.",
+    "profile_creation_failed": "Échec de la création de l'entité DTO Profile."
   },
   "es-ES": {
     "entity_not_found": "No se pudo encontrar la entidad solicitada con el ID proporcionado: :id",
-    "credential_creation_failed": "Error al crear la entidad DTO Credential."
+    "civility_creation_failed": "Error al crear la entidad DTO Civility.",
+    "contact_creation_failed": "Error al crear la entidad DTO Contact.",
+    "gender_creation_failed": "Error al crear la entidad DTO Gender.",
+    "occupation_creation_failed": "Error al crear la entidad DTO Occupation.",
+    "title_creation_failed": "Error al crear la entidad DTO Title.",
+    "status_creation_failed": "Error al crear la entidad DTO Status.",
+    "credential_creation_failed": "Error al crear la entidad DTO Credential.",
+    "profile_creation_failed": "Error al crear la entidad DTO Profile."
   },
   "ar-SA": {
     "entity_not_found": "تعذر العثور على الكيان المطلوب باستخدام المعرف المقدم: :id",
-    "credential_creation_failed": "فشل في إنشاء كائن DTO Credential."
+    "civility_creation_failed": "فشل في إنشاء كائن DTO Civility.",
+    "contact_creation_failed": "فشل في إنشاء كائن DTO Contact.",
+    "occupation_creation_failed": "فشل في إنشاء كائن DTO Occupation.",
+    "title_creation_failed": "فشل في إنشاء كائن DTO Title.",
+    "status_creation_failed": "فشل في إنشاء كائن DTO Status.",
+    "credential_creation_failed": "فشل في إنشاء كائن DTO Credential.",
+    "profile_creation_failed": "فشل في إنشاء كائن DTO Profile."
   }
 }

@@ -1,0 +1,18 @@
+{
+  "en-US": {
+    "entity_not_found": "The requested entity could not be found with the provided ID: :id",
+    "employee_creation_failed": "Failed to create the DTO Employee entity."
+  },
+  "fr-FR": {
+    "entity_not_found": "L'entité demandée n'a pas pu être trouvée avec l'ID fourni : :id",
+    "employee_creation_failed": "Échec de la création de l'entité DTO Employee."
+  },
+  "es-ES": {
+    "entity_not_found": "No se pudo encontrar la entidad solicitada con el ID proporcionado: :id",
+    "employee_creation_failed": "Error al crear la entidad DTO Employee."
+  },
+  "ar-SA": {
+    "entity_not_found": "تعذر العثور على الكيان المطلوب باستخدام المعرف المقدم: :id",
+    "employee_creation_failed": "فشل في إنشاء كائن DTO Employee."
+  }
+}

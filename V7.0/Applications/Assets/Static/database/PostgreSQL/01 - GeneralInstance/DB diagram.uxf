@@ -1,0 +1,162 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>80</y><w>230</w><h>140</h></coordinates><panel_attributes>*Legend*
+--
+
+*Application*
+/f : function/
+/p : procedure/
+/t : trigger/
++ class
+- extension
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>250</y><w>230</w><h>440</h></coordinates><panel_attributes>*Administration*
+--
+
+/f : PwdGenerator/
+- pgcrypto
+/f : Activation/
+/f : ActiveUser/
+-..
+/t : InsertTrigger/
+/t :UpdateTrigger/
+/t : DeleteTrigger/
+/t : RemoveTrigger/
+-..
+/f : CreateID/
+/p : Query/
+-.
+
++ Parameters
++ ParameterRelations
+-..
++ AppCategories
++ Apps
++ AppRelations
+-..
++ Languages
++ ReferenceTables
++ ReferenceRelations
++ languageRelations
+-..
++ Continents
++ Countries
++ Cities
+-..
++ Audits
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>20</y><w>230</w><h>420</h></coordinates><panel_attributes>*Profiling*
+--
+
++ Profiles
++ Customers
++ Suppliers
++ Employees
+-..
++ Titles
++ TitleRelations
++ Statuses
++ StatusRelations
++ Genders
++ GenderRelations
++ Civilities
++ CivilityRelations
++ Occupations
++ OccupationRelations
+-..
++ ContactTypes
++ Contacts
++ ContactRelations
+-..
++ Credentials
+-..
++ Permissions
++ Roles
++ RoleRelations
++ Role_Tokens
+-..
++ Trackings</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>20</y><w>230</w><h>490</h></coordinates><panel_attributes>*Inventory*
+--
+
+/f : CheckAttribute/
+/f : CheckInventory/
+-.
+
++ Warehouses
++ Manufacturers
++ Units
++ Packagings
+-..
++ ProductCategories
++ Products
++ ProductAttributes
++ AttributeRelations
+-..
++ Stocks
++ StockRelations
+-..
++ DeliveryNotes
++ DeliveryRelations
++ DispatchNotes
++ DispatchRelations
++ ReturnNotes
++ ReturnRelations
++ WasteNotes
++ WasteRelations
+-..
++ InventNotes
++ InventRelations
++ TransferNotes
++ TransferRelations
+-..
++ Inventories
++ InventoryRelations</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>20</y><w>100</w><h>30</h></coordinates><panel_attributes>/*DB Diagram*/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>470</y><w>230</w><h>330</h></coordinates><panel_attributes>*Shared*
+--
+
+/f : CheckPayment/
+-.
++ Units
++ Packagings
++ ProductCategories
++ Products
++ Stocks
++ DeliveryNotes
++ DeliveryRelations
++ DispatchNotes
++ DispatchRelations
+-..
++ Currencies
++ Prices
++ PriceRelations
++ Discounts
+-..
++ Taxes
+-..
+PaymentMethods
+Payments
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>540</y><w>230</w><h>100</h></coordinates><panel_attributes>*Invoicing*
+--
+
++ InvoiceStatuses
++ Invoices
++ InvoiceRelations
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>670</y><w>230</w><h>140</h></coordinates><panel_attributes>*Taxes*
+--
+
++ TaxTypes
++ Taxes
++ TaxAttributes
++ TaxProfiles
++ TaxRelations
++ PartnerTaxRelations
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>850</x><y>20</y><w>230</w><h>190</h></coordinates><panel_attributes>*Teller*
+--
+
+/f : CheckSessionState/
+/f : CheckTeller/
+/t : LogTeller/
+-.
++ Tellers
++ TellerSessions
++ TellerTransactions
++ TellerPayments
++ TellerReceipts
++ TellerTransfers</panel_attributes><additional_attributes></additional_attributes></element></diagram>

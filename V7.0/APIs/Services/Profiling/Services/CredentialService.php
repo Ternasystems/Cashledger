@@ -50,7 +50,7 @@ class CredentialService implements ICredentialService
      * @inheritDoc
      * @throws Throwable
      */
-    public function SetCredential(array $data): Credential
+    public function setCredential(array $data): Credential
     {
         $context = $this->credentialFactory->repository()->context;
         $context->beginTransaction();
@@ -93,7 +93,7 @@ class CredentialService implements ICredentialService
      * @inheritDoc
      * @throws Throwable
      */
-    public function PutCredential(string $id, array $data): ?Credential
+    public function putCredential(string $id, array $data): ?Credential
     {
         $context = $this->credentialFactory->repository()->context;
         $context->beginTransaction();
@@ -138,7 +138,7 @@ class CredentialService implements ICredentialService
      * @inheritDoc
      * @throws Throwable
      */
-    public function DeleteCredential(string $id): bool
+    public function deleteCredential(string $id): bool
     {
         $context = $this->credentialFactory->repository()->context;
         $context->beginTransaction();
@@ -153,11 +153,11 @@ class CredentialService implements ICredentialService
             // Deactivate role relation
             if ($credential->Role()) {
                 $relation = $this->roleRelationRepository->first([['CredentialId', '=', $id]]);
-                $this->roleRelationRepository->deactivate($relation->Id);
+                $this->roleRelationRepository->remove($relation->Id);
             }
 
             // Deactivate the main credential
-            $this->credentialFactory->repository()->deactivate($id);
+            $this->credentialFactory->repository()->remove($id);
 
             $context->commit();
             return true;
@@ -168,11 +168,44 @@ class CredentialService implements ICredentialService
     }
 
     /**
+     * @throws Throwable
+     * @throws DomainException
+     */
+    public function disableCredential(string $id): bool
+    {
+        $context = $this->credentialFactory->repository()->context;
+        $context->beginTransaction();
+
+        try{
+            $credential = $this->getCredentials([['Id', '=', $id]])?->first();
+            if (!$credential){
+                $context->commit();
+                return true;
+            }
+
+            // Deactivate role relation
+            if ($credential->Role()) {
+                $relation = $this->roleRelationRepository->first([['CredentialId', '=', $id]]);
+                $this->roleRelationRepository->remove($relation->Id);
+            }
+
+            $this->credentialFactory->repository()->deactivate($id);
+
+            $context->commit();
+            return true;
+
+        } catch (Throwable $e){
+            $context->rollBack();
+            throw $e;
+        }
+    }
+
+    /**
      * @throws DomainException
      * @throws ProfilingException
      * @throws EntityException
      */
-    public function PutPassword(string $id, ?string $password = null): bool
+    public function putPassword(string $id, ?string $password = null): bool
     {
         $credential = $this->getCredentials([['Id', '=', $id]])?->first();
         if (!$credential)

@@ -3,52 +3,34 @@
 namespace API_Profiling_Service;
 
 use API_Administration_Service\ReloadMode;
+use API_Assets\Classes\EntityException;
+use API_Assets\Classes\ProfilingException;
 use API_Profiling_Contract\ICivilityService;
 use API_ProfilingEntities_Collection\Civilities;
-use API_ProfilingEntities_Collection\Genders;
-use API_ProfilingEntities_Collection\Occupations;
-use API_ProfilingEntities_Collection\Statuses;
-use API_ProfilingEntities_Collection\Titles;
 use API_ProfilingEntities_Factory\CivilityFactory;
-use API_ProfilingEntities_Factory\GenderFactory;
-use API_ProfilingEntities_Factory\OccupationFactory;
-use API_ProfilingEntities_Factory\StatusFactory;
-use API_ProfilingEntities_Factory\TitleFactory;
 use API_ProfilingEntities_Model\Civility;
-use API_ProfilingEntities_Model\Gender;
-use API_ProfilingEntities_Model\Occupation;
-use API_ProfilingEntities_Model\Status;
-use API_ProfilingEntities_Model\Title;
+use API_RelationRepositories\CivilityRelationRepository;
+use API_RelationRepositories_Model\CivilityRelation;
+use Throwable;
 use TS_Exception\Classes\DomainException;
 
 class CivilityService implements ICivilityService
 {
     protected CivilityFactory $civilityFactory;
     protected Civilities $civilities;
-    protected GenderFactory $genderFactory;
-    protected Genders $genders;
-    protected OccupationFactory $occupationFactory;
-    protected Occupations $occupations;
-    protected StatusFactory $statusFactory;
-    protected Statuses $statuses;
-    protected TitleFactory $titleFactory;
-    protected Titles $titles;
+    protected CivilityRelationRepository $civilityRelationRepository;
 
-    public function __construct(CivilityFactory $civilityFactory, GenderFactory $genderFactory, OccupationFactory $occupationFactory, StatusFactory $statusFactory,
-                                TitleFactory $titleFactory)
+    public function __construct(CivilityFactory $civilityFactory, CivilityRelationRepository $civilityRelationRepository)
     {
         $this->civilityFactory = $civilityFactory;
-        $this->genderFactory = $genderFactory;
-        $this->occupationFactory = $occupationFactory;
-        $this->statusFactory = $statusFactory;
-        $this->titleFactory = $titleFactory;
+        $this->civilityRelationRepository = $civilityRelationRepository;
     }
 
     /**
      * @inheritDoc
      * @throws DomainException
      */
-    public function GetCivilities(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Civility|Civilities|null
+    public function getCivilities(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Civility|Civilities|null
     {
         if (!isset($this->civilities) || $reloadMode == ReloadMode::YES){
             // Calculate the offset for the database query.
@@ -67,90 +49,123 @@ class CivilityService implements ICivilityService
     }
 
     /**
-     * @inheritDoc
      * @throws DomainException
+     * @throws ProfilingException
+     * @throws Throwable
      */
-    public function getGenders(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Gender|Genders|null
+    public function setCivility(array $data): Civility
     {
-        if (!isset($this->genders) || $reloadMode == ReloadMode::YES){
-            // Calculate the offset for the database query.
-            $offset = (is_null($page) || is_null($pageSize)) ? null : (($page - 1) * $pageSize);
+        $context = $this->civilityFactory->repository()->context;
+        $context->beginTransaction();
 
-            // Apply the filter and pagination parameters to the factory.
-            $this->genderFactory->filter($filter, $pageSize, $offset);
-            $this->genderFactory->Create();
-            $this->genders = $this->genderFactory->collectable();
+        try{
+            // 1. Create and save the main civility Profiling
+            $civility = new \API_ProfilingRepositories_Model\Civility($data['civilityData']);
+            $this->civilityFactory->repository()->add($civility);
+
+            // 2. Get the newly created civility
+            $civility = $this->civilityFactory->repository()->first([['Name', '=', $data['civilityData']['Name']]]);
+            if (!$civility)
+                throw new ProfilingException('civility_creation_failed');
+
+            if (isset($data['civilityRelations'])){
+                foreach ($data['civilityRelations'] as $civilityRelation){
+                    $civilityRelation['CivilityId'] = $civility->Id;
+                    $relation = new CivilityRelation($civilityRelation);
+                    $this->civilityRelationRepository->add($relation);
+                }
+            }
+
+            $context->commit();
+
+            // 4. Fetch the complete, rich entity to return
+            return $this->getCivilities([['Id', '=', $civility->Id]], 1, 1, ReloadMode::YES);
+
+        } catch (Throwable $e){
+            $context->rollBack();
+            throw $e;
         }
-
-        if (count($this->genders) === 0)
-            return null;
-
-        return $this->genders->count() > 1 ? $this->genders : $this->genders->first();
     }
 
     /**
-     * @inheritDoc
+     * @throws Throwable
      * @throws DomainException
+     * @throws EntityException
+     * @throws ProfilingException
      */
-    public function getOccupations(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Occupation|Occupations|null
+    public function putCivility(string $id, array $data): ?Civility
     {
-        if (!isset($this->occupations) || $reloadMode == ReloadMode::YES){
-            // Calculate the offset for the database query.
-            $offset = (is_null($page) || is_null($pageSize)) ? null : (($page - 1) * $pageSize);
+        $context = $this->civilityFactory->repository()->context;
+        $context->beginTransaction();
 
-            // Apply the filter and pagination parameters to the factory.
-            $this->occupationFactory->filter($filter, $pageSize, $offset);
-            $this->occupationFactory->Create();
-            $this->occupations = $this->occupationFactory->collectable();
+        try{
+            $civility = $this->getCivilities([['Id', '=', $id]])?->first();
+            if (!$civility)
+                throw new ProfilingException('entity_not_found', ["Id" => $id]);
+
+            // 1. Update the main civility record
+            foreach ($data as $field => $value)
+                $civility->it()->{$field} = $value ?? $civility->it()->{$field};
+
+            $this->civilityFactory->repository()->update($civility->it());
+
+            // Delete the civility relations
+            if ($civility->civilityRelations()){
+                $civilityRelations = $civility->civilityRelations();
+                foreach ($civilityRelations as $relation)
+                    $this->civilityRelationRepository->remove($relation);
+            }
+
+            // Update the civility relations
+            if ($data['civilityRelations']){
+                foreach ($data['civilityRelations'] as $civilityRelation) {
+                    $civilityRelation['CivilityId'] = $id;
+                    $relation = new CivilityRelation($civilityRelation);
+                    $this->civilityRelationRepository->add($relation);
+                }
+            }
+
+            $context->commit();
+
+            return $this->getCivilities([['Id', '=', $id]], 1, 1, ReloadMode::YES);
+
+        } catch (Throwable $e){
+            $context->rollBack();
+            throw $e;
         }
-
-        if (count($this->occupations) === 0)
-            return null;
-
-        return $this->occupations->count() > 1 ? $this->occupations : $this->occupations->first();
     }
 
     /**
-     * @inheritDoc
+     * @throws Throwable
      * @throws DomainException
      */
-    public function getTitles(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Title|Titles|null
+    public function deleteCivility(string $id): bool
     {
-        if (!isset($this->titles) || $reloadMode == ReloadMode::YES){
-            // Calculate the offset for the database query.
-            $offset = (is_null($page) || is_null($pageSize)) ? null : (($page - 1) * $pageSize);
+        $context = $this->civilityFactory->repository()->context;
+        $context->beginTransaction();
 
-            // Apply the filter and pagination parameters to the factory.
-            $this->titleFactory->filter($filter, $pageSize, $offset);
-            $this->titleFactory->Create();
-            $this->titles = $this->titleFactory->collectable();
+        try{
+            $civility = $this->getCivilities([['Id', '=', $id]])?->first();
+            if (!$civility){
+                $context->commit();
+                return true;
+            }
+
+            // Deactivate the civility relations
+            if ($civility->civilityRelations()){
+                $civilityRelations = $civility->civilityRelations();
+                foreach ($civilityRelations as $relation)
+                    $this->civilityRelationRepository->remove($relation->Id);
+            }
+
+            $this->civilityFactory->repository()->remove($id);
+
+            $context->commit();
+            return true;
+
+        } catch (Throwable $e){
+            $context->rollBack();
+            throw $e;
         }
-
-        if (count($this->titles) === 0)
-            return null;
-
-        return $this->titles->count() > 1 ? $this->titles : $this->titles->first();
-    }
-
-    /**
-     * @inheritDoc
-     * @throws DomainException
-     */
-    public function getStatuses(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Status|Statuses|null
-    {
-        if (!isset($this->statuses) || $reloadMode == ReloadMode::YES){
-            // Calculate the offset for the database query.
-            $offset = (is_null($page) || is_null($pageSize)) ? null : (($page - 1) * $pageSize);
-
-            // Apply the filter and pagination parameters to the factory.
-            $this->statusFactory->filter($filter, $pageSize, $offset);
-            $this->statusFactory->Create();
-            $this->statuses = $this->statusFactory->collectable();
-        }
-
-        if (count($this->statuses) === 0)
-            return null;
-
-        return $this->statuses->count() > 1 ? $this->statuses : $this->statuses->first();
     }
 }

@@ -28,6 +28,12 @@ class RoleFactory extends CollectableFactory
     {
         $this->collection = $this->repository->getBy($this->whereClause, $this->limit, $this->offset);
 
+        $permissions = [];
+        if ($this->collection){
+            $ids = $this->collection->select(fn($n) => $n->Id)->toArray();
+            $this->factory->filter([['RoleID', 'in', $ids]]);
+        }
+
         $this->factory->Create();
         $this->tokens = $this->factory->collectable();
     }

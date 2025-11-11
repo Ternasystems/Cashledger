@@ -43,7 +43,7 @@ class CredentialController extends BaseController
         }
 
         try {
-            $credential = $this->service->SetCredential($data);
+            $credential = $this->service->setCredential($data);
             return $this->json($credential, 201); // 201 Created
         } catch (Exception $e) {
             return $this->json(['error' => 'Failed to create credential.', 'message' => $e->getMessage()], 500);
@@ -65,7 +65,7 @@ class CredentialController extends BaseController
         }
 
         try {
-            $credential = $this->service->PutCredential($id, $data);
+            $credential = $this->service->putCredential($id, $data);
             if (!$credential) {
                 return $this->json(['error' => 'Credential not found.'], 404);
             }
@@ -87,7 +87,7 @@ class CredentialController extends BaseController
         }
 
         try {
-            $success = $this->service->DeleteCredential($id);
+            $success = $this->service->deleteCredential($id);
             if ($success) {
                 return new Response('', 204); // 204 No Content
             }
@@ -114,7 +114,7 @@ class CredentialController extends BaseController
         $newPassword = $data['password'] ?? null;
 
         try {
-            $success = $this->service->PutPassword($id, $newPassword);
+            $success = $this->service->putPassword($id, $newPassword);
             if ($success) {
                 $message = $newPassword ? 'Password updated successfully.' : 'Password reset successfully.';
                 return $this->json(['success' => true, 'message' => $message]);

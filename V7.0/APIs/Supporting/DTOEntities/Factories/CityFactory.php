@@ -2,11 +2,11 @@
 
 namespace API_DTOEntities_Factory;
 
+use API_DTOEntities_Collection\Cities;
 use API_DTOEntities_Model\City;
 use API_DTORepositories\CityRepository;
 use API_DTORepositories_Collection\Countries;
 use API_RelationRepositories\LanguageRelationRepository;
-use mysql_xdevapi\Collection;
 use TS_Exception\Classes\DomainException;
 
 class CityFactory extends CollectableFactory
@@ -28,7 +28,7 @@ class CityFactory extends CollectableFactory
         $this->collection = $this->repository->getBy($this->whereClause, $this->limit, $this->offset);
 
         if ($this->collection){
-            $ids = $this->collection->select(fn($n) => $n->Id)->toArray();
+            $ids = $this->collection->select(fn($n) => $n->CountryId)->toArray();
             $this->factory->filter([['CountryID', 'in', $ids]]);
         }
 
@@ -45,6 +45,6 @@ class CityFactory extends CollectableFactory
         if ($this->collection)
             $cities = $this->collection->select(fn($n) => new City($n, $this->countries[$n->CountryId]))->toArray();
 
-        $this->collectable = new Countries($cities);
+        $this->collectable = new Cities($cities);
     }
 }

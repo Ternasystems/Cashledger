@@ -12,16 +12,13 @@ use TS_Exception\Classes\DomainException;
 
 class CountryFactory extends CollectableFactory
 {
-    private ContinentRepository $continentRepository;
     private CollectableFactory $factory;
     private Continents $continents;
 
     public function __construct(CountryRepository $repository, ContinentRepository $continentRepository, LanguageRelationRepository $languageRelationRepository)
     {
         parent::__construct($repository, $languageRelationRepository);
-        $this->continentRepository = $continentRepository;
-
-        $this->factory = new CollectableFactory($this->continentRepository, $languageRelationRepository);
+        $this->factory = new CollectableFactory($continentRepository, $languageRelationRepository);
 
     }
 

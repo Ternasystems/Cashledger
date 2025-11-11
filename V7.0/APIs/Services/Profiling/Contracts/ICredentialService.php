@@ -25,7 +25,7 @@ interface ICredentialService
      * @param array $data
      * @return Credential The newly created Credential entity.
      */
-    public function SetCredential(array $data): Credential;
+    public function setCredential(array $data): Credential;
 
     /**
      * Updates an existing Credential
@@ -34,7 +34,7 @@ interface ICredentialService
      * @param array $data
      * @return Credential|null
      */
-    public function PutCredential(string $id, array $data): ?Credential;
+    public function putCredential(string $id, array $data): ?Credential;
 
     /**
      * Deletes a Credential and its associated role relations.
@@ -42,7 +42,15 @@ interface ICredentialService
      * @param string $id The ID of the credential to delete.
      * @return bool True on success, false otherwise.
      */
-    public function DeleteCredential(string $id): bool;
+    public function deleteCredential(string $id): bool;
+
+    /**
+     * Disable a Credential and its associated role relations
+     *
+     * @param string $id
+     * @return bool
+     */
+    public function disableCredential(string $id): bool;
 
     /**
      * Reset or Update a Credential password
@@ -51,5 +59,5 @@ interface ICredentialService
      * @param string|null $password
      * @return bool
      */
-    public function PutPassword(string $id, ?string $password = null): bool;
+    public function putPassword(string $id, ?string $password = null): bool;
 }

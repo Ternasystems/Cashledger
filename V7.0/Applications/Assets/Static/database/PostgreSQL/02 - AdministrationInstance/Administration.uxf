@@ -1,0 +1,187 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>80</y><w>230</w><h>140</h></coordinates><panel_attributes>*Legend*
+--
+
+*Application*
+/f : function/
+/p : procedure/
+/t : trigger/
+*+ class*
+- extension
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>20</y><w>230</w><h>400</h></coordinates><panel_attributes>*+ Parameters*
+--
+
+/f: ReadParameter/
+-..
+/f : CurrentThread/
+/p : CurrentThread/
+-..
+/f : IsProc/
+/p : IsProc/
+-..
+/f : CheckPeriod/
+/f : CheckActivation/
+/p : Activation/
+-..
+/f : Locked/
+/f : Auditable/
+/f : CheckCodeLength/
+/f : Readme/
+-..
+/t : InsertParameter/
+/t : UpdateParameter/
+/t : DeleteParameter/
+-..
+/p : InsertParameter/
+/p : UpdateParameter/
+/p : DeleteParameter/
+-..
+/t : Insert_Parameter/
+/t : Update_Parameter/
+/t : Delete_Parameter/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>20</y><w>150</w><h>30</h></coordinates><panel_attributes>/*Administration diagram*/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>450</y><w>230</w><h>170</h></coordinates><panel_attributes>*+ ParameterRelations*
+--
+
+/f: CheckParameterRelation/
+-..
+/p : InsertParameterRelation/
+/p : UpdateParameterRelation/
+/p : DeleteParameterRelation/
+-..
+/t : Insert_ParameterRelation/
+/t : Update_ParameterRelation/
+/t : Delete_ParameterRelation/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>250</y><w>230</w><h>440</h></coordinates><panel_attributes>*Administration*
+--
+
+/f : PwdGenerator/
+- pgcrypto
+/f : Activation/
+/f : ActiveUser/
+-..
+/t : InsertTrigger/
+/t :UpdateTrigger/
+/t : DeleteTrigger/
+/t : RemoveTrigger/
+-..
+/f : CreateID/
+/p : Query/
+-.
+
++ Parameters
++ ParameterRelations
+-..
++ AppCategories
++ Apps
++ AppRelations
+-..
++ Languages
++ ReferenceTables
++ ReferenceRelations
++ languageRelations
+-..
++ Continents
++ Countries
++ Cities
+-..
++ Audits
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>650</y><w>230</w><h>150</h></coordinates><panel_attributes>*+ AppCategories*
+--
+
+/p : InsertAppCategory/
+/p : UpdateAppCategory/
+/p : DeleteAppCategory/
+-..
+/t : Insert_AppCategory/
+/t : Update_AppCategory/
+/t : Delete_AppCategory/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>20</y><w>230</w><h>150</h></coordinates><panel_attributes>*+ Apps*
+--
+
+/p : InsertApp/
+/p : UpdateApp/
+/p : DeleteApp/
+-..
+/t : Insert_App/
+/t : Update_App/
+/t : Delete_App/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>200</y><w>230</w><h>140</h></coordinates><panel_attributes>*+ AppRelations*
+--
+
+/p : InsertAppRelation/
+/p : DeleteAppRelation/
+-..
+/t : Insert_AppRelation/
+/t : Update_AppRelation/
+/t : Delete_AppRelation/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>370</y><w>230</w><h>150</h></coordinates><panel_attributes>*+ Languages*
+--
+
+/p : InsertLanguage/
+/p : UpdateLanguage/
+/p : DeleteLanguage/
+-..
+/t : Insert_Language/
+/t : Update_Language/
+/t : Delete_Language/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>550</y><w>230</w><h>120</h></coordinates><panel_attributes>*+ ReferenceTables*
+--
+
+/f : CheckReference/
+/p : InsertReferenceTable/
+-..
+/t : Insert_ReferenceTable/
+/t : Delete_ReferenceTable/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>700</y><w>230</w><h>110</h></coordinates><panel_attributes>*+ ReferenceRelations*
+--
+
+/p : InsertReferenceRelation/
+-..
+/t : Insert_AppRelation/
+/t : Delete_AppRelation/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>20</y><w>230</w><h>150</h></coordinates><panel_attributes>*+ LanguageRelations*
+--
+
+/p : InsertLanguageRelation/
+/p : UpdateLanguageRelation/
+/p : DeleteLanguageRelation/
+-..
+/t : Insert_LanguageRelation/
+/t : Update_LanguageRelation/
+/t : Delete_LanguageRelation/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>200</y><w>230</w><h>150</h></coordinates><panel_attributes>*+Continents*
+--
+
+/p : InsertContinent/
+/p : UpdateContinent/
+/p : DeleteContinent/
+-..
+/t : Insert_Continent/
+/t : Update_Continent/
+/t : Delete_Continent/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>380</y><w>230</w><h>150</h></coordinates><panel_attributes>*+Countries*
+--
+
+/p : InsertCountry/
+/p : UpdateCountry/
+/p : DeleteCountry/
+-..
+/t : Insert_Country/
+/t : Update_Country/
+/t : Delete_Country/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>560</y><w>230</w><h>150</h></coordinates><panel_attributes>*+Cities*
+--
+
+/p : InsertCity/
+/p : UpdatetCity/
+/p : DeletetCity/
+-..
+/t : Insert_City/
+/t : Update_City/
+/t : Delete_City/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>740</y><w>230</w><h>90</h></coordinates><panel_attributes>*+ Audits*
+--
+
+/t: LogAudit/
+-..
+/p : InsertAudit/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>20</x><y>720</y><w>230</w><h>150</h></coordinates><panel_attributes>*Note..*
+bg=yellow
+--
+
+/f : CheckReference/
+-..
+*Origin*
++ReferenceTables
+
+*Shared*
++ LanguageRelations</panel_attributes><additional_attributes></additional_attributes></element></diagram>

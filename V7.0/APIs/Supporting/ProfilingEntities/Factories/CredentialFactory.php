@@ -43,8 +43,11 @@ class CredentialFactory extends CollectableFactory
             $ids = $this->collection->select(fn($n) => $n->Id)->toArray();
             $relations = $this->relationRepository->getBy([['CredentialID', 'in', $ids]]);
         }
-        $this->roleRelations = new RoleRelations($relations);
 
+        $this->roleRelations = new RoleRelations($relations);
+        $roleIds = $this->roleRelations->select(fn($n) => $n->RoleId)->toArray();
+
+        $this->roleFactory->filter([['ID', 'in', $roleIds]]);
         $this->roleFactory->Create();
         $this->roles = $this->roleFactory->collectable();
 
@@ -58,8 +61,10 @@ class CredentialFactory extends CollectableFactory
     protected function build(): void
     {
         $credentials = [];
-        if ($this->collection)
-            $credentials = $this->collection->select(fn($n) => new Credential($n, $this->profiles[$n->ProfileId], $this->roles[$n->RoleId]))->toArray();
+        if ($this->collection){
+            $credentials = $this->collection->select(fn($n) => new Credential($n, $this->profiles[$n->ProfileId],
+            $this->roles[$this->roleRelations->first(fn($t) => $n->Id == $t->CredentialId)->RoleId]))->toArray();
+        }
 
         $this->collectable = new Credentials($credentials);
     }

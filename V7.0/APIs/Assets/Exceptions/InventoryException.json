@@ -1,0 +1,30 @@
+{
+  "en-US": {
+    "entity_not_found": "The requested entity could not be found with the provided ID: :id",
+    "packaging_creation_failed": "Failed to create the DTO Packaging entity.",
+    "unit_creation_failed": "Failed to create the DTO Unit entity.",
+    "product_creation_failed": "Failed to create the DTO Product entity.",
+    "stock_creation_failed": "Failed to create the DTO Stock entity."
+  },
+  "fr-FR": {
+    "entity_not_found": "L'entité demandée n'a pas pu être trouvée avec l'ID fourni : :id",
+    "packaging_creation_failed": "Échec de la création de l'entité DTO Packaging.",
+    "unit_creation_failed": "Échec de la création de l'entité DTO Unit.",
+    "product_creation_failed": "Échec de la création de l'entité DTO Product.",
+    "stock_creation_failed": "Échec de la création de l'entité DTO Stock."
+  },
+  "es-ES": {
+    "entity_not_found": "No se pudo encontrar la entidad solicitada con el ID proporcionado: :id",
+    "packaging_creation_failed": "Error al crear la entidad DTO Packaging.",
+    "unit_creation_failed": "Error al crear la entidad DTO Unit.",
+    "product_creation_failed": "Error al crear la entidad DTO Product.",
+    "stock_creation_failed": "Error al crear la entidad DTO Stock."
+  },
+  "ar-SA": {
+    "entity_not_found": "تعذر العثور على الكيان المطلوب باستخدام المعرف المقدم: :id",
+    "packaging_creation_failed": "فشل في إنشاء كائن DTO Packaging.",
+    "unit_creation_failed": "فشل في إنشاء كائن DTO Unit.",
+    "product_creation_failed": "فشل في إنشاء كائن DTO Product.",
+    "stock_creation_failed": "فشل في إنشاء كائن DTO Stock."
+  }
+}

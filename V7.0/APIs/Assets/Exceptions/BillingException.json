@@ -1,0 +1,26 @@
+{
+  "en-US": {
+    "item_not_found": "The requested item could not be found with the provided ID: :id",
+    "currency_creation_failed": "Failed to create the DTO Currency entity.",
+    "price_creation_failed": "Failed to create the DTO Price entity.",
+    "discount_creation_failed": "Failed to create the DTO Discount entity."
+  },
+  "fr-FR": {
+    "item_not_found": "L'élément demandé n'a pas pu être trouvée avec l'ID fourni : :id",
+    "currency_creation_failed": "Échec de la création de l'entité DTO Currency.",
+    "price_creation_failed": "Échec de la création de l'entité DTO Price.",
+    "discount_creation_failed": "Échec de la création de l'entité DTO Discount."
+  },
+  "es-ES": {
+    "item_not_found": "No se pudo encontrar el elemento solicitado con el ID proporcionado: :id",
+    "currency_creation_failed": "Error al crear la entidad DTO Currency.",
+    "price_creation_failed": "Error al crear la entidad DTO Price.",
+    "discount_creation_failed": "Error al crear la entidad DTO Discount."
+  },
+  "ar-SA": {
+    "item_not_found": "تعذر العثور على العنصر المطلوب باستخدام المعرف المقدم: :id",
+    "currency_creation_failed": "فشل في إنشاء كائن DTO Currency.",
+    "price_creation_failed": "فشل في إنشاء كائن DTO Price.",
+    "discount_creation_failed": "فشل في إنشاء كائن DTO Discount."
+  }
+}

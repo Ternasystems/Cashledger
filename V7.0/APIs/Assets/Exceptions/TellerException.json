@@ -1,0 +1,54 @@
+{
+  "en-US": {
+    "item_not_found": "The requested item could not be found with the provided ID: :id",
+    "cashfigure_creation_failed": "Failed to create the DTO CashFigure entity.",
+    "teller_creation_failed": "Failed to create the DTO Teller entity.",
+    "telleraudit_creation_failed": "Failed to create the DTO TellerAudit entity.",
+    "tellercashcount_creation_failed": "Failed to create the DTO TellerCashCount entity.",
+    "tellerpayment_creation_failed": "Failed to create the DTO TellerPayment entity.",
+    "tellerreceipt_creation_failed": "Failed to create the DTO TellerReceipt entity.",
+    "tellerreversal_creation_failed": "Failed to create the DTO TellerReversal entity.",
+    "tellersession_creation_failed": "Failed to create the DTO Session entity.",
+    "tellertransaction_creation_failed": "Failed to create the DTO Transaction entity.",
+    "tellertransfer_creation_failed": "Failed to create the DTO Transfer entity."
+  },
+  "fr-FR": {
+    "item_not_found": "L'élément demandé n'a pas pu être trouvée avec l'ID fourni : :id",
+    "cashfigure_creation_failed": "Échec de la création de l'entité DTO CashFigure.",
+    "teller_creation_failed": "Échec de la création de l'entité DTO Teller.",
+    "telleraudit_creation_failed": "Échec de la création de l'entité DTO TellerAudit.",
+    "tellercashcount_creation_failed": "Échec de la création de l'entité DTO TellerCashCount.",
+    "tellerpayment_creation_failed": "Échec de la création de l'entité DTO TellerPayment.",
+    "tellerreceipt_creation_failed": "Échec de la création de l'entité DTO TellerReceipt.",
+    "tellerreversal_creation_failed": "Échec de la création de l'entité DTO TellerReversal.",
+    "tellersession_creation_failed": "Échec de la création de l'entité DTO Session.",
+    "tellertransaction_creation_failed": "Échec de la création de l'entité DTO Transaction.",
+    "tellertransfer_creation_failed": "Échec de la création de l'entité DTO Transfer."
+  },
+  "es-ES": {
+    "item_not_found": "No se pudo encontrar el elemento solicitado con el ID proporcionado: :id",
+    "cashfigure_creation_failed": "Error al crear la entidad DTO CashFigure.",
+    "teller_creation_failed": "Error al crear la entidad DTO Teller.",
+    "telleraudit_creation_failed": "Error al crear la entidad DTO TellerAudit.",
+    "tellercashcount_creation_failed": "Error al crear la entidad DTO TellerCashCount.",
+    "tellerpayment_creation_failed": "Error al crear la entidad DTO TellerPayment.",
+    "tellerreceipt_creation_failed": "Error al crear la entidad DTO TellerReceipt.",
+    "tellerreversal_creation_failed": "Error al crear la entidad DTO TellerReversal.",
+    "tellersession_creation_failed": "Error al crear la entidad DTO Session.",
+    "tellertransaction_creation_failed": "Error al crear la entidad DTO Transaction.",
+    "tellertransfer_creation_failed": "Error al crear la entidad DTO Transfer."
+  },
+  "ar-SA": {
+    "item_not_found": "تعذر العثور على العنصر المطلوب باستخدام المعرف المقدم: :id",
+    "cashfigure_creation_failed": "فشل في إنشاء كائن DTO CashFigure.",
+    "teller_creation_failed": "فشل في إنشاء كائن DTO Teller.",
+    "telleraudit_creation_failed": "فشل في إنشاء كائن DTO TellerAudit.",
+    "tellercashcount_creation_failed": "فشل في إنشاء كائن DTO TellerCashCount.",
+    "tellerpayment_creation_failed": "فشل في إنشاء كائن DTO TellerPayment.",
+    "tellerreceipt_creation_failed": "فشل في إنشاء كائن DTO TellerReceipt.",
+    "tellerreversal_creation_failed": "فشل في إنشاء كائن DTO TellerReversal.",
+    "tellersession_creation_failed": "فشل في إنشاء كائن DTO Session.",
+    "tellertransaction_creation_failed": "فشل في إنشاء كائن DTO Transaction.",
+    "tellertransfer_creation_failed": "فشل في إنشاء كائن DTO Transfer."
+  }
+}

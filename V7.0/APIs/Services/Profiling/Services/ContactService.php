@@ -4,19 +4,14 @@ namespace API_Profiling_Service;
 
 use API_Administration_Service\ReloadMode;
 use API_Assets\Classes\DTOException;
-use API_DTOEntities_Factory\CollectableFactory;
+use API_Assets\Classes\ProfilingException;
 use API_Profiling_Contract\IContactService;
 use API_ProfilingEntities_Collection\Contacts;
-use API_ProfilingEntities_Collection\ContactTypes;
 use API_ProfilingEntities_Factory\ContactFactory;
 use API_ProfilingEntities_Model\Contact;
-use API_ProfilingEntities_Model\ContactType;
-use API_ProfilingRepositories\ContactTypeRepository;
 use API_RelationRepositories\ContactRelationRepository;
-use API_RelationRepositories\LanguageRelationRepository;
 use API_RelationRepositories_Model\ContactRelation;
 use Exception;
-use ReflectionException;
 use Throwable;
 use TS_Exception\Classes\DomainException;
 
@@ -24,21 +19,12 @@ class ContactService implements IContactService
 {
     protected ContactFactory $contactFactory;
     protected Contacts $contacts;
-    protected CollectableFactory $factory;
-    protected ContactTypes $contactTypes;
     protected ContactRelationRepository $contactRelationRepository;
 
-    /**
-     * @throws ReflectionException
-     */
-    public function __construct(ContactFactory $contactFactory, ContactTypeRepository $contactTypeRepository, ContactRelationRepository $contactRelationRepository,
-                                LanguageRelationRepository $languageRelationRepository)
+    public function __construct(ContactFactory $contactFactory, ContactRelationRepository $contactRelationRepository)
     {
         $this->contactFactory = $contactFactory;
         $this->contactRelationRepository = $contactRelationRepository;
-
-        // Use the generic factory for the simple ContactType entity.
-        $this->factory = new CollectableFactory($contactTypeRepository, $languageRelationRepository);
     }
 
     /**
@@ -63,59 +49,30 @@ class ContactService implements IContactService
     }
 
     /**
-     * @throws DomainException
-     */
-    public function getContactTypes(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): ContactType|ContactTypes|null
-    {
-        if (!isset($this->contactTypes) || $reloadMode === ReloadMode::YES) {
-            // Calculate the offset for the database query.
-            $offset = (is_null($page) || is_null($pageSize)) ? null : (($page - 1) * $pageSize);
-
-            // Apply the filter and pagination parameters to the factory.
-            $this->factory->filter($filter, $pageSize, $offset);
-            $this->factory->Create();
-            $this->contactTypes = $this->factory->collectable();
-        }
-
-        if (count($this->contactTypes) === 0)
-            return null;
-
-        return $this->contactTypes->count() > 1 ? $this->contactTypes : $this->contactTypes->first();
-    }
-
-    /**
      * @throws Exception
      * @throws DomainException
      * @throws Throwable
      */
-    public function SetContact(array $data): Contact
+    public function setContact(array $data): Contact
     {
         $context = $this->contactFactory->repository()->context;
         $context->beginTransaction();
 
         try {
             // Create a new Contact object
-            $contact = new \API_ProfilingRepositories_Model\Contact([
-                'ContactTypeId' => $data['ContactTypeId'],
-                'ProfileId' => $data['ProfileId'],
-                'Name' => $data['Name'],
-                'Description' => $data['Description'] ?? null
-            ]);
+            $contact = new \API_ProfilingRepositories_Model\Contact($data['contactData']);
 
             // Insert the new Contact object in the database and retrieve it
             $this->contactFactory->repository()->add($contact);
             $contact = $this->contactFactory->repository()->first([['ProfileId', '=', $data['profileId']], ['Name', '=', $data['name']]]);
+            if (!$contact)
+                throw new ProfilingException('contact_creation_failed');
 
             // Create and insert related ContactRelations
-            if ($contact && isset($data['ContactRelations'])){
-                foreach ($data['ContactRelations'] as $ContactRelation) {
-                    $relation = new ContactRelation([
-                        'LangId' => $ContactRelation['LangId'],
-                        'ContactId' => $contact->Id,
-                        'Contact' => $ContactRelation['Contact'],
-                        'Photo' => $ContactRelation['Photo'],
-                        'Description' => $ContactRelation['Description'] ?? null
-                    ]);
+            if (isset($data['contactRelations'])){
+                foreach ($data['contactRelations'] as $contactRelation) {
+                    $contactRelation['ContactId'] = $contact->Id;
+                    $relation = new ContactRelation($contactRelation);
                     $this->contactRelationRepository->add($relation);
                 }
             }
@@ -123,11 +80,8 @@ class ContactService implements IContactService
             // If all operations succeeded, commit the transaction.
             $context->commit();
 
-            // Re-build the contact factory
-            $this->contactFactory->filter([['ID', '=', $contact->Id]]);
-            $this->contactFactory->Create();
-
-            return $this->contactFactory->collectable()->first();
+            // 4. Fetch the complete, rich entity to return
+            return $this->getContacts([['Id', '=', $contact->Id]], 1, 1, ReloadMode::YES);
         } catch (Throwable $e) {
             $context->rollback();
             throw $e;
@@ -139,42 +93,35 @@ class ContactService implements IContactService
      * @throws DTOException
      * @throws Throwable
      */
-    public function PutContact(string $id, array $data): ?Contact
+    public function putContact(string $id, array $data): ?Contact
     {
         $context = $this->contactFactory->repository()->context;
         $context->beginTransaction();
 
         try {
             // Fetch the Contact item
-            $contact = $this->contactFactory->collectable()->first(fn($n) => $n->it()->Id == $id);
+            $contact = $this->getContacts([['Id', '=', $id]])?->first();
             if (!$contact)
                 throw new DomainException('contact_not_found');
 
-            // Update the contact item
-            $contact->it()->ContactTypeId = $data['ContactTypeId'] ?? $contact->it()->ContactTypeId;
-            $contact->it()->ProfileId = $data['ProfileId'] ?? $contact->it()->ProfileId;
-            $contact->it()->ContactNo = $data['ContactNo'] ?? $contact->it()->ContactNo;
-            $contact->it()->Name = $data['Name'] ?? $contact->it()->Name;
-            $contact->it()->Description = $data['Description'] ?? null;
+            // 1. Update the main civility record
+            foreach ($data as $field => $value)
+                $contact->it()->{$field} = $value ?? $contact->it()->{$field};
+
             $this->contactFactory->repository()->update($contact->it());
 
             // Delete the contact relations
-            if ($contact->ContactRelations()){
+            if ($contact->contactRelations()){
                 $contactRelations = $contact->ContactRelations();
                 foreach ($contactRelations as $relation)
                     $this->contactRelationRepository->remove($relation->Id);
             }
 
             // Update the contact relations
-            if ($data['ContactRelations']){
-                foreach ($data['ContactRelations'] as $ContactRelation) {
-                    $relation = new ContactRelation([
-                        'LangId' => $ContactRelation['LangId'],
-                        'ContactId' => $contact->Id,
-                        'Contact' => $ContactRelation['Contact'],
-                        'Photo' => $ContactRelation['Photo'],
-                        'Description' => $ContactRelation['Description'] ?? null
-                    ]);
+            if ($data['contactRelations']){
+                foreach ($data['contactRelations'] as $contactRelation) {
+                    $contactRelation['ContactId'] = $id;
+                    $relation = new ContactRelation($contactRelation);
                     $this->contactRelationRepository->add($relation);
                 }
             }
@@ -182,10 +129,8 @@ class ContactService implements IContactService
             // If all operations succeeded, commit the transaction.
             $context->commit();
 
-            // Re-build the contact factory
-            $this->contactFactory->filter([['ID', '=', $contact->it()->Id]]);
-            $this->contactFactory->Create();
-            return $this->contactFactory->collectable()->first();
+            return $this->getContacts([['Id', '=', $contact->Id]], 1, 1, ReloadMode::YES);
+
         } catch (Throwable $e) {
             $context->rollback();
             throw $e;
@@ -195,14 +140,14 @@ class ContactService implements IContactService
     /**
      * @throws Throwable
      */
-    public function DeleteContact(string $id): bool
+    public function deleteContact(string $id): bool
     {
         $context = $this->contactFactory->repository()->context;
         $context->beginTransaction();
 
         try {
             // Retrieve the contact entity
-            $contact = $this->contactFactory->collectable()->first(fn($n) => $n->Id == $id);
+            $contact = $this->getContacts([['Id', '=', $id]])?->first();
             if (!$contact){
                 $context->commit();
                 return true;
@@ -212,13 +157,15 @@ class ContactService implements IContactService
             if ($contact->ContactRelations()) {
                 $contactRelations = $contact->ContactRelations();
                 foreach ($contactRelations as $relation)
-                    $this->contactRelationRepository->deactivate($relation->Id);
+                    $this->contactRelationRepository->remove($relation->Id);
             }
 
             // Deactivate the contact
-            $this->contactFactory->repository()->remove($contact->it()->Id);
+            $this->contactFactory->repository()->remove($id);
+
             $context->commit();
             return true;
+
         } catch (Throwable $e){
             $context->rollBack();
             throw $e;
