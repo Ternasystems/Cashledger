@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* This application is powered by Ternary Data Systems.
+* Ternary Data Systems is the technology department of the Jéoline Corporates Company.
+-->
+<!--
+* Config is an XML file that stores data necessary for the configuration of the system.
+-->
+<configuration>
+    <!-- Host directory -->
+    <hostDirectory base="/cashledger/"/>
+    <!--DB connection data -->
+    <dbConnection PDODriver="PGSQL" DSN="pgsql:host=localhost;dbname=Cashledger;options='--client_encoding=UTF8'" userName="postgres" passWord="pat1380/*56"/>
+    <dbPrefix prefix=""/>
+    <!-- Company details -->
+    <company name="Jéoline Corporates"/>
+    <!-- Languages -->
+    <languages>
+        <lang name="Français" iso="fr-FR" default="true"/>
+        <lang name="English (US)" iso="en-US" default="false"/>
+        <lang name="English (GB)" iso="en-GB" default="false"/>
+        <lang name="Español" iso="es-ES" default="false"/>
+        <lang name="عربي" iso="ar-SA" default="false"/>
+    </languages>
+    <!-- Applications -->
+    <applications name="Cashledger Professional" Edition="Server Edition (SE)" version="Build 2025.1.1">
+        <app name="Administration" description="Application for administrative operations"/>
+        <app name="Presentation" default="true" controller="Home" action="Index" description="Entry point application"/>
+        <app name="Teller" description="Application for cash management"/>
+    </applications>
+    <!-- Images -->
+    <images>
+        <image name="Icon" src="/cashledger/Applications/Assets/Static/images/logos/logo.ico"/>
+        <image name="Logo" src="/cashledger/Applications/Assets/Static/images/logos/logo.png"/>
+        <image name="Logo_mobile" src="/cashledger/Applications/Assets/Static/images/logos/logo.png"/>
+        <image name="Jeoline" src="/cashledger/Applications/Assets/Static/images/logos/corporates_logo.png"/>
+        <image name="Jeoline_white" src="/cashledger/Applications/Assets/Static/images/logos/corporates_logo_white.png"/>
+        <image name="Social_Phone" src="/cashledger/Applications/Assets/Static/images/socials/Phone_round.png"/>
+        <image name="Social_Email" src="/cashledger/Applications/Assets/Static/images/socials/Email_round.png"/>
+        <image name="Social_Location" src="/cashledger/Applications/Assets/Static/images/socials/Location_round.png"/>
+        <image name="User_black" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/User_round_black.png"/>
+        <image name="Logout" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/Logout.png"/>
+        <image name="Settings" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/Settings.png"/>
+        <image name="Files" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/Files.png"/>
+        <image name="GoldJeon" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/gold_jeon.png"/>
+        <image name="BlueJeon" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/blue_jeon.png"/>
+        <image name="RedJeon" src="/cashledger/Applications/Assets/Static/images/admin/img.Administration/red_jeon.png"/>
+        <image name="Accounting" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/accounting_logo.png"/>
+        <image name="Billing" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/billing_logo.png"/>
+        <image name="Booking" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/booking_logo.png"/>
+        <image name="Control" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/control_logo.png"/>
+        <image name="Corporation" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/corporation_logo.png"/>
+        <image name="Dashboarding" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/dashboarding_logo.png"/>
+        <image name="Emailing" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/emailing_logo.png"/>
+        <image name="Forecasting" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/forecasting_logo.png"/>
+        <image name="HRM" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/hrm_logo.png"/>
+        <image name="Hudel" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/hudel_logo.png"/>
+        <image name="IDS" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/ids_logo.png"/>
+        <image name="Inventory" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/inventory_logo.png"/>
+        <image name="Invoicing" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/invoicing_logo.png"/>
+        <image name="Maintenance" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/maintenance_logo.png"/>
+        <image name="Meeting" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/meeting_logo.png"/>
+        <image name="Messaging" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/messaging_logo.png"/>
+        <image name="Partnership" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/partnership_logo.png"/>
+        <image name="Payments" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/payments_logo.png"/>
+        <image name="Payroll" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/payroll_logo.png"/>
+        <image name="Profiling" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/profiling_logo.png"/>
+        <image name="Publishing" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/publishing_logo.png"/>
+        <image name="Purchase" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/purchase_logo.png"/>
+        <image name="Reporting" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/reporting_logo.png"/>
+        <image name="Tasks" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/tasks_logo.png"/>
+        <image name="Taxes" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/taxes_logo.png"/>
+        <image name="Teller" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/teller_logo.png"/>
+        <image name="Wholesale" src="/cashledger/Applications/Assets/Static/images/admin/img.Presentation/wholesale_logo.png"/>
+    </images>
+    <!-- Links -->
+    <links>
+        <link name="c2s" path="/cashledger/Framework/C2S/css/c2s.css"/>
+        <link name="faBrands" path="/cashledger/Framework/C2S/icons/fonts/fa-brands-400.woff2"/>
+        <link name="faRegular" path="/cashledger/Framework/C2S/icons/fonts/fa-regular-400.woff2"/>
+        <link name="faSolid" path="/cashledger/Framework/C2S/icons/fonts/fa-solid-900.woff2"/>
+        <link name="cjs" path="/cashledger/Framework/CJS/cjs.js"/>
+        <link name="cssPath" path="/cashledger/Applications/Assets/Static/css/"/>
+        <link name="jsPath" path="/cashledger/Applications/Assets/Static/js/"/>
+        <link name="layoutPath" path="Applications/Assets/Libraries/Applications/Views/Layouts/"/>
+        <link name="vcPath" path="Applications/Assets/Libraries/Applications/Views/ViewComponents/"/>
+
+    </links>
+</configuration>

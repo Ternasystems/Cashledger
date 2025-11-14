@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace TS_Controller\Classes;
 
 use ReflectionClass;
-use ReflectionException;
+use TS_Configuration\Classes\ConfigurationService;
+use TS_DependencyInjection\Classes\ServiceLocator;
+use TS_Exception\Classes\DIException;
 use TS_Exception\Classes\ViewException;
 use TS_Http\Classes\FlashMessageService;
 use TS_Http\Classes\RedirectResponse;
+use TS_Http\Classes\Request;
 use TS_Http\Classes\Response;
+use TS_Locale\Classes\Translator;
 use TS_Utility\Classes\UrlGenerator;
 use TS_View\Classes\View;
 
@@ -22,6 +26,10 @@ class Controller extends BaseController
     protected readonly View $view;
     protected readonly FlashMessageService $flash;
     protected readonly UrlGenerator $urlGenerator;
+    protected readonly ConfigurationService $config;
+    protected readonly Request $request;
+    protected readonly Translator $translator;
+    protected readonly string $lang;
 
     /**
      * Defines the default layout file for all views rendered by this controller.
@@ -30,11 +38,45 @@ class Controller extends BaseController
      */
     protected ?string $layout = null;
 
-    public function __construct(View $view, FlashMessageService $flash, UrlGenerator $urlGenerator)
+    /**
+     * @throws DIException
+     */
+    public function __construct()
     {
-        $this->view = $view;
-        $this->flash = $flash;
-        $this->urlGenerator = $urlGenerator;
+        $this->view = ServiceLocator::get(View::class);
+        $this->flash = ServiceLocator::get(FlashMessageService::class);
+        $this->urlGenerator = ServiceLocator::get(UrlGenerator::class);
+        $this->config = ServiceLocator::get(ConfigurationService::class);
+        $this->request = ServiceLocator::get(Request::class); // <-- ADDED
+        $this->translator = ServiceLocator::get(Translator::class); // <-- ADDED
+
+        // Determine the current language from the URL (segment 1)
+        // Fall back to the default language from config
+        $this->lang = $this->request->getSegment(1) ?? $this->config->getDefaultLanguage();
+
+        // *** NEW ***
+        // Automatically share config data (like image paths) with all views
+        $this->shareViewData();
+    }
+
+    /**
+     * Shares global data from the config service with the View.
+     * This replaces the old global $ViewData array.
+     */
+    private function shareViewData(): void
+    {
+        // Pass the translator and lang to the view
+        $this->view->setTranslator($this->translator); // <-- ADDED
+        $this->view->share('lang', $this->lang); // <-- ADDED
+
+        // Share all image paths under an 'images' variable
+        $this->view->share('images', $this->config->getImages());
+        $this->view->share('companyName', $this->config->getCompanyName());
+        $this->view->share('languages', $this->config->getLanguages());
+        $this->view->share('defaultLang', $this->config->getDefaultLanguage());
+        $this->view->share('defaultApp', $this->config->getDefaultApp());
+        $this->view->share('paths', $this->config->getPaths());
+        $this->view->share('ip', $this->config->getIP());
     }
 
     /**
@@ -79,8 +121,12 @@ class Controller extends BaseController
     {
         $controllerName = $controller ?? $this->getShortClassName();
 
+        // *** UPDATED ***
+        // Automatically add the current language to all redirects.
+        $defaultParams = ['lang' => $this->lang];
+
         // This assumes your UrlGenerator can handle a flat array of parameters.
-        $urlParams = array_merge($params, [
+        $urlParams = array_merge($defaultParams, $params, [
             'controller' => $controllerName,
             'action' => $action
         ]);
@@ -91,11 +137,7 @@ class Controller extends BaseController
 
     private function getShortClassName(): string
     {
-        try {
-            return str_replace('Controller', '', new ReflectionClass($this)->getShortName());
-        } catch (ReflectionException) {
-            return '';
-        }
+        return str_replace('Controller', '', new ReflectionClass($this)->getShortName());
     }
 }
 

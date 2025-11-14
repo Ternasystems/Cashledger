@@ -32,20 +32,25 @@ final class Translator extends AbstractCls
      * Adds a translation loader to the translator.
      * Loaders will be checked in the order they are added.
      */
-    public function addLoader(string $domainPrefix, ITranslationLoader $loader): void
+    public function addLoader(ITranslationLoader $loader): void
     {
-        $this->loaders[$domainPrefix] = $loader;
+        $this->loaders[] = $loader;
     }
 
     /**
      * Translates a given key, with optional placeholders.
      *
-     * @param string $key The translation key (e.g., 'DBException.connection_failed').
+     * @param string $key The translation key (e.g., 'DIException.connection_failed').
      * @param array<string, string|int> $placeholders Key-value pairs for replacement.
      * @return string The translated string, or the key itself if not found.
      */
     public function trans(string $key, array $placeholders = []): string
     {
+        // Check for an invalid key format
+        if (!str_contains($key, '.')) {
+            return $key;
+        }
+
         [$domain, $translationKey] = explode('.', $key, 2);
 
         $message = $this->findTranslation($this->currentLocale, $domain, $translationKey)
@@ -53,7 +58,7 @@ final class Translator extends AbstractCls
             ?? $key; // Return the key as a last resort.
 
         // Replace placeholders
-        if (!empty($placeholders) && str_contains($message, ':')) {
+        if (!empty($placeholders) && is_string($message) && str_contains($message, ':')) {
             foreach ($placeholders as $placeholder => $value) {
                 $message = str_replace($placeholder, (string)$value, $message);
             }
@@ -73,11 +78,14 @@ final class Translator extends AbstractCls
         }
 
         // If not cached, try to load it from the registered loaders
-        foreach ($this->loaders as $prefix => $loader) {
-            // Check if the domain starts with the loader's prefix
-            if (str_starts_with($domain, $prefix)) {
-                // Load and cache the entire domain file
-                $this->translations[$locale][$domain] = $loader->load($locale, $domain);
+        foreach ($this->loaders as $loader) {
+            $translations = $loader->load($locale, $domain);
+
+            if (!empty($translations)) {
+                // We found the right loader for this domain.
+                // Cache all translations from this domain.
+                $this->translations[$locale][$domain] = $translations;
+
                 // Now check again for the specific key
                 if (isset($this->translations[$locale][$domain][$key])) {
                     return $this->translations[$locale][$domain][$key];
@@ -85,6 +93,9 @@ final class Translator extends AbstractCls
             }
         }
 
+        // We checked all loaders and found no translation for this domain/locale.
+        // Cache this "miss" as an empty array to prevent re-scanning.
+        $this->translations[$locale][$domain] = [];
         return null;
     }
 }

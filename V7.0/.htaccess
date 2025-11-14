@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Set the base path (change if not in /cashledger/)
+    RewriteBase /cashledger/
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # --- Rule 1: Handle API Requests ---
+    # Reroute any request starting with 'api/' to api.php
+    # The [L] flag stops processing, so it won't fall through
+    # to the web app rule.
+    RewriteRule ^api/?(.*)$ api.php [L,QSA]
+
+    # --- Rule 2: Handle Web App Front Controller ---
+    # Handle requests for real files/dirs
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # Reroute all other requests to index.php
+    RewriteRule ^ index.php [L,QSA]
+</IfModule>

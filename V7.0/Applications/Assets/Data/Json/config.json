@@ -1,0 +1,868 @@
+{
+  "apps": {
+    "Accounting": {
+      "fr-FR": {
+        "title": "Comptabilité",
+        "logo": "Accounting",
+        "description": "Tenue des comptes, dettes, créances, taxes..."
+      },
+      "en-US": {
+        "title": "Accounting",
+        "logo": "Accounting",
+        "description": "Bookeeping, payables, receivables, taxes..."
+      },
+      "en-GB": {
+        "title": "Accounting",
+        "logo": "Accounting",
+        "description": "Bookeeping, payables, receivables, taxes..."
+      },
+      "es-ES": {
+        "title": "Contabilidad",
+        "logo": "Accounting",
+        "description": "Mantenimiento de libros, cuentas por pagar, cuentas por cobrar, impuestos..."
+      },
+      "ar-SA": {
+        "title": "المحاسبة",
+        "logo": "Accounting",
+        "description": "مسك الدفاتر، الذمم الدائنة، الذمم المدينة، الضرائب..."
+      },
+      "url": {
+        "app": "Accounting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Billing": {
+      "fr-FR": {
+        "title": "Tarification",
+        "logo": "Billing",
+        "description": "Devis, fixation des prix..."
+      },
+      "en-US": {
+        "title": "Billing",
+        "logo": "Billing",
+        "description": "Quotations, pricing..."
+      },
+      "en-GB": {
+        "title": "Billing",
+        "logo": "Billing",
+        "description": "Quotations, pricing..."
+      },
+      "es-ES": {
+        "title": "Facturación",
+        "logo": "Billing",
+        "description": "Cotizaciones, fijación de precios..."
+      },
+      "ar-SA": {
+        "title": "الفواتير",
+        "logo": "Billing",
+        "description": "عروض الأسعار، التسعير..."
+      },
+      "url": {
+        "app": "Billing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Booking": {
+      "fr-FR": {
+        "title": "Réservations",
+        "logo": "Booking",
+        "description": "Hôtellerie, voyages, restauration..."
+      },
+      "en-US": {
+        "title": "Booking",
+        "logo": "Booking",
+        "description": "Hotels, travelling, catering..."
+      },
+      "en-GB": {
+        "title": "Booking",
+        "logo": "Booking",
+        "description": "Hotels, travelling, catering..."
+      },
+      "es-ES": {
+        "title": "Reservas",
+        "logo": "Booking",
+        "description": "Hoteles, viajes, catering..."
+      },
+      "ar-SA": {
+        "title": "الحجوزات",
+        "logo": "Booking",
+        "description": "فنادق، سفر، خدمات الطعام..."
+      },
+      "url": {
+        "app": "Booking",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Control": {
+      "fr-FR": {
+        "title": "Contrôle",
+        "logo": "Control",
+        "description": "Pointage des opérations, validation, rapprochements..."
+      },
+      "en-US": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Operations tracking, validation, reconciliation..."
+      },
+      "en-GB": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Operations tracking, validation, reconciliation..."
+      },
+      "es-ES": {
+        "title": "Control",
+        "logo": "Control",
+        "description": "Seguimiento de operaciones, validación, conciliación..."
+      },
+      "ar-SA": {
+        "title": "التحكم",
+        "logo": "Control",
+        "description": "تتبع العمليات، التحقق، المصالحة..."
+      },
+      "url": {
+        "app": "Control",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Corporation": {
+      "fr-FR": {
+        "title": "Corporation",
+        "logo": "Corporation",
+        "description": "Opérations de groupe, consolidation..."
+      },
+      "en-US": {
+        "title": "Corporation",
+        "logo": "Corporation",
+        "description": "Group operations, consolidation..."
+      },
+      "en-GB": {
+        "title": "Corporation",
+        "logo": "Corporation",
+        "description": "Group operations, consolidation..."
+      },
+      "es-ES": {
+        "title": "Corporación",
+        "logo": "Corporation",
+        "description": "Operaciones grupales, consolidación..."
+      },
+      "ar-SA": {
+        "title": "الشركة",
+        "logo": "Corporation",
+        "description": "العمليات الجماعية، الدمج..."
+      },
+      "url": {
+        "app": "Corporation",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Dashboarding": {
+      "fr-FR": {
+        "title": "Tableaux de bord",
+        "logo": "Dashboarding",
+        "description": "Modélisation, scorecards, visualisation..."
+      },
+      "en-US": {
+        "title": "Dashboarding",
+        "logo": "Dashboarding",
+        "description": "Modeling, scorecards, visual design..."
+      },
+      "en-GB": {
+        "title": "Dashboarding",
+        "logo": "Dashboarding",
+        "description": "Modeling, scorecards, visual design..."
+      },
+      "es-ES": {
+        "title": "Tableros",
+        "logo": "Dashboarding",
+        "description": "Modelado, cuadros de mando, diseño visual..."
+      },
+      "ar-SA": {
+        "title": "لوحات التحكم",
+        "logo": "Dashboarding",
+        "description": "النمذجة، بطاقات الأداء، التصميم المرئي..."
+      },
+      "url": {
+        "app": "Dashboarding",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Emailing": {
+      "fr-FR": {
+        "title": "Courriel",
+        "logo": "Emailing",
+        "description": "Client de messagerie, messagerie pair-à-pair, transfer de fichiers..."
+      },
+      "en-US": {
+        "title": "Emailing",
+        "logo": "Emailing",
+        "description": "Email management client, P2P messaging, file tranfer..."
+      },
+      "en-GB": {
+        "title": "Emailing",
+        "logo": "Emailing",
+        "description": "Email management client, P2P messaging, file tranfer..."
+      },
+      "es-ES": {
+        "title": "Correo Electrónico",
+        "logo": "Emailing",
+        "description": "Cliente de gestión de correo, mensajería P2P, transferencia de archivos..."
+      },
+      "ar-SA": {
+        "title": "البريد الإلكتروني",
+        "logo": "Emailing",
+        "description": "عميل إدارة البريد الإلكتروني، المراسلة من نظير إلى نظير، نقل الملفات..."
+      },
+      "url": {
+        "app": "Emailing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Forecasting": {
+      "fr-FR": {
+        "title": "Prévisions",
+        "logo": "Forecasting",
+        "description": "Budget, planification, anticipation, analyse..."
+      },
+      "en-US": {
+        "title": "Forecasting",
+        "logo": "Forecasting",
+        "description": "Budget, planning, anticipation, analysis..."
+      },
+      "en-GB": {
+        "title": "Forecasting",
+        "logo": "Forecasting",
+        "description": "Budget, planning, anticipation, analysis..."
+      },
+      "es-ES": {
+        "title": "Pronósticos",
+        "logo": "Forecasting",
+        "description": "Presupuesto, planificación, anticipación, análisis..."
+      },
+      "ar-SA": {
+        "title": "التنبؤ",
+        "logo": "Forecasting",
+        "description": "الميزانية، التخطيط، التوقع، التحليل..."
+      },
+      "url": {
+        "app": "Forecasting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Hrm": {
+      "fr-FR": {
+        "title": "Gestion des ressources humaines",
+        "logo": "HRM",
+        "description": "Gestion du personnel, carrières, contrats..."
+      },
+      "en-US": {
+        "title": "Human Resource Management",
+        "logo": "HRM",
+        "description": "Employees management, carreers, contracts..."
+      },
+      "en-GB": {
+        "title": "Human Resource Management",
+        "logo": "HRM",
+        "description": "Employees management, carreers, contracts..."
+      },
+      "es-ES": {
+        "title": "Gestión de Recursos Humanos",
+        "logo": "HRM",
+        "description": "Gestión de empleados, carreras, contratos..."
+      },
+      "ar-SA": {
+        "title": "إدارة الموارد البشرية",
+        "logo": "HRM",
+        "description": "إدارة الموظفين، المسارات الوظيفية، العقود..."
+      },
+      "url": {
+        "app": "HRM",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Hudel": {
+      "fr-FR": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Assistance artificielle..."
+      },
+      "en-US": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Artificial support..."
+      },
+      "en-GB": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Artificial support..."
+      },
+      "es-ES": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "Soporte artificial..."
+      },
+      "ar-SA": {
+        "title": "Hudel",
+        "logo": "Hudel",
+        "description": "دعم اصطناعي..."
+      },
+      "url": {
+        "app": "Hudel",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Ids": {
+      "fr-FR": {
+        "title": "Système d'intégration des données",
+        "logo": "IDS",
+        "description": "Analytics, stockage, conversion de format..."
+      },
+      "en-US": {
+        "title": "Integrated Data Systems",
+        "logo": "IDS",
+        "description": "Analytics, storage, format conversion..."
+      },
+      "en-GB": {
+        "title": "Integrated Data Systems",
+        "logo": "IDS",
+        "description": "Analytics, storage, format conversion..."
+      },
+      "es-ES": {
+        "title": "Sistemas de Datos Integrados",
+        "logo": "IDS",
+        "description": "Analítica, almacenamiento, conversión de formato..."
+      },
+      "ar-SA": {
+        "title": "أنظمة البيانات المتكاملة",
+        "logo": "IDS",
+        "description": "التحليلات، التخزين، تحويل التنسيق..."
+      },
+      "url": {
+        "app": "IDS",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Inventory": {
+      "fr-FR": {
+        "title": "Gestion des stocks",
+        "logo": "Inventory",
+        "description": "Magasinage, seuils, inventaires..."
+      },
+      "en-US": {
+        "title": "Inventory",
+        "logo": "Inventory",
+        "description": "Warehousing, thresholds, inventories..."
+      },
+      "en-GB": {
+        "title": "Inventory",
+        "logo": "Inventory",
+        "description": "Warehousing, thresholds, inventories..."
+      },
+      "es-ES": {
+        "title": "Inventario",
+        "logo": "Inventory",
+        "description": "Almacenamiento, umbrales, inventarios..."
+      },
+      "ar-SA": {
+        "title": "المخزون",
+        "logo": "Inventory",
+        "description": "التخزين، العتبات، الجرد..."
+      },
+      "url": {
+        "app": "Inventory",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Invoicing": {
+      "fr-FR": {
+        "title": "Facturation",
+        "logo": "Invoicing",
+        "description": "Ventes, gestion des clients, délais..."
+      },
+      "en-US": {
+        "title": "Invoicing",
+        "logo": "Invoicing",
+        "description": "Sales, clients management, deadlines..."
+      },
+      "en-GB": {
+        "title": "Invoicing",
+        "logo": "Invoicing",
+        "description": "Sales, clients management, deadlines..."
+      },
+      "es-ES": {
+        "title": "Facturación",
+        "logo": "Invoicing",
+        "description": "Ventas, gestión de clientes, plazos..."
+      },
+      "ar-SA": {
+        "title": "الفواتير",
+        "logo": "Invoicing",
+        "description": "المبيعات، إدارة العملاء، المواعيد النهائية..."
+      },
+      "url": {
+        "app": "Invoicing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Maintenance": {
+      "fr-FR": {
+        "title": "Maintenance",
+        "logo": "Maintenance",
+        "description": "Maintenance technique, entretien, planification..."
+      },
+      "en-US": {
+        "title": "Maintenance",
+        "logo": "Maintenance",
+        "description": "Technical maintenance, upkeep, planning..."
+      },
+      "en-GB": {
+        "title": "Maintenance",
+        "logo": "Maintenance",
+        "description": "Technical maintenance, upkeep, planning..."
+      },
+      "es-ES": {
+        "title": "Mantenimiento",
+        "logo": "Maintenance",
+        "description": "Mantenimiento técnico, conservación, planificación..."
+      },
+      "ar-SA": {
+        "title": "الصيانة",
+        "logo": "Maintenance",
+        "description": "الصيانة الفنية، العناية، التخطيط..."
+      },
+      "url": {
+        "app": "Maintenance",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Meeting": {
+      "fr-FR": {
+        "title": "Conférences",
+        "logo": "Meeting",
+        "description": "Réunions en ligne, partage de documents, messagerie, visio-conférences..."
+      },
+      "en-US": {
+        "title": "Meeting",
+        "logo": "Meeting",
+        "description": "Online meeting, documents sharing, messaging, visio-conference..."
+      },
+      "en-GB": {
+        "title": "Meeting",
+        "logo": "Meeting",
+        "description": "Online meeting, documents sharing, messaging, visio-conference..."
+      },
+      "es-ES": {
+        "title": "Reuniones",
+        "logo": "Meeting",
+        "description": "Reuniones en línea, intercambio de documentos, mensajería, videoconferencias..."
+      },
+      "ar-SA": {
+        "title": "الاجتماعات",
+        "logo": "Meeting",
+        "description": "اجتماعات عبر الإنترنت، مشاركة المستندات، المراسلة، مؤتمرات الفيديو..."
+      },
+      "url": {
+        "app": "Meeting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Messaging": {
+      "fr-FR": {
+        "title": "Messagerie",
+        "logo": "Messaging",
+        "description": "Messagerie instantanée, partage de documents, VoIP..."
+      },
+      "en-US": {
+        "title": "Messaging",
+        "logo": "Messaging",
+        "description": "Instant messaging, documents sharing, VoIP..."
+      },
+      "en-GB": {
+        "title": "Messaging",
+        "logo": "Messaging",
+        "description": "Instant messaging, documents sharing, VoIP..."
+      },
+      "es-ES": {
+        "title": "Mensajería",
+        "logo": "Messaging",
+        "description": "Mensajería instantánea, intercambio de documentos, VoIP..."
+      },
+      "ar-SA": {
+        "title": "المراسلة",
+        "logo": "Messaging",
+        "description": "المراسلة الفورية، مشاركة المستندات، VoIP..."
+      },
+      "url": {
+        "app": "Messaging",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Partnership": {
+      "fr-FR": {
+        "title": "Partenariat",
+        "logo": "Partnership",
+        "description": "Contrat pair-à-pair, quote-part, sous-traitance..."
+      },
+      "en-US": {
+        "title": "Partnership",
+        "logo": "Partnership",
+        "description": "P2P contract, shares, subcontracting..."
+      },
+      "en-GB": {
+        "title": "Partnership",
+        "logo": "Partnership",
+        "description": "P2P contract, shares, subcontracting..."
+      },
+      "es-ES": {
+        "title": "Asociación",
+        "logo": "Partnership",
+        "description": "Contrato P2P, acciones, subcontratación..."
+      },
+      "ar-SA": {
+        "title": "الشراكة",
+        "logo": "Partnership",
+        "description": "عقد من نظير إلى نظير، الأسهم، المقاولة من الباطن..."
+      },
+      "url": {
+        "app": "Partnership",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Payments": {
+      "fr-FR": {
+        "title": "Moyens de paiement",
+        "logo": "Payments",
+        "description": "Banque, espèces, cartes, crédit..."
+      },
+      "en-US": {
+        "title": "Payments",
+        "logo": "Payments",
+        "description": "Bank, cash, cards, debt..."
+      },
+      "en-GB": {
+        "title": "Payments",
+        "logo": "Payments",
+        "description": "Bank, cash, cards, debt..."
+      },
+      "es-ES": {
+        "title": "Pagos",
+        "logo": "Payments",
+        "description": "Banco, efectivo, tarjetas, deuda..."
+      },
+      "ar-SA": {
+        "title": "المدفوعات",
+        "logo": "Payments",
+        "description": "بنك، نقدي، بطاقات، دين..."
+      },
+      "url": {
+        "app": "Payments",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Payroll": {
+      "fr-FR": {
+        "title": "Paie",
+        "logo": "Payroll",
+        "description": "Traitement des salaires, débours, indemnités..."
+      },
+      "en-US": {
+        "title": "Payroll",
+        "logo": "Payroll",
+        "description": "Salaries, outlays, allowances..."
+      },
+      "en-GB": {
+        "title": "Payroll",
+        "logo": "Payroll",
+        "description": "Salaries, outlays, allowances..."
+      },
+      "es-ES": {
+        "title": "Nómina",
+        "logo": "Payroll",
+        "description": "Salarios, desembolsos, asignaciones..."
+      },
+      "ar-SA": {
+        "title": "كشوف المرتبات",
+        "logo": "Payroll",
+        "description": "الرواتب، النفقات، البدلات..."
+      },
+      "url": {
+        "app": "Payroll",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Profiling": {
+      "fr-FR": {
+        "title": "Gestion des utilisateurs",
+        "logo": "Profiling",
+        "description": "Profils, utilisateurs, droits d'accès..."
+      },
+      "en-US": {
+        "title": "Profiling",
+        "logo": "Profiling",
+        "description": "Profiles, credentials, grants..."
+      },
+      "en-GB": {
+        "title": "Profiling",
+        "logo": "Profiling",
+        "description": "Profiles, credentials, grants..."
+      },
+      "es-ES": {
+        "title": "Perfiles",
+        "logo": "Profiling",
+        "description": "Perfiles, credenciales, permisos..."
+      },
+      "ar-SA": {
+        "title": "الملفات الشخصية",
+        "logo": "Profiling",
+        "description": "الملفات الشخصية، بيانات الاعتماد، الصلاحيات..."
+      },
+      "url": {
+        "app": "Profiling",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Publishing": {
+      "fr-FR": {
+        "title": "Publication",
+        "logo": "Publishing",
+        "description": "Exportation et importation des données..."
+      },
+      "en-US": {
+        "title": "Publishing",
+        "logo": "Publishing",
+        "description": "Data importation and exportation..."
+      },
+      "en-GB": {
+        "title": "Publishing",
+        "logo": "Publishing",
+        "description": "Data importation and exportation..."
+      },
+      "es-ES": {
+        "title": "Publicación",
+        "logo": "Publishing",
+        "description": "Importación y exportación de datos..."
+      },
+      "ar-SA": {
+        "title": "النشر",
+        "logo": "Publishing",
+        "description": "استيراد وتصدير البيانات..."
+      },
+      "url": {
+        "app": "Publishing",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Purchase": {
+      "fr-FR": {
+        "title": "Achats",
+        "logo": "Purchase",
+        "description": "Achats, gestion des fournisseurs, délais..."
+      },
+      "en-US": {
+        "title": "Purchase",
+        "logo": "Purchase",
+        "description": "Purchases, suppliers management, deadlines..."
+      },
+      "en-GB": {
+        "title": "Purchase",
+        "logo": "Purchase",
+        "description": "Purchases, suppliers management, deadlines..."
+      },
+      "es-ES": {
+        "title": "Compras",
+        "logo": "Purchase",
+        "description": "Compras, gestión de proveedores, plazos..."
+      },
+      "ar-SA": {
+        "title": "المشتريات",
+        "logo": "Purchase",
+        "description": "المشتريات، إدارة الموردين، المواعيد النهائية..."
+      },
+      "url": {
+        "app": "Purchase",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Reporting": {
+      "fr-FR": {
+        "title": "Etats et Rapports",
+        "logo": "Reporting",
+        "description": "Produire des états et rapports périodiques"
+      },
+      "en-US": {
+        "title": "Reports and Statements",
+        "logo": "Reporting",
+        "description": "Produce periodic reports and statements"
+      },
+      "en-GB": {
+        "title": "Reports and Statements",
+        "logo": "Reporting",
+        "description": "Produce periodic reports and statements"
+      },
+      "es-ES": {
+        "title": "Informes y Estados",
+        "logo": "Reporting",
+        "description": "Producir informes y estados periódicos"
+      },
+      "ar-SA": {
+        "title": "التقارير والكشوف",
+        "logo": "Reporting",
+        "description": "إنتاج تقارير وكشوف دورية"
+      },
+      "url": {
+        "app": "Reporting",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Tasks": {
+      "fr-FR": {
+        "title": "A-Faire",
+        "logo": "Tasks",
+        "description": "Planificateur de tâches, synchronisation, organisation..."
+      },
+      "en-US": {
+        "title": "Tasks",
+        "logo": "Tasks",
+        "description": "Tasks planning, synchronization, scheduling..."
+      },
+      "en-GB": {
+        "title": "Tasks",
+        "logo": "Tasks",
+        "description": "Tasks planning, synchronization, scheduling..."
+      },
+      "es-ES": {
+        "title": "Tareas",
+        "logo": "Tasks",
+        "description": "Planificación de tareas, sincronización, programación..."
+      },
+      "ar-SA": {
+        "title": "المهام",
+        "logo": "Tasks",
+        "description": "تخطيط المهام، المزامنة، الجدولة..."
+      },
+      "url": {
+        "app": "Tasks",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Taxes": {
+      "fr-FR": {
+        "title": "Taxes",
+        "logo": "Taxes",
+        "description": "Taxes, impôts, contrôle fiscal..."
+      },
+      "en-US": {
+        "title": "Taxes",
+        "logo": "Taxes",
+        "description": "Taxes, duties, tax audit..."
+      },
+      "en-GB": {
+        "title": "Taxes",
+        "logo": "Taxes",
+        "description": "Taxes, duties, tax audit..."
+      },
+      "es-ES": {
+        "title": "Impuestos",
+        "logo": "Taxes",
+        "description": "Impuestos, aranceles, auditoría fiscal..."
+      },
+      "ar-SA": {
+        "title": "الضرائب",
+        "logo": "Taxes",
+        "description": "الضرائب، الرسوم، التدقيق الضريبي..."
+      },
+      "url": {
+        "app": "Taxes",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Teller": {
+      "fr-FR": {
+        "title": "Caisses",
+        "logo": "Teller",
+        "description": "Gestion des caisses, centralisation..."
+      },
+      "en-US": {
+        "title": "Tellers",
+        "logo": "Teller",
+        "description": "Cash management, centralization..."
+      },
+      "en-GB": {
+        "title": "Tellers",
+        "logo": "Teller",
+        "description": "Cash management, centralization..."
+      },
+      "es-ES": {
+        "title": "Cajas",
+        "logo": "Teller",
+        "description": "Gestión de efectivo, centralización..."
+      },
+      "ar-SA": {
+        "title": "أمناء الصندوق",
+        "logo": "Teller",
+        "description": "إدارة النقد، المركزية..."
+      },
+      "url": {
+        "app": "Teller",
+        "controller": "Home",
+        "action": "Index"
+      }
+    },
+    "Wholesale": {
+      "fr-FR": {
+        "title": "Boutiques en ligne",
+        "logo": "Wholesale",
+        "description": "Ventes en ligne, rayonnage..."
+      },
+      "en-US": {
+        "title": "Wholesale",
+        "logo": "Wholesale",
+        "description": "online sales, shelving..."
+      },
+      "en-GB": {
+        "title": "Wholesale",
+        "logo": "Wholesale",
+        "description": "online sales, shelving..."
+      },
+      "es-ES": {
+        "title": "Venta al por Mayor",
+        "logo": "Wholesale",
+        "description": "ventas en línea, estanterías..."
+      },
+      "ar-SA": {
+        "title": "البيع بالجملة",
+        "logo": "Wholesale",
+        "description": "المبيعات عبر الإنترنت، الأرفف..."
+      },
+      "url": {
+        "app": "Wholesale",
+        "controller": "Home",
+        "action": "Index"
+      }
+    }
+  }
+}

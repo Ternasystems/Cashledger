@@ -15,6 +15,7 @@ final class Request extends AbstractCls
     private array $get;
     private array $post;
     private array $server;
+    private array $segments = [];
     public ?string $content = null {
         get {
             if ($this->content === null) {
@@ -29,6 +30,7 @@ final class Request extends AbstractCls
         $this->get = $get;
         $this->post = $post;
         $this->server = $server;
+        $this->segments = $this->parsePathSegments();
     }
 
     /**
@@ -44,7 +46,30 @@ final class Request extends AbstractCls
      */
     public function getPath(): string
     {
-        return strtok($this->server['REQUEST_URI'] ?? '/', '?');
+        $path = $this->get['uri'] ?? parse_url($this->server['REQUEST_URI'] ?? '', PHP_URL_PATH);
+        $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+        // Remove base path from request path
+        if (str_starts_with($path, $basePath)) {
+            $path = substr($path, strlen($basePath));
+        }
+
+        return '/' . trim($path, '/');
+    }
+
+    private function parsePathSegments(): array
+    {
+        $path = $this->getPath();
+        return explode('/', trim($path, '/'));
+    }
+
+    /**
+     * Gets a specific segment of the URL path by index.
+     * /segment0/segment1/segment2
+     */
+    public function getSegment(int $index): ?string
+    {
+        return $this->segments[$index] ?? null;
     }
 
     /**

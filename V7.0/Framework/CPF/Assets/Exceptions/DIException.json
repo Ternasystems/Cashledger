@@ -2,21 +2,29 @@
   "en-US": {
     "failed_to_reflect": "Failed to reflect the specified class: :class",
     "class_not_instantiable": "Failed to instantiate the specified class: :class",
-    "unresolvable_parameter": "Failed to resolve the constructor (:class) parameters: :param"
+    "unresolvable_parameter": "Failed to resolve the constructor (:class) parameters: :param",
+    "service_locator_not_set": "ServiceLocator has not been initialized. Cannot get service: :id",
+    "service_resolution_failed": "Failed to resolve service from ServiceLocator: :id"
   },
   "fr-FR": {
     "failed_to_reflect": "Échec de la réflection pour la class spécifiée : :class",
     "class_not_instantiable": "Échec de l'instantiation de la classe spécifiée : :class",
-    "unresolvable_parameter": "Échec de la résolution des paramètres du constructeur (:class) : :param"
+    "unresolvable_parameter": "Échec de la résolution des paramètres du constructeur (:class) : :param",
+    "service_locator_not_set": "ServiceLocator n'a pas été initialisé. Impossible d'obtenir le service : :id",
+    "service_resolution_failed": "Échec de la résolution du service à partir de ServiceLocator : :id"
   },
   "es-ES": {
     "failed_to_reflect": "Error de reflexión para la clase especificada : :class",
     "class_not_instantiable": "Error de instanciación de la clase especificada : :class",
-    "unresolvable_parameter": "Error de resolución de los parámetros del constructor (:class) : :param"
+    "unresolvable_parameter": "Error de resolución de los parámetros del constructor (:class) : :param",
+    "service_locator_not_set": "ServiceLocator no se ha inicializado. No se puede obtener el servicio: :id",
+    "service_resolution_failed": "Error al resolver el servicio desde ServiceLocator: :id"
   },
   "ar-SA": {
     "failed_to_reflect": "فشل في الانعكاس للفئة المحددة : :class",
     "class_not_instantiable": "فشل في إنشاء كائن من الفئة المحددة : :class",
-    "unresolvable_parameter": "فشل في حل معلمات المُنشئ (:class) : :param"
+    "unresolvable_parameter": "فشل في حل معلمات المُنشئ (:class) : :param",
+    "service_locator_not_set": "لم يتم تهيئة ServiceLocator. لا يمكن الحصول على الخدمة: :id",
+    "service_resolution_failed": "فشل في حل الخدمة من ServiceLocator: :id"
   }
 }

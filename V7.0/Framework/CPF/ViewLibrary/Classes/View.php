@@ -9,6 +9,7 @@ use ReflectionException;
 use TS_Configuration\Classes\AbstractCls;
 use TS_Exception\Classes\DIException;
 use TS_Exception\Classes\ViewException;
+use TS_Locale\Classes\Translator;
 
 /**
  * A View renderer that supports layouts, sections, and shared data.
@@ -21,6 +22,7 @@ class View extends AbstractCls
     private ?ComponentService $componentService = null;
     private ?Escaper $escaper = null;
     private ?HelpersRegistry $helpers = null;
+    private ?Translator $translator = null;
 
     /** @var array<string, string> Holds content for named sections. */
     private array $sections = [];
@@ -57,6 +59,14 @@ class View extends AbstractCls
     public function setEscaper(Escaper $escaper): void
     {
         $this->escaper = $escaper;
+    }
+
+    /**
+     * Injects the Translator service.
+     */
+    public function setTranslator(Translator $translator): void
+    {
+        $this->translator = $translator;
     }
 
     /**
@@ -125,6 +135,30 @@ class View extends AbstractCls
         ob_start();
         require $fullPath;
         return ob_get_clean() ?: '';
+    }
+
+    /**
+     * A public helper to access the Translator.
+     * This allows $this->t() to work in views.
+     */
+    public function t(string $key, array $placeholders = []): string
+    {
+        if ($this->translator === null) {
+            return $key;
+        }
+        return $this->translator->trans($key, $placeholders);
+    }
+
+    /**
+     * A public helper to access the Escaper.
+     * This allows $this->h() to work in views.
+     */
+    public function h(?string $string): string
+    {
+        if ($this->escaper === null) {
+            return (string)$string;
+        }
+        return $this->escaper->html($string);
     }
 
     /**
