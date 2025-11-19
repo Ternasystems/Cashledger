@@ -12,7 +12,7 @@ CREATE TABLE public."cl_Tellers"
 	"StartDate" timestamp without time zone DEFAULT NOW(),
     "EndDate" timestamp without time zone,
 	"SessionID" text COLLATE pg_catalog."default" UNIQUE,
-	"SessionState" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ('OPEN', 'CLOSED', 'SUSPENDED'),
+	"SessionState" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("SessionState" IN ('OPEN', 'CLOSED', 'SUSPENDED')),
 	"IP" character varying(50) COLLATE pg_catalog."default",
 	"Action" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "IsActive" timestamp without time zone,
@@ -268,7 +268,7 @@ CREATE TABLE public."cl_TellerTransactions"
 	"TransactionStatus" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("TransactionStatus" IN ('PENDING', 'POSTED', 'REVERSED', 'CANCELLED')),
 	"UnitPrice" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_PriceRelations" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"Quantity" numeric(8,2) NOT NULL CHECK ("Quantity" >= 0),
-	"DiscountID" character varying(50) COLLATE pg_catalog."default" REFERENCES public."cl_discounts" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+	"DiscountID" character varying(50) COLLATE pg_catalog."default" REFERENCES public."cl_Discounts" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"TaxID" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Taxes" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"Amount" numeric(8,2) NOT NULL CHECK ("Amount" >= 0),
 	"CreatedBy" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Tellers" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -285,7 +285,6 @@ TABLESPACE pg_default;
 CREATE OR REPLACE PROCEDURE public."p_InsertTellerTransaction"(
 	IN _tellerid character varying(50),
 	IN _sessionid character varying(50),
-	IN _transactiondate timestamp without time zone DEFAULT NOW(),
 	IN _referenceid character varying(50),
 	IN _appid character varying(50),
 	IN _transactiontype character varying(50),
@@ -296,6 +295,7 @@ CREATE OR REPLACE PROCEDURE public."p_InsertTellerTransaction"(
 	IN _quantity numeric(8,2),
 	IN _taxid character varying(50),
 	IN _approbator character varying(50),
+	IN _transactiondate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -354,12 +354,12 @@ TABLESPACE pg_default;
 
 CREATE OR REPLACE PROCEDURE public."p_InsertTellerPayment"(
 	IN _tellerid character varying(50),
-	IN _paymentdate timestamp without time zone DEFAULT NOW(),
 	IN _transactionid character varying(50),
 	IN _paymentid character varying(50),
 	IN _referencenumber text,
 	IN _amount numeric(8,2),
 	IN _approbator character varying(50),
+	IN _paymentdate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -444,11 +444,11 @@ TABLESPACE pg_default;
 
 CREATE OR REPLACE PROCEDURE public."p_InsertTellerReceipt"(
 	IN _tellerid character varying(50),
-	IN _receiptdate timestamp without time zone DEFAULT NOW(),
 	IN _transactionid character varying(50),
 	IN _receiptnumber character varying(50),
 	IN _referenceid character varying(50),
 	IN _appid character varying(50),
+	IN _receiptdate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -491,7 +491,7 @@ CREATE TABLE public."cl_TellerTransfers"
 	"TellerFrom" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Tellers" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"TellerTo" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Tellers" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"Amount" numeric(8,2) NOT NULL CHECK ("Amount" >= 0),
-	"TransferStatus" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("TrasnferStatus" IN ('PENDING', 'APPROVED', 'REJECTED')),
+	"TransferStatus" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("TransferStatus" IN ('PENDING', 'APPROVED', 'REJECTED')),
 	"ApprovedBy" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_Tellers" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"IsActive" timestamp without time zone,
 	"Description" text COLLATE pg_catalog."default"
@@ -504,12 +504,12 @@ TABLESPACE pg_default;
 CREATE OR REPLACE PROCEDURE public."p_InsertTellerTransfer"(
 	IN _tellerid character varying(50),
 	IN _receiverid character varying(50),
-	IN _Transferdate timestamp without time zone DEFAULT NOW(),
 	IN _referencenumber character varying(50),
 	IN _transactionid character varying(50),
 	IN _amount numeric(8,2),
 	IN _status character varying(50),
 	IN _approbator character varying(50),
+	IN _Transferdate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$

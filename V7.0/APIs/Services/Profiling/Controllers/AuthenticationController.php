@@ -9,12 +9,7 @@ use TS_Http\Classes\Response;
 
 class AuthenticationController extends BaseController
 {
-    private IAuthenticationService $service;
-
-    public function __construct(IAuthenticationService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(protected IAuthenticationService $service){}
 
     /**
      * Handles a login attempt.

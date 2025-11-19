@@ -46,7 +46,7 @@ class StockService implements IStockService
      * @throws InventoryException
      * @throws Throwable
      */
-    public function SetStock(array $data): Stock
+    public function setStock(array $data): Stock
     {
         $context = $this->stockFactory->repository()->context;
         $context->beginTransaction();
@@ -77,7 +77,7 @@ class StockService implements IStockService
      * @inheritDoc
      * @throws Throwable
      */
-    public function PutStock(string $id, array $data): ?Stock
+    public function putStock(string $id, array $data): ?Stock
     {
         $context = $this->stockFactory->repository()->context;
         $context->beginTransaction();
@@ -106,7 +106,7 @@ class StockService implements IStockService
      * @inheritDoc
      * @throws Throwable
      */
-    public function PutQuantity(string $id, float $quantity): ?Stock
+    public function putQuantity(string $id, float $quantity): ?Stock
     {
         $context = $this->stockFactory->repository()->context;
         $context->beginTransaction();
@@ -133,7 +133,7 @@ class StockService implements IStockService
      * @inheritDoc
      * @throws Throwable
      */
-    public function DeleteStock(string $id): bool
+    public function deleteStock(string $id): bool
     {
         $context = $this->stockFactory->repository()->context;
         $context->beginTransaction();

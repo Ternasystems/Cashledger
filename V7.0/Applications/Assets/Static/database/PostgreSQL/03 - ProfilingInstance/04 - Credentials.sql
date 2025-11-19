@@ -15,7 +15,7 @@ CREATE TABLE public."cl_Credentials"
     "EndDate" timestamp without time zone,
     "SessionID" text COLLATE pg_catalog."default" UNIQUE,
     "ConnectionStatus" boolean NOT NULL,
-	"LoginStatus" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ('LOGIN', 'LOGOUT', 'LOGIN_FAILED'),
+	"LoginStatus" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("LoginStatus" IN ('LOGIN', 'LOGOUT', 'LOGIN_FAILED')),
 	"CurrentThread" boolean NOT NULL,
 	"Threads" integer NOT NULL CHECK ("Threads" >= 0),
 	"IP" character varying(50) COLLATE pg_catalog."default",

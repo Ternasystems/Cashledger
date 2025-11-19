@@ -25,7 +25,7 @@ interface IStockService
      * @param array $data
      * @return Stock The newly created Stock entity.
      */
-    public function SetStock(array $data): Stock;
+    public function setStock(array $data): Stock;
 
     /**
      * Updates an existing Stock
@@ -34,7 +34,7 @@ interface IStockService
      * @param array $data
      * @return Stock|null
      */
-    public function PutStock(string $id, array $data): ?Stock;
+    public function putStock(string $id, array $data): ?Stock;
 
     /**
      * Updates the quantity of an existing Stock
@@ -43,7 +43,7 @@ interface IStockService
      * @param float $quantity
      * @return Stock|null
      */
-    public function PutQuantity(string $id, float $quantity): ?Stock;
+    public function putQuantity(string $id, float $quantity): ?Stock;
 
     /**
      * Deletes a Stock and its associated role relations.
@@ -51,5 +51,5 @@ interface IStockService
      * @param string $id The ID of the credential to delete.
      * @return bool True on success, false otherwise.
      */
-    public function DeleteStock(string $id): bool;
+    public function deleteStock(string $id): bool;
 }

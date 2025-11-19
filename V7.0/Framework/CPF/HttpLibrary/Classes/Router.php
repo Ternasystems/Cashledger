@@ -34,29 +34,29 @@ final class Router extends AbstractCls
 
     // --- Route Registration ---
 
-    public function get(string $path, array|Closure $handler): void
+    public function get(string $path, array|Closure $handler, array $options = []): void
     {
-        $this->addRoute('GET', $path, $handler);
+        $this->addRoute('GET', $path, $handler, $options);
     }
 
-    public function post(string $path, array|Closure $handler): void
+    public function post(string $path, array|Closure $handler, array $options = []): void
     {
-        $this->addRoute('POST', $path, $handler);
+        $this->addRoute('POST', $path, $handler, $options);
     }
 
-    public function put(string $path, array|Closure $handler): void
+    public function put(string $path, array|Closure $handler, array $options = []): void
     {
-        $this->addRoute('PUT', $path, $handler);
+        $this->addRoute('PUT', $path, $handler, $options);
     }
 
-    public function patch(string $path, array|Closure $handler): void
+    public function patch(string $path, array|Closure $handler, array $options = []): void
     {
-        $this->addRoute('PATCH', $path, $handler);
+        $this->addRoute('PATCH', $path, $handler, $options);
     }
 
-    public function delete(string $path, array|Closure $handler): void
+    public function delete(string $path, array|Closure $handler, array $options = []): void
     {
-        $this->addRoute('DELETE', $path, $handler);
+        $this->addRoute('DELETE', $path, $handler, $options);
     }
 
     public function group(string $prefix, Closure $callback): void
@@ -73,7 +73,46 @@ final class Router extends AbstractCls
         array_pop($this->groupStack);
     }
 
-    private function addRoute(string $method, string $path, array|Closure $handler): void
+    /**
+     * Alias for the 'group' method.
+     */
+    public function prefix(string $prefix): self
+    {
+        $this->groupStack[] = $prefix;
+        return $this; // Allows for chaining if we refactor group
+    }
+
+    /**
+     * Registers a full set of CRUD routes for a resource.
+     *
+     * @param string $path The base path for the resource (e.g., /users)
+     * @param string $controller The controller class name
+     * @param array $options An array for 'defaults'
+     */
+    public function resource(string $path, string $controller, array $options = []): void
+    {
+        $path = trim($path, '/');
+
+        // GET /path
+        $this->addRoute('GET', $path, [$controller, 'index'], $options);
+
+        // POST /path
+        $this->addRoute('POST', $path, [$controller, 'store'], $options);
+
+        // GET /path/{id}
+        $this->addRoute('GET', $path . '/{id}', [$controller, 'show'], $options);
+
+        // PUT /path/{id}
+        $this->addRoute('PUT', $path . '/{id}', [$controller, 'update'], $options);
+
+        // DELETE /path/{id}
+        $this->addRoute('DELETE', $path . '/{id}', [$controller, 'destroy'], $options);
+
+        // PUT /path/{id}/disable
+        $this->addRoute('PUT', $path . '/{id}/disable', [$controller, 'disable'], $options);
+    }
+
+    private function addRoute(string $method, string $path, array|Closure $handler, array $options = []): void
     {
         // Apply all stacked group prefixes to the path
         $prefix = implode('', $this->groupStack);
@@ -92,7 +131,8 @@ final class Router extends AbstractCls
             'path' => $path,
             'regex' => $pathRegex,
             'handler' => $handler,
-            'params' => $paramNames
+            'params' => $paramNames,
+            'options' => $options // Store options (like 'defaults')
         ];
     }
 
@@ -113,10 +153,24 @@ final class Router extends AbstractCls
                 array_shift($matches);
 
                 // Combine param names with matched values
-                $routeParams = array_combine($route['params'], $matches);
+                $urlParams = array_combine($route['params'], $matches);
+
+                // Get defaults from the route registration
+                $routeDefaults = $route['options']['defaults'] ?? [];
+
+                // Merge defaults and URL params. URL params override defaults.
+                $allRouteParams = array_merge($routeDefaults, $urlParams);
+
+                // ** CRITICAL STEP **
+                // Store these parameters on the request object so that
+                // controllers (like AbstractController) can access them.
+                // We must assume Request.php has this method.
+                if (method_exists($request, 'setRouteParams')) {
+                    $request->setRouteParams($allRouteParams);
+                }
 
                 // We found our route, now execute it
-                return $this->executeHandler($route['handler'], $routeParams, $request);
+                return $this->executeHandler($route['handler'], $allRouteParams, $request);
             }
         }
 

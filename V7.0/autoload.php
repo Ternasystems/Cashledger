@@ -140,42 +140,52 @@ spl_autoload_register(function ($class){
         // --Administration
         'API_Administration_Contract\\' => __DIR__.'/APIs/Services/Administration/Contracts/',
         'API_Administration_Controller\\' => __DIR__.'/APIs/Services/Administration/Controllers/',
+        'API_Administration_Facade\\' => __DIR__.'/APIs/Services/Administration/Facades/',
         'API_Administration_Service\\' => __DIR__.'/APIs/Services/Administration/Services/',
         // --Billing
         'API_Billing_Contract\\' => __DIR__.'/APIs/Services/Billing/Contracts/',
         'API_Billing_Controller\\' => __DIR__.'/APIs/Services/Billing/Controllers/',
+        'API_Billing_Facade\\' => __DIR__.'/APIs/Services/Billing/Facades/',
         'API_Billing_Service\\' => __DIR__.'/APIs/Services/Billing/Services/',
         // --Hrm
         'API_Hrm_Contract\\' => __DIR__.'/APIs/Services/Hrm/Contracts/',
         'API_Hrm_Controller\\' => __DIR__.'/APIs/Services/Hrm/Controllers/',
+        'API_Hrm_Facade\\' => __DIR__.'/APIs/Services/Hrm/Facades/',
         'API_Hrm_Service\\' => __DIR__.'/APIs/Services/Hrm/Services/',
         // --Inventory
         'API_Inventory_Contract\\' => __DIR__.'/APIs/Services/Inventory/Contracts/',
         'API_Inventory_Controller\\' => __DIR__.'/APIs/Services/Inventory/Controllers/',
+        'API_Inventory_Facade\\' => __DIR__.'/APIs/Services/Inventory/Facades/',
         'API_Inventory_Service\\' => __DIR__.'/APIs/Services/Inventory/Services/',
         // --Invoicing
         'API_Invoicing_Contract\\' => __DIR__.'/APIs/Services/Invoicing/Contracts/',
         'API_Invoicing_Controller\\' => __DIR__.'/APIs/Services/Invoicing/Controllers/',
+        'API_Invoicing_Facade\\' => __DIR__.'/APIs/Services/Invoicing/Facades/',
         'API_Invoicing_Service\\' => __DIR__.'/APIs/Services/Invoicing/Services/',
         // --Payments
         'API_Payments_Contract\\' => __DIR__.'/APIs/Services/Payments/Contracts/',
         'API_Payments_Controller\\' => __DIR__.'/APIs/Services/Payments/Controllers/',
+        'API_Payments_Facade\\' => __DIR__.'/APIs/Services/Payments/Facades/',
         'API_Payments_Service\\' => __DIR__.'/APIs/Services/Payments/Services/',
         // --Profiling
         'API_Profiling_Contract\\' => __DIR__.'/APIs/Services/Profiling/Contracts/',
         'API_Profiling_Controller\\' => __DIR__.'/APIs/Services/Profiling/Controllers/',
+        'API_Profiling_Facade\\' => __DIR__.'/APIs/Services/Profiling/Facades/',
         'API_Profiling_Service\\' => __DIR__.'/APIs/Services/Profiling/Services/',
         // --Purchase
         'API_Purchase_Contract\\' => __DIR__.'/APIs/Services/Purchase/Contracts/',
         'API_Purchase_Controller\\' => __DIR__.'/APIs/Services/Purchase/Controllers/',
+        'API_Purchase_Facade\\' => __DIR__.'/APIs/Services/Purchase/Facades/',
         'API_Purchase_Service\\' => __DIR__.'/APIs/Services/Purchase/Services/',
         // --Taxes
         'API_Taxes_Contract\\' => __DIR__.'/APIs/Services/Taxes/Contracts/',
         'API_Taxes_Controller\\' => __DIR__.'/APIs/Services/Taxes/Controllers/',
+        'API_Taxes_Facade\\' => __DIR__.'/APIs/Services/Taxes/Facades/',
         'API_Taxes_Service\\' => __DIR__.'/APIs/Services/Taxes/Services/',
         // --Teller
         'API_Teller_Contract\\' => __DIR__.'/APIs/Services/Teller/Contracts/',
         'API_Teller_Controller\\' => __DIR__.'/APIs/Services/Teller/Controllers/',
+        'API_Teller_Facade\\' => __DIR__.'/APIs/Services/Teller/Facades/',
         'API_Teller_Service\\' => __DIR__.'/APIs/Services/Teller/Services/',
 
         // Applications

@@ -358,6 +358,8 @@ CREATE OR REPLACE TRIGGER "Update_Product"
     FOR EACH ROW
     EXECUTE FUNCTION public."t_UpdateTrigger"();
 
+/* Stocks */
+
 -- Table: public.cl_Stocks
 
 CREATE TABLE IF NOT EXISTS public."cl_Stocks"
@@ -372,7 +374,6 @@ CREATE TABLE IF NOT EXISTS public."cl_Stocks"
 	"LastChecked" timestamp without time zone DEFAULT NOW(),
 	"Quantity" numeric(8,2) NOT NULL CHECK ("Quantity" >= 0),
 	"UnitCost" numeric(8,2) NOT NULL CHECK ("UnitCost" >= 0),
-	"UnitPrice" character varying(50) COLLATE pg_catalog."default" NOT NULL REFERENCES public."cl_PriceRelations" ("ID") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
 	"MinStock" numeric(8,2) NOT NULL CHECK ("MinStock" >= 0),
 	"MaxStock" numeric(8,2) NOT NULL CHECK ("MaxStock" >= 0),
 	"IsActive" timestamp without time zone,
@@ -392,7 +393,6 @@ CREATE OR REPLACE PROCEDURE public."p_InsertStock"(
 	IN _expirydate timestamp without time zone,
 	IN _quantity numeric(8,2),
 	IN _unitcost numeric(8,2),
-	IN _unitprice character varying(50),
 	IN _minstock numeric(8,2),
 	IN _maxstock numeric(8,2),
 	IN _description text DEFAULT NULL::text)
@@ -401,8 +401,8 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks'; _id character varying(50) := '%s';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, NOW(), %L, %L, %L, %L, %L, NOW(), %L, %L, %L, %L, %L, NULL, %L) ON CONFLICT ("ProductID", "PackagingID", "BatchNumber") DO NOTHING;', _tablename, _id,
-	_productid, _unitid, _packagingid, _batchnumber, _expirydate, _quantity, _unitcost, _unitprice, _minstock, _maxstock, _description);
+	_sql := FORMAT('INSERT INTO public.%I VALUES (%s, NOW(), %L, %L, %L, %L, %L, NOW(), %L, %L, %L, %L, NULL, %L) ON CONFLICT ("ProductID", "PackagingID", "BatchNumber") DO NOTHING;', _tablename, _id,
+	_productid, _unitid, _packagingid, _batchnumber, _expirydate, _quantity, _unitcost, _minstock, _maxstock, _description);
 	-- Execute sql
 	CALL public."p_Query"(_sql, _tablename, 'STK');
 END;
@@ -416,7 +416,6 @@ CREATE OR REPLACE PROCEDURE public."p_UpdateStock"(
 	IN _expirydate timestamp without time zone,
 	IN _quantity numeric(8,2),
 	IN _unitcost numeric(8,2),
-	IN _unitprice character varying(50),
 	IN _minstock numeric(8,2),
 	IN _maxstock numeric(8,2),
 	IN _description text DEFAULT NULL::text)
@@ -425,8 +424,8 @@ AS $BODY$
 DECLARE _sql text; _tablename character varying(50) := 'cl_Stocks';
 BEGIN
 	-- Format sql
-	_sql := FORMAT('UPDATE public.%I SET "UnitID" = %L, "ExpiryDate" = %L, "Quantity" = %L, "UnitCost" = %L, "UnitPrice" = %L, "MinStock" = %L, "MaxStock" = %L, "LastChecked" = NOW(),
-	"Description" = %L WHERE "ID" = %L;', _tablename, _unitid, _expirydate, _quantity, _unitcost, _unitprice, _minstock, _maxstock, _description, _id);
+	_sql := FORMAT('UPDATE public.%I SET "UnitID" = %L, "ExpiryDate" = %L, "Quantity" = %L, "UnitCost" = %L, "MinStock" = %L, "MaxStock" = %L, "LastChecked" = NOW(),
+	"Description" = %L WHERE "ID" = %L;', _tablename, _unitid, _expirydate, _quantity, _unitcost, _minstock, _maxstock, _description, _id);
 	-- Execute sql
 	CALL public."p_Query"(_sql);
 END;

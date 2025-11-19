@@ -203,7 +203,7 @@ BEGIN
     FOR _table_name IN 
         SELECT DISTINCT rt."TableName" 
         FROM public."cl_ReferenceTables" rt
-        WHERE rt."IsActive" IS NOT NULL
+        WHERE rt."IsActive" IS NULL
           AND (
               _app_id IS NULL 
               OR EXISTS (

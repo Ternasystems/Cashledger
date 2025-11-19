@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS public."cl_Taxes"
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
     "Name" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
-	"TaxType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ('RATE', 'AMOUNT'),
+	"TaxType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("TaxType" IN ('RATE', 'AMOUNT')),
 	"Value" numeric(8,2) NOT NULL CHECK ("Value" >= 0),
     "IsActive" timestamp without time zone,
     "Description" text COLLATE pg_catalog."default"

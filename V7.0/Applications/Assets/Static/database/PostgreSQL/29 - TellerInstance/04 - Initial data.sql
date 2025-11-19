@@ -4,12 +4,14 @@
 
 DO
 $BODY$
-DECLARE _id character varying(50); _appid character varying(50); _us character varying(50); _gb character varying(50); _fr character varying(50);
+DECLARE _id character varying(50); _appid character varying(50); _us character varying(50); _gb character varying(50); _fr character varying(50); _es character varying(50); _ar character varying(50);
 BEGIN
 
 	SELECT "ID" INTO _us FROM public."cl_Languages" WHERE "Label" = 'US';
 	SELECT "ID" INTO _gb FROM public."cl_Languages" WHERE "Label" = 'GB';
 	SELECT "ID" INTO _fr FROM public."cl_Languages" WHERE "Label" = 'FR';
+	SELECT "ID" INTO _es FROM public."cl_Languages" WHERE "Label" = 'GQ';
+	SELECT "ID" INTO _ar FROM public."cl_Languages" WHERE "Label" = 'TD';
 	
 	-- App registry
 	

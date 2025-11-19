@@ -632,7 +632,7 @@ CREATE OR REPLACE TRIGGER "Remove_CivilityRelation"
 
 -- Table: public.cl_Occupations
 
-DROP TABLE IF EXISTS public."cl_Occupations"
+DROP TABLE IF EXISTS public."cl_Occupations";
 CREATE TABLE public."cl_Occupations"
 (
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,

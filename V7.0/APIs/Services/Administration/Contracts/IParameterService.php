@@ -7,8 +7,8 @@ use API_DTOEntities_Model\Parameter;
 
 interface IParameterService
 {
-    public function GetParameter(string $parameter, ReloadMode $reloadMode = ReloadMode::NO): ?Parameter;
-    public function GetFrom(string $predicate, ?array $args = null): string|float|null;
-    public function CheckParameter(string $predicate, ?array $args = null): bool;
-    public function SetParameter(string $paramName, string $paramValue, bool $encrypted): void;
+    public function getParameter(string $parameter, ReloadMode $reloadMode = ReloadMode::NO): ?Parameter;
+    public function getFrom(string $predicate, ?array $args = null): string|float|null;
+    public function checkParameter(string $predicate, ?array $args = null): bool;
+    public function setParameter(string $paramName, string $paramValue, bool $encrypted): void;
 }

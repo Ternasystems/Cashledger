@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS public."cl_Discounts"
     "ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,
     "Code" integer UNIQUE NOT NULL,
     "Name" character varying(50) COLLATE pg_catalog."default" UNIQUE NOT NULL,
-	"DiscountType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("DiscountType" IN ('RATE', 'AMOUNT'));
+	"DiscountType" character varying(50) COLLATE pg_catalog."default" NOT NULL CHECK ("DiscountType" IN ('RATE', 'AMOUNT')),
 	"Value" numeric(8,2) NOT NULL,
     "IsActive" timestamp without time zone,
     "Description" text COLLATE pg_catalog."default"

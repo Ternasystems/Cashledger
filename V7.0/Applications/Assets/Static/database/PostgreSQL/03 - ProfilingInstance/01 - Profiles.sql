@@ -19,7 +19,7 @@ CREATE TABLE public."cl_Profiles"
 	"Photo" text COLLATE pg_catalog."default",
 	"IsActive" timestamp without time zone,
     "Description" text COLLATE pg_catalog."default",
-    CONSTRAINT "UQ_Profile" UNIQUE ("FirstName", "LastName", "Birthdate")
+    CONSTRAINT "UQ_Profile" UNIQUE ("FirstName", "LastName", "BirthDate")
 )
 
 TABLESPACE pg_default;

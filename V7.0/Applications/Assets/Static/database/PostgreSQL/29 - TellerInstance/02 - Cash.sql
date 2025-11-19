@@ -113,9 +113,9 @@ TABLESPACE pg_default;
 
 CREATE OR REPLACE PROCEDURE public."p_InsertTellerCashCount"(
 	IN _tellerid character varying(50),
-	IN _countdate timestamp without time zone DEFAULT NOW(),
 	IN _amount numeric(8,2),
 	IN _approbator character varying(50),
+	IN _countdate timestamp without time zone DEFAULT NOW(),
 	IN _description text DEFAULT NULL::text)
 LANGUAGE 'plpgsql'
 AS $BODY$

@@ -467,15 +467,23 @@ C:.
 ¦   ¦   ¦   ¦       ICityService.php
 ¦   ¦   ¦   ¦       IContinentService.php
 ¦   ¦   ¦   ¦       ICountryService.php
+¦   ¦   ¦   ¦       IFacade.php
 ¦   ¦   ¦   ¦       ILanguageService.php
 ¦   ¦   ¦   ¦       IParameterService.php
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Controllers
+¦   ¦   ¦   ¦       AbstractController.php
 ¦   ¦   ¦   ¦       AppController.php
 ¦   ¦   ¦   ¦       AuditController.php
 ¦   ¦   ¦   ¦       CountryController.php
 ¦   ¦   ¦   ¦       LanguageController.php
 ¦   ¦   ¦   ¦       ParameterController.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       AppFacade.php
+¦   ¦   ¦   ¦       AuditFacade.php
+¦   ¦   ¦   ¦       CountryFacade.php
+¦   ¦   ¦   ¦       LanguageFacade.php
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           AppCategoryService.php
@@ -499,6 +507,11 @@ C:.
 ¦   ¦   ¦   ¦       DiscountController.php
 ¦   ¦   ¦   ¦       PriceController.php
 ¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       CurrencyFacade.php
+¦   ¦   ¦   ¦       DiscountFacade.php
+¦   ¦   ¦   ¦       PriceFacade.php
+¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           CurrencyService.php
 ¦   ¦   ¦           DiscountService.php
@@ -510,6 +523,9 @@ C:.
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Controllers
 ¦   ¦   ¦   ¦       EmployeeController.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       EmployeeFacade.php
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           EmployeeService.php
@@ -525,6 +541,10 @@ C:.
 ¦   ¦   ¦   ¦       ProductController.php
 ¦   ¦   ¦   ¦       StockController.php
 ¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       ProductFacade.php
+¦   ¦   ¦   ¦       StockFacade.php
+¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           PackagingService.php
 ¦   ¦   ¦           ProductService.php
@@ -538,6 +558,9 @@ C:.
 ¦   ¦   ¦   +---Controllers
 ¦   ¦   ¦   ¦       CustomerController.php
 ¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       CustomerFacade.php
+¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           CustomerService.php
 ¦   ¦   ¦           
@@ -547,6 +570,9 @@ C:.
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Controllers
 ¦   ¦   ¦   ¦       PaymentController.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       PaymentFacade.php
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           PaymentMethodService.php
@@ -570,6 +596,11 @@ C:.
 ¦   ¦   ¦   ¦       CredentialController.php
 ¦   ¦   ¦   ¦       ProfileController.php
 ¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       ContactFacade.php
+¦   ¦   ¦   ¦       CredentialFacade.php
+¦   ¦   ¦   ¦       ProfileFacade.php
+¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           AuthenticationService.php
 ¦   ¦   ¦           CivilityService.php
@@ -589,6 +620,9 @@ C:.
 ¦   ¦   ¦   +---Controllers
 ¦   ¦   ¦   ¦       SupplierController.php
 ¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       SupplierFacade.php
+¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           SupplierService.php
 ¦   ¦   ¦           
@@ -598,6 +632,9 @@ C:.
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Controllers
 ¦   ¦   ¦   ¦       TaxController.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---Facades
+¦   ¦   ¦   ¦       TaxFacade.php
 ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   +---Services
 ¦   ¦   ¦           TaxService.php
@@ -620,6 +657,12 @@ C:.
 ¦   ¦       ¦       TellerAuditController.php
 ¦   ¦       ¦       TellerController.php
 ¦   ¦       ¦       TellerSessionController.php
+¦   ¦       ¦       
+¦   ¦       +---Facades
+¦   ¦       ¦       CashFigureFacade.php
+¦   ¦       ¦       TellerAuditFacade.php
+¦   ¦       ¦       TellerFacade.php
+¦   ¦       ¦       TellerSessionFacade.php
 ¦   ¦       ¦       
 ¦   ¦       +---Services
 ¦   ¦               CashFigureService.php
@@ -846,10 +889,12 @@ C:.
 ¦   ¦   +---Views
 ¦   ¦       +---Templates
 ¦   +---Administration
+¦   ¦   ¦   routes.php
+¦   ¦   ¦   
 ¦   ¦   +---Assets
 ¦   ¦   ¦   +---Locales
 ¦   ¦   +---Controllers
-¦   ¦   ¦       AdministrationController.php
+¦   ¦   ¦       HomeController.php
 ¦   ¦   ¦       
 ¦   ¦   +---Models
 ¦   ¦   +---Views
@@ -1867,5 +1912,6 @@ C:.
 ¦           +---Interfaces
 ¦           +---Traits
 +---Routes
+        api.php
         web.php
         

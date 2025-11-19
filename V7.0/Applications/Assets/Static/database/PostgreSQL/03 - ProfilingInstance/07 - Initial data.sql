@@ -20,16 +20,16 @@ BEGIN
 	CALL public."p_InsertReferenceRelation"(_profileid, _id);
 	--
 	CALL public."p_InsertReferenceTable"('cl_Customers');
-	SELECT "ID" INTO _appid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Customers';
-	CALL public."p_InsertReferenceRelation"(_appid, _id);
+	SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Customers';
+	CALL public."p_InsertReferenceRelation"(_profileid, _id);
 	--
 	CALL public."p_InsertReferenceTable"('cl_Suppliers');
-	SELECT "ID" INTO _appid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Suppliers';
-	CALL public."p_InsertReferenceRelation"(_appid, _id);
+	SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Suppliers';
+	CALL public."p_InsertReferenceRelation"(_profileid, _id);
 	--
 	CALL public."p_InsertReferenceTable"('cl_Employees');
-	SELECT "ID" INTO _appid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Employees';
-	CALL public."p_InsertReferenceRelation"(_appid, _id);
+	SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Employees';
+	CALL public."p_InsertReferenceRelation"(_profileid, _id);
 	--
 	CALL public."p_InsertReferenceTable"('cl_Civilities');
 	SELECT "ID" INTO _profileid FROM public."cl_ReferenceTables" WHERE "TableName" = 'cl_Civilities';

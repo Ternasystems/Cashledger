@@ -227,6 +227,29 @@ use API_Teller_Service\TellerSessionService;
 use API_Teller_Service\TellerTransactionService;
 use API_Teller_Service\TellerTransferService;
 
+// APIs - Services (Facades)
+use API_Administration_Facade\AppFacade;
+use API_Administration_Facade\AuditFacade;
+use API_Administration_Facade\CountryFacade;
+use API_Administration_Facade\LanguageFacade;
+use API_Billing_Facade\CurrencyFacade;
+use API_Billing_Facade\DiscountFacade;
+use API_Billing_Facade\PriceFacade;
+use API_Hrm_Facade\EmployeeFacade;
+use API_Inventory_Facade\ProductFacade;
+use API_Inventory_Facade\StockFacade;
+use API_Invoicing_Facade\CustomerFacade;
+use API_Payments_Facade\PaymentFacade;
+use API_Profiling_Facade\ContactFacade;
+use API_Profiling_Facade\CredentialFacade;
+use API_Profiling_Facade\ProfileFacade;
+use API_Purchase_Facade\SupplierFacade;
+use API_Taxes_Facade\TaxFacade;
+use API_Teller_Facade\CashFigureFacade;
+use API_Teller_Facade\TellerAuditFacade;
+use API_Teller_Facade\TellerFacade;
+use API_Teller_Facade\TellerSessionFacade;
+
 // APIs - Services (Controllers)
 use API_Administration_Controller\AppController;
 use API_Administration_Controller\AuditController;
@@ -506,6 +529,29 @@ try {
     $builder->addScoped(ITellerTransactionService::class, TellerTransactionService::class);
     $builder->addScoped(ITellerTransferService::class, TellerTransferService::class);
 
+    // -- API Facades (Scoped)
+    $builder->addScoped(AppFacade::class, AppFacade::class);
+    $builder->addScoped(AuditFacade::class, AuditFacade::class);
+    $builder->addScoped(CountryFacade::class, CountryFacade::class);
+    $builder->addScoped(LanguageFacade::class, LanguageFacade::class);
+    $builder->addScoped(CurrencyFacade::class, CurrencyFacade::class);
+    $builder->addScoped(DiscountFacade::class, DiscountFacade::class);
+    $builder->addScoped(PriceFacade::class, PriceFacade::class);
+    $builder->addScoped(EmployeeFacade::class, EmployeeFacade::class);
+    $builder->addScoped(ProductFacade::class, ProductFacade::class);
+    $builder->addScoped(StockFacade::class, StockFacade::class);
+    $builder->addScoped(CustomerFacade::class, CustomerFacade::class);
+    $builder->addScoped(PaymentFacade::class, PaymentFacade::class);
+    $builder->addScoped(ContactFacade::class, ContactFacade::class);
+    $builder->addScoped(CredentialFacade::class, CredentialFacade::class);
+    $builder->addScoped(ProfileFacade::class, ProfileFacade::class);
+    $builder->addScoped(SupplierFacade::class, SupplierFacade::class);
+    $builder->addScoped(TaxFacade::class, TaxFacade::class);
+    $builder->addScoped(CashFigureFacade::class, CashFigureFacade::class);
+    $builder->addScoped(TellerAuditFacade::class, TellerAuditFacade::class);
+    $builder->addScoped(TellerFacade::class, TellerFacade::class);
+    $builder->addScoped(TellerSessionFacade::class, TellerSessionFacade::class);
+
     // -- API Controllers (Scoped)
     $builder->addScoped(AppController::class, AppController::class);
     $builder->addScoped(AuditController::class, AuditController::class);
@@ -531,10 +577,10 @@ try {
     $builder->addScoped(TellerController::class, TellerController::class);
     $builder->addScoped(TellerSessionController::class, TellerSessionController::class);
 
-    // === 5. Register All Application (Web) Controllers (Transient) ===
+    // === 6. Register All Application (Web) Controllers (Transient) ===
     $builder->addTransient(PresentationHomeController::class, PresentationHomeController::class);
 
-    // === 6. Build and return the Application ===
+    // === 7. Build and return the Application ===
     return $builder->build();
 
 } catch (CacheException $e) {

@@ -11,12 +11,7 @@ use TS_Http\Classes\Response;
 
 class ParameterController extends BaseController
 {
-    protected IParameterService $service;
-
-    public function __construct(IParameterService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(protected IParameterService $service){}
 
     /**
      * Gets the value of a single parameter.
@@ -30,7 +25,7 @@ class ParameterController extends BaseController
             return $this->json(['error' => 'Parameter name is required.'], 400);
         }
 
-        $parameter = $this->service->GetParameter($name);
+        $parameter = $this->service->getParameter($name);
 
         // Return a simple key-value pair.
         return $this->json([$name => $parameter?->it()['ParamValue'] ?? $parameter?->it()['ParamUValue']]);
@@ -51,12 +46,60 @@ class ParameterController extends BaseController
 
         try {
             foreach ($parameters as $key => $parameter)
-                $this->service->SetParameter($key, $parameter['value'], $parameter['encrypted']);
+                $this->service->setParameter($key, $parameter['value'], $parameter['encrypted']);
 
             return $this->json(['success' => true, 'message' => 'Parameters updated.']);
         } catch (Exception $e) {
             // In a real app, log the exception message.
             return $this->json(['success' => false, 'message' => 'An error occurred.'], 500);
+        }
+    }
+
+    /**
+     * Gets a calculated value from the database via the parameter repository.
+     * Responds to: /index.php?controller=Parameter&action=getFrom&predicate=f_GetVersion&args[]=...
+     */
+    public function getFrom(Request $request): Response
+    {
+        try {
+            $predicate = $request->getQuery('predicate');
+            if (!$predicate) {
+                return $this->json(['error' => 'Predicate parameter is required.'], 400);
+            }
+
+            // 'args' in a query string will be parsed as an array
+            // e.g., ?args[]=val1&args[]=val2
+            $args = $request->getQuery('args');
+
+            $result = $this->service->getFrom($predicate, $args);
+
+            return $this->json(['predicate' => $predicate, 'result' => $result]);
+
+        } catch (Exception $e) {
+            return $this->json(['error' => 'Failed to execute predicate.', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * Checks a boolean condition from the database via the parameter repository.
+     * Responds to: /index.php?controller=Parameter&action=check&predicate=f_CheckMaintenanceMode
+     */
+    public function check(Request $request): Response
+    {
+        try {
+            $predicate = $request->getQuery('predicate');
+            if (!$predicate) {
+                return $this->json(['error' => 'Predicate parameter is required.'], 400);
+            }
+
+            $args = $request->getQuery('args');
+
+            $result = $this->service->checkParameter($predicate, $args);
+
+            return $this->json(['predicate' => $predicate, 'result' => $result]);
+
+        } catch (Exception $e) {
+            return $this->json(['error' => 'Failed to execute predicate.', 'message' => $e->getMessage()], 500);
         }
     }
 }

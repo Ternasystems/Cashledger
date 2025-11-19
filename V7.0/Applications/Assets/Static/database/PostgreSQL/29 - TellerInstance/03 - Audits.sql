@@ -4,7 +4,7 @@
 
 -- Table: public.cl_TellerReversals
 
-DROP TABLE IF EXISTS public."cl_TellerReversals"
+DROP TABLE IF EXISTS public."cl_TellerReversals";
 CREATE TABLE public."cl_TellerReversals"
 (
 	"ID" character varying(50) COLLATE pg_catalog."default" PRIMARY KEY,

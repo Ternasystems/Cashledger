@@ -22,7 +22,7 @@ class ParameterService implements IParameterService
     /**
      * @throws DomainException
      */
-    public function GetParameter(string $parameter, ReloadMode $reloadMode = ReloadMode::NO): ?Parameter
+    public function getParameter(string $parameter, ReloadMode $reloadMode = ReloadMode::NO): ?Parameter
     {
         if (!isset($this->parameters) || $reloadMode == ReloadMode::YES)
         {
@@ -39,7 +39,7 @@ class ParameterService implements IParameterService
     /**
      * @throws DomainException
      */
-    public function GetFrom(string $predicate, ?array $args = null): string|float|null
+    public function getFrom(string $predicate, ?array $args = null): string|float|null
     {
         if (!isset($this->parameters))
         {
@@ -53,7 +53,7 @@ class ParameterService implements IParameterService
     /**
      * @throws DomainException
      */
-    public function CheckParameter(string $predicate, ?array $args = null): bool
+    public function checkParameter(string $predicate, ?array $args = null): bool
     {
         if (!isset($this->parameters))
         {
@@ -68,7 +68,7 @@ class ParameterService implements IParameterService
      * @throws DomainException
      * @throws AdministrationException
      */
-    public function SetParameter(string $paramName, string $paramValue, bool $encrypted): void
+    public function setParameter(string $paramName, string $paramValue, bool $encrypted): void
     {
         if (!isset($this->parameters))
         {

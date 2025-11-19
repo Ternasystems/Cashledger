@@ -6,12 +6,18 @@
 
 DO
 $BODY$
-DECLARE _id character varying(50), _tableid; _us character varying(50); _gb character varying(50); _fr character varying(50); _es character varying(50); _ar character varying(50);
+DECLARE _id character varying(50); _tableid character varying(50); _us character varying(50); _gb character varying(50); _fr character varying(50); _es character varying(50); _ar character varying(50);
 
 BEGIN
 	-- App registry
 
 	CALL public."p_InsertApp"('Administration');
+	--
+	SELECT "ID" INTO _us FROM public."cl_Languages" WHERE "Label" = 'US';
+	SELECT "ID" INTO _gb FROM public."cl_Languages" WHERE "Label" = 'GB';
+	SELECT "ID" INTO _fr FROM public."cl_Languages" WHERE "Label" = 'FR';
+	SELECT "ID" INTO _es FROM public."cl_Languages" WHERE "Label" = 'GQ';
+	SELECT "ID" INTO _ar FROM public."cl_Languages" WHERE "Label" = 'TD';
 	--
 	SELECT "ID" INTO _id FROM public."cl_Apps" WHERE "Name" = 'Administration';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'Administration');
@@ -50,12 +56,6 @@ BEGIN
 	
 	-- Languages
 
-	SELECT "ID" INTO _us FROM public."cl_Languages" WHERE "Label" = 'US';
-	SELECT "ID" INTO _gb FROM public."cl_Languages" WHERE "Label" = 'GB';
-	SELECT "ID" INTO _fr FROM public."cl_Languages" WHERE "Label" = 'FR';
-	SELECT "ID" INTO _es FROM public."cl_Languages" WHERE "Label" = 'GQ';
-	SELECT "ID" INTO _ar FROM public."cl_Languages" WHERE "Label" = 'TD';
-	--
 	SELECT "ID" INTO _id FROM public."cl_Languages" WHERE "Label" = 'US';
 	CALL public."p_InsertLanguageRelation"(_us, _id, 'en-US');
 	SELECT "ID" INTO _id FROM public."cl_Languages" WHERE "Label" = 'GB';
