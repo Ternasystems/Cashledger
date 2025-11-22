@@ -3,20 +3,19 @@
 namespace API_DTORepositories;
 
 use API_Assets\Classes\DTOException;
-use API_DTORepositories_Collection\Parameters;
 use API_DTORepositories_Context\DTOContext;
 use API_DTORepositories_Model\Parameter;
 use API_DTORepositories_Model\DTOBase;
 use DateTime;
 
 /**
- * @extends Repository<Parameter, Parameters>
+ * @extends Repository<Parameter>
  */
 class ParameterRepository extends Repository
 {
     public function __construct(DTOContext $context)
     {
-        parent::__construct($context, Parameter::class, Parameters::class);
+        parent::__construct($context, Parameter::class);
     }
 
     /**

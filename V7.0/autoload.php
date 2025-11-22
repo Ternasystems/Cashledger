@@ -5,7 +5,7 @@ spl_autoload_register(function ($class){
     // Define an associative array of namespace prefixes and their base directories
     $prefixes = [
         // Framework
-        'TS_Cache\\' => __DIR__.'/Framework/CPF/CacheLibrary',
+        'TS_Cache\\' => __DIR__.'/Framework/CPF/CacheLibrary/',
         'TS_Configuration\\' => __DIR__.'/Framework/CPF/ConfigurationLibrary/',
         'TS_Controller\\' => __DIR__.'/Framework/CPF/ControllerLibrary/',
         'TS_Database\\' => __DIR__.'/Framework/CPF/DatabaseLibrary/',
@@ -18,6 +18,9 @@ spl_autoload_register(function ($class){
         'TS_View\\' => __DIR__.'/Framework/CPF/ViewLibrary/',
 
         // APIs
+        // -Assets
+        // --Classes
+        'API_Assets\Classes\\' => __DIR__.'/APIs/Assets/Classes/',
         // -Persistence
         // --Billing
         'API_BillingRepositories_Collection\\' => __DIR__.'/APIs/Persistence/BillingRepositories/Collections/',
@@ -194,10 +197,7 @@ spl_autoload_register(function ($class){
         'App\\' => __DIR__.'/Applications/',
 
         // --- (Keep your old prefixes as fallbacks if you like) ---
-        'APP_Presentation_Controller\\' => __DIR__.'/Applications/Presentation/Controllers/',
-        'APP_Presentation_Model\\' => __DIR__.'/Applications/Presentation/Models/',
-        'APP_Profiling_Controller\\' => __DIR__.'/Applications/Profiling/Controllers/',
-        // ... (etc) ...
+        'App_Presentation_Controller\\' => __DIR__.'/Applications/Presentation/Controllers/'
     ];
 
     // Try the new 'App\\' prefix first

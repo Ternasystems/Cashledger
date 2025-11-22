@@ -33,6 +33,17 @@ class ConfigurationService extends AbstractCls
     }
 
     /**
+     * Gets the host directory
+     */
+    public function getHostDirectory(): string
+    {
+        return $this->get('host_directory', function (XMLManager $xml) {
+            $node = $xml->query('//hostDirectory');
+            return $node[0]?->getAttribute('base') ?? '';
+        });
+    }
+
+    /**
      * Gets the database credentials from config.xml.
      */
     public function getDbCredentials(): ?DBCredentials
@@ -46,7 +57,7 @@ class ConfigurationService extends AbstractCls
             // Parse DSN to get host and dbname
             // This is a simplified parser; a real one would be more robust.
             $host = 'localhost';
-            $dbname = 'cashledger';
+            $dbname = 'Cashledger';
             if (preg_match('/host=([\w\.]+)/', $dsn, $matches)) {
                 $host = $matches[1];
             }

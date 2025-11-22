@@ -59,7 +59,16 @@ try {
     // Handle framework-specific exceptions (e.g., 404, 500)
     http_response_code($e->getCode() ?: 500);
     // In production, you'd render a pretty error view here
-    echo "<h1>Error " . $e->getCode() . "</h1><p>" . $e->getTranslatedMessage() . "</p>";
+    echo "<h1>Error Trace</h1>";
+    $current = $e;
+    do {
+        echo "<b>" . get_class($current) . ":</b> " . $current->getMessage();
+        if (method_exists($current, 'getTranslatedMessage')) {
+            echo " <em>(" . $current->getTranslatedMessage() . ")</em>";
+        }
+        echo "<br>";
+    } while ($current = $current->getPrevious());
+
     if (getenv('APP_ENV') !== 'production') {
         echo "<pre>" . $e->getTraceAsString() . "</pre>";
     }

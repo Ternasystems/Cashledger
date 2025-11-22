@@ -31,7 +31,7 @@ class ParameterFactory extends CollectableFactory
         $relations = [];
         if ($this->collection){
             $ids = $this->collection->select(fn($n) => $n->Id)->toArray();
-            $relations = $this->parameterRelationRepository->getBy([['ParamID', 'in', $ids]]);
+            $relations = $this->parameterRelationRepository->getBy([['ParamID', 'in', $ids]])->toArray();
         }
         $this->parameterRelations = new ParameterRelations($relations);
     }

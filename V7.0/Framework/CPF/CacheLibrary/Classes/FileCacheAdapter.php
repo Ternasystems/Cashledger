@@ -62,6 +62,14 @@ class FileCacheAdapter extends AbstractCls implements ICacheAdapter
     public function set(string $key, mixed $value, int $seconds): bool
     {
         $path = $this->getFilePath($key);
+        //
+        $dir = dirname($path);
+        if (!is_dir($dir)) {
+            if (!mkdir($dir, 0777, true)) {
+                return false; // Could not create directory
+            }
+        }
+        //
         $data = [
             'expires' => time() + $seconds,
             'value' => $value,

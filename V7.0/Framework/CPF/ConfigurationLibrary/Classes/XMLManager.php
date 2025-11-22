@@ -52,12 +52,21 @@ class XMLManager extends AbstractCls implements IConfigurationManager
         }
 
         $this->file = $filepath;
+        $this->load($rootElement);
+    }
+
+    /**
+     * Internal method to initialize the DOM structure.
+     */
+    private function load(?string $rootElement): void
+    {
         $this->dom = new DOMDocument('1.0', 'UTF-8');
         $this->dom->formatOutput = true;
         $this->dom->preserveWhiteSpace = false;
 
         if (!file_exists($this->file)) {
             if ($rootElement === null) {
+                // Should not happen during unserialize if cache is valid
                 throw new XMLException('no_root_element');
             }
             $this->rootNode = $this->dom->createElement($rootElement);
@@ -265,6 +274,26 @@ class XMLManager extends AbstractCls implements IConfigurationManager
     {
         $path = str_replace('@', '/@', $path);
         return './' . str_replace('.', '/', $path);
+    }
+
+    /**
+     * Serialization hook: Only save the file path, do NOT save the DOMDocument/DOMNode.
+     */
+    public function __serialize(): array
+    {
+        return [
+            'file' => $this->file
+        ];
+    }
+
+    /**
+     * Unserialization hook: Restore the file path and reload the DOM.
+     */
+    public function __unserialize(array $data): void
+    {
+        $this->file = $data['file'];
+        // When restoring from cache, the file should already exist, so rootElement defaults to null.
+        $this->load(null);
     }
 }
 

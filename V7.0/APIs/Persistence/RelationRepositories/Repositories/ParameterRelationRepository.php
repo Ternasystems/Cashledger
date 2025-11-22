@@ -2,7 +2,7 @@
 
 namespace API_RelationRepositories;
 
-use API_Assets\DTOException;
+use API_Assets\Classes\DTOException;
 use API_DTORepositories\Repository;
 use API_DTORepositories_Model\DTOBase;
 use API_RelationRepositories_Collection\ParameterRelations;
@@ -13,7 +13,7 @@ class ParameterRelationRepository extends Repository
 {
     public function __construct(RelationContext $context)
     {
-        parent::__construct($context);
+        parent::__construct($context, ParameterRelation::class);
     }
 
     public function first(?array $whereClause = null): ?ParameterRelation

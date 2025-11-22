@@ -25,8 +25,9 @@ abstract class Collectable extends AbstractCollectable
         $keyedCollection = [];
         foreach ($collection as $item) {
             // Use the 'Id' property of the model as the key.
-            if (isset($item->Id)) {
-                $keyedCollection[$item->Id] = $item;
+            $id = $item->Id ?? $item->id ?? $item->ID ?? null;
+            if ($id !== null) {
+                $keyedCollection[$id] = $item;
             }
         }
         parent::__construct($keyedCollection);

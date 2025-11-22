@@ -21,8 +21,9 @@ class EntityCollectable extends AbstractCollectable
         $keyedCollection = [];
         foreach ($collection as $item) {
             // Use the 'Id' property of the model as the key.
-            if (isset($item->Id)) {
-                $keyedCollection[$item->Id] = $item;
+            $id = $item->it()->Id ?? $item->it()->id ?? $item->it()->ID ?? null;
+            if ($id !== null) {
+                $keyedCollection[$id] = $item;
             }
         }
         parent::__construct($keyedCollection);

@@ -2,6 +2,7 @@
 
 namespace TS_DependencyInjection\Classes;
 
+use Exception;
 use TS_Exception\Classes\DIException;
 
 /**
@@ -37,7 +38,7 @@ class ServiceLocator
 
         try {
             return self::$application->get($id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new DIException('service_resolution_failed', [':id' => $id], previous: $e);
         }
     }

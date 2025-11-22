@@ -5,12 +5,11 @@ namespace API_ProfilingRepositories;
 use API_DTORepositories_Model\DTOBase;
 use API_Assets\Classes\DTOException;
 use API_DTORepositories\Repository;
-use API_ProfilingRepositories_Collection\Tokens;
 use API_ProfilingRepositories_Context\TokenContext;
 use API_ProfilingRepositories_Model\Token;
 
 /**
- * @extends Repository<Token, Tokens>
+ * @extends Repository<Token>
  */
 class TokenRepository extends Repository
 {
@@ -18,7 +17,7 @@ class TokenRepository extends Repository
 
     public function __construct(TokenContext $context)
     {
-        parent::__construct($context, Token::class, Tokens::class);
+        parent::__construct($context, Token::class);
     }
 
     public function SetTableName(string $_roleName): void

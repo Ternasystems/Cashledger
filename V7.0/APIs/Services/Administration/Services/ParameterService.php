@@ -12,11 +12,31 @@ use TS_Exception\Classes\DomainException;
 class ParameterService implements IParameterService
 {
     protected ParameterFactory $factory;
+    protected Parameter $parameter;
     protected Parameters $parameters;
 
     function __construct(ParameterFactory $_factory)
     {
         $this->factory = $_factory;
+    }
+
+    public function getParameters(?array $filter = null, int $page = 1, int $pageSize = 10, ReloadMode $reloadMode = ReloadMode::NO): Parameter|Parameters|null
+    {
+        if (!isset($this->parameters) || $reloadMode == ReloadMode::YES)
+        {
+            // Calculate the offset for the database query.
+            $offset = (is_null($page) || is_null($pageSize)) ? null : (($page - 1) * $pageSize);
+
+            // Apply the filter and pagination parameters to the factory.
+            $this->factory->filter($filter, $pageSize, $offset);
+            $this->factory->Create();
+            $this->parameters = $this->factory->collectable();
+        }
+
+        if ($this->parameters->count() === 0)
+            return null;
+
+        return $this->parameters->count() > 1 ? $this->parameters : $this->parameters->first();
     }
 
     /**
@@ -33,7 +53,15 @@ class ParameterService implements IParameterService
         if ($this->parameters->count() === 0)
             return null;
 
-        return $this->parameters->first(fn($n) => $n->it()->ParamName == $parameter);
+        {
+            $param = $this->factory->repository()->getParameter($parameter);
+            $content = trim($param->parameter, '()');
+            $id = str_getcsv($content, ',', '"', '\\')[0];
+        }
+
+        $item = $this->parameters->first(fn($n) => $n->it()->Id == $id);
+
+        return $this->parameters->first(fn($n) => $n->it()->Id == $item->it()->Id);
     }
 
     /**

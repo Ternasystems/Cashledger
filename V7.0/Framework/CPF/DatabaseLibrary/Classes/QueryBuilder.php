@@ -74,7 +74,7 @@ class QueryBuilder extends AbstractCls
      */
     private function executeSelect(): array
     {
-        $sql = "SELECT " . implode(', ', $this->columns) . " FROM {$this->table}";
+        $sql = "SELECT " . implode(', ', $this->columns) . " FROM \"{$this->table}\"";
         $sql .= $this->buildWhereClause();
         $sql .= $this->orderBy;
         $sql .= $this->limit;
@@ -201,6 +201,16 @@ class QueryBuilder extends AbstractCls
             $prefix = ($i > 0) ? " {$where['type']->value} " : '';
             $operator = strtoupper($where['operator']);
 
+            if ($where['value'] === null) {
+                if ($operator === '=' || $operator === 'IS') {
+                    $sqlParts[] = $prefix . "\"{$where['column']}\" IS NULL";
+                    continue; // Skip binding
+                } elseif ($operator === '!=' || $operator === '<>' || $operator === 'IS NOT') {
+                    $sqlParts[] = $prefix . "\"{$where['column']}\" IS NOT NULL";
+                    continue; // Skip binding
+                }
+            }
+
             if (in_array($operator, ['IN', 'NOT IN']) && is_array($where['value'])) {
                 if (empty($where['value'])) {
                     // Handle empty array case to avoid SQL errors
@@ -208,10 +218,10 @@ class QueryBuilder extends AbstractCls
                     continue;
                 }
                 $placeholders = implode(', ', array_fill(0, count($where['value']), '?'));
-                $sqlParts[] = $prefix . "`{$where['column']}` {$operator} ({$placeholders})";
+                $sqlParts[] = $prefix . "\"{$where['column']}\" {$operator} ({$placeholders})";
                 $this->bindings = array_merge($this->bindings, $where['value']);
             } else {
-                $sqlParts[] = $prefix . "`{$where['column']}` {$where['operator']} ?";
+                $sqlParts[] = $prefix . "\"{$where['column']}\" {$where['operator']} ?";
                 $this->bindings[] = $where['value'];
             }
         }

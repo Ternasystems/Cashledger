@@ -39,7 +39,7 @@ trait TContext
             foreach ($whereClause as $value)
                 $builder->where($value[0], $value[1], $value[2], $value[3] ?? WhereType::AND);
         }
-        $builder->where('IsActive', '=', null);
+        $builder->where("IsActive", 'IS', null);
 
         if (!is_null($orderBy)){
             foreach ($orderBy as $value)
@@ -186,5 +186,10 @@ trait TContext
         $hydratedObjects = array_map(fn($row) => $this->Mapping($entityName, $row), $data);
 
         return new $collectionClass($hydratedObjects);
+    }
+
+    public function GetCollectionClassName(string $collectionName): ?string
+    {
+        return $this->entityMap[$collectionName] ?? null;
     }
 }

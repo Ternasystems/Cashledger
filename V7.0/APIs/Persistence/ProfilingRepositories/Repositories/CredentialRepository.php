@@ -5,19 +5,18 @@ namespace API_ProfilingRepositories;
 use API_Assets\Classes\DTOException;
 use API_DTORepositories\Repository;
 use API_DTORepositories_Model\DTOBase;
-use API_ProfilingRepositories_Collection\Credentials;
 use API_ProfilingRepositories_Context\ProfilingContext;
 use API_ProfilingRepositories_Model\Credential;
 use PDO;
 
 /**
- * @extends Repository<Credential, Credentials>
+ * @extends Repository<Credential>
  */
 class CredentialRepository extends Repository
 {
     public function __construct(ProfilingContext $context)
     {
-        parent::__construct($context, Credential::class, Credentials::class);
+        parent::__construct($context, Credential::class);
     }
 
     /**

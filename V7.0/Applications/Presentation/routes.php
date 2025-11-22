@@ -15,13 +15,6 @@ use TS_Http\Classes\Router;
 /** @var Router $router */
 // $router is the router instance, passed from the group closure
 
-// Dashboard (default page for this app)
+// This matches /cashledger/en-US/Presentation/Home/index
 $router->get('/', [HomeController::class, 'index']);
-$router->get('/dashboard', [HomeController::class, 'index']);
-
-// Login
-$router->get('/login', [HomeController::class, 'login']);
-$router->post('/login', [HomeController::class, 'loginSubmit']);
-
-// Logout
-$router->get('/logout', [HomeController::class, 'logout']);
+$router->get('/Home/index', [HomeController::class, 'index']);

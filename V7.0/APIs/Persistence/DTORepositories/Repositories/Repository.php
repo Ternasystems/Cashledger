@@ -51,14 +51,14 @@ abstract class Repository implements IRepository
      * @param class-string<TCollection> $collectionClass The DTO collection class.
      * @throws ReflectionException
      */
-    public function __construct(IContext $context, string $modelClass, string $collectionClass)
+    public function __construct(IContext $context, string $modelClass)
     {
         $this->context = $context;
         $this->modelClass = $modelClass;
 
         // Derive the short names from the full class names.
         $this->entityName = strtolower(new ReflectionClass($modelClass)->getShortName());
-        $this->collectionName = strtolower(new ReflectionClass($collectionClass)->getShortName());
+        $this->collectionName = strtolower(new ReflectionClass($modelClass)->getShortName().'collection');
     }
 
     /**

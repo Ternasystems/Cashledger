@@ -21,3 +21,29 @@
     # Reroute all other requests to index.php
     RewriteRule ^ index.php [L,QSA]
 </IfModule>
+
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#
+#    # Set the base path (change if not in /cashledger/)
+#    RewriteBase /cashledger/
+#
+#    # Redirect Trailing Slashes If Not A Folder...
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteRule ^(.*)/$ /$1 [L,R=301]
+#
+#    # --- Rule 1: Handle API Requests ---
+#    # Reroute any request starting with 'api/' to api.php
+#    RewriteRule ^api/?(.*)$ api.php [L,QSA]
+#
+#    # --- Rule 2: Handle Real Files and Directories ---
+#    # Don't rewrite requests for existing files, directories, or symlinks
+#    RewriteCond %{REQUEST_FILENAME} -f [OR]
+#    RewriteCond %{REQUEST_FILENAME} -d [OR]
+#    RewriteCond %{REQUEST_FILENAME} -l
+#    RewriteRule ^ - [L]
+#
+#    # --- Rule 3: Handle Web App Front Controller ---
+#    # Reroute all other requests to index.php
+#    RewriteRule ^(.*)$ index.php [L,QSA]
+#</IfModule>

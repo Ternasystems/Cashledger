@@ -9,6 +9,7 @@ use API_DTORepositories_Collection\Collectable;
 use API_DTORepositories_Contract\IRepository;
 use API_RelationRepositories\LanguageRelationRepository;
 use API_RelationRepositories_Collection\LanguageRelations;
+use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 use TS_Domain\Classes\AbstractCollectable;
@@ -27,7 +28,7 @@ class CollectableFactory implements ICollectableFactory
     protected string $collectionClass;
 
     protected Collectable $collection;
-    protected LanguageRelations $languageRelations;
+    protected ?LanguageRelations $languageRelations;
 
     protected ?array $whereClause = null;
     protected ?int $limit = null;
@@ -45,11 +46,12 @@ class CollectableFactory implements ICollectableFactory
         $this->repository = $repository;
         $this->languageRelationRepository = $languageRelationRepository;
 
-        $method = new ReflectionMethod(get_class($repository), 'GetById');
-        $this->entityClass = $method->getReturnType()->getName();
+        $class = new ReflectionClass($this->repository);
+        $namespace = str_replace('Repositories', 'Entities', $class->getNamespaceName()).'_Model';
+        $this->entityClass = $namespace.'\\'.str_replace('Repository', '', $class->getShortName());
 
-        $method = new ReflectionMethod(get_class($repository), 'GetAll');
-        $this->collectionClass = $method->getReturnType()->getName();
+        $name = strtolower(str_replace('Repository', 'collection', $class->getShortName()));
+        $this->collectionClass = str_replace('Repositories', 'Entities', $this->repository->context->GetCollectionClassName($name));
 
         $this->collectable = null;
     }
@@ -75,7 +77,8 @@ class CollectableFactory implements ICollectableFactory
         $this->fetchDependencies();
         $this->fetchLanguageRelations();
 
-        $this->entityClass::LanguageRelationProvider($this->languageRelations);
+        if (!is_null($this->languageRelations))
+            $this->entityClass::LanguageRelationProvider($this->languageRelations);
 
         $this->build();
 
@@ -91,10 +94,10 @@ class CollectableFactory implements ICollectableFactory
         $languages = [];
 
         if ($this->collection){
-            $ids = $this->collection->select(fn($n) => $n->it()->Id)->toArray();
-            $languages = $this->languageRelationRepository->getBy([['ReferenceID', 'in', $ids]]);
+            $ids = $this->collection->select(fn($n) => $n->Id)->toArray();
+            $languages = $this->languageRelationRepository->getBy([['ReferenceID', 'in', $ids]])?->toArray();
         }
-        $this->languageRelations = new LanguageRelations($languages);
+        $this->languageRelations = is_null($languages) ? null : new LanguageRelations($languages);
     }
 
     /**

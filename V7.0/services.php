@@ -13,6 +13,7 @@
 declare(strict_types=1);
 
 // Framework
+use TS_Database\Classes\DBCredentials;
 use TS_DependencyInjection\Classes\ApplicationBuilder;
 use TS_DependencyInjection\Classes\Application;
 use TS_Cache\Classes\CacheManager;
@@ -276,6 +277,7 @@ use API_Teller_Controller\TellerController;
 use API_Teller_Controller\TellerSessionController;
 
 // Applications
+use APP_Administration_Controller\HomeController as AdministrationController;
 use App_Presentation_Controller\HomeController as PresentationHomeController;
 
 try {
@@ -289,7 +291,7 @@ try {
     // === 3. Register Core Configuration ===
 
     // Register the XMLManager for the config file as a Singleton
-    $builder->addSingleton(XMLManager::class, fn() => new XMLManager(__DIR__ . '/config.xml'));
+    $builder->addSingleton(XMLManager::class, fn() => new XMLManager(__DIR__ . '/Applications/Assets/Data/Xml/config.xml'));
 
     // Register our new ConfigurationService as a Singleton
     // It automatically gets the XMLManager injected.
@@ -297,38 +299,42 @@ try {
 
     // === 4. Register Core Framework Services ===
 
+    // Register the Application itself
+    $builder->addScoped(Application::class, fn(Application $app) => $app);
+
     // Caching
-    $builder->addSingleton(ICacheAdapter::class, fn() => $cacheAdapter);
-    $builder->addSingleton(CacheManager::class, fn() => $cacheManager);
+    $builder->addScoped(ICacheAdapter::class, fn() => $cacheAdapter);
+    $builder->addScoped(CacheManager::class, fn() => $cacheManager);
 
     // Logging
     $builder->addSingleton(ILogHandler::class, fn() => new StreamFileHandler(__DIR__ . '/Framework/CPF/Assets/Logs', 'cashledger'));
     $builder->addScoped(ILogger::class, Logger::class);
 
     // Database
-    $builder->addSingleton(DBContext::class, function(Application $app) {
+    $builder->addScoped(DBCredentials::class, function(Application $app) {
         /** @var ConfigurationService $config */
         $config = $app->get(ConfigurationService::class);
         $credentials = $config->getDbCredentials();
 
         if (!$credentials) {
-            throw new \Exception("Database credentials not found in config.xml");
+            throw new Exception("Database credentials not found in config.xml");
         }
-
-        return new DBContext($credentials, $app->get(CacheManager::class));
+        return $credentials;
     });
+    $builder->addScoped(DBContext::class, DBContext::class);
 
     // HTTP / Routing
-    $builder->addSingleton(Router::class, Router::class);
+    $builder->addScoped(Router::class, Router::class);
     $builder->addScoped(ActionFilterExecutor::class, ActionFilterExecutor::class);
     $builder->addSingleton(FilterRegistry::class, FilterRegistry::class);
     $builder->addScoped(FlashMessageService::class, FlashMessageService::class);
 
     // URL Generation
     $urlConfig = [
-        'pattern' => '/{lang}/Presentation/{controller}/{action}',
+        'pattern' => '/{lang}/{application}/{controller}/{action}',
         'default' => [
             'lang' => 'en-US', // Default, will be overridden
+            'application' => 'Presentation',
             'controller' => 'Home',
             'action' => 'index'
         ],
@@ -578,6 +584,7 @@ try {
     $builder->addScoped(TellerSessionController::class, TellerSessionController::class);
 
     // === 6. Register All Application (Web) Controllers (Transient) ===
+    $builder->addTransient(AdministrationController::class, AdministrationController::class);
     $builder->addTransient(PresentationHomeController::class, PresentationHomeController::class);
 
     // === 7. Build and return the Application ===
