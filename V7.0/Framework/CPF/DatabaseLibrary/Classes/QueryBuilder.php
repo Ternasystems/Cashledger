@@ -23,9 +23,35 @@ class QueryBuilder extends AbstractCls
     private ?string $orderBy = null;
     private ?string $limit = null;
     private ?int $cacheDuration = null; // In seconds
+    private string $driver;
 
     public function __construct(private PDO $pdo, private string $table, public readonly ?string $modelClass = null, private ?CacheManager $cache = null)
     {
+        // Detect the driver automatically from the connection
+        $this->driver = strtolower($this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME));
+    }
+
+    /**
+     * agnostic identifier quoting.
+     * Wraps table and column names in the correct characters for the active DB.
+     */
+    private function quote(string $identifier): string
+    {
+        if ($identifier === '*') {
+            return '*';
+        }
+
+        // MySQL uses backticks, everyone else (ANSI SQL) uses double quotes
+        $char = ($this->driver === 'mysql') ? '`' : '"';
+
+        // Handle "table.column" syntax by quoting parts separately
+        $parts = explode('.', $identifier);
+        foreach ($parts as &$part) {
+            if ($part !== '*') {
+                $part = $char . trim($part, $char . ' ') . $char;
+            }
+        }
+        return implode('.', $parts);
     }
 
     /**
@@ -54,7 +80,8 @@ class QueryBuilder extends AbstractCls
 
     public function orderBy(string $column, OrderByDirection $direction = OrderByDirection::ASC): self
     {
-        $this->orderBy = " ORDER BY `{$column}` {$direction->value}";
+        $col = $this->quote($column);
+        $this->orderBy = " ORDER BY {$col} {$direction->value}";
         return $this;
     }
 
@@ -74,7 +101,10 @@ class QueryBuilder extends AbstractCls
      */
     private function executeSelect(): array
     {
-        $sql = "SELECT " . implode(', ', $this->columns) . " FROM \"{$this->table}\"";
+        $table = $this->quote($this->table);
+        $cols = array_map([$this, 'quote'], $this->columns);
+
+        $sql = "SELECT " . implode(', ', $cols) . " FROM {$table}";
         $sql .= $this->buildWhereClause();
         $sql .= $this->orderBy;
         $sql .= $this->limit;
@@ -93,7 +123,10 @@ class QueryBuilder extends AbstractCls
      */
     private function generateCacheKey(): string
     {
-        $sql = "SELECT " . implode(', ', $this->columns) . " FROM {$this->table}";
+        $table = $this->quote($this->table);
+        $cols = array_map([$this, 'quote'], $this->columns);
+
+        $sql = "SELECT " . implode(', ', $cols) . " FROM {$table}";
         $sql .= $this->buildWhereClause();
         $sql .= $this->orderBy;
         $sql .= $this->limit;
@@ -134,9 +167,14 @@ class QueryBuilder extends AbstractCls
      */
     public function insert(array $data): int
     {
-        $columns = implode('`, `', array_keys($data));
+        $keys = array_keys($data);
+        $quotedKeys = array_map([$this, 'quote'], $keys);
+
+        $columns = implode(', ', $quotedKeys);
         $placeholders = implode(', ', array_fill(0, count($data), '?'));
-        $sql = "INSERT INTO {$this->table} (`{$columns}`) VALUES ({$placeholders})";
+        $table = $this->quote($this->table);
+
+        $sql = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
 
         return $this->execute($sql, array_values($data));
     }
@@ -149,11 +187,13 @@ class QueryBuilder extends AbstractCls
         $setClauses = [];
         $params = [];
         foreach ($data as $column => $value) {
-            $setClauses[] = "`{$column}` = ?";
+            $col = $this->quote($column);
+            $setClauses[] = "{$col} = ?";
             $params[] = $value;
         }
 
-        $sql = "UPDATE {$this->table} SET " . implode(', ', $setClauses);
+        $table = $this->quote($this->table);
+        $sql = "UPDATE {$table} SET " . implode(', ', $setClauses);
         $sql .= $this->buildWhereClause();
 
         return $this->execute($sql, array_merge($params, $this->bindings));
@@ -164,7 +204,8 @@ class QueryBuilder extends AbstractCls
      */
     public function delete(): int
     {
-        $sql = "DELETE FROM {$this->table}";
+        $table = $this->quote($this->table);
+        $sql = "DELETE FROM {$table}";
         $sql .= $this->buildWhereClause();
 
         return $this->execute($sql, $this->bindings);
@@ -175,8 +216,9 @@ class QueryBuilder extends AbstractCls
      */
     public function call(string $procedure, array $params = []): array
     {
+        $proc = $this->quote($procedure);
         $placeholders = implode(', ', array_fill(0, count($params), '?'));
-        $sql = "CALL {$procedure}({$placeholders})";
+        $sql = "CALL {$proc}({$placeholders})";
 
         try {
             $stmt = $this->pdo->prepare($sql);
@@ -200,13 +242,14 @@ class QueryBuilder extends AbstractCls
         foreach ($this->wheres as $i => $where) {
             $prefix = ($i > 0) ? " {$where['type']->value} " : '';
             $operator = strtoupper($where['operator']);
+            $col = $this->quote($where['column']);
 
             if ($where['value'] === null) {
                 if ($operator === '=' || $operator === 'IS') {
-                    $sqlParts[] = $prefix . "\"{$where['column']}\" IS NULL";
+                    $sqlParts[] = $prefix . "{$col} IS NULL";
                     continue; // Skip binding
                 } elseif ($operator === '!=' || $operator === '<>' || $operator === 'IS NOT') {
-                    $sqlParts[] = $prefix . "\"{$where['column']}\" IS NOT NULL";
+                    $sqlParts[] = $prefix . "{$col} IS NOT NULL";
                     continue; // Skip binding
                 }
             }
@@ -218,10 +261,10 @@ class QueryBuilder extends AbstractCls
                     continue;
                 }
                 $placeholders = implode(', ', array_fill(0, count($where['value']), '?'));
-                $sqlParts[] = $prefix . "\"{$where['column']}\" {$operator} ({$placeholders})";
+                $sqlParts[] = $prefix . "{$col} {$operator} ({$placeholders})";
                 $this->bindings = array_merge($this->bindings, $where['value']);
             } else {
-                $sqlParts[] = $prefix . "\"{$where['column']}\" {$where['operator']} ?";
+                $sqlParts[] = $prefix . "{$col} {$operator} ?";
                 $this->bindings[] = $where['value'];
             }
         }
